@@ -47,7 +47,7 @@ const Cart = () => {
 
               <div className='item flex justify-between items-center'>
                 <div className='-mt-5'>
-                  <h1 className=' text-md text-yellow-500 font-semibold uppercase mt-5'>TandooriChicken</h1>
+                  <h1 className=' text-md text-yellow-500 font-semibold uppercase mt-5'>Tandoori Chicken</h1>
                   <h2 className='text-[#808080] font-semibold'>Price: <span>$30.00</span></h2>
                   <h2 className='text-[#808080] font-semibold'>Tax: <span>$05.00</span></h2>
                   <h2 className='text-[#808080] font-semibold'>Delivery Charge: <span>$05.00</span></h2>
@@ -66,7 +66,7 @@ const Cart = () => {
 
               <div className='item flex justify-between items-center'>
                 <div className='-mt-5'>
-                  <h1 className=' text-md text-yellow-500 font-semibold uppercase mt-5'>TandooriChicken</h1>
+                  <h1 className=' text-md text-yellow-500 font-semibold uppercase mt-5'>Tandoori Chicken</h1>
                   <h2 className='text-[#808080] font-semibold'>Price: <span>$30.00</span></h2>
                   <h2 className='text-[#808080] font-semibold'>Tax: <span>$05.00</span></h2>
                   <h2 className='text-[#808080] font-semibold'>Delivery Charge: <span>$05.00</span></h2>
@@ -85,7 +85,7 @@ const Cart = () => {
 
               <div className='item flex justify-between items-center'>
                 <div className='-mt-5'>
-                  <h1 className=' text-md text-yellow-500 font-semibold uppercase mt-5'>TandooriChicken</h1>
+                  <h1 className=' text-md text-yellow-500 font-semibold uppercase mt-5'>Tandoori Chicken</h1>
                   <h2 className='text-[#808080] font-semibold'>Price: <span>$30.00</span></h2>
                   <h2 className='text-[#808080] font-semibold'>Tax: <span>$05.00</span></h2>
                   <h2 className='text-[#808080] font-semibold'>Delivery Charge: <span>$05.00</span></h2>
@@ -105,7 +105,7 @@ const Cart = () => {
 
               <div className='item flex justify-between items-center'>
                 <div className='-mt-5'>
-                  <h1 className=' text-md text-yellow-500 font-semibold uppercase mt-5'>TandooriChicken</h1>
+                  <h1 className=' text-md text-yellow-500 font-semibold uppercase mt-5'>Tandoori Chicken</h1>
                   <h2 className='text-[#808080] font-semibold'>Price: <span>$30.00</span></h2>
                   <h2 className='text-[#808080] font-semibold'>Tax: <span>$05.00</span></h2>
                   <h2 className='text-[#808080] font-semibold'>Delivery Charge: <span>$05.00</span></h2>
