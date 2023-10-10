@@ -76,7 +76,7 @@ const SpecialMenu = () => {
                         <div className="flex items-start ms-3 gap-5 font-semibold">
                             <div>
                             <h1 className="text-lg text-[#FFD700]">Chicken Parmesan <span> --------------</span></h1>
-                            <p className="">Maxican</p>
+                            <p className="">Italian</p>
                             </div>
                             <div>
                                 <p className="text-[#FFD700]">$10.00</p>
