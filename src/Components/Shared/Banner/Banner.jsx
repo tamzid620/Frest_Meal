@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import banner from '../../../../public/images/banner.png'
 
 const Banner = () => {
@@ -17,7 +18,9 @@ const Banner = () => {
                         <p> When I got to know about freelancing, I felt excited about it and started <br /> to collect information about fiver and upwork portal. I found a lot of <br /> interesting thing that would make me satisfied that if I could create <br /> some skils, than i would make a lot of money</p>
                     </div>
                     <div>
+                        <Link to="/menu">
                         <button className="btn bg-[#FFD700] mt-5 text-[#808080] border-black font-bold">Order Now</button>
+                        </Link>
                     </div>
                 </div>
                 {/* banner image----- */}

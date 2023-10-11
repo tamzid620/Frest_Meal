@@ -120,7 +120,6 @@ const Cart = () => {
           </div>
 
 
-
           {/* payment details */}
           <div
             className="rounded-xl shadow-xl shadow-yellow-500  lg:w-[450px] lg:h-[350px] md:w-[650px] md:h-[350px] sm: w-[358px] sm: h-[350px] sm: mt-10 text-yellow-500 sticky top-14 z-1 sm:mt-20 md:mt-20 lg:mt-0 lg:ms-36 md:ms-0">

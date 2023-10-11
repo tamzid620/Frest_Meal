@@ -1,13 +1,17 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../Shared/Navbar/Navbar';
 import Footer from '../Shared/Footer/Footer';
 
 const Layout = () => {
+
+const location = useLocation();
+const noHeaderFooter = location.pathname.includes('adminpanel') || location.pathname.includes('setdemo')  ;
+
     return (
         <div>
-            <Navbar/>
-            <Outlet/>
-            <Footer/>
+        { noHeaderFooter || <Navbar/> }
+        <Outlet/>
+        { noHeaderFooter || <Footer/> }
         </div>
     );
 };

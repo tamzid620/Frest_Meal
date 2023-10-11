@@ -60,8 +60,6 @@ const PlatteringService = () => {
       {/* Slider section */}
       {activeTab === 1 && (
         <div className="slider1 text-yellow-500 mt-10  sm: ms-6 sm: me-6 lg:ms-10 lg:me-10 ">
-          <Slider  {...sliderSettings}>
-            <div className="text-center flex justify-center">
               {/* per person platter section  */}
               <div className="w-full h-full flex flex-col justify-center items-center my-10">
                 <h1
@@ -69,6 +67,8 @@ const PlatteringService = () => {
                   className="text-3xl text-white font-semibold ">Per Person Platter </h1>
                 <img src="../../../../public/icons/hr.svg" alt="" />
               </div>
+          <Slider  {...sliderSettings}>
+            <div className="text-center flex justify-center">
 
               <div className='grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-5'>
                 <div className='border rounded-xl border-yellow-500 py-3' style={{ textAlign: 'center' }}>
@@ -392,8 +392,6 @@ const PlatteringService = () => {
 
       {activeTab === 2 && (
         <div className="slider1 text-yellow-500 mt-10  sm: ms-6 sm: me-6 lg:ms-10 lg:me-10 ">
-          <Slider  {...sliderSettings}>
-            <div className="text-center flex justify-center">
               {/* Occasion platter section  */}
               <div className="w-full h-full flex flex-col justify-center items-center my-10">
                 <h1
@@ -401,6 +399,8 @@ const PlatteringService = () => {
                   className="text-3xl text-white font-semibold ">Occasion Platter </h1>
                 <img src="../../../../public/icons/hr.svg" alt="" />
               </div>
+          <Slider  {...sliderSettings}>
+            <div className="text-center flex justify-center">
 
               <div className='grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-5'>
                 <div className='border rounded-xl border-yellow-500 py-3' style={{ textAlign: 'center' }}>
