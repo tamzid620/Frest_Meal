@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
+// import './satoshi.css';
 import Home from './Components/Pages/Home/Home';
 import ErrorPage from './Components/Pages/ErrorPage/ErrorPage';
 import Layout from './Components/Layout/Layout';
