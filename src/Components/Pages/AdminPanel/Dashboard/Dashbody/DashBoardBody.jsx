@@ -11,9 +11,9 @@ const DashBoardBody = () => {
         <div>
             <SearchPanel/>
             <NumberStatus />
-                <div>
-                    <Transaction />
-                    <EventList />
+                <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+                    <div><Transaction /></div>
+                    <div><EventList /></div>
                 </div>
             <AmountSecion />
             <PaymentStatus />

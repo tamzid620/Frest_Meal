@@ -1,6 +1,3 @@
-// import React from 'react';
-// import { ApexOptions } from 'apexcharts';
-import  { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 
@@ -47,17 +44,13 @@ const options= {
 };
 
 const Transaction = () => {
-//   const [state, setState] =({
-//     series: [65, 34, 12, 56],
-//   });
-const [state, setState] = useState({ series: [65, 34, 12, 56] });
-
 
   return (
-    <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-5">
-      <div className="mb-3 justify-between gap-4 sm:flex">
+    <div className="  bg-black  px-5 pt-7.5 pb-5 sm: w-[300px] md:w-[280px] lg:w-[450px] lg:h-[500px] flex items-center">
+      <div>
+      <div className="mb-3 justify-between gap-4 sm:flex lg:flex md:flex">
         <div>
-          <h5 className="text-xl font-semibold text-black dark:text-white">
+          <h5 className="text-xl font-semibold  text-white">
             Visitors Analytics
           </h5>
         </div>
@@ -66,12 +59,12 @@ const [state, setState] = useState({ series: [65, 34, 12, 56] });
             <select
               name=""
               id=""
-              className="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none"
+              className=" bg-black  text-sm text-white  font-medium outline-none"
             >
               <option value="">Monthly</option>
               <option value="">Yearly</option>
             </select>
-            <span className="absolute top-1/2 right-3 z-10 -translate-y-1/2">
+            <span className="hidden">
               <svg
                 width="10"
                 height="6"
@@ -95,54 +88,60 @@ const [state, setState] = useState({ series: [65, 34, 12, 56] });
         </div>
       </div>
 
-      <div className="mb-2">
+      <div className="mb-2 ">
         <div id="chartThree" className="mx-auto flex justify-center">
           <ReactApexChart
             options={options}
-            series={state.series}
+            series={[65, 34, 12, 56]}
             type="donut"
           />
         </div>
       </div>
 
-      <div className="-mx-8 flex flex-wrap items-center justify-center gap-y-3">
+      <div className="mx-8 flex lg:flex-wrap sm: flex-wrap md:flex-wrap items-center justify-center gap-y-3 mt-10">
+
         <div className="w-full px-8 sm:w-1/2">
           <div className="flex w-full items-center">
-            <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-primary"></span>
-            <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
+            <span className="mr-2 block h-3 w-3 rounded-full bg-primary"></span>
+            <p className="flex w-full justify-between text-sm font-medium text-white">
               <span> Desktop </span>
               <span> 65% </span>
             </p>
           </div>
         </div>
+
         <div className="w-full px-8 sm:w-1/2">
           <div className="flex w-full items-center">
-            <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#6577F3]"></span>
-            <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
+            <span className="mr-2 block h-3 w-3 rounded-full bg-[#6577F3]"></span>
+            <p className="flex w-full justify-between text-sm font-medium text-white">
               <span> Tablet </span>
               <span> 34% </span>
             </p>
           </div>
         </div>
+
         <div className="w-full px-8 sm:w-1/2">
           <div className="flex w-full items-center">
-            <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#8FD0EF]"></span>
-            <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
+            <span className="mr-2 block h-3 w-3 rounded-full bg-[#8FD0EF]"></span>
+            <p className="flex w-full justify-between text-sm font-medium text-white">
               <span> Mobile </span>
               <span> 45% </span>
             </p>
           </div>
         </div>
+
         <div className="w-full px-8 sm:w-1/2">
           <div className="flex w-full items-center">
-            <span className="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#0FADCF]"></span>
-            <p className="flex w-full justify-between text-sm font-medium text-black dark:text-white">
+            <span className="mr-2 block h-3 w-3 rounded-full bg-[#0FADCF]"></span>
+            <p className="flex w-full justify-between text-sm font-medium text-white">
               <span> Unknown </span>
               <span> 12% </span>
             </p>
           </div>
         </div>
       </div>
+      </div>
+
     </div>
   );
 };
