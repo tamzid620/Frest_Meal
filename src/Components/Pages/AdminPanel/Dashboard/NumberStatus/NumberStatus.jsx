@@ -1,14 +1,14 @@
-
+import { BsArrowUp,BsArrowDown } from "react-icons/bs";
 
 const NumberStatus = () => {
     return (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
 {/* ----------------------Number Status ------------------------- */}
  {/* cart-One  */}
- <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
+ <div className="rounded-xl border border-stroke bg-black text-white py-6 px-7.5">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-yellow-500">
         <svg
-          className="fill-primary dark:fill-white"
+          className="fill-primary "
           width="22"
           height="16"
           viewBox="0 0 22 16"
@@ -28,16 +28,16 @@ const NumberStatus = () => {
 
       <div className="mt-4 flex items-end justify-between">
         <div>
-          <h4 className="text-title-md font-bold text-black dark:text-white">
+          <h4 className="text-title-md font-bold dark:text-white">
             $3.456K
           </h4>
           <span className="text-sm font-medium">Total views</span>
         </div>
 
-        <span className="flex items-center gap-1 text-sm font-medium text-meta-3">
-          0.43%
+        <span className="flex items-center gap-1 text-sm font-semibold text-green-500">
+          0.43% <BsArrowUp/>
           <svg
-            className="fill-meta-3"
+            className="text-green-500"
             width="10"
             height="11"
             viewBox="0 0 10 11"
@@ -153,10 +153,10 @@ const NumberStatus = () => {
       </div>
     </div>
 {/* cart-four  */}
-<div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
+<div className="rounded-xl bg-black text-white py-6 px-7">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-yellow-500">
         <svg
-          className="fill-primary dark:fill-white"
+          className="fill-primary "
           width="22"
           height="18"
           viewBox="0 0 22 18"
@@ -180,16 +180,16 @@ const NumberStatus = () => {
 
       <div className="mt-4 flex items-end justify-between">
         <div>
-          <h4 className="text-title-md font-bold text-black dark:text-white">
+          <h4 className="text-title-md font-bold ">
             3.456
           </h4>
           <span className="text-sm font-medium">Total Users</span>
         </div>
 
-        <span className="flex items-center gap-1 text-sm font-medium text-meta-5">
-          0.95%
+        <span className="flex items-center gap-1 text-sm font-medium text-red-500">
+          0.95% <BsArrowDown/>
           <svg
-            className="fill-meta-5"
+            className="text-red-500"
             width="10"
             height="11"
             viewBox="0 0 10 11"
