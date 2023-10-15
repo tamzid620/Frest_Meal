@@ -5,7 +5,7 @@ const NumberStatus = () => {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
 {/* ----------------------Number Status ------------------------- */}
  {/* cart-One  */}
- <div className="rounded-xl border border-stroke bg-black text-white py-6 px-7.5">
+ <div className="rounded-xl border bg-black text-white py-6 px-6">
       <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-yellow-500">
         <svg
           className="fill-primary "
@@ -53,10 +53,10 @@ const NumberStatus = () => {
       </div>
     </div>
 {/* cart-Two  */}
-<div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
+<div className="rounded-xl border bg-black text-white py-6 px-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-yellow-500">
         <svg
-          className="fill-primary dark:fill-white"
+          className="fill-primary"
           width="20"
           height="22"
           viewBox="0 0 20 22"
@@ -80,16 +80,16 @@ const NumberStatus = () => {
 
       <div className="mt-4 flex items-end justify-between">
         <div>
-          <h4 className="text-title-md font-bold text-black dark:text-white">
+          <h4 className="text-title-md font-bold ">
             $45,2K
           </h4>
           <span className="text-sm font-medium">Total Profit</span>
         </div>
 
-        <span className="flex items-center gap-1 text-sm font-medium text-meta-3">
-          4.35%
+        <span className="flex items-center gap-1 text-sm font-medium  text-green-500">
+          4.35% <BsArrowUp/>
           <svg
-            className="fill-meta-3"
+            className=" text-green-500"
             width="10"
             height="11"
             viewBox="0 0 10 11"
@@ -105,10 +105,10 @@ const NumberStatus = () => {
       </div>
     </div>
 {/* cart-three  */}
-<div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
+<div className="rounded-xl border bg-black text-white py-6 px-6">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-yellow-500">
         <svg
-          className="fill-primary dark:fill-white"
+          className="fill-primary"
           width="22"
           height="22"
           viewBox="0 0 22 22"
@@ -128,16 +128,16 @@ const NumberStatus = () => {
 
       <div className="mt-4 flex items-end justify-between">
         <div>
-          <h4 className="text-title-md font-bold text-black dark:text-white">
+          <h4 className="text-title-md font-bold">
             2.450
           </h4>
           <span className="text-sm font-medium">Total Product</span>
         </div>
 
-        <span className="flex items-center gap-1 text-sm font-medium text-meta-3">
-          2.59%
+        <span className="flex items-center gap-1 text-sm font-medium  text-green-500">
+          2.59% <BsArrowUp/>
           <svg
-            className="fill-meta-3"
+            className=" text-green-500"
             width="10"
             height="11"
             viewBox="0 0 10 11"
@@ -153,10 +153,10 @@ const NumberStatus = () => {
       </div>
     </div>
 {/* cart-four  */}
-<div className="rounded-xl bg-black text-white py-6 px-7">
+<div className="rounded-xl border bg-black text-white py-6 px-6">
       <div className="flex h-11 w-11 items-center justify-center rounded-full text-white bg-yellow-500">
         <svg
-          className="fill-primary "
+          className="fill-primary"
           width="22"
           height="18"
           viewBox="0 0 22 18"
@@ -204,7 +204,6 @@ const NumberStatus = () => {
         </span>
       </div>
 </div>
-
         </div>
     );
 };
