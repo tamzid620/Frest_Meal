@@ -12,7 +12,7 @@ const SearchPanel = () => {
       <div>
    
       <div className=" sm: hidden lg:flex md:flex">
-        <input type="text" placeholder="Search Setting" className="input input-bordered input-warning w-[700px]" />
+        <input type="text" placeholder="Search Setting" className="input input-bordered input-warning lg:w-[700px] md:w-[500px]"/>
         <button
           title="Wishlist"
           className=" hover:text-white text-yellow-500 font-bold px-3 py-1
@@ -21,7 +21,7 @@ const SearchPanel = () => {
       </div>
       </div>
       {/* icon and login section  */}
-      <div className="flex">
+      <div className="flex sm: me-11 lg:me-0">
       <div className="flex items-center">
         <button
           title="Wishlist"

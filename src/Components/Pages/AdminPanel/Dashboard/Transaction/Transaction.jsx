@@ -46,8 +46,8 @@ const options= {
 const Transaction = () => {
 
   return (
-    <div className="  bg-black  px-5 pt-7.5 pb-5 sm: w-[300px] md:w-[280px] lg:w-[450px] lg:h-[500px] flex items-center">
-      <div>
+    <div className=" rounded-xl bg-black  px-5 pt-7.5 pb-5 sm: w-[300px] md:w-full lg:w-[450px] lg:h-[500px] flex items-center">
+      <div className='bg-black'>
       <div className="mb-3 justify-between gap-4 sm:flex lg:flex md:flex">
         <div>
           <h5 className="text-xl font-semibold  text-white">
@@ -55,7 +55,7 @@ const Transaction = () => {
           </h5>
         </div>
         <div>
-          <div className="relative z-20 inline-block">
+          <div className=" z-20 inline-block">
             <select
               name=""
               id=""
@@ -89,7 +89,7 @@ const Transaction = () => {
       </div>
 
       <div className="mb-2 ">
-        <div id="chartThree" className="mx-auto flex justify-center">
+        <div id="chartThree" className=" mx-auto flex justify-center sm: w-full md:w-[600px] lg:w-full">
           <ReactApexChart
             options={options}
             series={[65, 34, 12, 56]}

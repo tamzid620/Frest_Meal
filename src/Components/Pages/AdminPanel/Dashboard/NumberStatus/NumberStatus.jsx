@@ -28,13 +28,13 @@ const NumberStatus = () => {
 
       <div className="mt-4 flex items-end justify-between">
         <div>
-          <h4 className="text-title-md font-bold dark:text-white">
+          <h4 className="text-2xl font-semibold text-white">
             $3.456K
           </h4>
-          <span className="text-sm font-medium">Total views</span>
+          <span className="text-md font-medium">Total views</span>
         </div>
 
-        <span className="flex items-center gap-1 text-sm font-semibold text-green-500">
+        <span className="flex items-center gap-1 text-md font-semibold text-green-500">
           0.43% <BsArrowUp/>
           <svg
             className="text-green-500"
@@ -80,13 +80,13 @@ const NumberStatus = () => {
 
       <div className="mt-4 flex items-end justify-between">
         <div>
-          <h4 className="text-title-md font-bold ">
+          <h4 className="text-2xl font-semibold ">
             $45,2K
           </h4>
-          <span className="text-sm font-medium">Total Profit</span>
+          <span className="text-md font-medium">Total Profit</span>
         </div>
 
-        <span className="flex items-center gap-1 text-sm font-medium  text-green-500">
+        <span className="flex items-center gap-1 text-md font-medium  text-green-500">
           4.35% <BsArrowUp/>
           <svg
             className=" text-green-500"
@@ -128,13 +128,13 @@ const NumberStatus = () => {
 
       <div className="mt-4 flex items-end justify-between">
         <div>
-          <h4 className="text-title-md font-bold">
+          <h4 className="text-2xl font-semibold">
             2.450
           </h4>
-          <span className="text-sm font-medium">Total Product</span>
+          <span className="text-md font-medium">Total Product</span>
         </div>
 
-        <span className="flex items-center gap-1 text-sm font-medium  text-green-500">
+        <span className="flex items-center gap-1 text-md font-medium  text-green-500">
           2.59% <BsArrowUp/>
           <svg
             className=" text-green-500"
@@ -180,13 +180,13 @@ const NumberStatus = () => {
 
       <div className="mt-4 flex items-end justify-between">
         <div>
-          <h4 className="text-title-md font-bold ">
+          <h4 className="text-2xl font-semibold ">
             3.456
           </h4>
-          <span className="text-sm font-medium">Total Users</span>
+          <span className="text-md font-medium">Total Users</span>
         </div>
 
-        <span className="flex items-center gap-1 text-sm font-medium text-red-500">
+        <span className="flex items-center gap-1 text-md font-medium text-red-500">
           0.95% <BsArrowDown/>
           <svg
             className="text-red-500"
