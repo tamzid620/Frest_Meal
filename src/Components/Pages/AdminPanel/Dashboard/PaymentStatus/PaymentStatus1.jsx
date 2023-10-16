@@ -6,12 +6,12 @@ import user3 from '../../../../../assets/user/user-04.png'
 import user4 from '../../../../../assets/user/user-05.png'
 import user5 from '../../../../../assets/user/user-06.png'
 
-const PaymentStatus = () => {
+const PaymentStatus1 = () => {
     return (
-      <div className='shadow-xl shadow-yellow-500'>
+      <div className='border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl mb-10'>
       <div className=' division col-12 bg-black mb-5 rounded-xl p-3' role="region" aria-labelledby="Cap1" tabIndex="0">
       <table className='table w-full rounded-xl'>
-      <h4 className="font-semibold text-xl text-white">Payment Status</h4>
+      <h4 className="font-semibold text-2xl text-yellow-500">Payment Status</h4>
       <tr className='text-white font-semibold'>
                           <th> Client Name </th>
                           <th> Order No </th>
@@ -32,7 +32,7 @@ const PaymentStatus = () => {
                           <td> Credit card </td>
                           <td> 04 Dec 2019 </td>
                           <td>
-                          <button className="font-semibold text-success text-md px-2 py-1 rounded-md hover:bg-green-500 hover:text-black border border-green-500">Approved</button>
+                          <button className="flex items-center justify-center font-semibold text-success text-md sm: px-10 md:px-2 py-1 rounded-md hover:bg-green-500 hover:text-black border border-green-500">Approved</button>
                           </td>
                         </tr>
                         <tr>
@@ -46,7 +46,7 @@ const PaymentStatus = () => {
                           <td> Cash on delivered </td>
                           <td> 04 Dec 2019 </td>
                           <td>
-                            <button className="font-semibold text-warning text-md px-2 py-1 rounded-md hover:bg-yellow-500 hover:text-black border border-yellow-500">Pending</button>
+                            <button className="flex justify-center items-center font-semibold text-warning text-md sm: px-10 md:px-2 rounded-md hover:bg-yellow-500 hover:text-black border border-yellow-500">Pending</button>
                           </td>
                         </tr>
                         <tr>
@@ -60,7 +60,7 @@ const PaymentStatus = () => {
                           <td> Credit card </td>
                           <td> 04 Dec 2019 </td>
                           <td>
-                            <button className="font-semibold text-red-500 text-md px-2 py-1 rounded-md hover:bg-red-500 hover:text-black border border-red-500">Rejected</button>
+                            <button className="flex justify-center items-center font-semibold text-red-500 text-md sm: px-10 md:px-2 rounded-md hover:bg-red-500 hover:text-black border border-red-500">Rejected</button>
                           </td>
                         </tr>
                         <tr>
@@ -74,7 +74,7 @@ const PaymentStatus = () => {
                           <td> Online Payment </td>
                           <td> 04 Dec 2019 </td>
                           <td>
-                          <button className="font-semibold text-success text-md px-2 py-1 rounded-md hover:bg-green-500 hover:text-black border border-green-500">Approved</button>
+                          <button className="flex justify-center items-center font-semibold text-success text-md sm: px-10 md:px-2 rounded-md hover:bg-green-500 hover:text-black border border-green-500">Approved</button>
                           </td>
                         </tr>
                         <tr>
@@ -88,7 +88,7 @@ const PaymentStatus = () => {
                           <td> Credit card </td>
                           <td> 04 Dec 2019 </td>
                           <td>
-                          <button className="font-semibold text-success text-md px-2 py-1 rounded-md hover:bg-green-500 hover:text-black border border-green-500">Approved</button>
+                          <button className="flex justify-center items-center font-semibold text-success text-md sm: px-10 md:px-2 rounded-md hover:bg-green-500 hover:text-black border border-green-500">Approved</button>
                           </td>
                         </tr>
   
@@ -98,4 +98,4 @@ const PaymentStatus = () => {
     );
 };
 
-export default PaymentStatus;
+export default PaymentStatus1;

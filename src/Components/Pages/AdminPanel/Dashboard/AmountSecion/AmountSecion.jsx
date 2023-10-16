@@ -5,12 +5,13 @@ import { LuMonitor } from "react-icons/lu";
 const AmountSecion = () => {
   return (
     <div>
-      <div className="row  flex justify-between">
+      <div className="lg:flex md:flex gap-10 mt-5 ">
+
       {/* Total Amount Debit */}
-        <div className="flex items-center bg-black px-14 py-10 rounded-xl">
+        <div className="flex items-center border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-black rounded-xl lg:px-14 lg:py-10 md:px-7 md:py-5 sm: px-16 py-10 mb-5">
         <div className="col-sm-4 ">
               <h5 className="text-lg text-white font font-semibold mb-2">Total Amount Debit</h5>
-          <div className="flex items-center gap-10">
+          <div className="lg:flex items-center gap-10">
  {/* text part  */}
             <div>
               <div className="flex items-center">
@@ -20,17 +21,18 @@ const AmountSecion = () => {
               <h6 className="text-gray-400 font-weight-normal">11.38% Since last month</h6>
             </div>
 {/* icon part  */}
-            <div>
+            <div className="flex justify-center sm: mt-3">
               <BsBoxSeamFill size={55} className="text-blue-500"/>
             </div>
           </div>
         </div>
         </div>
+
         {/* Total Amount Credit  */}
-        <div className="flex items-center bg-black px-14 py-10  rounded-xl">
+        <div className="flex items-center border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-black rounded-xl lg:px-14 lg:py-10 md:px-7 md:py-5 sm: px-16 py-10 mb-5">
         <div className="col-sm-4 ">
               <h5 className="text-lg text-white font font-semibold mb-2">Total Amount Credit</h5>
-          <div className="flex items-center gap-10">
+          <div className="lg:flex items-center gap-10">
  {/* text part  */}
             <div>
               <div className="flex items-center">
@@ -40,17 +42,18 @@ const AmountSecion = () => {
               <h6 className="text-gray-400 font-weight-normal">9.61% Since last month</h6>
             </div>
 {/* icon part  */}
-            <div>
+            <div className="flex justify-center sm: mt-3">
               <BiSolidShoppingBags size={55} className="text-red-500"/>
             </div>
           </div>
         </div>
         </div>
+
         {/* Purchase */}
-        <div className="flex items-center bg-black px-14 py-10  rounded-xl">
+        <div className="flex items-center border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-black rounded-xl lg:px-14 lg:py-10 md:px-7 md:py-5 sm: px-16 py-10 mb-5">
         <div className="col-sm-4 ">
               <h5 className="text-lg text-white font font-semibold mb-2">Purchase</h5>
-          <div className="flex items-center gap-10">
+          <div className="lg:flex items-center gap-10">
  {/* text part  */}
             <div>
               <div className="flex items-center">
@@ -60,7 +63,7 @@ const AmountSecion = () => {
               <h6 className="text-gray-400 font-weight-normal">2.27% Since last month</h6>
             </div>
 {/* icon part  */}
-            <div>
+            <div className="flex justify-center sm: mt-3">
               <LuMonitor size={55} className="text-green-500"/>
             </div>
           </div>

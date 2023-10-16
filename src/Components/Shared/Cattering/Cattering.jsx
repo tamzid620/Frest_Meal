@@ -13,8 +13,12 @@ const Cattering = () => {
             </div>
 
             {/*------------------------- information section ------------------------ */}
-            <div className=' flex justify-center sm: ms-2 sm: me-2 lg:ms-0 lg:me-0 mt-20 transition-transform transform hover:scale-105'>
-                <div className='grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1  rounded-xl shadow-lg shadow-yellow-500 p-3 '>
+            <div 
+            className=' flex justify-center
+             sm: ms-2 sm: me-2 lg:ms-0 lg:me-0 mt-20 
+             transition-transform transform hover:scale-105'>
+                <div className='grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 
+                 rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 '>
 
                     {/* image section  */}
                     <div className='bg-black opacity-70'>

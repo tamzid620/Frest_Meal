@@ -59,7 +59,7 @@ const WishList = () => {
                 <div className=' mt-10 gap-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
 
                     {/* food item -1 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo9} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>TandooriChicken</h1>
@@ -84,7 +84,7 @@ const WishList = () => {
                     </div>
 
                     {/* food item -2 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo6} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Lobster Chowder</h1>
@@ -106,7 +106,7 @@ const WishList = () => {
                     </div>
 
                     {/* food item -3 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo4} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>kimchi fried rice</h1>
@@ -128,7 +128,7 @@ const WishList = () => {
                     </div>
 
                     {/* food item -4 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo5} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Kung Pao Chicken</h1>
@@ -150,7 +150,7 @@ const WishList = () => {
                     </div>
 
                     {/* food item -5 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo3} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Fish Tacos</h1>
@@ -172,7 +172,7 @@ const WishList = () => {
                     </div>
 
                     {/* food item -6 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo2} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Bibimbap</h1>
@@ -194,7 +194,7 @@ const WishList = () => {
                     </div>
 
                     {/* food item -7 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo7} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Rasta Pasta</h1>
@@ -216,7 +216,7 @@ const WishList = () => {
                     </div>
                     
                     {/* food item -8 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo8} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Ratatouille</h1>
@@ -238,7 +238,7 @@ const WishList = () => {
                     </div>
 
                     {/* food item -9 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo1} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Beef Wellington</h1>

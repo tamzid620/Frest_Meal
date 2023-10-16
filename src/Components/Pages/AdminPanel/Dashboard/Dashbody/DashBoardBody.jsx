@@ -1,7 +1,8 @@
 import AmountSecion from "../AmountSecion/AmountSecion";
 import EventList from "../EventList/EventList";
 import NumberStatus from "../NumberStatus/NumberStatus";
-import PaymentStatus from "../PaymentStatus/PaymentStatus";
+// import PaymentStatus from "../PaymentStatus/PaymentStatus";
+import PaymentStatus1 from "../PaymentStatus/PaymentStatus1";
 import SearchPanel from "../SearchPanel/SearchPanel";
 import Transaction from "../Transaction/Transaction";
 
@@ -9,7 +10,9 @@ import Transaction from "../Transaction/Transaction";
 const DashBoardBody = () => {
     return (
         <div>
-            <div className="fixed z-10 w-full max-w-screen-xl"><SearchPanel /></div>
+            <div className="fixed z-10 w-full"><SearchPanel /></div>
+            <div className="flex justify-center">
+            <div>
             <div className="mt-24 mb-5 w-full max-w-screen-xl"><NumberStatus /></div>
             <div className="lg:flex  gap-5">
                 <div className="col-span-4 lg:col-span-4 sm: mb-5">
@@ -21,7 +24,10 @@ const DashBoardBody = () => {
             </div>
 
             <div className="w-full max-w-screen-xl"><AmountSecion /></div>
-            <div className="w-full max-w-screen-xl"><PaymentStatus /></div>
+            <div className="w-full max-w-screen-xl"><PaymentStatus1 /></div>
+            {/* <div className="w-full max-w-screen-xl"><PaymentStatus /></div> */}
+            </div>
+            </div>
         </div>
     );
 };

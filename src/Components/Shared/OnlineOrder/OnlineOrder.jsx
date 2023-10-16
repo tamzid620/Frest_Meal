@@ -9,7 +9,7 @@ import photo8 from '../../../../public/images/Ratatouille (1).jpg'
 import photo9 from '../../../../public/images/Tandoori-Chicken.jpg'
 import icon1 from '../../../../public/icons/start-filled.svg'
 import icon2 from '../../../../public/icons/star-grey.svg'
-import { BsFillCartCheckFill,BsFillCartPlusFill } from "react-icons/bs";
+import { BsFillCartPlusFill } from "react-icons/bs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -42,7 +42,7 @@ const OnlineOrder = () => {
                 <div className='max-w-screen-xl mx-auto mt-10 gap-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
 
                     {/* food item -1 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo9} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>TandooriChicken</h1>
@@ -57,25 +57,17 @@ const OnlineOrder = () => {
                                     <img src={icon2} alt="" />
                                 </div>
                             </div>
-                            <div className='flex justify-center gap-5'>
                             <button  onClick={handleOrderNowClick} 
                             className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  
+                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
                              rounded-md mt-3 flex items-center gap-2">
                             <span> Add to Cart </span><span> <BsFillCartPlusFill/>  </span> 
                             </button>
-                            <button  
-                            className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 
-                             rounded-md mt-3 flex items-center gap-2">
-                            <span> Buy Now </span><span> <BsFillCartCheckFill/>  </span> 
-                            </button>
-                            </div>
                         </div>
                     </div>
 
                     {/* food item -2 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo6} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Lobster Chowder</h1>
@@ -90,25 +82,17 @@ const OnlineOrder = () => {
                                     <img src={icon2} alt="" />
                                 </div>
                             </div>
-                            <div className='flex justify-center gap-5'>
                             <button  onClick={handleOrderNowClick} 
                             className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  
+                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
                              rounded-md mt-3 flex items-center gap-2">
                             <span> Add to Cart </span><span> <BsFillCartPlusFill/>  </span> 
                             </button>
-                            <button 
-                            className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 
-                             rounded-md mt-3 flex items-center gap-2">
-                            <span> Buy Now </span><span> <BsFillCartCheckFill/>  </span> 
-                            </button>
-                            </div>
                         </div>
                     </div>
 
                     {/* food item -3 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl  border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo4} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>kimchi fried rice</h1>
@@ -123,25 +107,17 @@ const OnlineOrder = () => {
                                     <img src={icon2} alt="" />
                                 </div>
                             </div>
-                            <div className='flex justify-center gap-5'>
                             <button  onClick={handleOrderNowClick} 
                             className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  
+                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
                              rounded-md mt-3 flex items-center gap-2">
                             <span> Add to Cart </span><span> <BsFillCartPlusFill/>  </span> 
                             </button>
-                            <button 
-                            className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 
-                             rounded-md mt-3 flex items-center gap-2">
-                            <span> Buy Now </span><span> <BsFillCartCheckFill/>  </span> 
-                            </button>
-                            </div>
                         </div>
                     </div>
 
                     {/* food item -4 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo5} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Kung Pao Chicken</h1>
@@ -156,25 +132,17 @@ const OnlineOrder = () => {
                                     <img src={icon2} alt="" />
                                 </div>
                             </div>
-                            <div className='flex justify-center gap-5'>
                             <button  onClick={handleOrderNowClick} 
                             className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  
+                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
                              rounded-md mt-3 flex items-center gap-2">
                             <span> Add to Cart </span><span> <BsFillCartPlusFill/>  </span> 
                             </button>
-                            <button 
-                            className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 
-                             rounded-md mt-3 flex items-center gap-2">
-                            <span> Buy Now </span><span> <BsFillCartCheckFill/>  </span> 
-                            </button>
-                            </div>
                         </div>
                     </div>
 
                     {/* food item -5 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo3} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Fish Tacos</h1>
@@ -189,25 +157,17 @@ const OnlineOrder = () => {
                                     <img src={icon2} alt="" />
                                 </div>
                             </div>
-                            <div className='flex justify-center gap-5'>
                             <button  onClick={handleOrderNowClick} 
                             className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  
+                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
                              rounded-md mt-3 flex items-center gap-2">
                             <span> Add to Cart </span><span> <BsFillCartPlusFill/>  </span> 
                             </button>
-                            <button 
-                            className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 
-                             rounded-md mt-3 flex items-center gap-2">
-                            <span> Buy Now </span><span> <BsFillCartCheckFill/>  </span> 
-                            </button>
-                            </div>
                         </div>
                     </div>
 
                     {/* food item -6 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo2} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Bibimbap</h1>
@@ -222,25 +182,17 @@ const OnlineOrder = () => {
                                     <img src={icon2} alt="" />
                                 </div>
                             </div>
-                            <div className='flex justify-center gap-5'>
                             <button  onClick={handleOrderNowClick} 
                             className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  
+                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
                              rounded-md mt-3 flex items-center gap-2">
                             <span> Add to Cart </span><span> <BsFillCartPlusFill/>  </span> 
                             </button>
-                            <button 
-                            className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 
-                             rounded-md mt-3 flex items-center gap-2">
-                            <span> Buy Now </span><span> <BsFillCartCheckFill/>  </span> 
-                            </button>
-                            </div>
                         </div>
                     </div>
 
                     {/* food item -7 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo7} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Rasta Pasta</h1>
@@ -255,25 +207,17 @@ const OnlineOrder = () => {
                                     <img src={icon2} alt="" />
                                 </div>
                             </div>
-                            <div className='flex justify-center gap-5'>
                             <button  onClick={handleOrderNowClick} 
                             className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  
+                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
                              rounded-md mt-3 flex items-center gap-2">
                             <span> Add to Cart </span><span> <BsFillCartPlusFill/>  </span> 
                             </button>
-                            <button  
-                            className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 
-                             rounded-md mt-3 flex items-center gap-2">
-                            <span> Buy Now </span><span> <BsFillCartCheckFill/>  </span> 
-                            </button>
-                            </div>
                         </div>
                     </div>
                     
                     {/* food item -8 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo8} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Ratatouille</h1>
@@ -288,25 +232,17 @@ const OnlineOrder = () => {
                                     <img src={icon2} alt="" />
                                 </div>
                             </div>
-                            <div className='flex justify-center gap-5'>
                             <button  onClick={handleOrderNowClick} 
                             className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  
+                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
                              rounded-md mt-3 flex items-center gap-2">
                             <span> Add to Cart </span><span> <BsFillCartPlusFill/>  </span> 
                             </button>
-                            <button  
-                            className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 
-                             rounded-md mt-3 flex items-center gap-2">
-                            <span> Buy Now </span><span> <BsFillCartCheckFill/>  </span> 
-                            </button>
-                            </div>
                         </div>
                     </div>
 
                     {/* food item -9 */}
-                    <div className=' rounded-xl shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
+                    <div className=' rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-80 transition-transform transform hover:scale-105'>
                         <img className='w-80 h-48 rounded-lg' src={photo1} alt="" />
                         <div>
                             <h1 className=' text-xl text-white font-semibold uppercase mt-5'>Beef Wellington</h1>
@@ -321,20 +257,12 @@ const OnlineOrder = () => {
                                     <img src={icon2} alt="" />
                                 </div>
                             </div>
-                            <div className='flex justify-center gap-5'>
                             <button  onClick={handleOrderNowClick} 
                             className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  
+                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
                              rounded-md mt-3 flex items-center gap-2">
                             <span> Add to Cart </span><span> <BsFillCartPlusFill/>  </span> 
                             </button>
-                            <button  
-                            className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 
-                             rounded-md mt-3 flex items-center gap-2">
-                            <span> Buy Now </span><span> <BsFillCartCheckFill/>  </span> 
-                            </button>
-                            </div>
                         </div>
                     </div>
 

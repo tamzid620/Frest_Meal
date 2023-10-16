@@ -1,5 +1,5 @@
 import orderTrackingPhoto1 from '../../../../public/images/Tandoori-Chicken.jpg'
-// import orderTrackingPhoto2 from '../../../../public/images/Lobster-Chowder.jpeg'
+import orderTrackingPhoto4 from '../../../../public/images/Lobster-Chowder.jpeg'
 import orderTrackingPhoto2 from '../../../../public/images/kimchi-fried-rice-recipe.jpg'
 import orderTrackingPhoto3 from '../../../../public/images/Bibimbap (1).jpg'
 import aboutPhoto from '../../../../public/images/contactUs.jpg';
@@ -41,9 +41,9 @@ const Cart = () => {
           <div>
             {/* selected items-1 */}
             <div
-              className="shadow-lg shadow-yellow-500 rounded-xl h-[115px] lg:w-[650px] md:w-[650px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-14">
+              className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl h-[115px] lg:w-[650px] md:w-[650px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-14">
 
-              <img className='rounded-xl lg:w-[150px] md:w-[150px] sm: w-[100px] me-5' src={orderTrackingPhoto1} alt="" />
+              <img className='rounded-xl lg:w-[150px] md:w-[150px] sm: w-[100px] me-5 ms-2' src={orderTrackingPhoto1} alt="" />
 
               <div className='item flex justify-between items-center'>
                 <div className='-mt-5'>
@@ -60,9 +60,9 @@ const Cart = () => {
             </div>
             {/* selected items-2 */}
             <div
-              className="shadow-lg shadow-yellow-500 rounded-xl h-[115px] lg:w-[650px] md:w-[650px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-10">
+              className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl h-[115px] lg:w-[650px] md:w-[650px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-10">
 
-              <img className='rounded-xl lg:w-[150px] md:w-[150px] sm: w-[100px] me-5' src={orderTrackingPhoto2} alt="" />
+              <img className='rounded-xl lg:w-[150px] md:w-[150px] sm: w-[100px] me-5 ms-2' src={orderTrackingPhoto2} alt="" />
 
               <div className='item flex justify-between items-center'>
                 <div className='-mt-5'>
@@ -79,9 +79,9 @@ const Cart = () => {
             </div>
             {/* selected items-3 */}
             <div
-              className="shadow-lg shadow-yellow-500 rounded-xl h-[115px] lg:w-[650px] md:w-[650px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-10">
+              className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl h-[115px] lg:w-[650px] md:w-[650px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-10">
 
-              <img className='rounded-xl lg:w-[150px] md:w-[150px] sm: w-[100px] me-5' src={orderTrackingPhoto3} alt="" />
+              <img className='rounded-xl lg:w-[150px] md:w-[150px] sm: w-[100px] me-5 ms-2' src={orderTrackingPhoto3} alt="" />
 
               <div className='item flex justify-between items-center'>
                 <div className='-mt-5'>
@@ -99,9 +99,9 @@ const Cart = () => {
 
             {/* selected items-4 */}
             <div
-              className="shadow-lg shadow-yellow-500 rounded-xl h-[115px] lg:w-[650px] md:w-[650px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-10">
+              className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl h-[115px] lg:w-[650px] md:w-[650px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-10">
 
-              <img className='rounded-xl lg:w-[150px] md:w-[150px] sm: w-[100px] me-5' src={orderTrackingPhoto3} alt="" />
+              <img className='rounded-xl lg:w-[150px] md:w-[150px] sm: w-[100px] h-[100px] me-5 ms-2' src={orderTrackingPhoto4} alt="" />
 
               <div className='item flex justify-between items-center'>
                 <div className='-mt-5'>
