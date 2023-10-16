@@ -122,9 +122,9 @@ const Cart = () => {
 
           {/* payment details */}
           <div
-            className="rounded-xl shadow-xl shadow-yellow-500  lg:w-[450px] lg:h-[350px] md:w-[650px] md:h-[350px] sm: w-[358px] sm: h-[350px] sm: mt-10 text-yellow-500 sticky top-14 z-1 sm:mt-20 md:mt-20 lg:mt-0 lg:ms-36 md:ms-0">
+            className="rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500  lg:w-[450px] lg:h-[350px] md:w-[650px] md:h-[350px] sm: w-[358px] sm: h-[350px] sm: mt-10 text-yellow-500 sticky top-14 z-1 sm:mt-20 md:mt-20 lg:mt-0 lg:ms-36 md:ms-0">
             <div className='ms-2 me-2'>
-              <h1 className="border border-yellow-500 p-2 rounded-xl font-semibold text-3xl text-white mb-3 flex justify-center">Order Details</h1>
+              <h1 className="border border-yellow-500 p-2 mt-3 rounded-xl font-semibold text-3xl text-white mb-3 flex justify-center">Order Details</h1>
               <h1 className='font-bold text-lg text-gray-500 mb-2'>Selected items: <span className='text-yellow-500'> 04</span></h1>
               <h1 className='font-bold text-lg text-gray-500 mb-2'>Total Price: <span className='text-yellow-500'>$90</span></h1>
               <h1 className='font-bold text-lg text-gray-500 mb-2'> Total Delivery Charge: <span className='text-yellow-500'> $15</span></h1>

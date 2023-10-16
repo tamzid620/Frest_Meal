@@ -1,4 +1,5 @@
 import AmountSecion from "./Dashboard/AmountSecion/AmountSecion";
+import Drawer from "./Dashboard/Drawer/Drawer";
 import EventList from "./Dashboard/EventList/EventList";
 import NumberStatus from "./Dashboard/NumberStatus/NumberStatus";
 import PaymentStatus1 from "./Dashboard/PaymentStatus/PaymentStatus1";
@@ -7,7 +8,7 @@ import Transaction from "./Dashboard/Transaction/Transaction";
 
 const AdminPanel = () => {
   return (
-    <div className="text-yellow-500">
+    <div className="text-yellow-500 ">
       <div className="fixed z-10 w-full"><SearchPanel /></div>
       <div className="flex justify-center">
         <div>
