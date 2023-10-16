@@ -5,7 +5,7 @@ import { LuMonitor } from "react-icons/lu";
 const AmountSecion = () => {
   return (
     <div>
-      <div className="lg:flex md:flex gap-10 mt-5 ">
+      <div className="lg:flex md:flex gap-10 mt-5 justify-center">
 
       {/* Total Amount Debit */}
         <div className="flex items-center border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-black rounded-xl lg:px-14 lg:py-10 md:px-7 md:py-5 sm: px-16 py-10 mb-5">

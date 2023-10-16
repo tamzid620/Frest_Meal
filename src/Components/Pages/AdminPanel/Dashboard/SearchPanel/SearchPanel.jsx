@@ -7,6 +7,7 @@ import { AiFillSetting } from "react-icons/ai";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { IoIosSpeedometer } from "react-icons/io";
+import brandlogo from '../../../../../../public/icons/logo-svg.png'
 
 const SearchPanel = () => {
   return (
@@ -27,8 +28,9 @@ const SearchPanel = () => {
             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay "></label>
             <ul className="menu p-4 w-80 min-h-full bg-black text-white border-r-2 border-yellow-500">
               {/* Sidebar content here */}
-
-              <h1 className="font-bold text-2xl text-yellow-500 mb-5">Navigation </h1>
+<img className="w-[150px]" src={brandlogo} alt="" />
+<hr className="border border-yellow-500 opacity-40 mt-5" />
+              <h1 style={{ fontFamily: 'Mooli, sans-serif' }} className="font-bold text-2xl text-white my-5">Navigation </h1>
 
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-red-500"><IoIosSpeedometer className="text-red-500" size={20} /> Option-1</span>
