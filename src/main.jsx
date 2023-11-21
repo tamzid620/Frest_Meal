@@ -16,8 +16,7 @@ import Contact from './Components/Pages/QuickLinks/Contact';
 import Cart from './Components/Pages/Cart/Cart';
 import WishList from './Components/Pages/Home/WishList/WishList';
 import AdminPanel from './Components/Pages/AdminPanel/AdminPanel';
-import Demo from './Components/Pages/Demo';
-import SetDemo from './Components/Pages/SetDemo';
+import AdminLogin from './Components/Pages/AdminPanel/AdminLogin';
 
 const router = createBrowserRouter([
   {
@@ -28,18 +27,6 @@ const router = createBrowserRouter([
       {
         path:"/",
         element: <Home/>,
-      },
-      {
-        path:"/adminpanel",
-        element: <AdminPanel/>,
-      },
-      {
-        path:"/demo",
-        element: <Demo/>,
-      },
-      {
-        path:"/setdemo",
-        element: <SetDemo/>,
       },
       {
         path:"/cart",
@@ -69,6 +56,17 @@ const router = createBrowserRouter([
         path:"/contactUs",
         element: <Contact/>
       },
+  // Admin Login ------------------------------
+  {
+    path:"/adminlogin",
+    element: <AdminLogin/>,
+  },
+ // AdminPanel section ------------------------
+      {
+        path:"/dp",
+        element: <AdminPanel/>,
+      },
+  // -------------------------
     ]
   },
 ]);

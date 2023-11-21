@@ -1,18 +1,52 @@
 import AmountSecion from "./Dashboard/AmountSecion/AmountSecion";
-import Drawer from "./Dashboard/Drawer/Drawer";
 import EventList from "./Dashboard/EventList/EventList";
 import NumberStatus from "./Dashboard/NumberStatus/NumberStatus";
 import PaymentStatus1 from "./Dashboard/PaymentStatus/PaymentStatus1";
 import SearchPanel from "./Dashboard/SearchPanel/SearchPanel";
 import Transaction from "./Dashboard/Transaction/Transaction";
+import adminBackground from ".././../../../public/images/Admin_Background.jpg";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AdminPanel = () => {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "You have to Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/adminlogin");
+    }
+  }, [navigate]);
+
+
   return (
     <div className="text-yellow-500 ">
-      <div className="fixed z-10 w-full"><SearchPanel /></div>
-      <div className="flex justify-center">
+      <div className="fixed z-10 w-full">
+        <SearchPanel />
+      </div>
+
+      {/* main section  */}
+      <div
+        style={{
+          backgroundImage: `url(${adminBackground})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+        className="flex justify-center"
+      >
         <div>
-          <div className="mt-24 mb-10 w-full max-w-screen-xl"><NumberStatus /></div>
+          <div className="mt-24 mb-10 w-full max-w-screen-xl">
+            <NumberStatus />
+          </div>
           <div className="lg:flex  gap-5">
             <div className="col-span-4 lg:col-span-4 sm: mb-10">
               <Transaction />
@@ -21,8 +55,12 @@ const AdminPanel = () => {
               <EventList />
             </div>
           </div>
-          <div className="w-full max-w-screen-xl mb-10"><AmountSecion /></div>
-          <div className="w-full max-w-screen-xl mb-10"><PaymentStatus1 /></div>
+          <div className="w-full max-w-screen-xl mb-10">
+            <AmountSecion />
+          </div>
+          <div className="w-full max-w-screen-xl mb-10">
+            <PaymentStatus1 />
+          </div>
         </div>
       </div>
     </div>

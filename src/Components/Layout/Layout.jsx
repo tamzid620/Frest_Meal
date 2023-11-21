@@ -5,7 +5,9 @@ import Footer from '../Shared/Footer/Footer';
 const Layout = () => {
 
 const location = useLocation();
-const noHeaderFooter = location.pathname.includes('adminpanel') || location.pathname.includes('setdemo')  ;
+const noHeaderFooter =
+ location.pathname.includes('dp') || 
+ location.pathname.includes('adminlogin') 
 
     return (
         <div>
