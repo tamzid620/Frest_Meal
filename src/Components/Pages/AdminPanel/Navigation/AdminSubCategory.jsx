@@ -1,7 +1,6 @@
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
-import adminBackground from "../../../../../public/images/Admin_Background.jpg";
 
-const SubCategory = () => {
+const AdminSubCategory = () => {
     return (
         <div className="text-yellow-500 ">
         <div className="fixed z-10 w-full">
@@ -20,4 +19,4 @@ const SubCategory = () => {
     );
 };
 
-export default SubCategory;
+export default AdminSubCategory;

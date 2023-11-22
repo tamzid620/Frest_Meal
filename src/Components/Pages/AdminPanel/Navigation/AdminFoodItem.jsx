@@ -1,6 +1,6 @@
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 
-const FoodItem = () => {
+const AdminFoodItem = () => {
     return (
         <div className="text-yellow-500 ">
         <div className="fixed z-10 w-full">
@@ -23,4 +23,4 @@ const FoodItem = () => {
     );
 };
 
-export default FoodItem;
+export default AdminFoodItem;

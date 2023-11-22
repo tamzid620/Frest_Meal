@@ -1,7 +1,7 @@
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { Link } from "react-router-dom";
 
-const Category = () => {
+const AdminCategory = () => {
   return (
     <div className="text-yellow-500 bg-gray-300 min-h-screen">
       <div className="fixed z-10 w-full">
@@ -59,10 +59,10 @@ const Category = () => {
               {/* head */}
               <thead className="bg-gray-600 text-white">
                 <tr>
-                  <th></th>
-                  <th>Name</th>
-                  <th>Job</th>
-                  <th>Favorite Color</th>
+                  <th>index</th>
+                  <th>Categoty Name</th>
+                  <th>Categoty Code</th>
+                  <th>Description</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -101,4 +101,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default AdminCategory;

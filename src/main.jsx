@@ -14,10 +14,10 @@ import Cart from "./Components/Pages/Cart/Cart";
 import WishList from "./Components/Pages/Home/WishList/WishList";
 import AdminPanel from "./Components/Pages/AdminPanel/AdminPanel";
 import AdminLogin from "./Components/Pages/AdminPanel/AdminLogin";
-import Category from "./Components/Pages/AdminPanel/Navigation/Category";
-import SubCategory from "./Components/Pages/AdminPanel/Navigation/SubCategory";
-import FoodItem from "./Components/Pages/AdminPanel/Navigation/FoodItem";
 import AdminCategoryAdd from "./Components/Pages/AdminPanel/Navigation/AdminCategoryAdd";
+import AdminCategory from "./Components/Pages/AdminPanel/Navigation/AdminCategory";
+import AdminSubCategory from "./Components/Pages/AdminPanel/Navigation/AdminSubCategory";
+import AdminFoodItem from "./Components/Pages/AdminPanel/Navigation/AdminFoodItem";
 import AdminCategoryEdit from "./Components/Pages/AdminPanel/Navigation/AdminCategoryEdit";
 
 const router = createBrowserRouter([
@@ -71,25 +71,25 @@ const router = createBrowserRouter([
       //category section  -------------------------
       {
         path: "/AdminCategory",
-        element: <Category />,
+        element: <AdminCategory />,
       },
       {
         path: "/AdminategoryAdd",
         element: <AdminCategoryAdd />,
       },
       {
-        path: "/AdminCategoryEdit",
+        path: "/AdminCategoryEdit/:categoryId",
         element: <AdminCategoryEdit />,
       },
       //Sub category section  -------------------------
       {
         path: "/AdminSubCategory",
-        element: <SubCategory />,
+        element: <AdminSubCategory />,
       },
       //Food Item section  -------------------------
       {
         path: "/AdminFoodItem",
-        element: <FoodItem />,
+        element: <AdminFoodItem />,
       },
     ],
   },

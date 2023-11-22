@@ -1,7 +1,104 @@
+import { useEffect, useState } from "react";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
-
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const AdminCategoryAdd = () => {
+  const [adminCategory, setAdminCategory] = useState([]);
+  const navigate = useNavigate();
+  const [categoryName, setCategoryName] = useState("");
+  const [categoryCode, setCategoryCode] = useState("");
+  const [description, setDescription] = useState("");
+
+  // handle control --------------------
+  const handleCategoryNameChange = (e) => {
+    setCategoryName(e.target.value);
+  };
+  const handleCategoryCodeChange = (e) => {
+    setCategoryCode(e.target.value);
+  };
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        categoryName: "You have to Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/adminlogin");
+    } else {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const headers = {
+        accept: "application/json",
+        Authorization: "Bearer " + user.token,
+      };
+
+      axios
+        .get(`http://127.0.0.1:8000/api/login`, {
+          headers: headers,
+        })
+        .then((res) => {
+          setAdminCategory(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [navigate]);
+  console.log(adminCategory);
+
+  // handle submit button ----------------
+  const handleSubmit = (e) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+
+    e.preventDefault();
+    const data = new FormData();
+    data.append("categoryName", categoryName);
+    data.append("categoryCode", categoryCode);
+    data.append("description", description);
+    console.log(data);
+    // post method --------------
+    axios
+      .post("https://backend.ap.loclx.io/api/add-notice", data, {
+        headers: headers,
+      })
+      .then((res) => {
+        console.log("Data:", res.data);
+        // to refresh to form ---------------
+        setCategoryName("");
+        setCategoryCode("");
+        setDescription("");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Data Added successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/adminNotices");
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: ("An error occurred:", error),
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
+
   return (
     <div className="text-yellow-500 bg-gray-300 min-h-screen">
       <div className="fixed z-10 w-full">
@@ -16,9 +113,59 @@ const AdminCategoryAdd = () => {
           </h1>
           <hr className="mt-1 border border-black " />
           {/* form section  */}
-          <div>
+          <form
+            onSubmit={handleSubmit}
+            className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
+          >
+            {/* categoryName and categoryCode section  */}
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2 mb-3">
+              {/* categoryName section   */}
+              <div>
+                <label htmlFor="categoryName">Category Name:</label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+                  
+                  type="text"
+                  name="categoryName"
+                  id="categoryName"
+                  value={categoryName}
+                  onChange={handleCategoryNameChange}
+                />
+              </div>
+              {/* categoryCode section  */}
+              <div>
+                <label htmlFor="categoryCode">Category Code:</label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black mb-3"
+                  type="text"
+                  name="categoryCode"
+                  id="categoryCode"
+                  value={categoryCode}
+                  onChange={handleCategoryCodeChange}
+                />
+              </div>
+            </div>
 
-          </div>
+            {/* Discription section  */}
+            <div>
+              <label htmlFor="description">Description:</label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text"
+                name="description"
+                id="description"
+                value={description}
+                onChange={handleDescriptionChange}
+              />
+            </div>
+
+            <button
+              className="bg-yellow-500 hover:bg-yellow-600 text-black hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
+              type="submit"
+            >
+              Save
+            </button>
+          </form>
         </div>
       </div>
     </div>
