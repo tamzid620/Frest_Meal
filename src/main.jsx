@@ -89,7 +89,7 @@ const router = createBrowserRouter([
         element: <AdminSubCategory />,
       },
       {
-        path: "/adminSubCategoryEdit",
+        path: "/adminSubCategoryEdit/:subCategoryId",
         element: <AdminSubCategoryEdit />,
       },
       {

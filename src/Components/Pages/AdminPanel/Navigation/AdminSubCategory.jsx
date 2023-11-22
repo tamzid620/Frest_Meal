@@ -9,7 +9,7 @@ const AdminSubCategory = () => {
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const subCategoryPerPage = 5;
+  const subCategoryPerPage = 10;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -108,7 +108,7 @@ const AdminSubCategory = () => {
       <div className="flex justify-center ">
         <div className="mt-24 w-full">
           <h1 className="text-3xl flex justify-center text-black uppercase">
-           Sub subCategory
+           Sub Category
           </h1>
           <hr className="mt-1 border border-black " />
           {/* table section  */}
@@ -157,7 +157,8 @@ const AdminSubCategory = () => {
                 <tr>
                   <th>index</th>
                   <th>Categoty Name</th>
-                  <th>Categoty Code</th>
+                  <th>Sub Categoty Name</th>
+                  <th>Sub Categoty Code</th>
                   <th>Description</th>
                   <th>Action</th>
                 </tr>
@@ -168,6 +169,7 @@ const AdminSubCategory = () => {
                   <tr key={subCategory.id}>
                     <th>{index + 1}</th>
                     <td>{subCategory.categoryId}</td>
+                    <td>{subCategory.subCategoryName}</td>
                     <td>{subCategory.subCategoryCode}</td>
                     <td>{subCategory.description}</td>
                     <td className="w-1/4 flex justify-center py-2">

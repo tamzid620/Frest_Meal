@@ -8,9 +8,7 @@ const AdminSubCategoryAdd = () => {
   const [adminSubCategory, setAdminSubCategory] = useState([]);
   const navigate = useNavigate();
 
-//   const [categoryName, setCategoryName] = useState("");
   const [categoryId, setCategoryId] = useState("");
-
   const [subCategoryName, setSubCategoryName] = useState("");
   const [subCategoryCode, setCategoryCode] = useState("");
   const [description, setDescription] = useState("");
