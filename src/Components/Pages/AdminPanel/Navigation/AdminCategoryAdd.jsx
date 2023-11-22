@@ -70,7 +70,7 @@ const AdminCategoryAdd = () => {
     console.log(data);
     // post method --------------
     axios
-      .post("https://backend.ap.loclx.io/api/add-notice", data, {
+      .post("https://backend.ap.loclx.io/api/add-category", data, {
         headers: headers,
       })
       .then((res) => {
@@ -86,7 +86,7 @@ const AdminCategoryAdd = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/adminNotices");
+        navigate("/adminCategory");
       })
       .catch((error) => {
         Swal.fire({

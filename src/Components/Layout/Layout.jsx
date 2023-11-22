@@ -8,11 +8,11 @@ const location = useLocation();
 const noHeaderFooter =
  location.pathname.includes('dp') || 
  location.pathname.includes('adminlogin') ||
- location.pathname.includes('AdminCategory') ||
- location.pathname.includes('AdminategoryAdd') ||
- location.pathname.includes('AdminCategoryEdit') ||
- location.pathname.includes('AdminSubCategory') ||
- location.pathname.includes('AdminFoodItem')
+ location.pathname.includes('adminCategory') ||
+ location.pathname.includes('adminategoryAdd') ||
+ location.pathname.includes('adminCategoryEdit') ||
+ location.pathname.includes('adminSubCategory') ||
+ location.pathname.includes('adminFoodItem')
 
     return (
         <div>

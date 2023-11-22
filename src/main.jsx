@@ -70,25 +70,25 @@ const router = createBrowserRouter([
       },
       //category section  -------------------------
       {
-        path: "/AdminCategory",
+        path: "/adminCategory",
         element: <AdminCategory />,
       },
       {
-        path: "/AdminategoryAdd",
+        path: "/adminategoryAdd",
         element: <AdminCategoryAdd />,
       },
       {
-        path: "/AdminCategoryEdit/:categoryId",
+        path: "/adminCategoryEdit/:categoryId",
         element: <AdminCategoryEdit />,
       },
       //Sub category section  -------------------------
       {
-        path: "/AdminSubCategory",
+        path: "/adminSubCategory",
         element: <AdminSubCategory />,
       },
       //Food Item section  -------------------------
       {
-        path: "/AdminFoodItem",
+        path: "/adminFoodItem",
         element: <AdminFoodItem />,
       },
     ],

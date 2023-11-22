@@ -59,19 +59,19 @@ const SearchPanel = () => {
                   Menu <MdArrowDropDown size={20} />
                 </summary>
                 <ul className="p-2 shadow menu dropdown-content z-[1] bg-yellow-400 border rounded-box w-52 ">
-                  <Link to="/AdminCategory">
+                  <Link to="/adminCategory">
                     <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
                       Category
                     </li>
                   </Link>
                   <hr className="mt-1 border-black" />
-                  <Link to="/AdminSubCategory">
+                  <Link to="/adminSubCategory">
                     <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
                       Sub Category
                     </li>
                   </Link>
                   <hr className="mt-1 border-black" />
-                  <Link to="/AdminFoodItem">
+                  <Link to="/adminFoodItem">
                     <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
                       Food Item
                     </li>

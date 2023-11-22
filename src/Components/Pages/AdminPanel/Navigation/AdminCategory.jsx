@@ -1,7 +1,98 @@
+import Swal from "sweetalert2";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const AdminCategory = () => {
+  const [adminCaterory, setAdminCaterory] = useState({ category: [] });
+
+  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const categoryPerPage = 5;
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "You have to Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/adminlogin");
+    } else {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const headers = {
+        accept: "application/json",
+        Authorization: "Bearer " + user.token,
+      };
+      // get category data ---------------
+      axios
+        .get(`https://backend.ap.loclx.io/api/category-list`, {
+          headers: headers,
+        })
+        .then((res) => {
+          setAdminCaterory({ category: res.data.category });
+        })
+        .catch((error) => {
+          setAdminCaterory(error);
+        });
+    }
+  }, [navigate]);
+
+  console.log(adminCaterory);
+
+  // delete section
+  const handleDelete = (categoryId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+    axios
+      .delete(`https://backend.ap.loclx.io/api/category-delete/${categoryId}`, {
+        headers: headers,
+      })
+      .then(() => {
+        setAdminCaterory((prevCategory) =>
+          prevCategory.filter((category) => category.id !== categoryId)
+        );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Teacher deleted successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        window.location.reload()
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error deleting Teacher",
+          text: error.message,
+          showConfirmButton: true,
+        });
+        navigate("/adminCaterory");
+      });
+  };
+
+  // pagination section -----------
+  const indexOfLastCategory = currentPage * categoryPerPage;
+  const indexOfFirstCategory = indexOfLastCategory - categoryPerPage;
+
+  const currentCategory = adminCaterory.category && adminCaterory.category.slice(
+    indexOfFirstCategory,
+    indexOfLastCategory
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="text-yellow-500 bg-gray-300 min-h-screen">
       <div className="fixed z-10 w-full">
@@ -47,7 +138,7 @@ const AdminCategory = () => {
               </div>
               {/* add button  */}
               <div>
-                <Link to="/AdminategoryAdd">
+                <Link to="/adminategoryAdd">
                   <button className="btn-sm bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                     Add
                   </button>
@@ -67,33 +158,57 @@ const AdminCategory = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* row 1 */}
-                <tr>
-                  <th>1</th>
-                  <td>Cy Ganderton</td>
-                  <td>Quality Control Specialist</td>
-                  <td>Blue</td>
-                  <td className="w-1/4 flex justify-center py-2">
-                    <div className="flex gap-2">
-                      {/* Edit button  */}
-                      <Link to="/AdminCategoryEdit">
-                        <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                          Edit
+              {currentCategory &&
+            currentCategory.map((category, index) => (
+                  <tr key={category.id}>
+                    <th>{index + 1}</th>
+                    <td>{category.categoryName}</td>
+                    <td>{category.categoryCode}</td>
+                    <td>{category.description}</td>
+                    <td className="w-1/4 flex justify-center py-2">
+                      <div className="flex gap-2">
+                        {/* Edit button  */}
+                        <Link to={`/adminCategoryEdit/${category.id}`}>
+                          <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                            Edit
+                          </button>
+                        </Link>
+                        {/* Delete button   */}
+                        <button
+                          onClick={() => handleDelete(category.id)}
+                          className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
+                        >
+                          Delete
                         </button>
-                      </Link>
-                      {/* Delete button   */}
-                      <button
-                        onClick=""
-                        className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-
+                      </div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
+            {/* pagination section ------------- */}
+            <div className="pagination my-10 flex justify-center">
+                {Array.from(
+                  {
+                    length: Math.ceil(
+                      adminCaterory.category.length / categoryPerPage
+                    ),
+                  },
+                  (_, index) => (
+                    <button
+                      key={index}
+                      className={`btn btn-sm ${
+                        currentPage === index + 1
+                          ? "bg-black text-white"
+                          : "bg-white"
+                      }`}
+                      onClick={() => paginate(index + 1)}
+                    >
+                      {index + 1}
+                    </button>
+                  )
+                )}
+              </div>
           </div>
         </div>
       </div>

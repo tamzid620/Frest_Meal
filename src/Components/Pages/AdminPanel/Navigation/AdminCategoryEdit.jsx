@@ -40,15 +40,15 @@ const AdminCategoryEdit = () => {
     };
 
     axios
-      .get(`https://backend.ap.loclx.io/api/notice-edit/${categoryId}`, {
+      .get(`https://backend.ap.loclx.io/api/category-edit/${categoryId}`, {
         headers: headers,
       })
       .then((response) => {
-        const teacherData = response.data.user;
-        setid(teacherData.id);
-        setCategoryName(teacherData.categoryName);
-        setCategoryCode(teacherData.categoryCode);
-        setDescription(teacherData.description);
+        const categoryData = response.data.category;
+        setid(categoryData.id);
+        setCategoryName(categoryData.categoryName);
+        setCategoryCode(categoryData.categoryCode);
+        setDescription(categoryData.description);
       })
       .catch((error) => {
         console.log(error);
@@ -72,7 +72,7 @@ const AdminCategoryEdit = () => {
     console.log(data);
     // post method --------------
     axios
-      .post("https://backend.ap.loclx.io/api/notice-update", data, {
+      .post("https://backend.ap.loclx.io/api/category-update", data, {
         headers: headers,
       })
       .then((res) => {
@@ -89,7 +89,7 @@ const AdminCategoryEdit = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/adminNotices");
+        navigate("/adminCategory");
       })
       .catch((error) => {
         Swal.fire({
@@ -126,12 +126,11 @@ const AdminCategoryEdit = () => {
   
   {/* categoryName section   */}
                 <div>
-                  <label htmlFor="categoryName">categoryName:</label>
+                  <label htmlFor="categoryName">Category Name:</label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
-                    // placeholder="Add categoryName"
                     type="text"
-                    name="categoryName"
+                    title="categoryName"
                     id="categoryName"
                     value={categoryName}
                     onChange={handleCategoryNameChange}
@@ -139,11 +138,11 @@ const AdminCategoryEdit = () => {
                 </div>
       {/* categoryCode section  */}
       <div>
-                    <label htmlFor="categoryCode">categoryCode:</label>
+                    <label htmlFor="categoryCode">Category Code:</label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       type="text"
-                      name="categoryCode"
+                      title="categoryCode"
                       id="categoryCode"
                       value={categoryCode}
                       onChange={handleCategoryCodeChange}
@@ -154,12 +153,11 @@ const AdminCategoryEdit = () => {
   
   {/* description section  */}
                   <div>
-                    <label htmlFor="description">description:</label>
+                    <label htmlFor="description">Description:</label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      // placeholder="Add Mother categoryName"
                       type="text"
-                      name="description"
+                      title="description"
                       id="description"
                       value={description}
                       onChange={handleDescriptionChange}
@@ -173,7 +171,7 @@ const AdminCategoryEdit = () => {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
                     // placeholder="Add categoryName"
                     type="hidden"
-                    name="id"
+                    title="id"
                     id="id"
                     value={id}
                     onChange={handleIdChange}
