@@ -41,10 +41,10 @@ const AdminPanel = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
-        className="flex justify-center"
+        className="flex justify-center "
       >
         <div>
-          <div className="mt-24 mb-10 w-full max-w-screen-xl">
+          <div className="mt-24 mb-10 w-full max-w-screen-xl ">
             <NumberStatus />
           </div>
           <div className="lg:flex  gap-5">

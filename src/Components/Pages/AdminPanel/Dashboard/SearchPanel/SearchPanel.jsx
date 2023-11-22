@@ -1,13 +1,14 @@
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { BiSolidMessageRounded, BiMenuAltLeft } from "react-icons/bi";
-import { MdNotifications } from "react-icons/md";
-import avatar from '../../../../../../src/assets/user/user-01.png'
-import { IoMdArrowDropdown } from 'react-icons/io';
+import { MdArrowDropDown, MdNotifications } from "react-icons/md";
+import avatar from "../../../../../../src/assets/user/user-01.png";
+import { IoMdArrowDropdown } from "react-icons/io";
 import { AiFillSetting } from "react-icons/ai";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { IoIosSpeedometer } from "react-icons/io";
-import brandlogo from '../../../../../../public/icons/logo-svg.png'
+import brandlogo from "../../../../../../public/icons/logo-svg.png";
+import { Link } from "react-router-dom";
 
 const SearchPanel = () => {
   return (
@@ -25,53 +26,116 @@ const SearchPanel = () => {
             </button>
           </div>
           <div className="drawer-side ">
-            <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay "></label>
+            <label
+              htmlFor="my-drawer"
+              aria-label="close sidebar"
+              className="drawer-overlay "
+            ></label>
             <ul className="menu p-4 w-80 min-h-full bg-black text-white border-r-2 border-yellow-500">
               {/* Sidebar content here */}
-<img className="w-[150px]" src={brandlogo} alt="" />
-<hr className="border border-yellow-500 opacity-40 mt-5" />
-              <h1 style={{ fontFamily: 'Mooli, sans-serif' }} className="font-bold text-2xl text-white my-5">Navigation </h1>
+              <img className="w-[150px]" src={brandlogo} alt="" />
+              <hr className="border border-yellow-500 opacity-40 mt-5" />
+              <h1
+                style={{ fontFamily: "Mooli, sans-serif" }}
+                className="font-bold text-2xl text-white my-5"
+              >
+                Navigation{" "}
+              </h1>
+
+              {/* Dashboard section  */}
+              <li className="font-semibold text-lg mb-3">
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500">
+                  <IoIosSpeedometer className="text-blue-500" size={20} />{" "}
+                  <Link to="/dp">Dashboard</Link> 
+                </span>
+              </li>
+              {/*Menu section  */}
+              <details className="dropdown mb-3">
+                <summary className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
+                  <IoIosSpeedometer
+                    className="text-violet-500 -ms-[160px]"
+                    size={20}
+                  />
+                  Menu <MdArrowDropDown size={20} />
+                </summary>
+                <ul className="p-2 shadow menu dropdown-content z-[1] bg-yellow-400 border rounded-box w-52 ">
+                  <Link to="/AdminCategory">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Category
+                    </li>
+                  </Link>
+                  <hr className="mt-1 border-black" />
+                  <Link to="/AdminSubCategory">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Sub Category
+                    </li>
+                  </Link>
+                  <hr className="mt-1 border-black" />
+                  <Link to="/AdminFoodItem">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Food Item
+                    </li>
+                  </Link>
+                </ul>
+              </details>
 
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-red-500"><IoIosSpeedometer className="text-red-500" size={20} /> Option-1</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500">
+                  <IoIosSpeedometer className="text-blue-500" size={20} />{" "}
+                  Option-2
+                </span>
               </li>
 
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500"><IoIosSpeedometer className="text-blue-500" size={20} /> Option-2</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-green-500">
+                  <IoIosSpeedometer className="text-green-500" size={20} />{" "}
+                  Option-3
+                </span>
               </li>
 
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-green-500"><IoIosSpeedometer className="text-green-500" size={20} /> Option-3</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-yellow-500">
+                  <IoIosSpeedometer className="text-yellow-500" size={20} />{" "}
+                  Option-4
+                </span>
               </li>
 
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-yellow-500"><IoIosSpeedometer className="text-yellow-500" size={20} /> Option-4</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-orange-500">
+                  <IoIosSpeedometer className="text-orange-500" size={20} />{" "}
+                  Option-5
+                </span>
               </li>
 
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-orange-500"><IoIosSpeedometer className="text-orange-500" size={20} /> Option-5</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-gray-500">
+                  <IoIosSpeedometer className="text-gray-500" size={20} />{" "}
+                  Option-6
+                </span>
               </li>
 
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-gray-500"><IoIosSpeedometer className="text-gray-500" size={20} /> Option-6</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-teal-500">
+                  <IoIosSpeedometer className="text-teal-500" size={20} />{" "}
+                  Option-7
+                </span>
               </li>
 
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-teal-500"><IoIosSpeedometer className="text-teal-500" size={20} /> Option-7</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-pink-500">
+                  <IoIosSpeedometer className="text-pink-500" size={20} />{" "}
+                  Option-8
+                </span>
               </li>
 
               <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-pink-500"><IoIosSpeedometer className="text-pink-500" size={20} /> Option-8</span>
+                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-indigo-500">
+                  <IoIosSpeedometer className="text-indigo-500" size={20} />{" "}
+                  Option-9
+                </span>
               </li>
 
-              <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-indigo-500"><IoIosSpeedometer className="text-indigo-500" size={20} /> Option-9</span>
-              </li>
-
-              <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-violet-500"><IoIosSpeedometer className="text-violet-500" size={20} /> Option-10</span>
-              </li>
-
+              
             </ul>
           </div>
         </div>
@@ -79,11 +143,18 @@ const SearchPanel = () => {
 
       {/* search section  */}
       <div className=" sm: hidden lg:flex md:flex">
-        <input type="text" placeholder="Search Setting" className="input input-bordered input-warning lg:w-[700px] md:w-[500px]" />
+        <input
+          type="text"
+          placeholder="Search Setting"
+          className="input input-bordered input-warning lg:w-[700px] md:w-[500px]"
+        />
         <button
           title="Wishlist"
           className=" hover:text-white text-yellow-500 font-bold px-3 py-1
-      rounded-md"> <IoSearchCircleSharp className="w-[30px] h-[30px]" />
+      rounded-md"
+        >
+          {" "}
+          <IoSearchCircleSharp className="w-[30px] h-[30px]" />
         </button>
       </div>
       {/* icon and login section  */}
@@ -92,44 +163,64 @@ const SearchPanel = () => {
           <button
             title="Wishlist"
             className=" hover:text-white text-yellow-500 font-bold px-3 py-1
-      rounded-md"> <BiSolidMessageRounded className="w-[25px] h-[25px]" />
+      rounded-md"
+          >
+            {" "}
+            <BiSolidMessageRounded className="w-[25px] h-[25px]" />
           </button>
           <button
             title="Wishlist"
             className=" hover:text-white text-yellow-500 font-bold px-3 py-1
-      rounded-md"> <MdNotifications className="w-[20px] h-[20px]" />
+      rounded-md"
+          >
+            {" "}
+            <MdNotifications className="w-[20px] h-[20px]" />
           </button>
         </div>
 
         <div className="flex items-center">
           <img className="w-[45px] h-[45px]" src={avatar} alt="" />
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className=" m-1 "> <IoMdArrowDropdown size={22} /> </label>
-            <ul tabIndex={0}
+            <label tabIndex={0} className=" m-1 ">
+              {" "}
+              <IoMdArrowDropdown size={22} />{" "}
+            </label>
+            <ul
+              tabIndex={0}
               className="dropdown-content z-[1] menu p-2 
-          shadow rounded-box w-52 bg-black border border-yellow-500">
+          shadow rounded-box w-52 bg-black border border-yellow-500"
+            >
               <h1 className="font-semibold text-xl py-2">Profile</h1>
               <hr className="border border-yellow-500 opacity-40" />
               {/* Account Settings  */}
-              <li className="font-semibold text-white text-md py-2"><a>
-                <span className="rounded-full bg-[#191c24] p-2">
-                  <AiFillSetting className="text-green-500" size={20} />
-                </span>
-                Account Settings</a></li>
+              <li className="font-semibold text-white text-md py-2">
+                <a>
+                  <span className="rounded-full bg-[#191c24] p-2">
+                    <AiFillSetting className="text-green-500" size={20} />
+                  </span>
+                  Account Settings
+                </a>
+              </li>
               <hr className="border border-yellow-500 opacity-40" />
               {/* Change Password  */}
-              <li className="font-semibold text-white text-md py-2"><a>
-                <span className="rounded-full bg-[#191c24] p-2">
-                  <BsFillInfoCircleFill className="text-blue-500" size={20} />
-                </span>
-                Change Password</a></li>
+              <li className="font-semibold text-white text-md py-2">
+                <a>
+                  <span className="rounded-full bg-[#191c24] p-2">
+                    <BsFillInfoCircleFill className="text-blue-500" size={20} />
+                  </span>
+                  Change Password
+                </a>
+              </li>
               <hr className="border border-yellow-500 opacity-40" />
               {/* Logout  */}
-              <li className="font-semibold text-white text-md py-2"><a>
-                <span className="rounded-full bg-[#191c24] p-2">
-                  <RiLogoutBoxRFill className="text-red-500" size={20} />
-                </span>
-                Logout</a></li>
+              <li className="font-semibold text-white text-md py-2">
+                <a>
+                  <span className="rounded-full bg-[#191c24] p-2">
+                    <RiLogoutBoxRFill className="text-red-500" size={20} />
+                  </span>
+                  Logout
+                </a>
+              </li>
             </ul>
           </div>
         </div>
