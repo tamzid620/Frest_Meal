@@ -19,6 +19,8 @@ import AdminCategory from "./Components/Pages/AdminPanel/Navigation/AdminCategor
 import AdminSubCategory from "./Components/Pages/AdminPanel/Navigation/AdminSubCategory";
 import AdminFoodItem from "./Components/Pages/AdminPanel/Navigation/AdminFoodItem";
 import AdminCategoryEdit from "./Components/Pages/AdminPanel/Navigation/AdminCategoryEdit";
+import AdminSubCategoryEdit from "./Components/Pages/AdminPanel/Navigation/AdminSubCategoryEdit";
+import AdminSubCategoryAdd from "./Components/Pages/AdminPanel/Navigation/AdminSubCategoryAdd";
 
 const router = createBrowserRouter([
   {
@@ -74,17 +76,25 @@ const router = createBrowserRouter([
         element: <AdminCategory />,
       },
       {
-        path: "/adminategoryAdd",
-        element: <AdminCategoryAdd />,
-      },
-      {
         path: "/adminCategoryEdit/:categoryId",
         element: <AdminCategoryEdit />,
+      },
+      {
+        path: "/adminategoryAdd",
+        element: <AdminCategoryAdd />,
       },
       //Sub category section  -------------------------
       {
         path: "/adminSubCategory",
         element: <AdminSubCategory />,
+      },
+      {
+        path: "/adminSubCategoryEdit",
+        element: <AdminSubCategoryEdit />,
+      },
+      {
+        path: "/adminSubCategoryAdd",
+        element: <AdminSubCategoryAdd />,
       },
       //Food Item section  -------------------------
       {
