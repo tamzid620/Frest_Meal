@@ -151,7 +151,7 @@ const AdminCategory = () => {
               <thead className="bg-gray-600 text-white">
                 <tr>
                   <th>index</th>
-                  <th>Categoty Name</th>
+                  <th>Categoty</th>
                   <th>Categoty Code</th>
                   <th>Description</th>
                   <th>Action</th>

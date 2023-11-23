@@ -62,7 +62,7 @@ const AdminSubCategory = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Teacher deleted successfully",
+          title: "SubCategory data deleted successfully",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -156,8 +156,8 @@ const AdminSubCategory = () => {
               <thead className="bg-gray-600 text-white">
                 <tr>
                   <th>index</th>
-                  <th>Categoty Name</th>
-                  <th>Sub Categoty Name</th>
+                  <th>Categoty</th>
+                  <th>Sub Categoty</th>
                   <th>Sub Categoty Code</th>
                   <th>Description</th>
                   <th>Action</th>

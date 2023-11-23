@@ -35,177 +35,91 @@ const AdminSubCategoryEdit = () => {
   };
 
   // get  method ----------------------
-  // useEffect(() => {
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   const headers = {
-  //     accept: "application/json",
-  //     Authorization: "Bearer " + user.token,
-  //   };
-
-  //   axios
-  //     .get(`https://backend.ap.loclx.io/api/sub-category-edit/${subCategoryId}`, {
-  //       headers: headers,
-  //     })
-  //     .then((response) => {
-  //       const subCategoryData = response.data.subCategory;
-  //       setid(subCategoryData.id);
-  //       setSubCategoryName(subCategoryData.subCategoryName);
-  //       setSubCategoryCode(subCategoryData.subCategoryCode);
-  //       setDescription(subCategoryData.description);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-
-  //     axios
-  //     .get(`https://backend.ap.loclx.io/api/category-list`, {
-  //       headers: headers,
-  //     })
-  //     .then((res) => {
-  //       setAdminSubCategory(res.data.category);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, [subCategoryId]);
-
-  // post section ----------------
-  // const handleSubmit = (e) => {
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   const headers = {
-  //     accept: "application/json",
-  //     Authorization: "Bearer " + user.token,
-  //   };
-
-  //   e.preventDefault();
-  //   const data = new FormData();
-  //   data.append("id", id);
-  //   data.append("categoryId", categoryId);
-  //   data.append("subCategoryName", subCategoryName);
-  //   data.append("subCategoryCode", subCategoryCode);
-  //   data.append("description", description);
-  //   console.log(data);
-  //   // post method --------------
-  //   axios
-  //     .post("https://backend.ap.loclx.io/api/sub-category-update", data, {
-  //       headers: headers,
-  //     })
-  //     .then((res) => {
-  //       console.log("Data:", res.data);
-  //       // to refresh to form ---------------
-  //       setid("");
-  //       setSubCategoryName("");
-  //       setSubCategoryCode("");
-  //       setDescription("");
-  //       Swal.fire({
-  //         position: "center",
-  //         icon: "success",
-  //         subCategoryName: "updated Data successfully",
-  //         showConfirmButton: false,
-  //         timer: 1500,
-  //       });
-  //       navigate("/adminCategory");
-  //     })
-  //     .catch((error) => {
-  //       Swal.fire({
-  //         position: "center",
-  //         icon: "warning",
-  //         subCategoryName: ("An error occurred:", error),
-  //         showConfirmButton: false,
-  //         timer: 1500,
-  //       });
-  //     });
-  // };
-
-  
   useEffect(() => {
-    const fetchSubCategoryData = async () => {
-      try {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const headers = {
-          accept: "application/json",
-          Authorization: "Bearer " + user.token,
-        };
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
 
-        const subCategoryResponse = await axios.get(
-          `https://backend.ap.loclx.io/api/sub-category-edit/${subCategoryId}`,
-          {
-            headers: headers,
-          }
-        );
-
-        const categoryListResponse = await axios.get(
-          `https://backend.ap.loclx.io/api/category-list`,
-          {
-            headers: headers,
-          }
-        );
-
-        const subCategoryData = subCategoryResponse.data.subCategory;
-        setCategoryId(subCategoryData.categoryId);
+    axios
+      .get(
+        `https://backend.ap.loclx.io/api/sub-category-edit/${subCategoryId}`,
+        {
+          headers: headers,
+        }
+      )
+      .then((response) => {
+        const subCategoryData = response.data.subCategory;
+        setid(subCategoryData.id);
         setSubCategoryName(subCategoryData.subCategoryName);
         setSubCategoryCode(subCategoryData.subCategoryCode);
         setDescription(subCategoryData.description);
+        setCategoryId(subCategoryData.categoryId);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-        setAdminSubCategory(categoryListResponse.data.category);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchSubCategoryData();
+    axios
+      .get(`https://backend.ap.loclx.io/api/category-list`, {
+        headers: headers,
+      })
+      .then((res) => {
+        setAdminSubCategory(res.data.category);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [subCategoryId]);
 
-  const handleSubmit = async (e) => {
+  // post section ----------------
+  const handleSubmit = (e) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+
     e.preventDefault();
-
-    try {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const headers = {
-        accept: "application/json",
-        Authorization: "Bearer " + user.token,
-      };
-
-      const data = {
-        id: id,
-        categoryId: categoryId,
-        subCategoryName: subCategoryName,
-        subCategoryCode: subCategoryCode,
-        description: description,
-      };
-
-      const response = await axios.post("https://backend.ap.loclx.io/api/sub-category-update", data, {
+    const data = new FormData();
+    data.append("id", id);
+    data.append("categoryId", categoryId);
+    data.append("subCategoryName", subCategoryName);
+    data.append("subCategoryCode", subCategoryCode);
+    data.append("description", description);
+    console.log(data);
+    // post method --------------
+    axios
+      .post("https://backend.ap.loclx.io/api/sub-category-update", data, {
         headers: headers,
+      })
+      .then((res) => {
+        console.log("Data:", res.data);
+        // to refresh to form ---------------
+        setid("");
+        setSubCategoryName("");
+        setSubCategoryCode("");
+        setDescription("");
+
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/adminSubCategory");
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          subCategoryName: ("An error occurred:", error),
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
-
-      console.log("Data:", response.data);
-
-      setCategoryId("");
-      setSubCategoryName("");
-      setSubCategoryCode("");
-      setDescription("");
-
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Data updated successfully",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-
-      navigate("/adminCategory");
-    } catch (error) {
-      console.error("An error occurred:", error);
-
-      Swal.fire({
-        position: "center",
-        icon: "warning",
-        title: "An error occurred",
-        text: error.message || "Unknown error",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
   };
 
   return (
