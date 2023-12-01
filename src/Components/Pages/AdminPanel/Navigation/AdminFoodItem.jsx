@@ -143,7 +143,7 @@ const AdminFoodItem = () => {
               </div>
               {/* add button  */}
               <div>
-                <Link to="/adminSubCategoryAdd">
+                <Link to="/adminFoodItemAdd">
                   <button className="btn-sm bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                     Add
                   </button>
@@ -156,14 +156,10 @@ const AdminFoodItem = () => {
               <thead className="bg-gray-600 text-white">
                 <tr>
                   <th>index</th>
-                  <th>Image</th>
                   <th>Categoty</th>
                   <th>Sub Categoty</th>
                   <th>Name</th>
-                  <th>Food Code</th>
                   <th>Price</th>
-                  <th>Rating</th>
-                  <th>Description</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -172,18 +168,14 @@ const AdminFoodItem = () => {
                   currentFoodItem.map((foodItem, index) => (
                     <tr key={foodItem.id}>
                       <th>{index + 1}</th>
-                      <td><img className="w-[60px] h-[60px]" src={foodItem.image} alt="food_Picture" /></td>
                       <td>{foodItem.categoryId}</td>
                       <td>{foodItem.subCategoryName}</td>
                       <td>{foodItem.foodName}</td>
-                      <td>{foodItem.foodCode}</td>
                       <td>{foodItem.price}</td>
-                      <td>{foodItem.rating}</td>
-                      <td>{foodItem.description}</td>
                       <td className="w-1/4 flex justify-center py-2">
                         <div className="flex gap-2">
                           {/* Edit button  */}
-                          <Link to={`/adminSubCategoryEdit/${foodItem.id}`}>
+                          <Link to={`/adminFoodItemEdit/${foodItem.id}`}>
                             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                               Edit
                             </button>
