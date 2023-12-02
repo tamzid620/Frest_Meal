@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import {BsHeartFill ,BsFillCartCheckFill} from "react-icons/bs";
+import { BsHeartFill, BsFillCartCheckFill } from "react-icons/bs";
 
 
 
@@ -57,7 +57,7 @@ const Navbar = () => {
         <div>
             <nav>
                 <div>
-                    <div className=" flex justify-between font-bold max-w-screen-xl" >
+                    <div className=" flex justify-between font-bold max-w-screen-xl pt-10" >
                         <div className="navbar fixed z-10 bg-black mb-10 ">
                             <div className="navbar-start">
                                 <div className="dropdown">
@@ -82,32 +82,32 @@ const Navbar = () => {
                             <div className="navbar-end">
 
                                 {/* Modal section  */}
- <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
-<div className="ms-10">
-{/* view cart button  */}
-<Link to="/cart"><button
- title="Cart"
- className=" hover:text-white text-yellow-500 font-bold px-3 py-1
-      rounded-md"> <BsFillCartCheckFill  className="w-[20px] h-[20px]"/>
- </button></Link>
- {/* wishlist button  */}
-<Link to="/wishlist"><button
- title="Wishlist"
- className=" hover:text-white text-yellow-500 font-bold px-3 py-1
-      rounded-md"> <BsHeartFill className="w-[20px] h-[20px]"/>
- </button></Link>
-</div>
-{/* create order button  */}
-<div className="sm: hidden lg:flex md:flex">
- <button
-  title="create order"
- className=" hover:bg-[#FFD700] hover:text-black 
+                                <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
+                                    <div className="ms-10">
+                                        {/* view cart button  */}
+                                        <Link to="/cart"><button
+                                            title="Cart"
+                                            className=" hover:text-white text-yellow-500 font-bold px-3 py-1
+      rounded-md"> <BsFillCartCheckFill className="w-[20px] h-[20px]" />
+                                        </button></Link>
+                                        {/* wishlist button  */}
+                                        <Link to="/wishlist"><button
+                                            title="Wishlist"
+                                            className=" hover:text-white text-yellow-500 font-bold px-3 py-1
+      rounded-md"> <BsHeartFill className="w-[20px] h-[20px]" />
+                                        </button></Link>
+                                    </div>
+                                    {/* create order button  */}
+                                    <div className="sm: hidden lg:flex md:flex">
+                                        <button
+                                            title="create order"
+                                            className=" hover:bg-[#FFD700] hover:text-black 
  bg-[#FFD700]  text-[#808080] border-black
   font-bold px-3 py-1 rounded-md "
-onClick={() => document.getElementById('my_modal_4').showModal()}>Create Order
-</button>
-</div>
-</div>
+                                            onClick={() => document.getElementById('my_modal_4').showModal()}>Create Order
+                                        </button>
+                                    </div>
+                                </div>
                                 <dialog id="my_modal_4" className="modal">
                                     <div className="modal-box w-11/12 max-w-5xl bg-black bg-opacity-80">
 
@@ -233,7 +233,7 @@ onClick={() => document.getElementById('my_modal_4').showModal()}>Create Order
                             </div>
                         </div>
 
-            <hr className="text-yellow-500" />
+                        <hr className="text-yellow-500" />
                     </div>
                 </div>
             </nav>
