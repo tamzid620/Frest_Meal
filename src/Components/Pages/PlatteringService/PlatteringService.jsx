@@ -28,7 +28,7 @@ const PlatteringService = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           height: '350px',
-          marginTop: '30px'
+          // marginTop: '30px'
         }}
         className="flex justify-center"
       >
