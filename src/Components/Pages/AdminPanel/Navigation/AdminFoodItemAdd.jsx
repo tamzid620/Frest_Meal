@@ -20,8 +20,20 @@ const AdminFoodItemAdd = () => {
 
   // handle control --------------------
   const handleCategoryName = (e) => {
-    setCategoryId(e.target.value);
+    const selectedCategoryId = e.target.value;
+    setCategoryId(selectedCategoryId);
+
+    const selectedCategory = adminCategory.find(
+      (category) => category.id == selectedCategoryId
+    );
+
+    if (selectedCategory) {
+      setAdminSubCategory(selectedCategory.subcategories);
+    } else {
+      setAdminSubCategory([]);
+    }
   };
+
   const handleSubCategoryNameChange = (e) => {
     setSubCategoryName(e.target.value);
   };
@@ -41,7 +53,7 @@ const AdminFoodItemAdd = () => {
     setImage(e.target.files[0]);
   };
   const handleRatingChange = (e) => {
-    rating(e.target.value);
+    setRating(e.target.value);
   };
 
   useEffect(() => {
@@ -50,7 +62,7 @@ const AdminFoodItemAdd = () => {
       Swal.fire({
         position: "center",
         icon: "warning",
-        subCategoryName: "You have to Login first",
+        title: "You have to Login first",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -61,7 +73,7 @@ const AdminFoodItemAdd = () => {
         accept: "application/json",
         Authorization: "Bearer " + user.token,
       };
-     
+
       //sub category list method ---------------
       axios
         .get(`https://backend.ap.loclx.io/api/sub-category-list`, {
@@ -69,24 +81,33 @@ const AdminFoodItemAdd = () => {
         })
         .then((res) => {
           setAdminCategory(res.data.category);
+          if (res.data.category.subCategory) {
+            setAdminSubCategory(res.data.category.subCategory);
+          }
         })
         .catch((error) => {
           console.log(error);
         });
-         //get sub category get method ---------------
-      axios
-      .get(`https://backend.ap.loclx.io/api/get-sub-category`, {
-        headers: headers,
-      })
-      .then((res) => {
-        setAdminCategory(res.data.subCategory);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
     }
   }, [navigate]);
+
   console.log(adminCategory);
+  console.log(adminSubCategory);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("data.json")
+  //     .then((res) => {
+  //       setAdminCategory(res.data.category);
+  //       if (res.data.category.subCategory) {
+  //         setAdminSubCategory(res.data.category.subCategory);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, [navigate]);
+
 
   // handle submit button ----------------
   const handleSubmit = (e) => {
@@ -191,10 +212,10 @@ const AdminFoodItemAdd = () => {
                   onChange={handleSubCategoryNameChange}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black mb-3"
                 >
-                  <option value="">Select Category</option>
-                  {adminSubCategory.map((subCategory) => (
-                    <option key={subCategory.id} value={subCategory.id}>
-                      {subCategory.subCategoryName}
+                  <option value="">Select Subcategory</option>
+                  {adminSubCategory.map((subcategory) => (
+                    <option key={subcategory.id} value={subcategory.id}>
+                      {subcategory.subCategoryName}
                     </option>
                   ))}
                 </select>

@@ -1,5 +1,4 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import Navbar from '../Shared/Navbar/Navbar';
 import Footer from '../Shared/Footer/Footer';
 import NavigationBar from '../Shared/Navbar/NavigationBar';
 
@@ -21,7 +20,6 @@ const noHeaderFooter =
 
     return (
         <div>
-        { noHeaderFooter || <Navbar/> }
         { noHeaderFooter || <NavigationBar/> }
         <Outlet/>
         { noHeaderFooter || <Footer/> }

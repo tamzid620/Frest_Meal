@@ -12,7 +12,7 @@ ul.nav-links li button {
   }
   
   ul.nav-links li button:hover {
-    background-color: #FFD700;
+    background-color: white;
     color: black;
   }
 
@@ -44,7 +44,7 @@ nav {
 }
 
 .nav-links li a:hover {
-    color: yellow;
+    color: white;
 }
 
 .nav-links li {
@@ -56,7 +56,8 @@ nav {
     display: block;
     height: 3px;
     width: 0%;
-    background-color: yellow;
+    /* background-color: yellow; */
+    background-color: white;
     position: absolute;
     transition: all ease-in-out 250ms;
     margin: 0 0 0 10%;
@@ -66,41 +67,6 @@ nav {
     width: 80%;
 }
 
-/*Styling Buttons*/
-.login-button {
-    background-color: transparent;
-    border: 1.5px solid #f2f5f7;
-    border-radius: 2em;
-    padding: 0.6rem 0.8rem;
-    margin-left: 2vw;
-    font-size: 1rem;
-    cursor: pointer;
-
-}
-
-.login-button:hover {
-    color: #131418;
-    background-color: #f2f5f7;
-    border: 1.5px solid #f2f5f7;
-    transition: all ease-in-out 350ms;
-}
-
-.join-button {
-    color: #131418;
-    background-color: yellow;
-    border: 1.5px solid yellow;
-    border-radius: 2em;
-    padding: 0.6rem 0.8rem;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.join-button:hover {
-    color: #f2f5f7;
-    background-color: transparent;
-    border: 1.5px solid #f2f5f7;
-    transition: all ease-in-out 350ms;
-}
 
 /*Styling Hamburger Icon*/
 .hamburger div {
