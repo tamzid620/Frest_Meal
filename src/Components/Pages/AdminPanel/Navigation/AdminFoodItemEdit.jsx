@@ -32,7 +32,6 @@ const AdminFoodItemEdit = () => {
     const selectedCategory = adminCategory.find(
       (category) => category.id == selectedCategoryId
     );
-
     if (selectedCategory) {
       setAdminSubCategory(selectedCategory.subcategories);
     } else {
@@ -108,15 +107,22 @@ const AdminFoodItemEdit = () => {
         })
         .then((res) => {
           setAdminCategory(res.data.category);
-          if (res.data.category.subCategory) {
-            setAdminSubCategory(res.data.category.subCategory);
-          }
+
+      const selectedCategory = res.data.category.find(
+        (category) => category.id == categoryId
+      );
+
+      if (selectedCategory) {
+        setAdminSubCategory(selectedCategory.subcategories);
+      } else {
+        setAdminSubCategory([]);
+      }
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [navigate, foodItemId]);
+  }, [navigate, foodItemId ,categoryId]);
 
   // handle submit button ----------------
   const handleSubmit = (e) => {
