@@ -106,7 +106,7 @@ function AdminLogin() {
               Enter Gmail
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               type="email"
               name="email"

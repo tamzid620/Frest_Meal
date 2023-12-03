@@ -160,9 +160,9 @@ const NavigationBar = () => {
         <li title="Menu">
           <Link to="/menu">Menu</Link>
         </li>
-        {/* <li>
-          <Link to="">Services</Link>
-        </li> */}
+        <li>
+          <Link to="/aboutUs">About Us</Link>
+        </li>
         {/* <li>
           <button title="Create Order">Create Order</button>
         </li> */}

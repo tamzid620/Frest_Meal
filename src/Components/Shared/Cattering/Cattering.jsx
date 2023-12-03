@@ -3,9 +3,9 @@ import catteringImage from '../../../../public/images/cattering_service.jpg'
 
 const Cattering = () => {
     return (
-        <div>
+        <div data-aos="zoom-in-down">
             {/* title section  */}
-            <div className="flex justify-center mt-16">
+            <div className="flex justify-center mt-16" >
                 <div>
                     <h1 style={{ fontFamily: 'Mooli, sans-serif' }} className="flex justify-center text-3xl text-white font-semibold">Cattering</h1>
                     <img src="../../../../public/icons/hr.svg" alt="" />

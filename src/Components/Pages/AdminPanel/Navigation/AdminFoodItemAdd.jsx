@@ -10,7 +10,7 @@ const AdminFoodItemAdd = () => {
   const navigate = useNavigate();
 
   const [categoryId, setCategoryId] = useState("");
-  const [subCategoryName, setSubCategoryName] = useState("");
+  const [subCategoryId, setSubCategoryId] = useState("");
   const [foodName, setFoodName] = useState("");
   const [foodCode, setFoodCode] = useState("");
   const [price, setPrice] = useState("");
@@ -34,8 +34,8 @@ const AdminFoodItemAdd = () => {
     }
   };
 
-  const handleSubCategoryNameChange = (e) => {
-    setSubCategoryName(e.target.value);
+  const handlesubCategoryIdChange = (e) => {
+    setSubCategoryId(e.target.value);
   };
   const handlefoodNameChange = (e) => {
     setFoodName(e.target.value);
@@ -76,7 +76,7 @@ const AdminFoodItemAdd = () => {
 
       //sub category list method ---------------
       axios
-        .get(`https://backend.ap.loclx.io/api/sub-category-list`, {
+        .get(`https://backend.ap.loclx.io/api/get-dropdown`, {
           headers: headers,
         })
         .then((res) => {
@@ -120,7 +120,7 @@ const AdminFoodItemAdd = () => {
     e.preventDefault();
     const data = new FormData();
     data.append("categoryId", categoryId);
-    data.append("subCategoryName", subCategoryName);
+    data.append("subCategoryId", subCategoryId);
     data.append("foodCode", foodCode);
     data.append("foodName", foodName);
     data.append("price", price);
@@ -137,7 +137,7 @@ const AdminFoodItemAdd = () => {
         console.log("Data:", res.data);
         // to refresh to form ---------------
         setCategoryId("");
-        setSubCategoryName("");
+        setSubCategoryId("");
         setFoodCode("");
         setFoodName("");
         setPrice("");
@@ -182,7 +182,7 @@ const AdminFoodItemAdd = () => {
             onSubmit={handleSubmit}
             className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
           >
-            {/* subCategoryName and foodCode section  */}
+            {/* subCategoryId and foodCode section  */}
             <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2 mb-3">
               {/* Category Name section */}
               <div>
@@ -204,12 +204,12 @@ const AdminFoodItemAdd = () => {
               </div>
               {/* sub Category Name section */}
               <div>
-                <label htmlFor="subCategoryName">Sub Category Name:</label>
+                <label htmlFor="subCategoryId">Sub Category Name:</label>
                 <select
-                  name="subCategoryName"
-                  id="subCategoryName"
-                  value={subCategoryName}
-                  onChange={handleSubCategoryNameChange}
+                  name="subCategoryId"
+                  id="subCategoryId"
+                  value={subCategoryId}
+                  onChange={handlesubCategoryIdChange}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black mb-3"
                 >
                   <option value="">Select Subcategory</option>
@@ -297,7 +297,7 @@ const AdminFoodItemAdd = () => {
               <div>
                 <label htmlFor="file">Picture: </label> <br />
                 <input
-                  className="file-input file-input-bordered file-input-warning w-full"
+                  className="file-input file-input-bordered file-input-warning w-full text-black"
                   type="file"
                   name="file"
                   id="file"

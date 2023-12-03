@@ -30,7 +30,7 @@ const AdminFoodItem = () => {
       };
       // get foodItem data ---------------
       axios
-        .get(`https://backend.ap.loclx.io/api/sub-category-list`, {
+        .get(`https://backend.ap.loclx.io/api/food-item-list`, {
           headers: headers,
         })
         .then((res) => {
@@ -53,7 +53,7 @@ const AdminFoodItem = () => {
     };
     axios
       .delete(
-        `https://backend.ap.loclx.io/api/sub-category-delete/${foodItemId}`,
+        `https://backend.ap.loclx.io/api/food-item-delete/${foodItemId}`,
         {
           headers: headers,
         }
@@ -169,7 +169,7 @@ const AdminFoodItem = () => {
                     <tr key={foodItem.id}>
                       <th>{index + 1}</th>
                       <td>{foodItem.categoryId}</td>
-                      <td>{foodItem.subCategoryName}</td>
+                      <td>{foodItem.subCategoryId}</td>
                       <td>{foodItem.foodName}</td>
                       <td>{foodItem.price}</td>
                       <td className="w-1/4 flex justify-center py-2">

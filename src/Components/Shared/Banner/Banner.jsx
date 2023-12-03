@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import banner from '../../../../public/images/banner.png'
 
+
 const Banner = () => {
+
+
     return (
         <div style={{ backgroundImage: `url(${banner})` }}
     className=" gap-10 text-lg font-semibold pt-10" >

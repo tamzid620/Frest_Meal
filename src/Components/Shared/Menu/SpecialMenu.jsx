@@ -1,9 +1,12 @@
 import {BsHeartFill } from "react-icons/bs";
 import { toast } from "react-toastify";
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 
 
-
-const SpecialMenu = () => {
+const  SpecialMenu = () => {
+    
+    Aos.init();
 
     const handleWishlist = () => {
         toast.success('Item added to Wishlist!', {
@@ -19,7 +22,7 @@ const SpecialMenu = () => {
     }
 
     return (
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-screen-xl mx-auto" data-aos="flip-right">
             {/* title section  */}
             <div className="flex justify-center mt-16">
                 {/* tittle tag */}
