@@ -7,6 +7,7 @@ import { BsHeartFill, BsFillCartCheckFill } from "react-icons/bs";
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
   // state section --------------------------------
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -40,28 +41,26 @@ const NavigationBar = () => {
     );
   };
 
-  //   const hamburger = document.querySelector(".hamburger");
-  //   const navLinks = document.querySelector(".nav-links");
-  //   const links = document.querySelectorAll(".nav-links li");
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
+    }
+  };
 
-  //   const toggleNav = () => {
-  //     //Animate Links
-  //     navLinks.classList.toggle("open");
-  //     links.forEach((link) => {
-  //       link.classList.toggle("fade");
-  //     });
+  // scroll navbare option -------------
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
 
-  //     //Hamburger Animation
-  //     hamburger.classList.toggle("toggle");
-  //     setIsOpen(!isOpen);
-  //   };
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-  //   hamburger.addEventListener("click", toggleNav);
+  const navBarClass = scrolling ? "bg-slate-950" : "bg-gray-800";
 
-  //   return () => {
-  //     hamburger.removeEventListener("click", toggleNav);
-  //   };
-  // }, [isOpen]);
+  // navmenu open close option -----------
   useEffect(() => {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
@@ -111,7 +110,8 @@ const NavigationBar = () => {
   
 
   return (
-    <nav className="fixed z-10 bg-slate-950">
+    <nav className={`fixed z-10 ${navBarClass}`}
+    >
       <div className="flex items-center justify-between">
       <div>
           <Link to="/">
@@ -212,7 +212,7 @@ const NavigationBar = () => {
           </div>
           <dialog id="my_modal_4" className="modal">
             {/* Modal section  */}
-            <div className="modal-box w-11/12 max-w-5xl bg-black bg-opacity-80">
+            <div className="modal-box w-11/12 max-w-5xl bg-gray-800 bg-opacity-80">
               {/* modal info  */}
               <div className="modalForm">
                 {/* title section  */}

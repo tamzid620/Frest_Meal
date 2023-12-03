@@ -71,7 +71,7 @@ const Navbar = () => {
       <nav>
         <div>
           <div className=" flex justify-between font-bold max-w-screen-xl pt-14">
-            <div className="navbar fixed z-10 bg-black mb-10 ">
+            <div className="navbar fixed z-10 bg-gray-800 mb-10 ">
               <div className="navbar-start">
                 <div className="dropdown">
                   <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -149,7 +149,7 @@ const Navbar = () => {
                   </div>
                 </div>
                 <dialog id="my_modal_4" className="modal">
-                  <div className="modal-box w-11/12 max-w-5xl bg-black bg-opacity-80">
+                  <div className="modal-box w-11/12 max-w-5xl bg-gray-800 bg-opacity-80">
                     {/* modal info  */}
                     <div className="modalForm">
                       {/* title section  */}

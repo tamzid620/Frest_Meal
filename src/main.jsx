@@ -104,7 +104,7 @@ const router = createBrowserRouter([
         element: <AdminFoodItem />,
       },
       {
-        path: "/adminFoodItemEdit",
+        path: "/adminFoodItemEdit/:foodItemId",
         element: <AdminFoodItemEdit/>,
       },
       {

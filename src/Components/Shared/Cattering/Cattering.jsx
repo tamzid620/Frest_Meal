@@ -21,7 +21,7 @@ const Cattering = () => {
                  rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 '>
 
                     {/* image section  */}
-                    <div className='bg-black opacity-70'>
+                    <div className=' opacity-70'>
                         <div><img style={{ width: '500px' }} className='rounded-xl' src={catteringImage} alt="" /></div>
                     </div>
 

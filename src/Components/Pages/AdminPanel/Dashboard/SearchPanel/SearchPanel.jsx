@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const SearchPanel = () => {
   return (
-    <div className="bg-black p-2 flex justify-between items-center">
+    <div className="bg-gray-800 p-2 flex justify-between items-center">
       {/* drawer section  */}
       <div>
         <div className="drawer ">
@@ -31,7 +31,7 @@ const SearchPanel = () => {
               aria-label="close sidebar"
               className="drawer-overlay "
             ></label>
-            <ul className="menu p-4 w-80 min-h-full bg-black text-white border-r-2 border-yellow-500">
+            <ul className="menu p-4 w-80 min-h-full bg-gray-800 text-white border-r-2 border-yellow-500">
               {/* Sidebar content here */}
               <img className="w-[150px]" src={brandlogo} alt="" />
               <hr className="border border-yellow-500 opacity-40 mt-5" />
@@ -188,7 +188,7 @@ const SearchPanel = () => {
             <ul
               tabIndex={0}
               className="dropdown-content z-[1] menu p-2 
-          shadow rounded-box w-52 bg-black border border-yellow-500"
+          shadow rounded-box w-52 bg-gray-800 border border-yellow-500"
             >
               <h1 className="font-semibold text-xl py-2">Profile</h1>
               <hr className="border border-yellow-500 opacity-40" />

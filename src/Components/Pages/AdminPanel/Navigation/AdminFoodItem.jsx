@@ -203,7 +203,7 @@ const AdminFoodItem = () => {
                       key={index}
                       className={`btn btn-sm ${
                         currentPage === index + 1
-                          ? "bg-black text-white"
+                          ? "bg-gray-800 text-white"
                           : "bg-white"
                       }`}
                       onClick={() => paginate(index + 1)}

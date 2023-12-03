@@ -88,14 +88,14 @@ function AdminLogin() {
       style={backgroundStyles}
       className="relative flex items-center justify-center min-h-screen"
     >
-      <div className="absolute inset-0 bg-black opacity-50" />
+      <div className="absolute inset-0 bg-gray-800 opacity-50" />
       <div className="w-full max-w-md relative">
         
 
         {/* form section  */}
         <form
           onSubmit={handleSubmit}
-          className="bg-black drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
+          className="bg-gray-800 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
         >
           <h1 className="font-semibold text-white text-center mb-3">Admin Login Only</h1>
           <div className="mb-4">

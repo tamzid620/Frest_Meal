@@ -16,7 +16,7 @@ const Drawer = () => {
           </div>
           <div className="drawer-side ">
             <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay "></label>
-            <ul className="menu p-4 w-80 min-h-full bg-black text-white border-r-2 border-yellow-500">
+            <ul className="menu p-4 w-80 min-h-full bg-gray-800 text-white border-r-2 border-yellow-500">
               {/* Sidebar content here */}
 
               <h1 className="font-bold text-2xl text-yellow-500 mb-5">Navigation </h1>

@@ -74,7 +74,7 @@ const AdminFoodItemAdd = () => {
         Authorization: "Bearer " + user.token,
       };
 
-      //sub category list method ---------------
+      //get dropdown list method ---------------
       axios
         .get(`https://backend.ap.loclx.io/api/get-dropdown`, {
           headers: headers,
@@ -93,21 +93,6 @@ const AdminFoodItemAdd = () => {
 
   console.log(adminCategory);
   console.log(adminSubCategory);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("data.json")
-  //     .then((res) => {
-  //       setAdminCategory(res.data.category);
-  //       if (res.data.category.subCategory) {
-  //         setAdminSubCategory(res.data.category.subCategory);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, [navigate]);
-
 
   // handle submit button ----------------
   const handleSubmit = (e) => {

@@ -202,7 +202,7 @@ const AdminSubCategory = () => {
           <button
             key={index}
             className={`btn btn-sm ${
-              currentPage === index + 1 ? "bg-black text-white" : "bg-white"
+              currentPage === index + 1 ? "bg-gray-800 text-white" : "bg-white"
             }`}
             onClick={() => paginate(index + 1)}
           >
