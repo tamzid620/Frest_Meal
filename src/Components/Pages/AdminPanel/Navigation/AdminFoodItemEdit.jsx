@@ -28,7 +28,7 @@ const AdminFoodItemEdit = () => {
   const handleCategoryName = (e) => {
     const selectedCategoryId = e.target.value;
     setCategoryId(selectedCategoryId);
-
+  
     const selectedCategory = adminCategory.find(
       (category) => category.id == selectedCategoryId
     );
@@ -78,6 +78,27 @@ const AdminFoodItemEdit = () => {
         accept: "application/json",
         Authorization: "Bearer " + user.token,
       };
+
+      //get drop down list method ---------------
+      axios
+    .get(`https://backend.ap.loclx.io/api/get-dropdown`, {
+      headers: headers,
+    })
+    .then((res) => {
+      setAdminCategory(res.data.category);
+      const selectedCategory = res.data.category.find(
+        (category) => category.id == categoryId
+      );
+
+      if (selectedCategory) {
+        setAdminSubCategory(selectedCategory.subcategories);
+      } else {
+        setAdminSubCategory([]);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
       // set data to edit form
       axios
         .get(`https://backend.ap.loclx.io/api/food-item-edit/${foodItemId}`, {
@@ -99,30 +120,8 @@ const AdminFoodItemEdit = () => {
         .catch((error) => {
           console.log(error);
         });
-
-      //get drop down list method ---------------
-      axios
-        .get(`https://backend.ap.loclx.io/api/get-dropdown`, {
-          headers: headers,
-        })
-        .then((res) => {
-          setAdminCategory(res.data.category);
-
-      const selectedCategory = res.data.category.find(
-        (category) => category.id == categoryId
-      );
-
-      if (selectedCategory) {
-        setAdminSubCategory(selectedCategory.subcategories);
-      } else {
-        setAdminSubCategory([]);
-      }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     }
-  }, [navigate, foodItemId ,categoryId]);
+  }, [navigate, foodItemId, categoryId]);
 
   // handle submit button ----------------
   const handleSubmit = (e) => {
