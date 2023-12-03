@@ -116,14 +116,15 @@ const NavigationBar = () => {
       <div>
           <Link to="/">
             <img
-              className="w-[120px]"
+              className="w-[140px]"
               src="./icons/logo-svg.png"
               alt=""
+              title="Resturant_Logo"
             />
           </Link>
         </div>
 
-        <div className="flex items-center lg:ms-0 md:ms-0 sm: ms-24 lg:hidden md:hidden">
+        <div className="flex items-center lg:ms-0 md:ms-0 sm: ms-[86px] lg:hidden md:hidden">
           <Link to="/cart">
             <button
               title="Cart"
@@ -150,13 +151,13 @@ const NavigationBar = () => {
         <div className={`line3 ${isOpen ? "line3-open" : ""}`}></div>
       </div>
       <ul className="nav-links text-yellow-500">
-        <li>
-          <Link to="/">Home</Link>
+        <li title="Home">
+          <Link to="/" >Home</Link>
         </li>
-        <li>
+        <li title="Order Tracking">
           <Link to="/ordertracking">Order Tracking</Link>
         </li>
-        <li>
+        <li title="Menu">
           <Link to="/menu">Menu</Link>
         </li>
         {/* <li>
@@ -298,7 +299,7 @@ const NavigationBar = () => {
                       <select
                         id="items"
                         name="items"
-                        className="lg:w-full md:w-64 sm:w-48 border border-gray-300 rounded px-3 py-2"
+                        className="lg:w-full md:w-64 sm:w-48 border border-gray-300 rounded px-3 py-2 text-gray-500"
                         required
                         value={selectedItem}
                         onChange={(e) => setSelectedItem(e.target.value)}
