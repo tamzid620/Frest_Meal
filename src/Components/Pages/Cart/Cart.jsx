@@ -1,10 +1,6 @@
 import orderTrackingPhoto1 from '../../../../public/images/Tandoori-Chicken.jpg'
-import orderTrackingPhoto4 from '../../../../public/images/Lobster-Chowder.jpeg'
-import orderTrackingPhoto2 from '../../../../public/images/kimchi-fried-rice-recipe.jpg'
-import orderTrackingPhoto3 from '../../../../public/images/Bibimbap (1).jpg'
 import aboutPhoto from '../../../../public/images/contactUs.jpg';
 import { MdDeleteForever } from "react-icons/md";
-import { BsFillCreditCardFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 
 

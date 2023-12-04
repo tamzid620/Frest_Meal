@@ -2,7 +2,7 @@ import { useState } from 'react';
 import aboutPhoto from '../../../../public/images/contactUs.jpg';
 
 const Order = () => {
-    
+    // const [quantity, setQuantity] = useState(1);
     const [formData, setFormData] = useState({
         clientName: '',
         email: '',
@@ -35,6 +35,15 @@ const Order = () => {
             ),
         }));
     };
+    const handleQuantityChange = (index, change) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            foodItems: prevFormData.foodItems.map((item, i) =>
+                i === index ? { ...item, quantity: Math.max(0, item.quantity + change) } : item
+            ),
+        }));
+    };
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -161,7 +170,7 @@ const Order = () => {
                 </div>
 
                 {/* Quantity Input */}
-                <div className="w-full">
+                {/* <div className="w-full">
                     <label htmlFor={`quantity-${index}`} className="text-white">
                         Quantity:
                     </label>
@@ -174,7 +183,67 @@ const Order = () => {
                         required
                         className="w-full border rounded shadow bg-gray-100 text-black outline-none py-2"
                     />
-                </div>
+                </div> */}
+{/* Quantity Input */}
+<div className="w-full flex items-center">
+    <label htmlFor={`quantity-${index}`} className="text-white">
+        Quantity:
+    </label>
+    <div className="flex items-center ml-2">
+        {/* Minus Button */}
+        <button
+            type="button"
+            onClick={() => handleQuantityChange(index, -1)}
+            className="px-2 py-1 border rounded-md bg-gray-300 text-black"
+        >
+            -
+        </button>
+        {/* Quantity Input */}
+        <input
+            type="number"
+            id={`quantity-${index}`}
+            name="quantity"
+            value={foodItem.quantity}
+            onChange={(e) => handleFoodItemChange(index, e)}
+            required
+            className="w-16 border rounded shadow bg-gray-100 text-black outline-none py-2 mx-2 text-center"
+        />
+        {/* Plus Button */}
+        <button
+            type="button"
+            onClick={() => handleQuantityChange(index, 1)}
+            className="px-2 py-1 border rounded-md bg-gray-300 text-black"
+        >
+            +
+        </button>
+    </div>
+</div>
+
+                {/* new quantity input  */}
+                {/* <div className="flex mb-5 gap-3 w-full">
+                      <button
+                        className="w-[30px] h-[30px] border border-yellow-500 rounded-full hover:bg-yellow-500 hover:text-black flex justify-center items-center"
+                        onClick={() => setQuantity(quantity + 1)}
+                      >
+                        {" "}
+                        +{" "}
+                      </button>
+                      <input
+                        type="number"
+                        className="w-[40px] h-[30px] text-black text-center border border-yellow-500 rounded"
+                        value={quantity}
+                        onChange={(e) =>
+                          setQuantity(parseInt(e.target.value) || 0)
+                        }
+                      />
+                      <button
+                        className="w-[30px] h-[30px] border border-yellow-500 rounded-full hover:bg-yellow-500 hover:text-black flex justify-center items-center"
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      >
+                        {" "}
+                        -{" "}
+                      </button>
+                    </div> */}
 
                 {/* Price Input */}
                 <div className="w-full">
