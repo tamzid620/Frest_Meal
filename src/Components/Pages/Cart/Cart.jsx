@@ -6,7 +6,11 @@ import { useState } from "react";
 
 const Cart = () => {
 
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const price = 60; // Set the price here
+
+  // Calculate subtotal based on quantity
+  const subtotal = quantity * price;
 
   return (
     <div className="">
@@ -54,10 +58,10 @@ const Cart = () => {
                     Tandoori Chicken
                   </h1>
                   <h2 className="text-[#808080] font-semibold">
-                    Price: <span>$30.00</span>
+                    Price: <span>${price.toFixed(2)}</span>
                   </h2>
                   <h2 className="text-[#808080] font-semibold">
-                    Sub Total: <span>$30.00</span>
+                    Sub Total: <span>${subtotal.toFixed(2)}</span>
                   </h2>
                 </div>
 
