@@ -11,7 +11,7 @@ import menuPhoto9 from '../../../../public/images/beef-wellington (1).jpg'
 import aboutPhoto from '../../../../public/images/contactUs.jpg';
 import icon1 from '../../../../public/icons/start-filled.svg'
 import icon2 from '../../../../public/icons/star-grey.svg'
-import { BsFillCartCheckFill, BsFillCartPlusFill } from "react-icons/bs";
+import {  BsFillCartPlusFill } from "react-icons/bs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -40,20 +40,24 @@ const Cart = () => {
           {/* selected items */}
           <div>
             {/* selected items-1 */}
-            <div className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl h-[115px] lg:w-[650px] md:w-[650px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-14">
+            <div className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl lg:h-[115px] md:h-[150px] sm: h-[130px] lg:w-[650px] md:w-[680px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-14">
               <img
                 className="rounded-xl lg:w-[150px] md:w-[150px] sm: w-[100px] me-5 ms-2"
                 src={orderTrackingPhoto1}
                 alt=""
               />
 
-              <div className="item flex justify-between items-center ">
+              <div className="lg:flex lg:items-center  md:flex md:items-center sm: items-center">
+
                 <div className="-mt-5">
                   <h1 className=" text-md text-yellow-500 font-semibold uppercase mt-5">
                     Tandoori Chicken
                   </h1>
                   <h2 className="text-[#808080] font-semibold">
                     Price: <span>$30.00</span>
+                  </h2>
+                  <h2 className="text-[#808080] font-semibold">
+                    Sub Total: <span>$30.00</span>
                   </h2>
                 </div>
 
