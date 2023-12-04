@@ -1,21 +1,31 @@
-// import menuBanner from '../../../../public/images/MenuCompoBanner (1).jpg'
 import menuPhoto1 from "../../../../public/images/Tandoori-Chicken.jpg";
-import menuPhoto2 from "../../../../public/images/Lobster-Chowder.jpeg";
-import menuPhoto3 from "../../../../public/images/kimchi-fried-rice-recipe.jpg";
-import menuPhoto4 from "../../../../public/images/Kung-Pao-Chicken (1).jpg";
-import menuPhoto5 from "../../../../public/images/Fish-Tacos (1).jpg";
-import menuPhoto6 from "../../../../public/images/Bibimbap (1).jpg";
-import menuPhoto7 from "../../../../public/images/Rasta_Pasta.jpeg";
-import menuPhoto8 from "../../../../public/images/Ratatouille (1).jpg";
-import menuPhoto9 from "../../../../public/images/beef-wellington (1).jpg";
 import aboutPhoto from "../../../../public/images/contactUs.jpg";
 import icon1 from "../../../../public/icons/start-filled.svg";
 import icon2 from "../../../../public/icons/star-grey.svg";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import Rating from 'react-rating';
+
 
 const Menu = () => {
+
+const [menus, setMenus] =useState([])
+
+useEffect(()=> {
+    axios.get('https://backend.ap.loclx.io/api/food-item-list')
+    .then(res => {
+        setMenus(res.data.foodItem);
+      })
+      .catch(error => {
+        console.error("Error fetching menu data:", error);
+      });
+},[])
+console.log(menus);
+
   const handleOrderNowClick = () => {
     toast.success("Order Added to Order Tracking!", {
       position: "top-right",
@@ -57,8 +67,8 @@ const Menu = () => {
       <div className="max-w-screen-xl mx-auto mt-20 sm: ms-2 sm: me-2 lg:ms-0 lg:me-0">
         <div className="mb-5 flex justify-center">
           <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 ">
-            {/* food items 1 */}
-            <div className="flex items-center gap-5">
+
+          <div className="flex items-center gap-5">
               <div>
                 <img className="w-64 h-40 rounded-xl" src={menuPhoto1} alt="" />
               </div>
@@ -105,36 +115,38 @@ const Menu = () => {
                 </div>
               </div>
             </div>
-            {/* <hr className=" lg:hidden md:visible sm:visible border-yellow-500 " /> */}
-            {/* food items 2 */}
-            <div className="flex items-center gap-5">
-              <div>
-                <img className="w-64 h-40 rounded-xl" src={menuPhoto2} alt="" />
-              </div>
-              <div>
+            <hr className=" lg:hidden md:visible sm:visible border-yellow-500 " />
+
+            {
+            menus.map(menuItem => (
+              <div key={menuItem.id} className="flex items-center gap-5">
+                <div>
+                  <img className="w-52 h-40 rounded-xl" src={menuItem.imgLink} alt={menuItem.foodName} />
+                </div>
                 <div>
                   <div>
-                    <h1 className=" text-xl text-yellow-500 font-semibold uppercase mt-5">
-                      Lobster Chowder
+                    <h1 className="text-xl text-yellow-500 font-semibold uppercase mt-5">
+                      {menuItem.foodName}
                     </h1>
                     <h2 className="text-[#808080] font-semibold">
-                      Lorem ipsum dolor sit amet consectetur <br /> adipisicing
-                      elit. Iusto, vitae?
+                      {menuItem.description}
                     </h2>
-                    <div className="lg:flex md:block justify-between sm:block mt-5">
+                    <div className="lg:flex md:block sm:block justify-between mt-5">
                       <div>
                         <div className="flex">
-                          <img src={icon1} alt="" />
-                          <img src={icon1} alt="" />
-                          <img src={icon1} alt="" />
-                          <img src={icon1} alt="" />
-                          <img src={icon2} alt="" /> <br />
+                        <Rating
+                            emptySymbol={<img src={icon2} alt="empty star" className="icon" />}
+                            fullSymbol={<img src={icon1} alt="filled star" className="icon" />}
+                            fractions={2}
+                            initialRating={menuItem.rating}
+                            readonly
+                          />
                         </div>
                         <p className="text-yellow-500 text-2xl font-mono font-bold">
-                          $30.00
+                          ${menuItem.price}
                         </p>
                       </div>
-                      <div className="flex items-center gap-5 -mt-3">
+                      <div className="flex items-center gap-5 -mt-3 lg:ms-10 ">
                         <button
                           onClick={handleOrderNowClick}
                           className="hover:bg-[#FFD700] hover:text-black
@@ -152,11 +164,13 @@ const Menu = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            ))
+        }
+           
           </div>
         </div>
-
         <hr className="border-yellow-500 mb-10" />
+
 
 
 

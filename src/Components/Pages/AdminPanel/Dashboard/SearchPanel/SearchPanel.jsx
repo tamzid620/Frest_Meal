@@ -33,7 +33,7 @@ const SearchPanel = () => {
             ></label>
             <ul className="menu p-4 w-80 min-h-full bg-gray-800 text-white border-r-2 border-yellow-500">
               {/* Sidebar content here */}
-              <img className="w-[150px]" src={brandlogo} alt="" />
+              <Link to="/"><img className="w-[150px]" src={brandlogo} alt="" /></Link>
               <hr className="border border-yellow-500 opacity-40 mt-5" />
               <h1
                 style={{ fontFamily: "Mooli, sans-serif" }}
