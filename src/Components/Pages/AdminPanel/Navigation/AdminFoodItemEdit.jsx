@@ -163,7 +163,7 @@ const AdminFoodItemEdit = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Data Added successfully",
+          title: "Data Updated successfully",
           showConfirmButton: false,
           timer: 1500,
         });

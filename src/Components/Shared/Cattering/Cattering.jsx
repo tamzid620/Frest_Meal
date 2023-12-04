@@ -15,14 +15,13 @@ const Cattering = () => {
             {/*------------------------- information section ------------------------ */}
             <div 
             className=' flex justify-center
-             sm: ms-2 sm: me-2 lg:ms-0 lg:me-0 mt-20 
-             transition-transform transform hover:scale-105'>
+             sm: ms-2 sm: me-2 lg:ms-0 lg:me-0 mt-20 '>
                 <div className='grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 
                  rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 '>
 
                     {/* image section  */}
                     <div className=' opacity-70'>
-                        <div><img style={{ width: '500px' }} className='rounded-xl' src={catteringImage} alt="" /></div>
+                        <div><img style={{ width: '500px' }} className='rounded-xl transition-transform transform hover:scale-105' src={catteringImage} alt="" /></div>
                     </div>
 
                     {/* info section  */}
