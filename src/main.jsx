@@ -23,6 +23,7 @@ import AdminSubCategoryEdit from "./Components/Pages/AdminPanel/Navigation/Admin
 import AdminSubCategoryAdd from "./Components/Pages/AdminPanel/Navigation/AdminSubCategoryAdd";
 import AdminFoodItemEdit from "./Components/Pages/AdminPanel/Navigation/AdminFoodItemEdit";
 import AdminFoodItemAdd from "./Components/Pages/AdminPanel/Navigation/AdminFoodItemAdd";
+import Order from "./Components/Shared/Order/Order";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/contactUs",
         element: <Contact />,
+      },
+      {
+        path: "/order",
+        element: <Order />,
       },
       // Admin Login ------------------------------
       {
