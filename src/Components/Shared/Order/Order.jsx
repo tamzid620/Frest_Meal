@@ -2,21 +2,40 @@ import { useState } from 'react';
 import aboutPhoto from '../../../../public/images/contactUs.jpg';
 
 const Order = () => {
+    
     const [formData, setFormData] = useState({
         clientName: '',
         email: '',
         phoneNo: '',
         location: '',
+        foodItems: [
+            {
+                foodId: '',
+                quantity: '',
+                price: '',
+                subTotal: ''
+            },
+        ],
     });
-// handle input  handler ---------------
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData((prevFormData) => ({
+            ...prevFormData,
             [name]: value,
-        });
+        }));
     };
-// handle submit handler ---------------
+
+    const handleFoodItemChange = (index, e) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            foodItems: prevFormData.foodItems.map((item, i) =>
+                i === index ? { ...item, [name]: value } : item
+            ),
+        }));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
@@ -120,7 +139,77 @@ const Order = () => {
             </div>
           </div>
                     {/* Food Items section */}
+                    <div className="mt-8">
+        <h2 className="text-2xl text-white font-semibold mb-4">Food Items</h2>
 
+        {formData.foodItems.map((foodItem, index) => (
+            <div key={index} className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 mb-4">
+                {/* Food Id Input */}
+                <div className="w-full">
+                    <label htmlFor={`foodId-${index}`} className="text-white">
+                        Food ID:
+                    </label>
+                    <input
+                        type="text"
+                        id={`foodId-${index}`}
+                        name="foodId"
+                        value={foodItem.foodId}
+                        onChange={(e) => handleFoodItemChange(index, e)}
+                        required
+                        className="w-full border rounded shadow bg-gray-100 text-black outline-none py-2"
+                    />
+                </div>
+
+                {/* Quantity Input */}
+                <div className="w-full">
+                    <label htmlFor={`quantity-${index}`} className="text-white">
+                        Quantity:
+                    </label>
+                    <input
+                        type="number"
+                        id={`quantity-${index}`}
+                        name="quantity"
+                        value={foodItem.quantity}
+                        onChange={(e) => handleFoodItemChange(index, e)}
+                        required
+                        className="w-full border rounded shadow bg-gray-100 text-black outline-none py-2"
+                    />
+                </div>
+
+                {/* Price Input */}
+                <div className="w-full">
+                    <label htmlFor={`price-${index}`} className="text-white">
+                        Price:
+                    </label>
+                    <input
+                        type="number"
+                        id={`price-${index}`}
+                        name="price"
+                        value={foodItem.price}
+                        onChange={(e) => handleFoodItemChange(index, e)}
+                        required
+                        className="w-full border rounded shadow bg-gray-100 text-black outline-none py-2"
+                    />
+                </div>
+
+                {/* Subtotal Input */}
+                <div className="w-full">
+                    <label htmlFor={`subtotal-${index}`} className="text-white">
+                        Subtotal:
+                    </label>
+                    <input
+                        type="number"
+                        id={`subtotal-${index}`}
+                        name="subTotal"
+                        value={foodItem.subTotal}
+                        onChange={(e) => handleFoodItemChange(index, e)}
+                        required
+                        className="w-full border rounded shadow bg-gray-100 text-black outline-none py-2"
+                    />
+                </div>
+            </div>
+        ))}
+        </div>
 
           {/* Confirm button  */}
           <div className="flex justify-center mt-5">
