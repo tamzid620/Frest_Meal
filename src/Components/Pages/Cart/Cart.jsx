@@ -1,10 +1,53 @@
-import orderTrackingPhoto1 from '../../../../public/images/Tandoori-Chicken.jpg'
+import { useEffect, useState } from 'react';
 import aboutPhoto from '../../../../public/images/contactUs.jpg';
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const Cart = () => {
+
+const [carts, setCarts] = useState([])
+
+useEffect(()=> {
+  axios.get('https://backend.ap.loclx.io/api/cart-item')
+  .then((res) => res.data.foodCart)
+  .then((data)=> setCarts(data))
+},[])
+console.log(carts);
+
+// delete method -----------------
+const handleDeleteItem = (cartId) => {
+  console.log("Deleting cart with ID:", cartId);
+
+  axios.delete(`https://backend.ap.loclx.io/api/food-cart-delete/${cartId}`)
+
+    .then((res) => {
+        setCarts((prevCarts) => 
+        prevCarts.filter((cart) => cart.id !== cartId));
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        window.location.reload();
+    })
+    .catch((error) => {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Error deleting Teacher",
+        text: error.message,
+        showConfirmButton: true,
+      });
+    });
+    console.log(cartId);
+};
+
+
   return (
     <div className="">
       {/* title section */}
@@ -33,27 +76,40 @@ const Cart = () => {
 
       {/* information section */}
       <div className="max-w-screen-xl mx-auto flex justify-center mt-20">
-        <div className=" grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2  gap-10">
 
             {/* selected items */}
+            {carts.map((cart) => (
             <div
-              className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl h-[115px] lg:w-[500px] md:w-[500px] sm: w-[358px] text-yellow-500 bg- overflow-y-auto flex items-center mb-5">
-
-              <img className='rounded-xl lg:w-[150px] md:w-[150px] sm: w-[100px] me-5 ms-2' src={orderTrackingPhoto1} alt="" />
-
-              <div className='item flex justify-between items-center'>
-                <div className='-mt-5'>
-                  <h1 className=' text-md text-yellow-500 font-semibold uppercase mt-5'>Tandoori Chicken</h1>
-                  <h2 className='text-[#808080] font-semibold'>Price: <span>$30.00</span></h2>
-                  <h2 className='text-[#808080] font-semibold'>Tax: <span>$05.00</span></h2>
-                  <h2 className='text-[#808080] font-semibold'>Delivery Charge: <span>$05.00</span></h2>
+              key={cart.id}
+              className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl lg:w-[500px] md:w-[500px] sm:w-[358px] text-yellow-500 bg-overflow-y-auto flex carts-center mb-5"
+            >
+              <img
+                className="rounded-xl lg:w-[150px] md:w-[150px] sm:w-[100px] me-5 ms-2"
+                src={cart.imgLink}
+                alt={cart.foodName}
+              />
+              <div className="item flex justify-between items-center w-full">
+                <div className="-mt-5 flex-grow">
+                  <h1 className="text-md text-yellow-500 font-semibold uppercase mt-5">
+                    {cart.foodName}
+                  </h1>
+                  <h2 className="text-[#808080] font-semibold">
+                    Price: <span>${cart.price}</span>
+                  </h2>
+                  {/* Add more details as needed */}
                 </div>
-                <button className='w-[50px] h-[50px] lg:ms-20 md:ms-20 border border-yellow-500 rounded-full hover:bg-yellow-500 hover:text-black'>
-                  <MdDeleteForever className='w-[50px] h-[30px]' />
-                </button>
-
+                {/* delete button  */}
+                <div className="flex items-center">
+                  <button 
+                  onClick={() => handleDeleteItem(cart.id)}
+                  className="w-[50px] h-[50px] border border-yellow-500 rounded-full hover:bg-yellow-500 hover:text-black mr-4 flex justify-center items-center">
+                    <MdDeleteForever className="w-[30px] h-[30px]" />
+                  </button>
+                </div>
               </div>
             </div>
+          ))}
 
         </div>
       </div>
