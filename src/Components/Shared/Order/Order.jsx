@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import aboutPhoto from "../../../../public/images/contactUs.jpg";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const Order = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +17,8 @@ const Order = () => {
       },
     ],
   });
+  const [total, setTotal] = useState(0);
+
 
   // get data from json -------------------------
   useEffect(() => {
@@ -34,6 +36,7 @@ const Order = () => {
             subTotal: 0,
           })),
         }));
+        
   
         // Fetch and update food details for each food item
         data.foodCart.forEach((cartItem, index) => {
@@ -60,6 +63,11 @@ const Order = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+      const initialTotal = formData.foodItems.reduce(
+        (accumulator, item) => accumulator + item.subTotal,
+        0
+      );
+      setTotal(initialTotal);
   }, []);
  console.log(formData);
 
@@ -94,12 +102,21 @@ const handleFoodItemChange = (index, e) => {
         : item
     ),
   }));
+
+  // Recalculate total
+  const newTotal = formData.foodItems.reduce(
+    (accumulator, item) => accumulator + item.subTotal,
+    0
+  );
+  setTotal(newTotal);
 };
 
 
-  // Quantity Change -----------------
-  const handleQuantityChange = (index, change) => {
-    setFormData((prevFormData) => ({
+
+// Quantity Change -----------------
+const handleQuantityChange = (index, change) => {
+  setFormData((prevFormData) => {
+    const updatedFormData = {
       ...prevFormData,
       foodItems: prevFormData.foodItems.map((item, i) =>
         i === index
@@ -110,14 +127,61 @@ const handleFoodItemChange = (index, e) => {
             }
           : item
       ),
-    }));
-  };
+    };
+
+    // Recalculate total
+    const newTotal = updatedFormData.foodItems.reduce(
+      (accumulator, item) => accumulator + item.subTotal,
+      0
+    );
+
+    // Set the total
+    setTotal(newTotal);
+
+    return updatedFormData;
+  });
+};
+
 
   // submit button -----------------------
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
+// submit button -----------------------
+const handleSubmit = (e) => {
+  e.preventDefault(); // Prevent the default form submission behavior
+
+  // Include total in formData
+  const formDataWithTotal = {
+    ...formData,
+    total: total,
   };
+
+  console.log("Form submitted:", formDataWithTotal);
+  // window.location.reload()
+  toast.success('Order Confirmed', {
+    position: 'top-center',
+    autoClose: 1500,
+    hideProgressBar: true,
+  });
+
+  // Add any additional logic for handling the form submission if needed
+
+  // You may want to reset the form after successful submission
+  setFormData({
+    clientName: "",
+    email: "",
+    phoneNo: "",
+    location: "",
+    foodItems: [
+      {
+        foodId: "",
+        quantity: "",
+        price: "",
+        subTotal: "",
+      },
+    ],
+  });
+  setTotal(0);
+};
+
 
   return (
     <div className="">
@@ -215,7 +279,7 @@ const handleFoodItemChange = (index, e) => {
 
             {Array.isArray(formData.foodItems) &&
   formData.foodItems.map((foodItem, index) => (
-    <div key={index} className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 mb-4">
+    <div key={index} className="grid lg:grid-cols-4 md:grid-cols-4 sm: grid-cols-2 gap-5 mb-4">
       {/* Food Id Input */}
       <input
         type="hidden"
@@ -308,10 +372,27 @@ const handleFoodItemChange = (index, e) => {
                   </div>
                 </div>
               ))}
+{/* total Input  */}
+<div className="flex justify-center">
+<div className="max-w-[100px]">
+  <label htmlFor="total" className="text-white">
+    Total:
+  </label>
+  <input
+    readOnly
+    type="number"
+    id="total"
+    name="total"
+    value={total}
+    className=" w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+  />
+</div>
+</div>
+
           </div>
 
           {/* Confirm button  */}
-          <div className="flex justify-center ">
+          <div className="flex justify-center mt-10">
             <button
               type="submit"
               className=" hover:bg-[#FFD700] hover:text-black 
@@ -323,6 +404,7 @@ const handleFoodItemChange = (index, e) => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
