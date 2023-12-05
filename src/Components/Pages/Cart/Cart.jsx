@@ -131,7 +131,7 @@ bg-[#FFD700]  text-[#808080] border-black
  font-bold px-3 py-1 rounded-md "
 onClick={()=>document.getElementById('my_modal_2').showModal()}>Order Now</button>
 <dialog id="my_modal_2" className="modal">
-  <div className="modal-box w-11/12 max-w-5xl">
+  <div className="modal-box w-11/12 max-w-5xl bg-black border border-white">
   <Order/>
   </div>
   <form method="dialog" className="modal-backdrop">

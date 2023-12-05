@@ -120,21 +120,14 @@ const handleFoodItemChange = (index, e) => {
   };
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${aboutPhoto})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "100vh",
-      }}
-    >
+    <div className="">
       {/* title section */}
-      <div className="flex justify-center ">
+      <div className="flex justify-center">
         {/* title tag */}
-        <div className=" mt-[45px] pb-[20px] bg-black opacity-70 w-full h-full flex flex-col justify-center items-center">
+        <div className=" w-full h-full flex flex-col justify-center items-center">
           <h1
             style={{ fontFamily: "Mooli, sans-serif" }}
-            className="text-3xl text-white font-semibold mt-[100px]"
+            className="text-3xl text-white font-semibold"
           >
             Order Now
           </h1>
@@ -143,7 +136,7 @@ const handleFoodItemChange = (index, e) => {
       </div>
 
       {/* information form  section  */}
-      <div className="p-4 flex justify-center bg-black opacity-70">
+      <div className="p-4 flex justify-center ">
         <form className="" onSubmit={handleSubmit}>
           {/* client name and email section  */}
           <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-5 ">
@@ -215,7 +208,7 @@ const handleFoodItemChange = (index, e) => {
           </div>
 
           {/* Food Items section */}
-          <div className="mt-8">
+          <div className="">
             <h2 className="text-2xl text-white font-semibold mb-4">
               Food Items
             </h2>
@@ -318,7 +311,7 @@ const handleFoodItemChange = (index, e) => {
           </div>
 
           {/* Confirm button  */}
-          <div className="flex justify-center mt-5">
+          <div className="flex justify-center ">
             <button
               type="submit"
               className=" hover:bg-[#FFD700] hover:text-black 
