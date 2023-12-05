@@ -1,16 +1,30 @@
 {
-  "clientName": "tanjid",
-  "email": "adnan@test.com",
-  "phoneNo": "0985786",
-  "location": "3455,shdbs,skdsjhjdkf,skjkffnd",
-  "totalAmount": "1150",
-  "foodItems": [
+  "foodCart": [
     {
-      "foodId": 2,
-      "quantity": 3,
-      "price": "250",
-      "subTotal": "750"
+      "id": 6,
+      "categoryId": 2,
+      "subCategoryId": 1,
+      "foodName": "Sada Pani",
+      "foodCode": "1010",
+      "description": "ujoihoaifhoiah",
+      "rating": 4,
+      "price": "19",
+      "created_at": "2023-12-04T09:23:12.000000Z",
+      "updated_at": "2023-12-05T10:04:34.000000Z",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1701689832.jpg"
+    },
+    {
+      "id": 10,
+      "categoryId": 3,
+      "subCategoryId": 6,
+      "foodName": "chocolate icebar",
+      "foodCode": "100",
+      "description": "icecream",
+      "rating": 5,
+      "price": "100",
+      "created_at": "2023-12-05T08:45:41.000000Z",
+      "updated_at": "2023-12-05T08:46:22.000000Z",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1701765982.png"
     }
-   
   ]
 }

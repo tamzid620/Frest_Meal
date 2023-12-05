@@ -19,13 +19,59 @@ const Order = () => {
   });
 
   // get data from json -------------------------
+  // useEffect(() => {
+  //   axios
+  //     .get("https://backend.ap.loclx.io/api/cart-item")
+  //     .then((res) => res.data)
+  //     .then((data) => {
+  //       setFormData({
+  //         ...formData,
+  //         clientName: data.clientName || "",
+  //         email: data.email || "",
+  //         phoneNo: data.phoneNo || "",
+  //         location: data.location || "",
+  //         foodItems: data.foodItems || [],
+  //       });
+  //     });
+  // }, [formData]);
+  // console.log(formData);
   useEffect(() => {
     axios
       .get("cartItem.json")
       .then((res) => res.data)
-      .then((data) => setFormData(data));
+      .then((data) => {
+        setFormData({
+          ...formData,
+          clientName: data.clientName || "",
+          email: data.email || "",
+          phoneNo: data.phoneNo || "",
+          location: data.location || "",
+          foodItems: data.foodItems || [],
+        });
+  
+        // Fetch food details for each foodId
+        data.foodItems.forEach((foodItem, index) => {
+          axios
+            .get(`cartItem.json/${foodItem.foodId}`)
+            .then((res) => res.data)
+            .then((foodDetails) => {
+              // Update food name for the corresponding foodId
+              setFormData((prevFormData) => ({
+                ...prevFormData,
+                foodItems: prevFormData.foodItems.map((item, i) =>
+                  i === index
+                    ? {
+                        ...item,
+                        foodName: foodDetails.foodName,
+                      }
+                    : item
+                ),
+              }));
+            });
+        });
+      });
   }, []);
-  console.log(formData);
+  
 
   // calculateSubtotal section --------------------
   const calculateSubtotal = (quantity, price) => {
@@ -83,21 +129,15 @@ const Order = () => {
 
   return (
     <div
-    style={{
-      backgroundImage: `url(${aboutPhoto})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      height: "100vh",
-      // height: "350px",
-      // marginTop:'30px'
-    }}
+      style={{
+        backgroundImage: `url(${aboutPhoto})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh",
+      }}
     >
-
       {/* title section */}
-      <div
-        
-        className="flex justify-center "
-      >
+      <div className="flex justify-center ">
         {/* title tag */}
         <div className=" mt-[45px] pb-[20px] bg-black opacity-70 w-full h-full flex flex-col justify-center items-center">
           <h1
@@ -181,102 +221,104 @@ const Order = () => {
               />
             </div>
           </div>
+          
           {/* Food Items section */}
           <div className="mt-8">
             <h2 className="text-2xl text-white font-semibold mb-4">
               Food Items
             </h2>
 
-            {formData.foodItems.map((foodItem, index) => (
-              <div
-                key={index}
-                className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 mb-4"
-              >
-                {/* Food Id Input */}
-                <div className="max-w-[140px]">
-                  <label htmlFor={`foodId-${index}`} className="text-white">
-                    Food ID:
-                  </label>
-                  <input
-                    readOnly
-                    type="text"
-                    id={`foodId-${index}`}
-                    name="foodId"
-                    value={foodItem.foodId}
-                    onChange={(e) => handleFoodItemChange(index, e)}
-                    required
-                    className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
-                  />
-                </div>
-                {/* Quantity Input */}
-                <div className="max-w-[140px]">
-                  <label htmlFor={`quantity-${index}`} className="text-white">
-                    Quantity:
-                  </label> 
-                  <div className="flex items-center ml-2">
-                    {/* Minus Button */}
-                    <button
-                      type="button"
-                      onClick={() => handleQuantityChange(index, -1)}
-                      className="px-2 py-1 border rounded-md bg-gray-300 text-black"
-                    >
-                      -
-                    </button>
-                    {/* Quantity Input */}
+            {Array.isArray(formData.foodItems) &&
+              formData.foodItems.map((foodItem, index) => (
+                <div
+                  key={index}
+                  className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 mb-4"
+                >
+                  {/* Food Id Input */}
+                  <div className="max-w-[140px]">
+                    <label htmlFor={`foodId-${index}`} className="text-white">
+                      Food Name:
+                    </label>
                     <input
+  type="text"
+  id={`foodId-${index}`}
+  name="foodName"
+  value={foodItem.foodName}
+  onChange={(e) => handleFoodItemChange(index, e)}
+  required
+  className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+/>
+
+                  </div>
+                  {/* Quantity Input */}
+                  <div className="max-w-[140px]">
+                    <label htmlFor={`quantity-${index}`} className="text-white">
+                      Quantity:
+                    </label>
+                    <div className="flex items-center ml-2">
+                      {/* Minus Button */}
+                      <button
+                        type="button"
+                        onClick={() => handleQuantityChange(index, -1)}
+                        className="px-2 py-1 border rounded-md bg-gray-300 text-black"
+                      >
+                        -
+                      </button>
+                      {/* Quantity Input */}
+                      <input
+                        type="number"
+                        id={`quantity-${index}`}
+                        name="quantity"
+                        value={foodItem.quantity}
+                        onChange={(e) => handleFoodItemChange(index, e)}
+                        required
+                        className="w-16 border rounded shadow bg-gray-100 text-black outline-none py-1 mx-2 text-center"
+                      />
+                      {/* Plus Button */}
+                      <button
+                        type="button"
+                        onClick={() => handleQuantityChange(index, 1)}
+                        className="px-2 py-1 border rounded-md bg-gray-300 text-black"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  {/* Price Input */}
+                  <div className="max-w-[140px]">
+                    <label htmlFor={`price-${index}`} className="text-white">
+                      Price:
+                    </label>
+                    <input
+                      readOnly
                       type="number"
-                      id={`quantity-${index}`}
-                      name="quantity"
-                      value={foodItem.quantity}
+                      id={`price-${index}`}
+                      name="price"
+                      value={foodItem.price}
                       onChange={(e) => handleFoodItemChange(index, e)}
                       required
-                      className="w-16 border rounded shadow bg-gray-100 text-black outline-none py-1 mx-2 text-center"
+                      className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
                     />
-                    {/* Plus Button */}
-                    <button
-                      type="button"
-                      onClick={() => handleQuantityChange(index, 1)}
-                      className="px-2 py-1 border rounded-md bg-gray-300 text-black"
-                    >
-                      +
-                    </button>
+                  </div>
+
+                  {/* Subtotal Input */}
+                  <div className="max-w-[140px]">
+                    <label htmlFor={`subtotal-${index}`} className="text-white">
+                      Subtotal:
+                    </label>
+                    <input
+                      readOnly
+                      type="number"
+                      id={`subtotal-${index}`}
+                      name="subTotal"
+                      value={foodItem.subTotal}
+                      onChange={(e) => handleFoodItemChange(index, e)}
+                      required
+                      className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+                    />
                   </div>
                 </div>
-                {/* Price Input */}
-                <div className="max-w-[140px]">
-                  <label htmlFor={`price-${index}`} className="text-white">
-                    Price:
-                  </label>
-                  <input
-                    readOnly
-                    type="number"
-                    id={`price-${index}`}
-                    name="price"
-                    value={foodItem.price}
-                    onChange={(e) => handleFoodItemChange(index, e)}
-                    required
-                    className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
-                  />
-                </div>
-
-                {/* Subtotal Input */}
-                <div className="max-w-[140px]">
-                  <label htmlFor={`subtotal-${index}`} className="text-white">
-                    Subtotal:
-                  </label>
-                  <input
-                    readOnly
-                    type="number"
-                    id={`subtotal-${index}`}
-                    name="subTotal"
-                    value={foodItem.subTotal}
-                    onChange={(e) => handleFoodItemChange(index, e)}
-                    required
-                    className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
-                  />
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
 
           {/* Confirm button  */}
