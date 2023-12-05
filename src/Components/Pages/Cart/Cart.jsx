@@ -4,6 +4,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Order from '../../Shared/Order/Order';
 
 
 const Cart = () => {
@@ -113,7 +114,7 @@ const handleDeleteItem = (cartId) => {
         </div>
       </div>
         {/* order now button  */}
-        <div className="flex justify-center mt-5">
+        {/* <div className="flex justify-center mt-5">
              <Link to='/order'>
                <button  className=" hover:bg-[#FFD700] hover:text-black 
  bg-[#FFD700]  text-[#808080] border-black
@@ -121,6 +122,22 @@ const handleDeleteItem = (cartId) => {
                 Order Now
               </button>
               </Link>
+            </div> */}
+            {/* You can open the modal using document.getElementById('ID').showModal() method */}
+            <div className='flex justify-center mt-5'>
+<button 
+className=" hover:bg-[#FFD700] hover:text-black 
+bg-[#FFD700]  text-[#808080] border-black
+ font-bold px-3 py-1 rounded-md "
+onClick={()=>document.getElementById('my_modal_2').showModal()}>Order Now</button>
+<dialog id="my_modal_2" className="modal">
+  <div className="modal-box w-11/12 max-w-5xl">
+  <Order/>
+  </div>
+  <form method="dialog" className="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
             </div>
     </div>
   );
