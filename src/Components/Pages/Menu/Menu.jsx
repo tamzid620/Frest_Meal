@@ -1,4 +1,3 @@
-
 import aboutPhoto from "../../../../public/images/contactUs.jpg";
 import icon1 from "../../../../public/icons/start-filled.svg";
 import icon2 from "../../../../public/icons/star-grey.svg";
@@ -12,11 +11,11 @@ import Swal from "sweetalert2";
 
 const Menu = () => {
   const [menus, setMenus] = useState([]);
-  const [id, setId] = useState("");
+  // const [id, setId] = useState([]);
 
-  const handleIdChange = (e) => {
-    setId(e.target.value);
-  };
+  // const handleIdChange = (e) => {
+  //   setId(e.target.value);
+  // };
 
   useEffect(() => {
     // get method --------------------
@@ -28,42 +27,29 @@ const Menu = () => {
       .catch((error) => {
         console.error("Error fetching menu data:", error);
       });
-    }, []);
-    console.log(menus);
+  }, []);
 
   // handle submit button ----------------
-  const handleOrderNowClick = (e) => {
+  const handleOrderNowClick = (id) => {
 
+    // const data = new FormData();
+    // data.append("id", id);
+    // // post method --------------
 
-    e.preventDefault();
-    const data = new FormData();
-    data.append("foodId", id);
-    console.log(data);
-    // post method --------------
     axios
-      .post("https://backend.ap.loclx.io/api/add-to-cart", data)
+      .get(`https://backend.ap.loclx.io/api/add-to-cart/${id}`)
+
       .then((res) => {
         console.log("Data:", res.data);
-        if (res.data.status === "402") {
-          // The item is already in the cart
-          Swal.fire({
-            position: "center",
-            icon: "info",
-            title: res.data.message,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        } else {
-          // Item successfully added to the cart
-          setId("");
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: res.data.message,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
+        // to refresh to form ---------------
+        // setId("")
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
         Swal.fire({
@@ -74,6 +60,7 @@ const Menu = () => {
           timer: 1500,
         });
       });
+      
   };
 
   return (
@@ -103,8 +90,6 @@ const Menu = () => {
       <div className="max-w-screen-xl mx-auto mt-20 sm: ms-2 sm: me-2 lg:ms-0 lg:me-0">
         <div className="mb-5 flex justify-center">
           <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 ">
-            
-
             {menus.map((menuItem) => (
               <div key={menuItem.id} className="flex items-center gap-5">
                 <div>
@@ -151,19 +136,18 @@ const Menu = () => {
                       </div>
                       <div className="flex items-center gap-5 -mt-3 lg:ms-10 ">
                         {/* id section   */}
-                        <div>
+                        {/* <div>
                           <label htmlFor="foodId"></label>
                           <input
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
                             type="hidden"
                             title="foodId"
                             id="foodId"
                             value={menuItem.id}
-                            onChange={handleIdChange} 
+                            onChange={handleIdChange}
                           />
-                        </div>
+                        </div> */}
                         <button
-                          onClick={handleOrderNowClick}
+                          onClick={() => handleOrderNowClick(menuItem.id)}
                           className="hover:bg-[#FFD700] hover:text-black
                              bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
                              rounded-md mt-3 flex items-center gap-2"
@@ -180,10 +164,10 @@ const Menu = () => {
               </div>
             ))}
           </div>
-        <hr className="border-yellow-500 mb-10" />
+          <hr className="border-yellow-500 mb-10" />
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
