@@ -24,6 +24,8 @@ import AdminSubCategoryAdd from "./Components/Pages/AdminPanel/Navigation/AdminS
 import AdminFoodItemEdit from "./Components/Pages/AdminPanel/Navigation/AdminFoodItemEdit";
 import AdminFoodItemAdd from "./Components/Pages/AdminPanel/Navigation/AdminFoodItemAdd";
 import Order from "./Components/Shared/Order/Order";
+import AdminOrderList from "./Components/Pages/AdminPanel/Navigation/AdminOrderList";
+import AdminOrderDelivery from "./Components/Pages/AdminPanel/Navigation/AdminOrderDelivery";
 
 const router = createBrowserRouter([
   {
@@ -116,6 +118,16 @@ const router = createBrowserRouter([
         path: "/adminFoodItemAdd",
         element: <AdminFoodItemAdd />,
       },
+      // Order section ----------------
+      {
+        path: "/orderList",
+        element: <AdminOrderList />,
+      },
+      {
+        path: "/orderDelivery",
+        element: <AdminOrderDelivery />,
+      },
+
     ],
   },
 ]);

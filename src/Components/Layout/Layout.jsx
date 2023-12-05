@@ -16,7 +16,9 @@ const noHeaderFooter =
  location.pathname.includes('adminSubCategoryAdd') ||
  location.pathname.includes('adminFoodItem') ||
  location.pathname.includes('adminFoodItemEdit') ||
- location.pathname.includes('adminFoodItemAdd') 
+ location.pathname.includes('adminFoodItemAdd') ||
+ location.pathname.includes('orderList') ||
+ location.pathname.includes('orderDelivery') 
 
     return (
         <div>

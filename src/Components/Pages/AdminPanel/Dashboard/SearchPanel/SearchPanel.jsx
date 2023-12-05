@@ -9,8 +9,16 @@ import { RiLogoutBoxRFill } from "react-icons/ri";
 import { IoIosSpeedometer } from "react-icons/io";
 import brandlogo from "../../../../../../public/icons/logo-svg.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const SearchPanel = () => {
+
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  const handleDropdown = (index) => {
+    setOpenDropdown(openDropdown === index ? null : index);
+  };
+
   return (
     <div className="bg-gray-800 p-2 flex justify-between items-center">
       {/* drawer section  */}
@@ -33,7 +41,9 @@ const SearchPanel = () => {
             ></label>
             <ul className="menu p-4 w-80 min-h-full bg-gray-800 text-white border-r-2 border-yellow-500">
               {/* Sidebar content here */}
-              <Link to="/"><img className="w-[150px]" src={brandlogo} alt="" /></Link>
+              <Link to="/">
+                <img className="w-[150px]" src={brandlogo} alt="" />
+              </Link>
               <hr className="border border-yellow-500 opacity-40 mt-5" />
               <h1
                 style={{ fontFamily: "Mooli, sans-serif" }}
@@ -46,12 +56,14 @@ const SearchPanel = () => {
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500">
                   <IoIosSpeedometer className="text-blue-500" size={20} />{" "}
-                  <Link to="/dp">Dashboard</Link> 
+                  <Link to="/dp">Dashboard</Link>
                 </span>
               </li>
               {/*Menu section  */}
-              <details className="dropdown mb-3">
-                <summary className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
+              <details className="dropdown mb-3" open={openDropdown === 1}>
+                <summary
+                onClick={() => handleDropdown(1)}
+                className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
                   <IoIosSpeedometer
                     className="text-violet-500 -ms-[160px]"
                     size={20}
@@ -74,6 +86,32 @@ const SearchPanel = () => {
                   <Link to="/adminFoodItem">
                     <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
                       Food Item
+                    </li>
+                  </Link>
+                </ul>
+              </details>
+
+              {/*Order section  */}
+              <details className="dropdown mb-3" open={openDropdown === 2}>
+                <summary
+                onClick={() => handleDropdown(2)}
+                className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
+                  <IoIosSpeedometer
+                    className="text-blue-500 -ms-[160px]"
+                    size={20}
+                  />
+                  Order <MdArrowDropDown size={20} />
+                </summary>
+                <ul className="p-2 shadow menu dropdown-content z-[1] bg-yellow-400 border rounded-box w-52 ">
+                  <Link to="/orderList">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Order List
+                    </li>
+                  </Link>
+                  <hr className="mt-1 border-black" />
+                  <Link to="/orderDelivery">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Order Delivery
                     </li>
                   </Link>
                 </ul>
@@ -134,8 +172,6 @@ const SearchPanel = () => {
                   Option-9
                 </span>
               </li>
-
-              
             </ul>
           </div>
         </div>

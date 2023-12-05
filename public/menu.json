@@ -1,82 +1,82 @@
 {
-    "foodItem": [
-      {
-        "id": 2,
-        "categoryId": "lunch",
-        "subCategoryId": "soft drinks",
-        "foodName": "chicken Burger",
-        "foodCode": "34325",
-        "description": "fdfg,afjff,fjff",
-        "rating": 3.7,
-        "price": "300",
-        "created_at": "2023-11-23 09:33:09",
-        "updated_at": "2023-12-03 11:34:23",
-        "imgLink": "http://backend.ap.loclx.io/upload/image/1700981419.jpg"
-      },
-      {
-        "id": 4,
-        "categoryId": "lunch",
-        "subCategoryId": null,
-        "foodName": "Mojo",
-        "foodCode": "500",
-        "description": "a soft drink from bangladesh",
-        "rating": 5,
-        "price": "25",
-        "created_at": "2023-12-03 06:22:58",
-        "updated_at": "2023-12-03 06:22:58",
-        "imgLink": "http://backend.ap.loclx.io/upload/image/1701584578.jpg"
-      },
-      {
-        "id": 6,
-        "categoryId": "lunch",
-        "subCategoryId": "Coffee",
-        "foodName": "abc",
-        "foodCode": "1010",
-        "description": "ujoihoaifhoiah",
-        "rating": 4,
-        "price": "19",
-        "created_at": "2023-12-04 09:23:12",
-        "updated_at": "2023-12-04 09:23:12",
-        "imgLink": "http://backend.ap.loclx.io/upload/image/1701681792.jpg"
-      },
-      {
-        "id": 7,
-        "categoryId": "lunch",
-        "subCategoryId": "soft drinks",
-        "foodName": "kala pani",
-        "foodCode": "103",
-        "description": "kala from nala",
-        "rating": 3,
-        "price": "2305",
-        "created_at": "2023-12-04 09:23:56",
-        "updated_at": "2023-12-04 09:23:56",
-        "imgLink": "http://backend.ap.loclx.io/upload/image/1701681836.jpg"
-      },
-      {
-        "id": 8,
-        "categoryId": "dinner",
-        "subCategoryId": "aata",
-        "foodName": "fresh",
-        "foodCode": "2323",
-        "description": "frest ata sera ata",
-        "rating": 4,
-        "price": "60",
-        "created_at": "2023-12-04 09:24:29",
-        "updated_at": "2023-12-04 09:24:29",
-        "imgLink": "http://backend.ap.loclx.io/upload/image/1701681869.jpg"
-      },
-      {
-        "id": 9,
-        "categoryId": "dinner",
-        "subCategoryId": "moida",
-        "foodName": "sena",
-        "foodCode": "1210",
-        "description": "sena kollan moida",
-        "rating": 5,
-        "price": "65",
-        "created_at": "2023-12-04 09:25:01",
-        "updated_at": "2023-12-04 09:25:01",
-        "imgLink": "http://backend.ap.loclx.io/upload/image/1701681901.jpg"
-      }
-    ]
-  }
+  "foodItem": [
+    {
+      "id": 2,
+      "categoryId": "lunch",
+      "subCategoryId": "soft drinks",
+      "foodName": "chicken Burger",
+      "foodCode": "34325",
+      "description": "fdfg,afjff,fjff",
+      "rating": 3.7,
+      "price": "300",
+      "created_at": "2023-11-23 09:33:09",
+      "updated_at": "2023-12-04 11:34:01",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1701689641.jpg"
+    },
+    {
+      "id": 4,
+      "categoryId": "lunch",
+      "subCategoryId": "pizza",
+      "foodName": "Mojo",
+      "foodCode": "500",
+      "description": "a soft drink from bangladesh",
+      "rating": 5,
+      "price": "25",
+      "created_at": "2023-12-03 06:22:58",
+      "updated_at": "2023-12-04 11:36:59",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1701689819.jpg"
+    },
+    {
+      "id": 6,
+      "categoryId": "lunch",
+      "subCategoryId": "Coffee",
+      "foodName": "abc",
+      "foodCode": "1010",
+      "description": "ujoihoaifhoiah",
+      "rating": 4,
+      "price": "19",
+      "created_at": "2023-12-04 09:23:12",
+      "updated_at": "2023-12-04 11:37:12",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1701689832.jpg"
+    },
+    {
+      "id": 7,
+      "categoryId": "lunch",
+      "subCategoryId": "soft drinks",
+      "foodName": "kala pani",
+      "foodCode": "103",
+      "description": "kala from nala",
+      "rating": 3,
+      "price": "2305",
+      "created_at": "2023-12-04 09:23:56",
+      "updated_at": "2023-12-04 11:37:25",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1701689845.jpg"
+    },
+    {
+      "id": 8,
+      "categoryId": "dinner",
+      "subCategoryId": "aata",
+      "foodName": "fresh",
+      "foodCode": "2323",
+      "description": "frest ata sera ata",
+      "rating": 4,
+      "price": "60",
+      "created_at": "2023-12-04 09:24:29",
+      "updated_at": "2023-12-04 11:37:37",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1701689857.jpg"
+    },
+    {
+      "id": 9,
+      "categoryId": "dinner",
+      "subCategoryId": "moida",
+      "foodName": "sena",
+      "foodCode": "1210",
+      "description": "sena kollan moida",
+      "rating": 5,
+      "price": "65",
+      "created_at": "2023-12-04 09:25:01",
+      "updated_at": "2023-12-04 11:37:47",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1701689867.jpeg"
+    }
+  ]
+}
