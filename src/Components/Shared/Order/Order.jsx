@@ -19,43 +19,28 @@ const Order = () => {
   });
 
   // get data from json -------------------------
-  // useEffect(() => {
-  //   axios
-  //     .get("https://backend.ap.loclx.io/api/cart-item")
-  //     .then((res) => res.data)
-  //     .then((data) => {
-  //       setFormData({
-  //         ...formData,
-  //         clientName: data.clientName || "",
-  //         email: data.email || "",
-  //         phoneNo: data.phoneNo || "",
-  //         location: data.location || "",
-  //         foodItems: data.foodItems || [],
-  //       });
-  //     });
-  // }, [formData]);
-  // console.log(formData);
   useEffect(() => {
     axios
       .get("cartItem.json")
       .then((res) => res.data)
       .then((data) => {
-        setFormData({
-          ...formData,
-          clientName: data.clientName || "",
-          email: data.email || "",
-          phoneNo: data.phoneNo || "",
-          location: data.location || "",
-          foodItems: data.foodItems || [],
-        });
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          foodItems: data.foodCart.map((cartItem) => ({
+            foodId: cartItem.id,
+            foodName: cartItem.foodName,
+            price: cartItem.price,
+            quantity: 0,
+            subTotal: 0,
+          })),
+        }));
   
-        // Fetch food details for each foodId
-        data.foodItems.forEach((foodItem, index) => {
+        // Fetch and update food details for each food item
+        data.foodCart.forEach((cartItem, index) => {
           axios
-            .get(`cartItem.json/${foodItem.foodId}`)
+            .get(`cartItem.json/${cartItem.id}`)
             .then((res) => res.data)
             .then((foodDetails) => {
-              // Update food name for the corresponding foodId
               setFormData((prevFormData) => ({
                 ...prevFormData,
                 foodItems: prevFormData.foodItems.map((item, i) =>
@@ -63,15 +48,20 @@ const Order = () => {
                     ? {
                         ...item,
                         foodName: foodDetails.foodName,
+                        price: cartItem.price,
+                        subTotal: calculateSubtotal(item.quantity, cartItem.price),
                       }
                     : item
                 ),
               }));
             });
         });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
   }, []);
-  
+ console.log(formData);
 
   // calculateSubtotal section --------------------
   const calculateSubtotal = (quantity, price) => {
@@ -88,22 +78,24 @@ const Order = () => {
   };
 
   // Food Item change -------------------
-  const handleFoodItemChange = (index, e) => {
-    const { name, value } = e.target;
+// Inside the handleFoodItemChange function
+const handleFoodItemChange = (index, e) => {
+  const { name, value } = e.target;
 
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      foodItems: prevFormData.foodItems.map((item, i) =>
-        i === index
-          ? {
-              ...item,
-              [name]: value,
-              subTotal: calculateSubtotal(item.quantity, item.price),
-            }
-          : item
-      ),
-    }));
-  };
+  setFormData((prevFormData) => ({
+    ...prevFormData,
+    foodItems: prevFormData.foodItems.map((item, i) =>
+      i === index
+        ? {
+            ...item,
+            [name === "foodName" ? "foodName" : "foodId"]: value,
+            subTotal: calculateSubtotal(item.quantity, item.price),
+          }
+        : item
+    ),
+  }));
+};
+
 
   // Quantity Change -----------------
   const handleQuantityChange = (index, change) => {
@@ -221,7 +213,7 @@ const Order = () => {
               />
             </div>
           </div>
-          
+
           {/* Food Items section */}
           <div className="mt-8">
             <h2 className="text-2xl text-white font-semibold mb-4">
@@ -229,27 +221,31 @@ const Order = () => {
             </h2>
 
             {Array.isArray(formData.foodItems) &&
-              formData.foodItems.map((foodItem, index) => (
-                <div
-                  key={index}
-                  className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 mb-4"
-                >
-                  {/* Food Id Input */}
-                  <div className="max-w-[140px]">
-                    <label htmlFor={`foodId-${index}`} className="text-white">
-                      Food Name:
-                    </label>
-                    <input
-  type="text"
-  id={`foodId-${index}`}
-  name="foodName"
-  value={foodItem.foodName}
-  onChange={(e) => handleFoodItemChange(index, e)}
-  required
-  className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
-/>
-
-                  </div>
+  formData.foodItems.map((foodItem, index) => (
+    <div key={index} className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-5 mb-4">
+      {/* Food Id Input */}
+      <input
+        type="hidden"
+        id={`foodId-${index}`}
+        name="foodItems"
+        value={foodItem.id}
+        onChange={(e) => handleFoodItemChange(index, e)}
+      />
+      {/* Food Name Input */}
+      <div className="max-w-[140px]">
+        <label htmlFor={`foodName-${index}`} className="text-white">
+          Food Name:
+        </label>
+        <input
+          type="text"
+          id={`foodName-${index}`}
+          name="foodName"
+          value={foodItem.foodName}
+          onChange={(e) => handleFoodItemChange(index, e)}
+          required
+          className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+        />
+      </div>
                   {/* Quantity Input */}
                   <div className="max-w-[140px]">
                     <label htmlFor={`quantity-${index}`} className="text-white">
