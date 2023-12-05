@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import aboutPhoto from '../../../../public/images/contactUs.jpg';
+import axios from 'axios';
 
 const Order = () => {
-    // const [quantity, setQuantity] = useState(1);
     const [formData, setFormData] = useState({
         clientName: '',
         email: '',
@@ -18,6 +18,20 @@ const Order = () => {
         ],
     });
 
+    // get data from json -------------------------
+    useEffect(() => {
+        axios.get('cartItem.json')
+            .then((res) => res.data)
+            .then((data) => setFormData(data))
+    }, [])
+    console.log(formData);
+
+    // calculateSubtotal section --------------------
+    const calculateSubtotal = (quantity, price) => {
+      return quantity * price;
+  };
+  
+// handle input change -----------------
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevFormData) => ({
@@ -26,25 +40,41 @@ const Order = () => {
         }));
     };
 
+    // Food Item change -------------------
     const handleFoodItemChange = (index, e) => {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            foodItems: prevFormData.foodItems.map((item, i) =>
-                i === index ? { ...item, [name]: value } : item
-            ),
-        }));
-    };
-    const handleQuantityChange = (index, change) => {
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            foodItems: prevFormData.foodItems.map((item, i) =>
-                i === index ? { ...item, quantity: Math.max(0, item.quantity + change) } : item
-            ),
-        }));
-    };
-    
+      const { name, value } = e.target;
+  
+      setFormData((prevFormData) => ({
+          ...prevFormData,
+          foodItems: prevFormData.foodItems.map((item, i) =>
+              i === index
+                  ? {
+                        ...item,
+                        [name]: value,
+                        subTotal: calculateSubtotal(item.quantity, item.price),
+                    }
+                  : item
+          ),
+      }));
+  };
+  
+  // Quantity Change -----------------
+  const handleQuantityChange = (index, change) => {
+    setFormData((prevFormData) => ({
+        ...prevFormData,
+        foodItems: prevFormData.foodItems.map((item, i) =>
+            i === index
+                ? {
+                      ...item,
+                      quantity: Math.max(0, item.quantity + change),
+                      subTotal: calculateSubtotal(item.quantity + change, item.price),
+                  }
+                : item
+        ),
+    }));
+};
 
+// submit button -----------------------
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
@@ -168,22 +198,6 @@ const Order = () => {
                         className="w-full border rounded shadow bg-gray-100 text-black outline-none py-2"
                     />
                 </div>
-
-                {/* Quantity Input */}
-                {/* <div className="w-full">
-                    <label htmlFor={`quantity-${index}`} className="text-white">
-                        Quantity:
-                    </label>
-                    <input
-                        type="number"
-                        id={`quantity-${index}`}
-                        name="quantity"
-                        value={foodItem.quantity}
-                        onChange={(e) => handleFoodItemChange(index, e)}
-                        required
-                        className="w-full border rounded shadow bg-gray-100 text-black outline-none py-2"
-                    />
-                </div> */}
 {/* Quantity Input */}
 <div className="w-full flex items-center">
     <label htmlFor={`quantity-${index}`} className="text-white">
