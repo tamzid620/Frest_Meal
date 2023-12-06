@@ -13,10 +13,14 @@ import { useState } from "react";
 
 const SearchPanel = () => {
 
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [openDropdown1, setOpenDropdown1] = useState(null);
+  const [openDropdown2, setOpenDropdown2] = useState(null);
 
-  const handleDropdown = (index) => {
-    setOpenDropdown(openDropdown === index ? null : index);
+  const handleDropdown1 = (index) => {
+    setOpenDropdown1(openDropdown1 === index ? null : index);
+  }; 
+  const handleDropdown2 = (index) => {
+    setOpenDropdown2(openDropdown2 === index ? null : index);
   };
 
   return (
@@ -60,9 +64,9 @@ const SearchPanel = () => {
                 </span>
               </li>
               {/*Menu section  */}
-              <details className="dropdown mb-3" open={openDropdown === 1}>
+              <details className="dropdown mb-3" open={openDropdown1 === 1}>
                 <summary
-                onClick={() => handleDropdown(1)}
+                onClick={() => handleDropdown1(1)}
                 className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
                   <IoIosSpeedometer
                     className="text-violet-500 -ms-[160px]"
@@ -92,9 +96,9 @@ const SearchPanel = () => {
               </details>
 
               {/*Order section  */}
-              <details className="dropdown mb-3" open={openDropdown === 2}>
+              <details className="dropdown mb-3" open={openDropdown2 === 2}>
                 <summary
-                onClick={() => handleDropdown(2)}
+                onClick={() => handleDropdown2(2)}
                 className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
                   <IoIosSpeedometer
                     className="text-blue-500 -ms-[160px]"

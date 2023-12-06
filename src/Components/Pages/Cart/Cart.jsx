@@ -113,17 +113,6 @@ const handleDeleteItem = (cartId) => {
 
         </div>
       </div>
-        {/* order now button  */}
-        {/* <div className="flex justify-center mt-5">
-             <Link to='/order'>
-               <button  className=" hover:bg-[#FFD700] hover:text-black 
- bg-[#FFD700]  text-[#808080] border-black
-  font-bold px-3 py-1 rounded-md ">
-                Order Now
-              </button>
-              </Link>
-            </div> */}
-            {/* You can open the modal using document.getElementById('ID').showModal() method */}
             <div className='flex justify-center mt-5'>
 <button 
 className=" hover:bg-[#FFD700] hover:text-black 

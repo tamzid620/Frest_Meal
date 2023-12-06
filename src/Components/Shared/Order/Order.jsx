@@ -17,13 +17,13 @@ const Order = () => {
       },
     ],
   });
-  const [total, setTotal] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
 
 
   // get data from json -------------------------
   useEffect(() => {
     axios
-      .get("cartItem.json")
+      .get(`https://backend.ap.loclx.io/api/cart-item`)
       .then((res) => res.data)
       .then((data) => {
         setFormData((prevFormData) => ({
@@ -32,7 +32,7 @@ const Order = () => {
             foodId: cartItem.id,
             foodName: cartItem.foodName,
             price: cartItem.price,
-            quantity: 0,
+            quantity: 1,
             subTotal: 0,
           })),
         }));
@@ -41,7 +41,7 @@ const Order = () => {
         // Fetch and update food details for each food item
         data.foodCart.forEach((cartItem, index) => {
           axios
-            .get(`cartItem.json/${cartItem.id}`)
+            .get(`https://backend.ap.loclx.io/api/cart-item/${cartItem.id}`)
             .then((res) => res.data)
             .then((foodDetails) => {
               setFormData((prevFormData) => ({
@@ -67,9 +67,12 @@ const Order = () => {
         (accumulator, item) => accumulator + item.subTotal,
         0
       );
-      setTotal(initialTotal);
+      setTotalAmount(initialTotal);
+
+
+      
   }, []);
- console.log(formData);
+//  console.log(formData);
 
   // calculateSubtotal section --------------------
   const calculateSubtotal = (quantity, price) => {
@@ -108,7 +111,7 @@ const handleFoodItemChange = (index, e) => {
     (accumulator, item) => accumulator + item.subTotal,
     0
   );
-  setTotal(newTotal);
+  setTotalAmount(newTotal);
 };
 
 
@@ -136,7 +139,7 @@ const handleQuantityChange = (index, change) => {
     );
 
     // Set the total
-    setTotal(newTotal);
+    setTotalAmount(newTotal);
 
     return updatedFormData;
   });
@@ -151,20 +154,30 @@ const handleSubmit = (e) => {
   // Include total in formData
   const formDataWithTotal = {
     ...formData,
-    total: total,
+    totalAmount: totalAmount,
   };
 
   console.log("Form submitted:", formDataWithTotal);
-  // window.location.reload()
-  toast.success('Order Confirmed', {
-    position: 'top-center',
-    autoClose: 1500,
-    hideProgressBar: true,
+
+
+  axios.post(`https://backend.ap.loclx.io/api/add-order`, formDataWithTotal)
+  .then((res) => {
+    console.log("Order submitted successfully:", res.data);
+    toast.success(res.data.message, {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: true,
+    });
+  })
+  .catch((error) => {
+    console.error("Error submitting order:", error);
+    toast.error('Error submitting order', {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: true,
+    });
   });
 
-  // Add any additional logic for handling the form submission if needed
-
-  // You may want to reset the form after successful submission
   setFormData({
     clientName: "",
     email: "",
@@ -179,7 +192,7 @@ const handleSubmit = (e) => {
       },
     ],
   });
-  setTotal(0);
+  setTotalAmount(0);
 };
 
 
@@ -216,7 +229,7 @@ const handleSubmit = (e) => {
                 value={formData.clientName}
                 onChange={handleInputChange}
                 required
-                className=" w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+                className=" w-full border rounded shadow bg-gray-100 text-black outline-none "
               />
             </div>
 
@@ -232,7 +245,7 @@ const handleSubmit = (e) => {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+                className="w-full border rounded shadow bg-gray-100 text-black outline-none "
               />
             </div>
           </div>
@@ -250,7 +263,7 @@ const handleSubmit = (e) => {
                 value={formData.phoneNo}
                 onChange={handleInputChange}
                 required
-                className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+                className="w-full border rounded shadow bg-gray-100 text-black outline-none"
               />
             </div>
 
@@ -266,16 +279,14 @@ const handleSubmit = (e) => {
                 value={formData.location}
                 onChange={handleInputChange}
                 required
-                className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+                className="w-full border rounded shadow bg-gray-100 text-black outline-none "
               />
             </div>
           </div>
 
           {/* Food Items section */}
           <div className="">
-            <h2 className="text-2xl text-white font-semibold mb-4">
-              Food Items
-            </h2>
+
 
             {Array.isArray(formData.foodItems) &&
   formData.foodItems.map((foodItem, index) => (
@@ -300,7 +311,7 @@ const handleSubmit = (e) => {
           value={foodItem.foodName}
           onChange={(e) => handleFoodItemChange(index, e)}
           required
-          className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+          className="w-full border rounded shadow bg-gray-100 text-black outline-none"
         />
       </div>
                   {/* Quantity Input */}
@@ -313,7 +324,7 @@ const handleSubmit = (e) => {
                       <button
                         type="button"
                         onClick={() => handleQuantityChange(index, -1)}
-                        className="px-2 py-1 border rounded-md bg-gray-300 text-black"
+                        className="px-2 border rounded-md bg-gray-300 text-black"
                       >
                         -
                       </button>
@@ -325,13 +336,13 @@ const handleSubmit = (e) => {
                         value={foodItem.quantity}
                         onChange={(e) => handleFoodItemChange(index, e)}
                         required
-                        className="w-16 border rounded shadow bg-gray-100 text-black outline-none py-1 mx-2 text-center"
+                        className="w-14 border rounded shadow bg-gray-100 text-black outline-none  mx-2 text-center"
                       />
                       {/* Plus Button */}
                       <button
                         type="button"
                         onClick={() => handleQuantityChange(index, 1)}
-                        className="px-2 py-1 border rounded-md bg-gray-300 text-black"
+                        className="px-2 border rounded-md bg-gray-300 text-black"
                       >
                         +
                       </button>
@@ -350,7 +361,7 @@ const handleSubmit = (e) => {
                       value={foodItem.price}
                       onChange={(e) => handleFoodItemChange(index, e)}
                       required
-                      className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+                      className="w-full border rounded shadow bg-gray-100 text-black outline-none"
                     />
                   </div>
 
@@ -367,24 +378,24 @@ const handleSubmit = (e) => {
                       value={foodItem.subTotal}
                       onChange={(e) => handleFoodItemChange(index, e)}
                       required
-                      className="w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+                      className="w-full border rounded shadow bg-gray-100 text-black outline-none"
                     />
                   </div>
                 </div>
               ))}
 {/* total Input  */}
 <div className="flex justify-center">
-<div className="max-w-[100px]">
-  <label htmlFor="total" className="text-white">
+<div className="max-w-[100px]flex">
+  <label htmlFor="totalAmount" className="text-white">
     Total:
   </label>
   <input
     readOnly
     type="number"
-    id="total"
-    name="total"
-    value={total}
-    className=" w-full border rounded shadow bg-gray-100 text-black outline-none py-1"
+    id="totalAmount"
+    name="totalAmount"
+    value={totalAmount}
+    className="ms-2 w-16 border rounded shadow bg-gray-100 text-black outline-none"
   />
 </div>
 </div>
@@ -397,7 +408,7 @@ const handleSubmit = (e) => {
               type="submit"
               className=" hover:bg-[#FFD700] hover:text-black 
  bg-[#FFD700]  text-[#808080] border-black
-  font-bold px-3 py-1 rounded-md "
+  font-bold px-3 py-3 rounded-md "
             >
               Confirm
             </button>
