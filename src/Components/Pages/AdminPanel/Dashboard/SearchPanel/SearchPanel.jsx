@@ -107,13 +107,13 @@ const SearchPanel = () => {
                   Order <MdArrowDropDown size={20} />
                 </summary>
                 <ul className="p-2 shadow menu dropdown-content z-[1] bg-yellow-400 border rounded-box w-52 ">
-                  <Link to="/orderList">
+                  <Link to="/adminOrderList">
                     <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
                       Order List
                     </li>
                   </Link>
                   <hr className="mt-1 border-black" />
-                  <Link to="/orderDelivery">
+                  <Link to="/adminOrderDelivery">
                     <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
                       Order Delivery
                     </li>

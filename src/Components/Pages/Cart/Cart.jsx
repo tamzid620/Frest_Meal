@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import aboutPhoto from '../../../../public/images/contactUs.jpg';
 import { MdDeleteForever } from "react-icons/md";
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Order from '../../Shared/Order/Order';

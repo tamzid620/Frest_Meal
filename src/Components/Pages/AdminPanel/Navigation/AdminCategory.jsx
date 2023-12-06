@@ -37,7 +37,7 @@ const AdminCategory = () => {
           setAdminCaterory({ category: res.data.category });
         })
         .catch((error) => {
-          setAdminCaterory(error);
+          console.log(error);
         });
     }
   }, [navigate]);

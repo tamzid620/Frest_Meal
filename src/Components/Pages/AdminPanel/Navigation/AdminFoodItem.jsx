@@ -37,7 +37,7 @@ const AdminFoodItem = () => {
           setAdminFoodItem({ foodItem: res.data.foodItem });
         })
         .catch((error) => {
-          setAdminFoodItem(error);
+          console.log(error);
         });
     }
   }, [navigate]);
