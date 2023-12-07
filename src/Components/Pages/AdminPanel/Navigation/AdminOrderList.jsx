@@ -8,12 +8,6 @@ import Swal from "sweetalert2";
 const AdminOrderList = () => {
   const [orderList, setOrderList] = useState([]);
 
-  // useEffect(()=> {
-  // axios.get(`orderList.json`)
-  // .then((res) => res.data.orderList)
-  // .then((data) => setOrderList(data))
-  // },[])
-  // console.log(orderList);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -33,7 +27,7 @@ const AdminOrderList = () => {
       };
       // get foodItem data ---------------
       axios
-        .get(`orderList.json`, {
+        .get(`https://backend.ap.loclx.io/api/order-list`, {
           headers: headers,
         })
         .then((res) => {
@@ -44,7 +38,6 @@ const AdminOrderList = () => {
         });
     }
   }, []);
-  console.log(orderList);
 
   return (
     <div className="text-yellow-500 bg-gray-300 min-h-screen">

@@ -2,13 +2,11 @@ import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const AdminOrderDetails = () => {
-
   const [orderDetails, setOrderDetails] = useState([]);
-  const {orderId} = useParams()
-  
+  const { orderId } = useParams();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -19,18 +17,16 @@ const AdminOrderDetails = () => {
 
     // get method -------------------
     axios
-      .get(`orderDetail.json/${orderId}`, {
+      .get(`https://backend.ap.loclx.io/api/order-detail/${orderId}`, {
         headers: headers,
       })
       .then((res) => {
         setOrderDetails(res.data.order);
       })
       .catch((error) => {
-        console.log("Error:", error);
+        console.error("Error:", error);
       });
   }, [orderId]);
-  console.log(orderId);
-  console.log(orderDetails);
 
   return (
     <div className="text-yellow-500 bg-gray-300 min-h-screen">
@@ -42,26 +38,48 @@ const AdminOrderDetails = () => {
       <div className="flex justify-center ">
         <div className="mt-24 w-full ">
           <h1 className="text-3xl flex justify-center text-black uppercase">
-            Order Details:{orderDetails.id}
+            Order Details
           </h1>
           <hr className="mt-1 border border-black mb-10" />
           {/* information section  */}
           <div className="text-black p-8 rounded-lg shadow-md">
             <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-gray-600 font-bold text-xl">Name: <span className="text-lg text-black font-semibold ">{orderDetails.clientName}</span></p>
-                <p className="text-gray-600 font-bold text-xl">Email: <span className="text-lg text-black font-semibold ">{orderDetails.email}</span></p>
-                <p className="text-gray-600 font-bold text-xl">
-                  Address: <span className="text-lg text-black font-semibold ">{orderDetails.location}</span>
+              <div >
+                <p className="flex mb-2 text-gray-600 font-bold text-xl">
+                  Name:{" "}
+                  <span className="ms-5 text-lg text-black font-semibold ">
+                    {orderDetails.clientName}
+                  </span>
                 </p>
-                <p className="text-gray-600 font-bold text-xl">
-                  Phone No: <span className="text-lg text-black font-semibold ">{orderDetails.phoneNo}</span>
+                <p className="flex mb-2 text-gray-600 font-bold text-xl">
+                  Email:{" "}
+                  <span className="ms-5 text-lg text-black font-semibold ">
+                    {orderDetails.email}
+                  </span>
                 </p>
-                <p className="text-gray-600 font-bold text-xl">
-                  Order Code:<span className="text-lg text-black font-semibold ">{orderDetails.orderCode}</span> 
+                <p className="flex mb-2 text-gray-600 font-bold text-xl">
+                  Address:{" "}
+                  <span className=" ms-5 text-lg text-black font-semibold ">
+                    {orderDetails.location}
+                  </span>
                 </p>
-                <p className="text-gray-600 font-bold text-xl">
-                  Total Amount:<span className="text-lg text-black font-semibold ">{orderDetails.totalAmount}</span> 
+                <p className="flex mb-2 text-gray-600 font-bold text-xl">
+                  PhoneNo:{" "}
+                  <span className=" ms-5 text-lg text-black font-semibold ">
+                    {orderDetails.phoneNo}
+                  </span>
+                </p>
+                <p className="flex mb-2 text-gray-600 font-bold text-xl">
+                  OrderCode:
+                  <span className="ms-5 text-lg text-black font-semibold ">
+                    {orderDetails.orderCode}
+                  </span>
+                </p>
+                <p className= "flex mb-2 text-gray-600 font-bold text-xl">
+                  Total Amount:
+                  <span className="ms-5 text-lg text-black font-semibold ">
+                    {orderDetails.totalAmount}
+                  </span>
                 </p>
               </div>
               {/* Add other fields as needed */}
@@ -74,26 +92,19 @@ const AdminOrderDetails = () => {
                   <tr>
                     <th>Food Name</th>
                     <th>Quantity</th>
+                    <th>Price</th>
                     <th>Subtotal</th>
                   </tr>
                 </thead>
                 {/* Table body */}
                 <tbody>
                   {orderDetails.items &&
-                    orderDetails.items.map((foodItem) => (
-                      <tr key={foodItem.id}>
-                        <td>
-                          {" "}
-                          {orderDetails.items &&
-                            orderDetails.items.map((foodItem, index) => (
-                              <span key={index}>
-                                {foodItem.foodName}
-                                {index < orderDetails.items.length - 1 &&  ", "}
-                              </span>
-                            ))}
-                        </td>
-                        <td>{foodItem.quantity}</td>
-                        <td>{foodItem.subTotal}</td>
+                    orderDetails.items.map((order) => (
+                      <tr key={order.id}>
+                        <td>{order.foodName}</td>
+                        <td>{order.quantity}</td>
+                        <td>{order.price}</td>
+                        <td>{order.subTotal}</td>
                       </tr>
                     ))}
                 </tbody>
@@ -101,9 +112,14 @@ const AdminOrderDetails = () => {
             </div>
 
             <div className="flex justify-center gap-5 mt-8">
-              <button className="btn-sm bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+              {/* <button className="btn-sm bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                 Approve
-              </button>
+              </button> */}
+              <Link to={`/adminOrderProcessing/${orderDetails.id}`}>
+                        <button className="btn-sm bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                        Approve
+                        </button>
+                      </Link>
               <button className="btn-sm bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white">
                 Decline
               </button>

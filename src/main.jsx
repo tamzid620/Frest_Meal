@@ -27,6 +27,7 @@ import Order from "./Components/Shared/Order/Order";
 import AdminOrderList from "./Components/Pages/AdminPanel/Navigation/AdminOrderList";
 import AdminOrderDelivery from "./Components/Pages/AdminPanel/Navigation/AdminOrderDelivery";
 import AdminOrderDetails from "./Components/Pages/AdminPanel/Navigation/AdminOrderDetails";
+import AdminOrderProcessing from "./Components/Pages/AdminPanel/Navigation/AdminOrderProcessing";
 
 const router = createBrowserRouter([
   {
@@ -127,6 +128,10 @@ const router = createBrowserRouter([
       {
         path: "/adminOrderDetails/:orderId",
         element: <AdminOrderDetails />,
+      },
+      {
+        path: "/adminOrderProcessing/:orderId",
+        element: <AdminOrderProcessing />,
       },
       {
         path: "/adminOrderDelivery",
