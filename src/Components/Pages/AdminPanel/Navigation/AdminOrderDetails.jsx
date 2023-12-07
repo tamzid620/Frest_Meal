@@ -117,7 +117,7 @@ const AdminOrderDetails = () => {
               </button> */}
               <Link to={`/adminOrderProcessing/${orderDetails.id}`}>
                         <button className="btn-sm bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                        Approve
+                        Process
                         </button>
                       </Link>
               <button className="btn-sm bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white">
