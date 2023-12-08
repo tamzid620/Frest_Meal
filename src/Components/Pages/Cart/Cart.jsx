@@ -1,31 +1,30 @@
-import { useEffect, useState } from 'react';
-import aboutPhoto from '../../../../public/images/contactUs.jpg';
+import { useEffect, useState } from "react";
+import aboutPhoto from "../../../../public/images/contactUs.jpg";
 import { MdDeleteForever } from "react-icons/md";
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import Order from '../../Shared/Order/Order';
-
+import axios from "axios";
+import Swal from "sweetalert2";
+import Order from "../../Shared/Order/Order";
 
 const Cart = () => {
+  const [carts, setCarts] = useState([]);
 
-const [carts, setCarts] = useState([])
+  useEffect(() => {
+    axios
+      .get("https://backend.ap.loclx.io/api/cart-item")
+      .then((res) => res.data.foodCart)
+      .then((data) => setCarts(data));
+  }, []);
+  console.log(carts);
 
-useEffect(()=> {
-  axios.get('https://backend.ap.loclx.io/api/cart-item')
-  .then((res) => res.data.foodCart)
-  .then((data)=> setCarts(data))
-},[])
-console.log(carts);
+  // delete method -----------------
+  const handleDeleteItem = (cartId) => {
+    console.log("Deleting cart with ID:", cartId);
 
-// delete method -----------------
-const handleDeleteItem = (cartId) => {
-  console.log("Deleting cart with ID:", cartId);
+    axios
+      .delete(`https://backend.ap.loclx.io/api/food-cart-delete/${cartId}`)
 
-  axios.delete(`https://backend.ap.loclx.io/api/food-cart-delete/${cartId}`)
-
-    .then((res) => {
-        setCarts((prevCarts) => 
-        prevCarts.filter((cart) => cart.id !== cartId));
+      .then((res) => {
+        setCarts((prevCarts) => prevCarts.filter((cart) => cart.id !== cartId));
         Swal.fire({
           position: "center",
           icon: "success",
@@ -33,52 +32,50 @@ const handleDeleteItem = (cartId) => {
           showConfirmButton: false,
           timer: 1500,
         });
-    })
-    .catch((error) => {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Error deleting Teacher",
-        text: error.message,
-        showConfirmButton: true,
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error deleting Teacher",
+          text: error.message,
+          showConfirmButton: true,
+        });
       });
-    });
     console.log(cartId);
-};
-
+  };
 
   return (
     <div className="">
       {/* title section */}
-            {/* title section */}
-            <div
-                style={{
-                    backgroundImage: `url(${aboutPhoto})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    height: '350px',
-                    // marginTop:'30px'
-                }}
-                className="flex justify-center"
-            >
-                {/* title tag */}
-                <div className="bg-black opacity-70 w-full h-full flex flex-col justify-center items-center">
-                    <h1
-                        style={{ fontFamily: 'Mooli, sans-serif' }}
-                        className="text-3xl text-white font-semibold "
-                    >
-                        Cart
-                    </h1>
-                    <img src="../../../../public/icons/hr.svg" alt="" />
-                </div>
-            </div>
+      {/* title section */}
+      <div
+        style={{
+          backgroundImage: `url(${aboutPhoto})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "350px",
+          // marginTop:'30px'
+        }}
+        className="flex justify-center"
+      >
+        {/* title tag */}
+        <div className="bg-black opacity-70 w-full h-full flex flex-col justify-center items-center">
+          <h1
+            style={{ fontFamily: "Mooli, sans-serif" }}
+            className="text-3xl text-white font-semibold "
+          >
+            Cart
+          </h1>
+          <img src="../../../../public/icons/hr.svg" alt="" />
+        </div>
+      </div>
 
       {/* information section */}
       <div className="max-w-screen-xl mx-auto flex justify-center mt-20">
         <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2  gap-10">
-
-            {/* selected items */}
-            {carts.map((cart) => (
+          {/* selected items */}
+          {carts.map((cart) => (
             <div
               key={cart.id}
               className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl lg:w-[500px] md:w-[500px] sm:w-[358px] text-yellow-500 bg-overflow-y-auto flex carts-center mb-5"
@@ -100,33 +97,37 @@ const handleDeleteItem = (cartId) => {
                 </div>
                 {/* delete button  */}
                 <div className="flex items-center">
-                  <button 
-                  onClick={() => handleDeleteItem(cart.id)}
-                  className="w-[50px] h-[50px] border border-yellow-500 rounded-full hover:bg-yellow-500 hover:text-black mr-4 flex justify-center items-center">
+                  <button
+                    onClick={() => handleDeleteItem(cart.id)}
+                    className="w-[50px] h-[50px] border border-yellow-500 rounded-full hover:bg-yellow-500 hover:text-black mr-4 flex justify-center items-center"
+                  >
                     <MdDeleteForever className="w-[30px] h-[30px]" />
                   </button>
                 </div>
               </div>
             </div>
           ))}
-
         </div>
       </div>
-            <div className='flex justify-center mt-5'>
+
+
+
+<div className="flex justify-center mt-5">
 <button 
 className=" hover:bg-[#FFD700] hover:text-black 
 bg-[#FFD700]  text-[#808080] border-black
  font-bold px-3 py-1 rounded-md "
-onClick={()=>document.getElementById('my_modal_2').showModal()}>Order Now</button>
-<dialog id="my_modal_2" className="modal">
+onClick={()=>document.getElementById('my_modal_3').showModal()}>Order Now</button>
+<dialog id="my_modal_3" className="modal">
   <div className="modal-box w-11/12 max-w-5xl bg-black border border-white">
-  <Order/>
+    <form method="dialog">
+      {/* if there is a button in form, it will close the modal */}
+      <button className="btn btn-sm btn-circle text-white btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+            <Order />
   </div>
-  <form method="dialog" className="modal-backdrop">
-    <button>close</button>
-  </form>
 </dialog>
-            </div>
+    </div>
     </div>
   );
 };
