@@ -145,13 +145,10 @@ const handleQuantityChange = (index, change) => {
   });
 };
 
-
-  // submit button -----------------------
 // submit button -----------------------
 const handleSubmit = (e) => {
-  e.preventDefault(); // Prevent the default form submission behavior
+  e.preventDefault(); 
 
-  // Include total in formData
   const formDataWithTotal = {
     ...formData,
     totalAmount: totalAmount,
@@ -168,7 +165,11 @@ const handleSubmit = (e) => {
       autoClose: 1500,
       hideProgressBar: true,
     });
+    setTimeout(() => {
+      history.push("/ordertracking");
+    }, 2000);
   })
+  
   .catch((error) => {
     console.error("Error submitting order:", error);
     toast.error('Error submitting order', {

@@ -7,7 +7,7 @@ const Banner = () => {
 
     return (
         <div style={{ backgroundImage: `url(${banner})` }}
-    className=" gap-10 text-lg font-semibold pt-10" >
+    className=" gap-10 text-lg font-semibold pt-[100px]" >
             <div className='max-w-screen-xl mx-auto flex items-center justify-center py-20'>
                 {/* banner heading paragraph-------------- */}
                 <div className=" sm: ms-2 sm:me-2 lg:ms-0 lg:me-0">

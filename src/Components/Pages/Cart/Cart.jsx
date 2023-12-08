@@ -48,7 +48,6 @@ const Cart = () => {
   return (
     <div className="">
       {/* title section */}
-      {/* title section */}
       <div
         style={{
           backgroundImage: `url(${aboutPhoto})`,
@@ -72,7 +71,7 @@ const Cart = () => {
       </div>
 
       {/* information section */}
-      <div className="max-w-screen-xl mx-auto flex justify-center mt-20">
+      <div className="max-w-screen-xl mx-auto flex justify-center mt-20" >
         <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2  gap-10">
           {/* selected items */}
           {carts.map((cart) => (
@@ -110,8 +109,7 @@ const Cart = () => {
         </div>
       </div>
 
-
-
+{/* modal section  */}
 <div className="flex justify-center mt-5">
 <button 
 className=" hover:bg-[#FFD700] hover:text-black 
@@ -128,6 +126,8 @@ onClick={()=>document.getElementById('my_modal_3').showModal()}>Order Now</butto
   </div>
 </dialog>
     </div>
+
+
     </div>
   );
 };
