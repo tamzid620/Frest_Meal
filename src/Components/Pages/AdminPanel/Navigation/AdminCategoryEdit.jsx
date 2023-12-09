@@ -4,10 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Loading from "../../../Layout/Loading";
 
 const AdminCategoryEdit = () => {
-
   const { categoryId } = useParams();
+  const [loading, setLoading] = useState(false);
 
   // post method
   const [id, setid] = useState("");
@@ -30,7 +31,6 @@ const AdminCategoryEdit = () => {
     setDescription(e.target.value);
   };
 
-
   // get  method ----------------------
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -38,7 +38,7 @@ const AdminCategoryEdit = () => {
       accept: "application/json",
       Authorization: "Bearer " + user.token,
     };
-
+    setLoading(true);
     axios
       .get(`https://backend.ap.loclx.io/api/category-edit/${categoryId}`, {
         headers: headers,
@@ -49,6 +49,7 @@ const AdminCategoryEdit = () => {
         setCategoryName(categoryData.categoryName);
         setCategoryCode(categoryData.categoryCode);
         setDescription(categoryData.description);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -102,7 +103,6 @@ const AdminCategoryEdit = () => {
       });
   };
 
-
   return (
     <div className="text-yellow-500 bg-gray-300 min-h-screen">
       <div className="fixed z-10 w-full">
@@ -117,75 +117,73 @@ const AdminCategoryEdit = () => {
           </h1>
           <hr className="mt-1 border border-black " />
           {/* form section  */}
-          <form
-                onSubmit={handleSubmit}
-                className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
-              >
-  {/*id,  categoryName and categoryCode section  */}
-   <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2 mb-3">
-  
-  {/* categoryName section   */}
-                <div>
-                  <label htmlFor="categoryName">Category Name:</label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
-                    type="text"
-                    title="categoryName"
-                    id="categoryName"
-                    value={categoryName}
-                    onChange={handleCategoryNameChange}
-                  />
-                </div>
-      {/* categoryCode section  */}
-      <div>
-                    <label htmlFor="categoryCode">Category Code:</label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      type="text"
-                      title="categoryCode"
-                      id="categoryCode"
-                      value={categoryCode}
-                      onChange={handleCategoryCodeChange}
-                    />
-                  </div>
-  </div>
-  
-  
-  {/* description section  */}
-                  <div>
-                    <label htmlFor="description">Description:</label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      type="text"
-                      title="description"
-                      id="description"
-                      value={description}
-                      onChange={handleDescriptionChange}
-                    />
-                  </div>
-  
-  {/* id section   */}
-  <div>
-                  <label htmlFor="id"></label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
-                    // placeholder="Add categoryName"
-                    type="hidden"
-                    title="id"
-                    id="id"
-                    value={id}
-                    onChange={handleIdChange}
-                  />
-                </div>
-  
-                <button
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
-                  type="submit"
-                >
-                  Save
-                </button>
-              </form>
+          {!loading && <form
+            onSubmit={handleSubmit}
+            className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
+          >
+            {/*id,  categoryName and categoryCode section  */}
+            <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2 mb-3">
+              {/* categoryName section   */}
+              <div>
+                <label htmlFor="categoryName">Category Name:</label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+                  type="text"
+                  title="categoryName"
+                  id="categoryName"
+                  value={categoryName}
+                  onChange={handleCategoryNameChange}
+                />
+              </div>
+              {/* categoryCode section  */}
+              <div>
+                <label htmlFor="categoryCode">Category Code:</label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  type="text"
+                  title="categoryCode"
+                  id="categoryCode"
+                  value={categoryCode}
+                  onChange={handleCategoryCodeChange}
+                />
+              </div>
+            </div>
 
+            {/* description section  */}
+            <div>
+              <label htmlFor="description">Description:</label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text"
+                title="description"
+                id="description"
+                value={description}
+                onChange={handleDescriptionChange}
+              />
+            </div>
+
+            {/* id section   */}
+            <div>
+              <label htmlFor="id"></label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+                // placeholder="Add categoryName"
+                type="hidden"
+                title="id"
+                id="id"
+                value={id}
+                onChange={handleIdChange}
+              />
+            </div>
+
+            <button
+              className="bg-yellow-500 hover:bg-yellow-600 text-black hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
+              type="submit"
+            >
+              Save
+            </button>
+          </form>}
+          {loading && <Loading/>}
         </div>
       </div>
     </div>

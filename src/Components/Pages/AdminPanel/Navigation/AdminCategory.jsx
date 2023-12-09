@@ -7,7 +7,7 @@ import Loading from "../../../Layout/Loading";
 
 const AdminCategory = () => {
   const [adminCaterory, setAdminCaterory] = useState({ category: [] });
-  const [loading,setLoading] =useState(false)
+  const [loading,setLoading] =useState(false);
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
@@ -104,14 +104,14 @@ const AdminCategory = () => {
       </div>
 
       {/* main section  */}
-      {!loading && <div className="flex justify-center ">
+      <div className="flex justify-center ">
         <div className="mt-24 w-full">
           <h1 className="text-3xl flex justify-center text-black uppercase">
             Category
           </h1>
           <hr className="mt-1 border border-black " />
           {/* table section  */}
-          <div className="overflow-x-auto  mt-10 mx-2 text-black">
+          {!loading &&<div className="overflow-x-auto  mt-10 mx-2 text-black">
             {/* search and add field  */}
             <div className="flex justify-between items-center mx-3 mt-5 ">
               {/* search input  */}
@@ -213,11 +213,10 @@ const AdminCategory = () => {
                   )
                 )}
               </div>
-          </div>
+          </div>}
+      {loading && <Loading/>}
         </div>
       </div>
-      }
-      {loading && <Loading/>}
     </div>
   );
 };

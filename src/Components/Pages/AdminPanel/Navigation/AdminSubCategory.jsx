@@ -3,8 +3,10 @@ import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Loading from "../../../Layout/Loading";
 
 const AdminSubCategory = () => {
+  const [loading,setLoading] =useState(false);
   const [adminSubCaterory, setAdminSubCaterory] = useState({ subCategory: [] });
 
   const navigate = useNavigate();
@@ -29,12 +31,14 @@ const AdminSubCategory = () => {
         Authorization: "Bearer " + user.token,
       };
       // get subCategory data ---------------
+      setLoading(true)
       axios
         .get(`https://backend.ap.loclx.io/api/sub-category-list`, {
           headers: headers,
         })
         .then((res) => {
           setAdminSubCaterory({ subCategory: res.data.subCategory });
+          setLoading(false)
         })
         .catch((error) => {
           setAdminSubCaterory(error);
@@ -112,7 +116,7 @@ const AdminSubCategory = () => {
           </h1>
           <hr className="mt-1 border border-black " />
           {/* table section  */}
-          <div className="overflow-x-auto  mt-10 mx-2 text-black">
+          {!loading &&<div className="overflow-x-auto  mt-10 mx-2 text-black">
             {/* search and add field  */}
             <div className="flex justify-between items-center mx-3 mt-5 ">
               {/* search input  */}
@@ -212,7 +216,8 @@ const AdminSubCategory = () => {
       )}
   </div>
 
-          </div>
+          </div>}
+          {loading && <Loading/>}
         </div>
       </div>
     </div>

@@ -3,8 +3,10 @@ import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Loading from "../../../Layout/Loading";
 
 const AdminCategoryAdd = () => {
+  const [loading,setLoading] =useState(false);
   const [adminCategory, setAdminCategory] = useState([]);
   const navigate = useNavigate();
   const [categoryName, setCategoryName] = useState("");
@@ -39,13 +41,14 @@ const AdminCategoryAdd = () => {
         accept: "application/json",
         Authorization: "Bearer " + user.token,
       };
-
+      setLoading(true)
       axios
         .get(`http://127.0.0.1:8000/api/login`, {
           headers: headers,
         })
         .then((res) => {
           setAdminCategory(res.data);
+          setLoading(false)
         })
         .catch((error) => {
           console.log(error);
@@ -113,7 +116,7 @@ const AdminCategoryAdd = () => {
           </h1>
           <hr className="mt-1 border border-black " />
           {/* form section  */}
-          <form
+          {!loading &&<form
             onSubmit={handleSubmit}
             className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
           >
@@ -165,7 +168,8 @@ const AdminCategoryAdd = () => {
             >
               Save
             </button>
-          </form>
+          </form>}
+          {loading && <Loading/>}
         </div>
       </div>
     </div>
