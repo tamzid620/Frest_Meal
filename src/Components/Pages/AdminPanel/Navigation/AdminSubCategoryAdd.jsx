@@ -3,8 +3,10 @@ import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Loading from "../../../Layout/Loading";
 
 const AdminSubCategoryAdd = () => {
+  const [loading,setLoading] =useState(false);
   const [adminSubCategory, setAdminSubCategory] = useState([]);
   const navigate = useNavigate();
 
@@ -45,12 +47,14 @@ const AdminSubCategoryAdd = () => {
         Authorization: "Bearer " + user.token,
       };
 
+      setLoading(true)
       axios
         .get(`https://backend.ap.loclx.io/api/category-list`, {
           headers: headers,
         })
         .then((res) => {
           setAdminSubCategory(res.data.category);
+          setLoading(false)
         })
         .catch((error) => {
           console.log(error);
@@ -75,6 +79,7 @@ const AdminSubCategoryAdd = () => {
     data.append("description", description);
     console.log(data);
     // post method --------------
+
     axios
       .post("https://backend.ap.loclx.io/api/add-sub-category", data, {
         headers: headers,
@@ -120,7 +125,7 @@ const AdminSubCategoryAdd = () => {
           </h1>
           <hr className="mt-1 border border-black " />
           {/* form section  */}
-          <form
+          {!loading &&<form
             onSubmit={handleSubmit}
             className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
           >
@@ -129,25 +134,7 @@ const AdminSubCategoryAdd = () => {
               {/* Category Name section */}
               <div>
                 <label htmlFor="categoryName">Category Name:</label>
-                {/* <select
-                  name="categoryName"
-                  id="categoryName"
-                  value={categoryName}
-                  onChange={handleCategoryName}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black mb-3"
-                >
-                  <option value="All">All</option>
-                  <option value="1">Class 1</option>
-                  <option value="2">Class 2</option>
-                  <option value="3">Class 3</option>
-                  <option value="4">Class 4</option>
-                  <option value="5">Class 5</option>
-                  <option value="6">Class 6</option>
-                  <option value="7">Class 7</option>
-                  <option value="8">Class 8</option>
-                  <option value="9">Class 9</option>
-                  <option value="10">Class 10</option>
-                </select> */}
+                
                 <select
                   name="categoryId"
                   id="categoryId"
@@ -212,7 +199,8 @@ const AdminSubCategoryAdd = () => {
             >
               Save
             </button>
-          </form>
+          </form>}
+          {loading && <Loading/>}
         </div>
       </div>
     </div>

@@ -4,8 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Loading from "../../../Layout/Loading";
 
 const AdminSubCategoryEdit = () => {
+  const [loading,setLoading] =useState(false);
   const { subCategoryId } = useParams();
 
   // post method
@@ -41,7 +43,7 @@ const AdminSubCategoryEdit = () => {
       accept: "application/json",
       Authorization: "Bearer " + user.token,
     };
-
+    setLoading(true)
     axios
       .get(
         `https://backend.ap.loclx.io/api/sub-category-edit/${subCategoryId}`,
@@ -56,6 +58,7 @@ const AdminSubCategoryEdit = () => {
         setSubCategoryCode(subCategoryData.subCategoryCode);
         setDescription(subCategoryData.description);
         setCategoryId(subCategoryData.categoryId);
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error);
@@ -136,7 +139,7 @@ const AdminSubCategoryEdit = () => {
           </h1>
           <hr className="mt-1 border border-black " />
           {/* form section  */}
-          <form
+          {!loading && <form
             onSubmit={handleSubmit}
             className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
           >
@@ -222,7 +225,8 @@ const AdminSubCategoryEdit = () => {
             >
               Save
             </button>
-          </form>
+          </form>}
+          {loading && <Loading/>}
         </div>
       </div>
     </div>

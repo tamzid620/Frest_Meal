@@ -3,8 +3,10 @@ import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Loading from "../../../Layout/Loading";
 
 const AdminFoodItem = () => {
+  const [loading,setLoading] =useState(false);
   const [adminFoodItem, setAdminFoodItem] = useState({ foodItem: [] });
 
   const navigate = useNavigate();
@@ -29,12 +31,14 @@ const AdminFoodItem = () => {
         Authorization: "Bearer " + user.token,
       };
       // get foodItem data ---------------
+      setLoading(true)
       axios
         .get(`https://backend.ap.loclx.io/api/food-item-list`, {
           headers: headers,
         })
         .then((res) => {
           setAdminFoodItem({ foodItem: res.data.foodItem });
+          setLoading(false)
         })
         .catch((error) => {
           console.log(error);
@@ -112,7 +116,7 @@ const AdminFoodItem = () => {
           </h1>
           <hr className="mt-1 border border-black " />
           {/* table section  */}
-          <div className="overflow-x-auto  mt-10 mx-2 text-black">
+          {!loading &&<div className="overflow-x-auto  mt-10 mx-2 text-black">
             {/* search and add field  */}
             <div className="flex justify-between items-center mx-3 mt-5 ">
               {/* search input  */}
@@ -213,7 +217,8 @@ const AdminFoodItem = () => {
                   )
                 )}
             </div>
-          </div>
+          </div>}
+          {loading && <Loading/>}
         </div>
       </div>
     </div>
