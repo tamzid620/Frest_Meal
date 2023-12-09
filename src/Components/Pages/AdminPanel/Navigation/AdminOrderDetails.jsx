@@ -3,8 +3,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import Loading from "../../../Layout/Loading";
 
 const AdminOrderDetails = () => {
+  const [loading,setLoading] =useState(false);
   const [orderDetails, setOrderDetails] = useState([]);
   const { orderId } = useParams();
 
@@ -16,12 +18,14 @@ const AdminOrderDetails = () => {
     };
 
     // get method -------------------
+    setLoading(true)
     axios
       .get(`https://backend.ap.loclx.io/api/order-detail/${orderId}`, {
         headers: headers,
       })
       .then((res) => {
         setOrderDetails(res.data.order);
+        setLoading(false)
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -42,7 +46,7 @@ const AdminOrderDetails = () => {
           </h1>
           <hr className="mt-1 border border-black mb-10" />
           {/* information section  */}
-          <div className="text-black p-8 rounded-lg shadow-md">
+          {!loading &&<div className="text-black p-8 rounded-lg shadow-md">
             <div className="grid grid-cols-2 gap-4">
               <div >
                 <p className="flex mb-2 text-gray-600 font-bold text-xl">
@@ -124,7 +128,8 @@ const AdminOrderDetails = () => {
                 Decline
               </button>
             </div>
-          </div>
+          </div>}
+{loading && <Loading/>}
         </div>
       </div>
     </div>

@@ -8,8 +8,11 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Loading from "../../../Layout/Loading";
 
 const AdminOrderProcessing = () => {
+  
+  const [loading,setLoading] =useState(false);
   const { orderId } = useParams();
   const [orderProcess, setorderProcess] = useState([]);
 
@@ -21,12 +24,14 @@ const AdminOrderProcessing = () => {
     };
 
     // get method -------------------
+    setLoading(true)
     axios
       .get(`https://backend.ap.loclx.io/api/order-detail/${orderId}`, {
         headers: headers,
       })
       .then((res) => {
         setorderProcess(res.data.order);
+        setLoading(false)
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -120,7 +125,7 @@ const AdminOrderProcessing = () => {
           </h1>
           <hr className="mt-1 border border-white mb-10" />
           {/* information section  */}
-          <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {!loading &&<div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {/* review section  */}
             <div
               className={`text-white flex justify-center uppercase ${
@@ -299,7 +304,8 @@ const AdminOrderProcessing = () => {
               </div>
             </div>
 
-          </div>
+          </div>}
+          {loading && <Loading/>}
         </div>
       </div>
     </div>

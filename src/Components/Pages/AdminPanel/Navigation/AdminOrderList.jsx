@@ -4,8 +4,11 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Loading from "../../../Layout/Loading";
 
 const AdminOrderList = () => {
+  
+  const [loading,setLoading] =useState(false);
   const [orderList, setOrderList] = useState([]);
 
   useEffect(() => {
@@ -26,12 +29,14 @@ const AdminOrderList = () => {
         Authorization: "Bearer " + user.token,
       };
       // get foodItem data ---------------
+      setLoading(true)
       axios
         .get(`https://backend.ap.loclx.io/api/order-list`, {
           headers: headers,
         })
         .then((res) => {
           setOrderList(res.data.orderList);
+          setLoading(false)
         })
         .catch((error) => {
           console.log(error);
@@ -53,7 +58,7 @@ const AdminOrderList = () => {
           </h1>
           <hr className="mt-1 border border-black mb-10" />
           {/* table section  */}
-          <div className="overflow-x-auto text-black">
+          {!loading && <div className="overflow-x-auto text-black">
             <table className="table table-zebra">
               {/* head */}
               <thead className="bg-gray-600 text-white">
@@ -88,7 +93,8 @@ const AdminOrderList = () => {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div>}
+          {loading && <Loading/>}
           
         </div>
       </div>
