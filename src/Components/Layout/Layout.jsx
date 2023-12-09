@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../Shared/Footer/Footer';
 import NavigationBar from '../Shared/Navbar/NavigationBar';
 
+
 const Layout = () => {
 
 const location = useLocation();

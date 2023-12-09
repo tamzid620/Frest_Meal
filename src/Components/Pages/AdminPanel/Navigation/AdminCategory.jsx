@@ -3,9 +3,11 @@ import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Loading from "../../../Layout/Loading";
 
 const AdminCategory = () => {
   const [adminCaterory, setAdminCaterory] = useState({ category: [] });
+  const [loading,setLoading] =useState(false)
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,12 +31,14 @@ const AdminCategory = () => {
         Authorization: "Bearer " + user.token,
       };
       // get category data ---------------
+      setLoading(true)
       axios
         .get(`https://backend.ap.loclx.io/api/category-list`, {
           headers: headers,
         })
         .then((res) => {
           setAdminCaterory({ category: res.data.category });
+          setLoading(false)
         })
         .catch((error) => {
           console.log(error);
@@ -100,7 +104,7 @@ const AdminCategory = () => {
       </div>
 
       {/* main section  */}
-      <div className="flex justify-center ">
+      {!loading && <div className="flex justify-center ">
         <div className="mt-24 w-full">
           <h1 className="text-3xl flex justify-center text-black uppercase">
             Category
@@ -212,6 +216,8 @@ const AdminCategory = () => {
           </div>
         </div>
       </div>
+      }
+      {loading && <Loading/>}
     </div>
   );
 };
