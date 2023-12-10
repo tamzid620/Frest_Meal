@@ -1,0 +1,30 @@
+{
+    "employee": [
+      {
+        "id": 1,
+        "name": "badsha",
+        "email": "badsha@test.com",
+        "phoneNo": "455856483",
+        "designation": "cheif",
+        "address": "32,dgffhjfj,fjffjfhfj",
+        "salary": "25000",
+        "jobType": "fulltime",
+        "image": "1701241798.jpg",
+        "created_at": "2023-11-29T07:09:58.000000Z",
+        "updated_at": "2023-11-29T07:09:58.000000Z"
+      },
+      {
+        "id": 2,
+        "name": "iskandor",
+        "email": "iskandor@test.com",
+        "phoneNo": "455856567",
+        "designation": "assistant cheif",
+        "address": "32,dgffhjfj,fjffjfhfj",
+        "salary": "20000",
+        "jobType": "part-time",
+        "image": "1701242901.jpg",
+        "created_at": "2023-11-29T07:11:54.000000Z",
+        "updated_at": "2023-11-29T07:28:21.000000Z"
+      }
+    ]
+  }

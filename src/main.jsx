@@ -33,6 +33,9 @@ import UserOrderDetails from "./Components/Pages/UserOrderDetails/UserOrderDetai
 import Reservation from "./Components/Shared/Reservation/Reservation";
 import Press from "./Components/Shared/Press/Press";
 import AdminReservation from "./Components/Pages/AdminPanel/Navigation/AdminReservation";
+import AdminEmployeeList from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeList";
+import AdminEmployeeEdit from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeEdit";
+import AdminEmployeeAdd from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeAdd";
 
 const router = createBrowserRouter([
   {
@@ -162,6 +165,19 @@ const router = createBrowserRouter([
       {
         path: "/adminReservationList",
         element: <AdminReservation />,
+      },
+      // Employee section --------------------------
+      {
+        path: "/adminEmployeeList",
+        element: <AdminEmployeeList />,
+      },
+      {
+        path: "/adminEmployeeEdit/:employeeId",
+        element: <AdminEmployeeEdit />,
+      },
+      {
+        path: "/adminEmployeeAdd",
+        element: <AdminEmployeeAdd />,
       },
 
     ],

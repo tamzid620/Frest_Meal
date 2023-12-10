@@ -121,6 +121,7 @@ const SearchPanel = () => {
                   </Link>
                 </ul>
               </details>
+              {/* Reservation section  */}
               <Link to="/adminReservationList">
                 <li className="font-semibold text-lg mb-3">
                   <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500">
@@ -129,13 +130,15 @@ const SearchPanel = () => {
                   </span>
                 </li>
               </Link>
-
+              {/* Employees section  */}
+              <Link to="/adminEmployeeList">
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-green-500">
                   <IoIosSpeedometer className="text-green-500" size={20} />{" "}
                   Employee
                 </span>
               </li>
+              </Link>
 
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-yellow-500">
