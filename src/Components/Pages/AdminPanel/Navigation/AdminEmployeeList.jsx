@@ -31,7 +31,7 @@ const AdminEmployeeList = () => {
         // get foodItem data ---------------
         setLoading(true)
         axios
-          .get(`Employee.json`, {
+          .get(`https://backend.ap.loclx.io/api/employee-list`, {
             headers: headers,
           })
           .then((res) => {
@@ -52,7 +52,7 @@ const AdminEmployeeList = () => {
     };
 
     axios
-      .delete(`Employee.json/${employeeId}`, {
+      .delete(`https://backend.ap.loclx.io/api/employee-delete/${employeeId}`, {
         headers: headers,
       })
       .then((res) => {

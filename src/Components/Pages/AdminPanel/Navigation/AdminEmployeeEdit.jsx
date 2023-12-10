@@ -1,6 +1,9 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Loading from "../../../Layout/Loading";
+import Swal from "sweetalert2";
+import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 
 
 const AdminEmployeeEdit = () => {
@@ -26,14 +29,14 @@ const { employeeId } = useParams();
     setFormData({ ...formData, image: e.target.files[0] });
   };
 
-  // get  method ----------------------
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const headers = {
-      accept: "application/json",
-      Authorization: "Bearer " + user.token,
-    };
-
+      const user = JSON.parse(localStorage.getItem("user"));
+      const headers = {
+          accept: "application/json",
+          Authorization: "Bearer " + user.token,
+        };
+        
+        // get  method ----------------------
     axios
       .get(`https://backend.ap.loclx.io/api/employee-edit/${employeeId}`, {
         headers: headers,
@@ -50,7 +53,6 @@ const { employeeId } = useParams();
           jobType: employeeData.jobType,
           image: employeeData.image,
         });
-
       })
       .catch((error) => {
         console.log(error);
@@ -129,10 +131,16 @@ setLoading(true)
   };
 
     return (
+        <div className="text-yellow-500 bg-gray-300 min-h-screen">
+        <div className="fixed z-10 w-full">
+          <SearchPanel />
+        </div>
+  
+        {/* main section  */}
         <div className="flex justify-center ">
         <div className="mt-24 w-full">
           <h1 className="text-3xl flex justify-center text-black uppercase">
-            Add FoodItem
+            Update Employee
           </h1>
           <hr className="mt-1 border border-black " />
           {/* form section */}
@@ -281,8 +289,8 @@ setLoading(true)
             {loading && <Loading/>}
         </div>
       </div>
-    </div>
-    );
+      </div>
+);
 };
 
 export default AdminEmployeeEdit;
