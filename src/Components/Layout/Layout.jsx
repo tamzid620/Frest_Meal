@@ -26,6 +26,7 @@ const noHeaderFooter =
  location.pathname.includes('adminReservationList') ||
  location.pathname.includes('adminEmployeeList') ||
  location.pathname.includes('adminEmployeeEdit') ||
+ location.pathname.includes('adminEmployeeDetails') ||
  location.pathname.includes('adminEmployeeAdd')
 
     return (

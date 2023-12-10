@@ -36,6 +36,7 @@ import AdminReservation from "./Components/Pages/AdminPanel/Navigation/AdminRese
 import AdminEmployeeList from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeList";
 import AdminEmployeeEdit from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeEdit";
 import AdminEmployeeAdd from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeAdd";
+import AdminEmployeeDetail from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeDetail";
 
 const router = createBrowserRouter([
   {
@@ -174,6 +175,10 @@ const router = createBrowserRouter([
       {
         path: "/adminEmployeeEdit/:employeeId",
         element: <AdminEmployeeEdit />,
+      },
+      {
+        path: "/adminEmployeeDetails/:employeeId",
+        element: <AdminEmployeeDetail/>,
       },
       {
         path: "/adminEmployeeAdd",

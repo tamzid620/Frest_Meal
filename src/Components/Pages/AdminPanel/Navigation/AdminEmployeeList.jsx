@@ -132,7 +132,7 @@ const AdminEmployeeList = () => {
                       <td>{employee.salary}</td>
                       <td>{employee.jobType}</td>
                       <td>
-                      <div className="flex gap-2">
+                      <div className="flex items-center gap-2">
                           {/* Edit button  */}
                           <Link to=
                             {`/adminEmployeeEdit/${employee.id}`}
@@ -142,6 +142,14 @@ const AdminEmployeeList = () => {
                               Edit
                             </button>
                           </Link>
+                          {/* Details button  */}
+                    <td>
+                      <Link to={`/adminEmployeeDetails/${employee.id}`}>
+                        <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
+                          Details
+                        </button>
+                      </Link>
+                    </td>
                           {/* Delete button   */}
                           <button
                             onClick={() => handleDelete(employee.id)}
