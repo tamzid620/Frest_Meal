@@ -22,92 +22,21 @@ const UserOrderDetails = () => {
   
       // get method -------------------
       axios
-        .get(`https://backend.ap.loclx.io/api/order-detail/${orderId}`, {
+        .get(`https://backend.ap.loclx.io/api/user-order-detail/${orderId}`, {
           headers: headers,
         })
         .then((res) => {
           setorderProcess(res.data.order);
         })
-        .catch((error) => {
+        .catch((error,res) => {
           console.error("Error:", error);
         });
     }, [orderId]);
     console.log(orderProcess);
-  
-      // handlePendingChange-------------------------
-      const handlePendingChange = (orderId) => {
-          const user = JSON.parse(localStorage.getItem("user"));
-          const headers = {
-            accept: "application/json",
-            Authorization: "Bearer " + user.token,
-          };
-          axios
-            .get(
-              `https://backend.ap.loclx.io/api/order-stage-approve/${orderId}`,
-              {
-                headers: headers,
-              }
-            )
-            .then((res) => {
-              setorderProcess(orderProcess);
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: res.data.message,
-                showConfirmButton: false,
-                timer: 2000,
-              });
-              window.location.reload();
-            })
-            .catch((error) => {
-              Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Error deleting Teacher",
-                text: error.message,
-                showConfirmButton: true,
-              });
-            });
-        };
-  
-          // handleCoockingChange-------------------------
-    const handleCoockingChange = (orderId) => {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const headers = {
-        accept: "application/json",
-        Authorization: "Bearer " + user.token,
-      };
-      axios
-        .get(
-          `https://backend.ap.loclx.io/api/order-stage-way/${orderId}`,
-          {
-            headers: headers,
-          }
-        )
-        .then((res) => {
-          setorderProcess(orderProcess);
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: res.data.message,
-            showConfirmButton: false,
-            timer: 2000,
-          });
-          window.location.reload();
-        })
-        .catch((error) => {
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Error deleting Teacher",
-            text: error.message,
-            showConfirmButton: true,
-          });
-        });
-    };
+
 
     return (
-        <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pt-[150px]">
         {/* review section  */}
         <div
           className={`text-white flex justify-center uppercase ${
@@ -138,14 +67,6 @@ const UserOrderDetails = () => {
             >
               step-1
             </p>
-            {/* <button
-            onClick={() => handlePendingChange(orderProcess.id)}
-              className={`ms-[108px] btn-xs text-black bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white mt-5 flex items-center ${
-                orderProcess.orderStage === "pending" ? "visible" : "invisible"
-              }`}
-            >
-              Shift
-            </button> */}
             <div
               className={`my-[80px] flex justify-center ${
                 orderProcess.orderStage === "pending" ? "visible" : "invisible"
@@ -184,14 +105,6 @@ const UserOrderDetails = () => {
             >
               step-2
             </p>
-            {/* <button
-            onClick={() => handleCoockingChange(orderProcess.id)}
-              className={`ms-[108px] btn-xs text-black bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white mt-5 flex items-center ${
-                orderProcess.orderStage === "cooking" ? "visible" : "invisible"
-              }`}
-            >
-              Shift
-            </button> */}
             <div
               className={`my-10 flex justify-center ${
                 orderProcess.orderStage === "cooking" ? "visible" : "invisible"
@@ -230,14 +143,6 @@ const UserOrderDetails = () => {
             >
               step-3
             </p>
-            {/* invoice button  */}
-            <button
-              className={`ms-[100px] btn-xs text-black bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white mt-5 flex items-center ${
-                orderProcess.orderStage === "on the way" ? "visible" : "invisible"
-              }`}
-            >
-              Invoice
-            </button>
             <div
               className={`my-10 flex justify-center ${
                 orderProcess.orderStage === "on the way" ? "visible" : "invisible"

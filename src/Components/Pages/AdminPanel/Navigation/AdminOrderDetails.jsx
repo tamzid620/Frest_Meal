@@ -94,6 +94,7 @@ const AdminOrderDetails = () => {
                 {/*table head */}
                 <thead className="bg-gray-600 text-white">
                   <tr>
+                    <th>index</th>
                     <th>Food Name</th>
                     <th>Quantity</th>
                     <th>Price</th>
@@ -103,8 +104,9 @@ const AdminOrderDetails = () => {
                 {/* Table body */}
                 <tbody>
                   {orderDetails.items &&
-                    orderDetails.items.map((order) => (
+                    orderDetails.items.map((order,index) => (
                       <tr key={order.id}>
+                        <td>{index + 1}</td>
                         <td>{order.foodName}</td>
                         <td>{order.quantity}</td>
                         <td>{order.price}</td>

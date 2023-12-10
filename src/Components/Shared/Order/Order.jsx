@@ -23,7 +23,7 @@ const Order = () => {
   // get data from json -------------------------
   useEffect(() => {
     axios
-      .get(`cartItem.json`)
+      .get(`https://backend.ap.loclx.io/api/cart-item`)
       .then((res) => res.data)
       .then((data) => {
         setFormData((prevFormData) => ({

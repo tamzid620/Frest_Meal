@@ -27,11 +27,11 @@ const OrderTracking = () => {
         };
         // get foodItem data ---------------
         axios
-          .get(`https://backend.ap.loclx.io/api/order-list`, {
+          .get(`https://backend.ap.loclx.io/api/user-order-list`, {
             headers: headers,
           })
           .then((res) => {
-            setOrderList(res.data.orderList);
+            setOrderList(res.data.orders);
           })
           .catch((error) => {
             console.log(error);
@@ -65,7 +65,7 @@ const OrderTracking = () => {
       </div>
       {/* information section  */}
       <div className="max-w-screen-xl mx-auto overflow-x-auto text-black">
-            <table className="table table-zebra">
+            <table className="table table-zebra bg-gray-300">
               {/* head */}
               <thead className="bg-gray-600 text-white">
                 <tr>
@@ -89,9 +89,9 @@ const OrderTracking = () => {
                     <td>{order.orderStage}</td>
                     {/* Details button  */}
                     <td>
-                      <Link to={`/adminOrderDetails/${order.id}`}>
-                        <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
-                          Details
+                      <Link to={`/userOrderDetails/${order.id}`}>
+                        <button className="btn-xs bg-yellow-400 rounded-lg font-semibold uppercase hover:bg-yellow-600 hover:text-white">
+                          Order Track
                         </button>
                       </Link>
                     </td>

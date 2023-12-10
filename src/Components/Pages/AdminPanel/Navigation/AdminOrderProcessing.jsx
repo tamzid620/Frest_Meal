@@ -141,7 +141,7 @@ const AdminOrderProcessing = () => {
                   <MdCheckCircle size={30} className="text-green-500" />
                 </span>
                 <h1
-                  className={`font-bold text-2xl ${
+                  className={`font-bold text-2xl  ${
                     orderProcess.orderStage === "pending"
                       ? "text-green-500"
                       : "text-gray-800"
@@ -190,7 +190,7 @@ const AdminOrderProcessing = () => {
                 </span>
                 <h1
                   className={`font-bold text-2xl uppercase flex justify-center ${
-                    orderProcess.orderStage === "cooking" ? "" : "text-gray-800"
+                    orderProcess.orderStage === "cooking" ? "text-green-500" : "text-gray-800"
                   }`}
                 >
                   Cooking
@@ -236,7 +236,7 @@ const AdminOrderProcessing = () => {
                 </span>
                 <h1
                   className={`font-bold text-2xl uppercase flex justify-center ${
-                    orderProcess.orderStage === "on the way" ? "" : "text-gray-800"
+                    orderProcess.orderStage === "on the way" ? "text-green-500" : "text-gray-800"
                   }`}
                 >
                   On the Way
@@ -282,7 +282,7 @@ const AdminOrderProcessing = () => {
                 </span>
                 <h1
                   className={`font-bold text-2xl uppercase flex justify-center ${
-                    orderProcess.orderStage === "delivered" ? "" : "text-gray-800"
+                    orderProcess.orderStage === "delivered" ? "text-green-500" : "text-gray-800"
                   }`}
                 >
                   Delivered

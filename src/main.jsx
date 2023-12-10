@@ -29,6 +29,7 @@ import AdminOrderDelivery from "./Components/Pages/AdminPanel/Navigation/AdminOr
 import AdminOrderDetails from "./Components/Pages/AdminPanel/Navigation/AdminOrderDetails";
 import AdminOrderProcessing from "./Components/Pages/AdminPanel/Navigation/AdminOrderProcessing";
 import Invoice from "./Invoice/Invoice";
+import UserOrderDetails from "./Components/Pages/UserOrderDetails/UserOrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/ordertracking",
         element: <OrderTracking />,
+      },
+      {
+        path: "/userOrderDetails/:orderId",
+        element: <UserOrderDetails />,
       },
       {
         path: "/menu",
