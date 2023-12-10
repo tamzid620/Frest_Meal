@@ -31,6 +31,8 @@ import AdminOrderProcessing from "./Components/Pages/AdminPanel/Navigation/Admin
 import Invoice from "./Invoice/Invoice";
 import UserOrderDetails from "./Components/Pages/UserOrderDetails/UserOrderDetails";
 import Reservation from "./Components/Shared/Reservation/Reservation";
+import Press from "./Components/Shared/Press/Press";
+import AdminReservation from "./Components/Pages/AdminPanel/Navigation/AdminReservation";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "/reservation",
         element: <Reservation />,
+      },
+      {
+        path: "/press",
+        element: <Press />,
       },
       {
         path: "/platterService",
@@ -151,6 +157,11 @@ const router = createBrowserRouter([
       {
         path: "/adminOrderDelivery",
         element: <AdminOrderDelivery />,
+      },
+      // Reservation section --------------------------
+      {
+        path: "/adminReservationList",
+        element: <AdminReservation />,
       },
 
     ],

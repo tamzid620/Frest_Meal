@@ -12,13 +12,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const SearchPanel = () => {
-
   const [openDropdown1, setOpenDropdown1] = useState(null);
   const [openDropdown2, setOpenDropdown2] = useState(null);
 
   const handleDropdown1 = (index) => {
     setOpenDropdown1(openDropdown1 === index ? null : index);
-  }; 
+  };
   const handleDropdown2 = (index) => {
     setOpenDropdown2(openDropdown2 === index ? null : index);
   };
@@ -66,8 +65,9 @@ const SearchPanel = () => {
               {/*Menu section  */}
               <details className="dropdown mb-3" open={openDropdown1 === 1}>
                 <summary
-                onClick={() => handleDropdown1(1)}
-                className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
+                  onClick={() => handleDropdown1(1)}
+                  className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost "
+                >
                   <IoIosSpeedometer
                     className="text-violet-500 -ms-[160px]"
                     size={20}
@@ -98,8 +98,9 @@ const SearchPanel = () => {
               {/*Order section  */}
               <details className="dropdown mb-3" open={openDropdown2 === 2}>
                 <summary
-                onClick={() => handleDropdown2(2)}
-                className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
+                  onClick={() => handleDropdown2(2)}
+                  className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost "
+                >
                   <IoIosSpeedometer
                     className="text-blue-500 -ms-[160px]"
                     size={20}
@@ -120,42 +121,42 @@ const SearchPanel = () => {
                   </Link>
                 </ul>
               </details>
-
-              <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500">
-                  <IoIosSpeedometer className="text-blue-500" size={20} />{" "}
-                  Option-2
-                </span>
-              </li>
+              <Link to="/adminReservationList">
+                <li className="font-semibold text-lg mb-3">
+                  <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500">
+                    <IoIosSpeedometer className="text-blue-500" size={20} />{" "}
+                    Reservation
+                  </span>
+                </li>
+              </Link>
 
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-green-500">
                   <IoIosSpeedometer className="text-green-500" size={20} />{" "}
-                  Option-3
+                  Employee
                 </span>
               </li>
 
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-yellow-500">
                   <IoIosSpeedometer className="text-yellow-500" size={20} />{" "}
-                  Option-4
+                  Catering Service
                 </span>
               </li>
 
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-orange-500">
                   <IoIosSpeedometer className="text-orange-500" size={20} />{" "}
-                  Option-5
+                  Kitchen Management
                 </span>
               </li>
 
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-gray-500">
-                  <IoIosSpeedometer className="text-gray-500" size={20} />{" "}
-                  Option-6
+                  <IoIosSpeedometer className="text-gray-500" size={20} /> Press
                 </span>
               </li>
-
+              {/* 
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-teal-500">
                   <IoIosSpeedometer className="text-teal-500" size={20} />{" "}
@@ -175,7 +176,7 @@ const SearchPanel = () => {
                   <IoIosSpeedometer className="text-indigo-500" size={20} />{" "}
                   Option-9
                 </span>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

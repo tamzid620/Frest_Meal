@@ -163,6 +163,9 @@ const NavigationBar = () => {
         <li title="Reservation">
           <Link to="/reservation">Reservation</Link>
         </li>
+        <li title="Press">
+          <Link to="/press">Press</Link>
+        </li>
         <li>
           <Link to="/aboutUs">About Us</Link>
         </li>
