@@ -4,7 +4,7 @@ import review from "../../../../../public/images/review.gif";
 import cooking from "../../../../../public/images/cooking.gif";
 import onTheWay from "../../../../../public/images/onTheWay.gif";
 import Delivered from "../../../../../public/images/delivered.gif";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -249,13 +249,13 @@ const AdminOrderProcessing = () => {
                   step-3
                 </p>
                 {/* invoice button  */}
-                <button
+                <Link to={`/invoice/${orderProcess.id}`}><button
                   className={`ms-[100px] btn-xs text-black bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white mt-5 flex items-center ${
                     orderProcess.orderStage === "on the way" ? "visible" : "invisible"
                   }`}
                 >
                   Invoice
-                </button>
+                </button></Link>
                 <div
                   className={`my-10 flex justify-center ${
                     orderProcess.orderStage === "on the way" ? "visible" : "invisible"

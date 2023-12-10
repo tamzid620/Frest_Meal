@@ -30,8 +30,7 @@ const Banner = () => {
               style={{ fontFamily: "Mooli, sans-serif" }}
               className="text-white text-4xl mb-5 font-bold font"
             >
-              The World Best <span className="text-[#FFD700]">Restaurent</span>{" "}
-              Website
+              The World Best <span className="text-[#FFD700]">Restaurent</span> Website
             </h1>
             <p className="text-white">
               {" "}
