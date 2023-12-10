@@ -165,9 +165,7 @@ const handleSubmit = (e) => {
       autoClose: 1500,
       hideProgressBar: true,
     });
-    setTimeout(() => {
-      history.push("/ordertracking");
-    }, 2000);
+    window.location.reload()
   })
   
   .catch((error) => {

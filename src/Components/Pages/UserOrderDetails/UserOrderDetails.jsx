@@ -3,13 +3,13 @@ import review from "../../../../public/images/review.gif";
 import cooking from "../../../../public/images/cooking.gif";
 import onTheWay from "../../../../public/images/onTheWay.gif";
 import Delivered from "../../../../public/images/delivered.gif";
-import { useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const UserOrderDetails = () => {
-
+  const navigate = useNavigate();
     const { orderId } = useParams();
     const [orderProcess, setorderProcess] = useState([]);
   
@@ -26,12 +26,24 @@ const UserOrderDetails = () => {
           headers: headers,
         })
         .then((res) => {
-          setorderProcess(res.data.order);
+          if(res.data.status=== "401"){
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: res.data.message,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            navigate('/ordertracking')
+          }
+          if(res.data.status=== "201"){
+            setorderProcess(res.data.order);
+          }
         })
-        .catch((error,res) => {
+        .catch((error) => {
           console.error("Error:", error);
         });
-    }, [orderId]);
+    }, [orderId,navigate]);
     console.log(orderProcess);
 
 

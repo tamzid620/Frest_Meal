@@ -30,6 +30,7 @@ import AdminOrderDetails from "./Components/Pages/AdminPanel/Navigation/AdminOrd
 import AdminOrderProcessing from "./Components/Pages/AdminPanel/Navigation/AdminOrderProcessing";
 import Invoice from "./Invoice/Invoice";
 import UserOrderDetails from "./Components/Pages/UserOrderDetails/UserOrderDetails";
+import Reservation from "./Components/Shared/Reservation/Reservation";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/menu",
         element: <Menu />,
+      },
+      {
+        path: "/reservation",
+        element: <Reservation />,
       },
       {
         path: "/platterService",
