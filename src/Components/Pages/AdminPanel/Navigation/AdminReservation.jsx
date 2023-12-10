@@ -7,43 +7,43 @@ import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
 const AdminReservation = () => {
-    const [loading,setLoading] =useState(false);
-    const [reservationList, setReservationList] = useState([]); 
-  
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        Swal.fire({
-          position: "center",
-          icon: "warning",
-          title: "You have to Login first",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        Navigate("/adminlogin");
-      } else {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const headers = {
-          accept: "application/json",
-          Authorization: "Bearer " + user.token,
-        };
-        // get reserveItem data ---------------
-        setLoading(true)
-        axios
-          .get(`https://backend.ap.loclx.io/api/reservation-list`, {
-            headers: headers,
-          })
-          .then((res) => {
-            setReservationList(res.data.reserveList);
-            setLoading(false)
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-    }, []);
+  const [loading, setLoading] = useState(false);
+  const [reservationList, setReservationList] = useState([]);
 
-  // approve section
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "You have to Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      Navigate("/adminlogin");
+    } else {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const headers = {
+        accept: "application/json",
+        Authorization: "Bearer " + user.token,
+      };
+      // get reserveItem data ---------------
+      setLoading(true);
+      axios
+        .get(`https://backend.ap.loclx.io/api/reservation-list`, {
+          headers: headers,
+        })
+        .then((res) => {
+          setReservationList(res.data.reserveList);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, []);
+
+  // approve section--------------------------
   const handleApprove = (reserveId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
@@ -51,12 +51,9 @@ const AdminReservation = () => {
       Authorization: "Bearer " + user.token,
     };
     axios
-      .delete(
-        `https://backend.ap.loclx.io/api/food-item-delete/${reserveId}`,
-        {
-          headers: headers,
-        }
-      )
+      .get(`https://backend.ap.loclx.io/api/reservation-approve/${reserveId}`, {
+        headers: headers,
+      })
       .then((res) => {
         setReservationList((prevReserveItem) =>
           prevReserveItem.filter((reserveItem) => reserveItem.id !== reserveId)
@@ -68,7 +65,7 @@ const AdminReservation = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => {
         Swal.fire({
@@ -82,7 +79,7 @@ const AdminReservation = () => {
       });
   };
 
-      // delete section---------------------
+  // delete section---------------------
   const handleDelete = (reserveId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
@@ -91,7 +88,7 @@ const AdminReservation = () => {
     };
     axios
       .delete(
-        `https://backend.ap.loclx.io/api/food-item-delete/${reserveId}`,
+        `https://backend.ap.loclx.io/api/reservation-delete/${reserveId}`,
         {
           headers: headers,
         }
@@ -121,22 +118,22 @@ const AdminReservation = () => {
       });
   };
 
-  
-    return (
-      <div className="text-yellow-500 bg-gray-300 min-h-screen">
-        <div className="fixed z-10 w-full">
-          <SearchPanel />
-        </div>
-  
-        {/* main section  */}
-        <div className="flex justify-center ">
-          <div className="mt-24 w-full ">
-            <h1 className="text-3xl flex justify-center text-black uppercase">
-              Reservation List
-            </h1>
-            <hr className="mt-1 border border-black mb-10" />
-            {/* table section  */}
-            {!loading && <div className="overflow-x-auto text-black">
+  return (
+    <div className="text-yellow-500 bg-gray-300 min-h-screen">
+      <div className="fixed z-10 w-full">
+        <SearchPanel />
+      </div>
+
+      {/* main section  */}
+      <div className="flex justify-center ">
+        <div className="mt-24 w-full ">
+          <h1 className="text-3xl flex justify-center text-black uppercase">
+            Reservation List
+          </h1>
+          <hr className="mt-1 border border-black mb-10" />
+          {/* table section  */}
+          {!loading && (
+            <div className="overflow-x-auto text-black">
               <table className="table table-zebra">
                 {/* head */}
                 <thead className="bg-gray-600 text-white">
@@ -162,32 +159,32 @@ const AdminReservation = () => {
                       <td>{reserve.eventType}</td>
                       <td>{reserve.numbOfPeople}</td>
                       <td className="flex gap-2">
-                      {/* approve button  */}
-                       <button
-                            onClick={() => handleApprove(reserve.id)}
-                            className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white"
-                          >
-                            Approve
-                          </button>
-                      {/* Delete button   */}
-                      <button
-                            onClick={() => handleDelete(reserve.id)}
-                            className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
-                          >
-                            Delete
-                          </button>
+                        {/* approve button  */}
+                        <button
+                          onClick={() => handleApprove(reserve.id)}
+                          className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white"
+                        >
+                          Approve
+                        </button>
+                        {/* Delete button   */}
+                        <button
+                          onClick={() => handleDelete(reserve.id)}
+                          className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </div>}
-            {loading && <Loading/>}
-            
-          </div>
+            </div>
+          )}
+          {loading && <Loading />}
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default AdminReservation;
