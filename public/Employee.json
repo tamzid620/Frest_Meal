@@ -1,30 +1,56 @@
 {
-    "employee": [
-      {
-        "id": 1,
-        "name": "badsha",
-        "email": "badsha@test.com",
-        "phoneNo": "455856483",
-        "designation": "cheif",
-        "address": "32,dgffhjfj,fjffjfhfj",
-        "salary": "25000",
-        "jobType": "fulltime",
-        "image": "1701241798.jpg",
-        "created_at": "2023-11-29T07:09:58.000000Z",
-        "updated_at": "2023-11-29T07:09:58.000000Z"
-      },
-      {
-        "id": 2,
-        "name": "iskandor",
-        "email": "iskandor@test.com",
-        "phoneNo": "455856567",
-        "designation": "assistant cheif",
-        "address": "32,dgffhjfj,fjffjfhfj",
-        "salary": "20000",
-        "jobType": "part-time",
-        "image": "1701242901.jpg",
-        "created_at": "2023-11-29T07:11:54.000000Z",
-        "updated_at": "2023-11-29T07:28:21.000000Z"
-      }
-    ]
-  }
+  "employee": [
+    {
+      "id": 2,
+      "name": "HAKIM",
+      "email": "iskandor@test.com",
+      "phoneNo": "455856567",
+      "designation": "assistant cheif",
+      "address": "32,dgffhjfj,fjffjfhfj",
+      "salary": "20000",
+      "jobType": "part-time",
+      "created_at": "2023-11-29T07:11:54.000000Z",
+      "updated_at": "2023-12-11T07:25:33.000000Z",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1701242901.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Jahed",
+      "email": "jahed143@gmail.com",
+      "phoneNo": "0900987",
+      "designation": "manager",
+      "address": "Chittagong, Bangladesh",
+      "salary": "50000",
+      "jobType": "full time",
+      "created_at": "2023-12-11T07:06:40.000000Z",
+      "updated_at": "2023-12-11T07:06:40.000000Z",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1702278400.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Helal",
+      "email": "badsha@test.com",
+      "phoneNo": "455856483",
+      "designation": "cheif",
+      "address": "32,dgffhjfj,fjffjfhfj",
+      "salary": "25000",
+      "jobType": "fulltime",
+      "created_at": "2023-12-11T07:07:21.000000Z",
+      "updated_at": "2023-12-11T07:07:21.000000Z",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1702278441.jpg"
+    },
+    {
+      "id": 5,
+      "name": "ali",
+      "email": "badsha@test.com",
+      "phoneNo": "455856483",
+      "designation": "cheif",
+      "address": "32,dgffhjfj,fjffjfhfj",
+      "salary": "25000",
+      "jobType": "fulltime",
+      "created_at": "2023-12-11T07:08:07.000000Z",
+      "updated_at": "2023-12-11T07:08:07.000000Z",
+      "imgLink": "http://backend.ap.loclx.io/upload/image/1702278487.jpg"
+    }
+  ]
+}

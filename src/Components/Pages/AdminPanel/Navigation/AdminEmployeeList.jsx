@@ -125,7 +125,7 @@ const AdminEmployeeList = () => {
                   {employees.map((employee, index) => (
                     <tr key={employee.id}>
                       <th>{index + 1}</th>
-                      <td><img className="w-[50px] h-[50px]" src={employee.image} alt="" /></td>
+                      <td><img className="w-[50px] h-[50px]" src={employee.imgLink} alt="" /></td>
                       <td>{employee.name}</td>
                       <td>{employee.phoneNo}</td>
                       <td>{employee.designation}</td>

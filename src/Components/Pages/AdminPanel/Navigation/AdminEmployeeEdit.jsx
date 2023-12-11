@@ -293,7 +293,7 @@ setLoading(true)
                   id="image"
                   onChange={handleImageChange}
                   // required
-                  className="file-input file-input-bordered file-input-warning w-full"
+                  className="file-input file-input-bordered file-input-warning w-full text-black"
                 />
               </div>
             </div>

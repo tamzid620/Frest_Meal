@@ -1,7 +1,36 @@
 import unknownPhoto from '../../../../public/images/Unknown.png'
 import aboutPhoto from '../../../../public/images/AboutUs1.jpeg';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const AboutUs = () => {
+
+const  [aboutUs, setAboutUs] = useState([])
+
+useEffect(()=> {
+
+axios.get(`https://backend.ap.loclx.io/api/employee-list`)
+.then((res) => {
+    setAboutUs(res.data.employee);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}, []);
+console.log(aboutUs);
+
+
+  // Separate employees based on designation
+  const owners = aboutUs.filter((employee) => employee.designation === 'Owner');
+  const managers = aboutUs.filter((employee) => employee.designation === 'Manager');
+  const chefs = aboutUs.filter((employee) => employee.designation === 'Chef');
+  const waiters = aboutUs.filter((employee) => employee.designation === 'Waiter');
+  const cleaners = aboutUs.filter((employee) => employee.designation === 'Cleaner');
+
+  // Concatenate arrays in the desired order
+  const sortedEmployees = [...owners, ...managers, ...chefs, ...waiters, ...cleaners];
+
+
     return (
         <div className="">
             {/* title section */}
@@ -44,103 +73,18 @@ const AboutUs = () => {
                     {/* our team information */}
                     <div className='mt-10'>
 {/* owner section  */}
-                        <div className='mb-5'>
-                            <div className='flex justify-center'>
-                                <img className='w-[350px] rounded-xl bg-yellow-500' src={unknownPhoto} alt="" />
-                            </div>
-                            <h1 className='flex justify-center mt-3 font-semibold text-yellow-500 text-2xl uppercase'>Abdullah</h1>
-                            <p className='flex justify-center font-semibold text-white uppercase'>Owner / Operator</p>
-                        </div>
-{/* manager section  */}
-                        <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10'>
-                            <div className='flex lg:justify-end md:justify-end sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-500' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold text-yellow-500 text-2xl uppercase'>Babul</h1>
-                                <p className='flex justify-center font-semibold text-white uppercase'>General Manager</p>
-                            </div>
-                            </div>
-                            <div className='flex lg:justify-start md:justify-start sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-500' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold text-yellow-500 text-2xl uppercase'>Bahar</h1>
-                                <p className='flex justify-center font-semibold text-white uppercase'> Assistant General Manager</p>
-                            </div>
-                            </div>
-                        </div>
-{/* Chef section  */}
-<div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-5'>
-                            <div className='flex lg:justify-end md:justify-end sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-500' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold text-yellow-500 text-2xl uppercase'>Chris</h1>
-                                <p className='flex justify-center font-semibold text-white uppercase'>Executive Chef</p>
-                            </div>
-                            </div>
+<div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'>
+{sortedEmployees.map((employee) => (
+    <div key={employee.id} className="mb-5">
+      <div className="flex justify-center">
+        <img className="w-[350px] h-[350px] rounded-xl bg-yellow-500" src={employee.imgLink || unknownPhoto} alt="" />
+      </div>
+      <h1 className="flex justify-center mt-3 font-semibold text-yellow-500 text-2xl uppercase">{employee.name}</h1>
+      <p className="flex justify-center font-semibold text-white uppercase">{employee.designation}</p>
+    </div>
+  ))}
+</div>
 
-                            <div className='flex lg:justify-center md:justify-center sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-500' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold text-yellow-500 text-2xl uppercase'>Chormonai</h1>
-                                <p className='flex justify-center font-semibold text-white uppercase'> Sous Chef</p>
-                            </div>
-                            </div>
-                            
-                            <div className='flex lg:justify-start md:justify-start sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-500' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold text-yellow-500 text-2xl uppercase'>Chowdhory</h1>
-                                <p className='flex justify-center font-semibold text-white uppercase'> Pastry Chef</p>
-                            </div>
-                            </div>
-
-
-                        </div>
-
-{/* Server section  */}
-<div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-5'>
-                            <div className='flex lg:justify-end md:justify-end sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-500' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold text-yellow-500 text-2xl uppercase'>Dostogir</h1>
-                                <p className='flex justify-center font-semibold text-white uppercase'>Server</p>
-                            </div>
-                            </div>
-
-                            <div className='flex lg:justify-center md:justify-center sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-500' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold text-yellow-500 text-2xl uppercase'>Delowar</h1>
-                                <p className='flex justify-center font-semibold text-white uppercase'>Server</p>
-                            </div>
-                            </div>
-                            
-                            <div className='flex lg:justify-start md:justify-start sm: justify-center'>
-                            <div>
-                                <div className='flex justify-center'>
-                                    <img className='w-[350px] rounded-xl bg-yellow-500' src={unknownPhoto} alt="" />
-                                </div>
-                                <h1 className='flex justify-center mt-3 font-semibold text-yellow-500 text-2xl uppercase'>Daud</h1>
-                                <p className='flex justify-center font-semibold text-white uppercase'>Server</p>
-                            </div>
-                            </div>
-
-
-                        </div>
 
                     </div>
                 </div>
