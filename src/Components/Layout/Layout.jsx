@@ -9,6 +9,7 @@ const location = useLocation();
 const noHeaderFooter =
  location.pathname.includes('dp') || 
  location.pathname.includes('adminlogin') ||
+ location.pathname.includes('deliverymanPanel') ||
  location.pathname.includes('adminCategory') ||
  location.pathname.includes('adminategoryAdd') ||
  location.pathname.includes('adminCategoryEdit') ||

@@ -48,7 +48,12 @@ function AdminLogin() {
         });
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data));
-    
+        if(res.data.role ==="1"){
+        navigate("/dp");
+        }
+        else if(res.data.role ==="2"){
+        navigate("/deliverymanPanel");
+        }
         Swal.fire({
             position: "center",
             icon: "success",
@@ -56,7 +61,6 @@ function AdminLogin() {
             showConfirmButton: false,
             timer: 1500,
         });
-        navigate("/dp");
 
         
       } else if (res.data.status === "403") {

@@ -37,6 +37,7 @@ import AdminEmployeeList from "./Components/Pages/AdminPanel/Navigation/AdminEmp
 import AdminEmployeeEdit from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeEdit";
 import AdminEmployeeAdd from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeAdd";
 import AdminEmployeeDetail from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeDetail";
+import DeliveryManPanel from "./Components/Pages/AdminPanel/Navigation/DeliveryManPanel";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,11 @@ const router = createBrowserRouter([
       {
         path: "/dp",
         element: <AdminPanel />,
+      },
+      // AdminPanel section ------------------------
+      {
+        path: "/deliverymanPanel",
+        element: <DeliveryManPanel />,
       },
       //category section  -------------------------
       {
