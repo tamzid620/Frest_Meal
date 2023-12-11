@@ -11,16 +11,15 @@ import Swal from "sweetalert2";
 
 const Menu = () => {
   const [menus, setMenus] = useState([]);
-  // const [id, setId] = useState([]);
+  const [filteredMenus, setFilteredMenus] = useState([]);
+  const [activeTab, setActiveTab] = useState("Drinks");
 
-  // const handleIdChange = (e) => {
-  //   setId(e.target.value);
-  // };
 
   useEffect(() => {
     // get method --------------------
     axios
-      .get("https://backend.ap.loclx.io/api/food-item-list")
+      // .get("https://backend.ap.loclx.io/api/food-item-list")
+      .get("food-item-list.json")
       .then((res) => {
         setMenus(res.data.foodItem);
       })
@@ -29,11 +28,15 @@ const Menu = () => {
       });
   }, []);
 
+
+  useEffect(() => {
+    const filtered = menus.filter((menuItem) => menuItem.categoryId === activeTab);
+    setFilteredMenus(filtered);
+  }, [activeTab, menus]);
   // handle submit button ----------------
   const handleOrderNowClick = (id) => {
 
-    // const data = new FormData();
-    // data.append("id", id);
+
     // // post method --------------
 
     axios
@@ -60,8 +63,8 @@ const Menu = () => {
           timer: 1500,
         });
       });
-      
-  };
+    };
+
 
   return (
     <div>
@@ -88,9 +91,36 @@ const Menu = () => {
       </div>
       {/* information section */}
       <div className="max-w-screen-xl mx-auto mt-20 sm: ms-2 sm: me-2 lg:ms-0 lg:me-0">
+       {/* Tabs section */}
+       <div className="flex justify-center gap-3 my-10">
+        <button
+          className={`tab-btn bg-yellow-500 hover:text-black text-gray-500 font-bold p-2 rounded-xl ${activeTab === "Drinks" ? "active" : ""}`}
+          onClick={() => setActiveTab("Drinks")}
+        >
+          Drinks
+        </button>
+        <button
+          className={`tab-btn bg-yellow-500 hover:text-black text-gray-500 font-bold p-2 rounded-xl ${activeTab === "Meals" ? "active" : ""}`}
+          onClick={() => setActiveTab("Meals")}
+        >
+          Meals
+        </button>
+        <button
+          className={`tab-btn bg-yellow-500 hover:text-black text-gray-500 font-bold p-2 rounded-xl ${activeTab === "Dessert" ? "active" : ""}`}
+          onClick={() => setActiveTab("Dessert")}
+        >
+          Dessert
+        </button>
+        <button
+          className={`tab-btn bg-yellow-500 hover:text-black text-gray-500 font-bold p-2 rounded-xl ${activeTab === "Snacks" ? "active" : ""}`}
+          onClick={() => setActiveTab("Snacks")}
+        >
+          Snacks
+        </button>
+      </div>
         <div className="mb-5 flex justify-center">
           <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 ">
-            {menus.map((menuItem) => (
+            {filteredMenus.map((menuItem) => (
               <div key={menuItem.id} className="flex items-center gap-5">
                 <div>
                   <img

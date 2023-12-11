@@ -2,7 +2,7 @@
     "foodItem": [
       {
         "id": 2,
-        "categoryId": "drinks",
+        "categoryId": "Drinks",
         "subCategoryId": "soft drinks",
         "foodName": "chicken Burger",
         "foodCode": "34325",
@@ -15,7 +15,7 @@
       },
       {
         "id": 4,
-        "categoryId": "drinks",
+        "categoryId": "Drinks",
         "subCategoryId": "pizza",
         "foodName": "Mojo",
         "foodCode": "500",
@@ -28,7 +28,7 @@
       },
       {
         "id": 9,
-        "categoryId": "meals",
+        "categoryId": "Meals",
         "subCategoryId": "moida",
         "foodName": "sena",
         "foodCode": "1210",
@@ -41,7 +41,7 @@
       },
       {
         "id": 10,
-        "categoryId": "meals",
+        "categoryId": "Meals",
         "subCategoryId": "moida",
         "foodName": "chocolate icebar",
         "foodCode": "100",
