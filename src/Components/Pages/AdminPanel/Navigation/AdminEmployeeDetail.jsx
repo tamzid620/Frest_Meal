@@ -23,7 +23,7 @@ const AdminEmployeeDetail = () => {
         headers: headers,
       })
       .then((res) => {
-        setOrderDetails(res.data.employee);
+        setOrderDetails(res.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -50,29 +50,29 @@ const AdminEmployeeDetail = () => {
               <div className="max-w-md mx-auto bg-white rounded-md overflow-hidden shadow-md">
                 <div className="relative">
                   <img
-                    className="w-full h-64 object-cover bg-gray-200"
-                    src={orderDetails.image}
+                    className="w-full h-full  bg-gray-200"
+                    src={orderDetails.file}
                     alt=""
                   />
                   <div className="absolute bottom-0 right-0 p-4 bg-gray-800 text-white">
-                    {orderDetails.jobType}
+                    {orderDetails.employee.jobType}
                   </div>
                 </div>
                 <div className="p-6">
-                  <h1 className="text-2xl font-bold mb-2">{orderDetails.name}</h1>
-                  <p className="text-gray-600">{orderDetails.designation}</p>
+                  <h1 className="text-2xl font-bold mb-2">{orderDetails.employee.name}</h1>
+                  <p className="text-gray-600">{orderDetails.employee.designation}</p>
                   <div className="mt-4">
                     <p className="text-gray-700">
-                      <strong>Email:</strong> {orderDetails.email}
+                      <strong>Email:</strong> {orderDetails.employee.email}
                     </p>
                     <p className="text-gray-700">
-                      <strong>Phone:</strong> {orderDetails.phoneNo}
+                      <strong>Phone:</strong> {orderDetails.employee.phoneNo}
                     </p>
                     <p className="text-gray-700">
-                      <strong>Address:</strong> {orderDetails.address}
+                      <strong>Address:</strong> {orderDetails.employee.address}
                     </p>
                     <p className="text-gray-700">
-                      <strong>Salary:</strong> {orderDetails.salary}
+                      <strong>Salary:</strong> {orderDetails.employee.salary}
                     </p>
                   </div>
                 </div>

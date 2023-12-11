@@ -41,6 +41,7 @@ const AdminPressList = () => {
           .catch((error) => {
             console.log(error);
           });
+          console.log(press);
       }
     }, []);
 // delete section----------------
@@ -100,7 +101,7 @@ const AdminPressList = () => {
                 </div>
                 {/* add button  */}
                 <div >
-                  <Link to="/adminpresAdd">
+                  <Link to="/adminpressAdd">
                     <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                     Add
                   </button>
@@ -123,15 +124,15 @@ const AdminPressList = () => {
                   {press.map((pres, index) => (
                     <tr key={pres.id}>
                       <th>{index + 1}</th>
-                      <td><img className="w-[50px] h-[50px]" src={pres.image} alt="" /></td>
-                      <td>{pres.name}</td>
-                      <td>{pres.phoneNo}</td>
-                      <td>{pres.desctiption}</td>
+                      <td><img className="w-[50px] h-[50px]" src={pres.imgLink} alt="" /></td>
+                      <td>{pres.eventName}</td>
+                      <td>{pres.eventDate}</td>
+                      <td>{pres.description}</td>
                       <td>
                       <div className="flex items-center gap-2">
                           {/* Edit button  */}
                           <Link to=
-                            {`/adminpresEdit/${pres.id}`}
+                            {`/adminpressEdit/${pres.id}`}
                           // "/adminTeachersEdit"
                           >
                             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">

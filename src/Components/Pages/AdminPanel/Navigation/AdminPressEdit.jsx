@@ -15,9 +15,9 @@ const AdminPressEdit = () => {
     
   const [formData, setFormData] = useState({
     id: "",
-    clientName: "",
+    eventName: "",
     eventDate: "",
-    desctiption: "",
+    description: "",
     image: null,
   });
 
@@ -42,13 +42,13 @@ const AdminPressEdit = () => {
         headers: headers,
       })
       .then((res) => {
-        const employeeData = res.data.employee;
+        const pressData = res.data.press;
         setFormData({
-          id: employeeData.id,
-          name: employeeData.clientName,
-          eventDate: employeeData.eventDate,
-          desctiption: employeeData.desctiption,
-          image: employeeData.image,
+          id: pressData.id,
+          eventName: pressData.eventName,
+          eventDate: pressData.eventDate,
+          description: pressData.description,
+          image: pressData.image,
         });
       })
       .catch((error) => {
@@ -78,9 +78,9 @@ const AdminPressEdit = () => {
 
       const bodyFormData = new FormData();
       bodyFormData.append("id", formData.id);
-      bodyFormData.append("name", formData.clientName);
+      bodyFormData.append("eventName", formData.eventName);
       bodyFormData.append("eventDate", formData.eventDate);
-      bodyFormData.append("desctiption", formData.desctiption);
+      bodyFormData.append("description", formData.description);
       bodyFormData.append("image", formData.image);
 
 // post  data ---------------
@@ -94,9 +94,9 @@ setLoading(true)
           // to refresh to form ---------------
           setFormData({
             id: "",
-            clientName: "",
+            eventName: "",
             eventDate: "",
-            desctiption: "",
+            description: "",
             image: null,
           });
           Swal.fire({
@@ -157,14 +157,14 @@ setLoading(true)
               </div>
             <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
               <div className="flex flex-col mb-4">
-                <label htmlFor="clientName" className="mb-2 font-bold text-lg">
+                <label htmlFor="eventName" className="mb-2 font-bold text-lg">
                  Event Name:
                 </label>
                 <input
                   type="text"
-                  name="clientName"
-                  id="clientName"
-                  value={formData.name}
+                  name="eventName"
+                  id="eventName"
+                  value={formData.eventName}
                   onChange={handleChange}
                   // required
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black mb-3"
@@ -186,7 +186,7 @@ setLoading(true)
                 />
               </div>
             </div>
-            {/* --------- phoneNO and desctiption input -------- */}
+            {/* --------- phoneNO and description input -------- */}
             <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
                {/* image input  */}
                <div className="flex flex-col mb-4">
@@ -203,16 +203,16 @@ setLoading(true)
                 />
               </div>
 
-              {/* desctiption input  */}
+              {/* description input  */}
               <div className="flex flex-col mb-4">
-                <label htmlFor="desctiption" className="mb-2 font-bold text-lg">
-                  desctiption:
+                <label htmlFor="description" className="mb-2 font-bold text-lg">
+                  description:
                 </label>
                 <input
                   type="text"
-                  name="desctiption"
-                  id="desctiption"
-                  value={formData.desctiption}
+                  name="description"
+                  id="description"
+                  value={formData.description}
                   onChange={handleChange}
                   // required
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black mb-3"
