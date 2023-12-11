@@ -30,7 +30,7 @@ const AdminCategoryAdd = () => {
       Swal.fire({
         position: "center",
         icon: "warning",
-        categoryName: "You have to Login first",
+        title: "You have to Login first",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -41,18 +41,6 @@ const AdminCategoryAdd = () => {
         accept: "application/json",
         Authorization: "Bearer " + user.token,
       };
-      setLoading(true)
-      axios
-        .get(`http://127.0.0.1:8000/api/login`, {
-          headers: headers,
-        })
-        .then((res) => {
-          setAdminCategory(res.data);
-          setLoading(false)
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     }
   }, [navigate]);
   console.log(adminCategory);
