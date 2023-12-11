@@ -38,7 +38,7 @@ const PlatteringService = () => {
             style={{ fontFamily: 'Mooli, sans-serif' }}
             className="text-3xl text-white font-semibold "
           >
-            Choose Your Platter
+            Choose Your Packages
           </h1>
           <img src="../../../../public/icons/hr.svg" alt="" />
         </div>

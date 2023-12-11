@@ -132,12 +132,12 @@ const SearchPanel = () => {
               </Link>
               {/* Employees section  */}
               <Link to="/adminEmployeeList">
-              <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-green-500">
-                  <IoIosSpeedometer className="text-green-500" size={20} />{" "}
-                  Employee
-                </span>
-              </li>
+                <li className="font-semibold text-lg mb-3">
+                  <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-green-500">
+                    <IoIosSpeedometer className="text-green-500" size={20} />{" "}
+                    Employee
+                  </span>
+                </li>
               </Link>
 
               <li className="font-semibold text-lg mb-3">
@@ -153,12 +153,15 @@ const SearchPanel = () => {
                   Kitchen Management
                 </span>
               </li>
-
-              <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-gray-500">
-                  <IoIosSpeedometer className="text-gray-500" size={20} /> Press
-                </span>
-              </li>
+              {/* Press section  */}
+              <Link to="/adminPressList">
+                <li className="font-semibold text-lg mb-3">
+                  <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-gray-500">
+                    <IoIosSpeedometer className="text-gray-500" size={20} />{" "}
+                    Press
+                  </span>
+                </li>
+              </Link>
               {/* 
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-teal-500">

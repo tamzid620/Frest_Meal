@@ -38,6 +38,9 @@ import AdminEmployeeEdit from "./Components/Pages/AdminPanel/Navigation/AdminEmp
 import AdminEmployeeAdd from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeAdd";
 import AdminEmployeeDetail from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeDetail";
 import DeliveryManPanel from "./Components/Pages/AdminPanel/Navigation/DeliveryManPanel";
+import AdminPressList from "./Components/Pages/AdminPanel/Navigation/AdminPressList";
+import AdminPressEdit from "./Components/Pages/AdminPanel/Navigation/AdminPressEdit";
+import AdminPressAdd from "./Components/Pages/AdminPanel/Navigation/AdminPressAdd";
 
 const router = createBrowserRouter([
   {
@@ -141,7 +144,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/adminFoodItemEdit/:foodItemId",
-        element: <AdminFoodItemEdit/>,
+        element: <AdminFoodItemEdit />,
       },
       {
         path: "/adminFoodItemAdd",
@@ -184,13 +187,25 @@ const router = createBrowserRouter([
       },
       {
         path: "/adminEmployeeDetails/:employeeId",
-        element: <AdminEmployeeDetail/>,
+        element: <AdminEmployeeDetail />,
       },
       {
         path: "/adminEmployeeAdd",
         element: <AdminEmployeeAdd />,
       },
-
+      // Press section --------------------------
+      {
+        path: "/adminPressList",
+        element: <AdminPressList />,
+      },
+      {
+        path: "/adminPressEdit/:pressId",
+        element: <AdminPressEdit />,
+      },
+      {
+        path: "/adminPressAdd",
+        element: <AdminPressAdd />,
+      },
     ],
   },
 ]);

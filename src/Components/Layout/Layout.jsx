@@ -28,7 +28,10 @@ const noHeaderFooter =
  location.pathname.includes('adminEmployeeList') ||
  location.pathname.includes('adminEmployeeEdit') ||
  location.pathname.includes('adminEmployeeDetails') ||
- location.pathname.includes('adminEmployeeAdd')
+ location.pathname.includes('adminEmployeeAdd') ||
+ location.pathname.includes('adminPressList') ||
+ location.pathname.includes('adminPressEdit') ||
+ location.pathname.includes('adminPressAdd')
 
     return (
         <div>

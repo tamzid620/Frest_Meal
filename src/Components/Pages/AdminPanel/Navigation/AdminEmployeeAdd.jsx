@@ -109,7 +109,7 @@ setLoading(true)
       <div className="flex justify-center ">
         <div className="mt-24 w-full">
           <h1 className="text-3xl flex justify-center text-black uppercase">
-            Add FoodItem
+            Add Employee
           </h1>
           <hr className="mt-1 border border-black " />
           {/* form section */}
@@ -241,7 +241,7 @@ setLoading(true)
                   id="image"
                   onChange={handleImageChange}
                   required
-                  className="file-input file-input-bordered file-input-warning w-full"
+                  className="text-black file-input file-input-bordered file-input-warning w-full"
                 />
               </div>
             </div>
