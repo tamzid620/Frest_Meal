@@ -41,6 +41,9 @@ import DeliveryManPanel from "./Components/Pages/AdminPanel/Navigation/DeliveryM
 import AdminPressList from "./Components/Pages/AdminPanel/Navigation/AdminPressList";
 import AdminPressEdit from "./Components/Pages/AdminPanel/Navigation/AdminPressEdit";
 import AdminPressAdd from "./Components/Pages/AdminPanel/Navigation/AdminPressAdd";
+import AdminPackageList from "./Components/Pages/AdminPanel/Navigation/AdminPackageList";
+import AdminPackageEdit from "./Components/Pages/AdminPanel/Navigation/AdminPackageEdit";
+import AdminPackageAdd from "./Components/Pages/AdminPanel/Navigation/AdminPackageAdd";
 
 const router = createBrowserRouter([
   {
@@ -149,6 +152,19 @@ const router = createBrowserRouter([
       {
         path: "/adminFoodItemAdd",
         element: <AdminFoodItemAdd />,
+      },
+      //Food Item section  -------------------------
+      {
+        path: "/adminPackageList",
+        element: <AdminPackageList />,
+      },
+      {
+        path: "/adminPackageEdit",
+        element: <AdminPackageEdit />,
+      },
+      {
+        path: "/adminPackageAdd",
+        element: <AdminPackageAdd />,
       },
       // Order section ----------------
       {

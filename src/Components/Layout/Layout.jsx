@@ -19,6 +19,9 @@ const noHeaderFooter =
  location.pathname.includes('adminFoodItem') ||
  location.pathname.includes('adminFoodItemEdit') ||
  location.pathname.includes('adminFoodItemAdd') ||
+ location.pathname.includes('adminPackageList') ||
+ location.pathname.includes('adminPackageEdit') ||
+ location.pathname.includes('adminPackageAdd') ||
  location.pathname.includes('adminOrderList') ||
  location.pathname.includes('adminOrderDetails') ||
  location.pathname.includes('adminOrderProcessing') ||
@@ -31,7 +34,7 @@ const noHeaderFooter =
  location.pathname.includes('adminEmployeeAdd') ||
  location.pathname.includes('adminPressList') ||
  location.pathname.includes('adminPressEdit') ||
- location.pathname.includes('adminPressAdd')
+ location.pathname.includes('adminPressAdd') 
 
     return (
         <div>

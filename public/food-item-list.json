@@ -1,6 +1,19 @@
 {
     "foodItem": [
       {
+        "id": 1,
+        "categoryId": "Drinks",
+        "subCategoryId": "soft drinks",
+        "foodName": "chicken Burger",
+        "foodCode": "34325",
+        "description": "fdfg,afjff,fjff",
+        "rating": 3.7,
+        "price": "300",
+        "created_at": "2023-11-23 09:33:09",
+        "updated_at": "2023-12-04 11:34:01",
+        "imgLink": "http://backend.ap.loclx.io/upload/image/1701689641.jpg"
+      },
+      {
         "id": 2,
         "categoryId": "Drinks",
         "subCategoryId": "soft drinks",
@@ -27,7 +40,20 @@
         "imgLink": "http://backend.ap.loclx.io/upload/image/1701689819.jpg"
       },
       {
-        "id": 9,
+        "id": 6,
+        "categoryId": "Meals",
+        "subCategoryId": "moida",
+        "foodName": "chocolate icebar",
+        "foodCode": "100",
+        "description": "icecream",
+        "rating": 5,
+        "price": "100",
+        "created_at": "2023-12-05 08:45:41",
+        "updated_at": "2023-12-05 08:46:22",
+        "imgLink": "http://backend.ap.loclx.io/upload/image/1701765982.png"
+      },
+      {
+        "id": 7,
         "categoryId": "Meals",
         "subCategoryId": "moida",
         "foodName": "sena",
@@ -40,7 +66,7 @@
         "imgLink": "http://backend.ap.loclx.io/upload/image/1701689867.jpeg"
       },
       {
-        "id": 10,
+        "id": 8,
         "categoryId": "Meals",
         "subCategoryId": "moida",
         "foodName": "chocolate icebar",
@@ -51,6 +77,19 @@
         "created_at": "2023-12-05 08:45:41",
         "updated_at": "2023-12-05 08:46:22",
         "imgLink": "http://backend.ap.loclx.io/upload/image/1701765982.png"
+      },
+      {
+        "id": 10,
+        "categoryId": "Dessert",
+        "subCategoryId": "noodles",
+        "foodName": "Sada Pani",
+        "foodCode": "500",
+        "description": "kala",
+        "rating": 5,
+        "price": "1111",
+        "created_at": "2023-12-11 12:02:16",
+        "updated_at": "2023-12-11 12:02:16",
+        "imgLink": "http://backend.ap.loclx.io/upload/image/1702296136.jpeg"
       },
       {
         "id": 11,
@@ -79,7 +118,20 @@
         "imgLink": "http://backend.ap.loclx.io/upload/image/1702296136.jpeg"
       },
       {
-        "id": 13,
+        "id": 14,
+        "categoryId": "Snacks",
+        "subCategoryId": "soft drinks",
+        "foodName": "Mojo",
+        "foodCode": "34325",
+        "description": "a soft drink from bangladesh",
+        "rating": 5,
+        "price": "125",
+        "created_at": "2023-12-11 12:03:28",
+        "updated_at": "2023-12-11 12:03:28",
+        "imgLink": "http://backend.ap.loclx.io/upload/image/1702296208.jpg"
+      },
+      {
+        "id": 15,
         "categoryId": "Snacks",
         "subCategoryId": "Rice",
         "foodName": "chicken Burger",
@@ -92,7 +144,7 @@
         "imgLink": "http://backend.ap.loclx.io/upload/image/1702296182.jpg"
       },
       {
-        "id": 14,
+        "id": 16,
         "categoryId": "Snacks",
         "subCategoryId": "soft drinks",
         "foodName": "Mojo",

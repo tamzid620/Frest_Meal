@@ -18,8 +18,8 @@ const Menu = () => {
   useEffect(() => {
     // get method --------------------
     axios
-      // .get("https://backend.ap.loclx.io/api/food-item-list")
-      .get("food-item-list.json")
+      .get("https://backend.ap.loclx.io/api/food-item-list")
+      // .get("food-item-list.json")
       .then((res) => {
         setMenus(res.data.foodItem);
       })

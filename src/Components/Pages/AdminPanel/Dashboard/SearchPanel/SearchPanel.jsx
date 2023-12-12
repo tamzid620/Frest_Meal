@@ -92,6 +92,12 @@ const SearchPanel = () => {
                       Food Item
                     </li>
                   </Link>
+                  <hr className="mt-1 border-black" />
+                  <Link to="/adminPackageList">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Package
+                    </li>
+                  </Link>
                 </ul>
               </details>
 
