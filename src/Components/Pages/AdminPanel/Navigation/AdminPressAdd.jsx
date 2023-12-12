@@ -1,15 +1,14 @@
-import {  useState } from "react";
+import { useState } from "react";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../Layout/Loading";
 
-
 const AdminPressAdd = () => {
-
-    const [loading,setLoading] =useState(false);
-    const navigate = useNavigate()
+  
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     eventName: "",
     eventDate: "",
@@ -51,8 +50,8 @@ const AdminPressAdd = () => {
       bodyFormData.append("description", formData.description);
       bodyFormData.append("image", formData.image);
 
-// post  data ---------------
-setLoading(true)
+      // post  data ---------------
+      setLoading(true);
       axios
         .post("https://backend.ap.loclx.io/api/add-press", bodyFormData, {
           headers: headers,
@@ -73,7 +72,7 @@ setLoading(true)
             image: null,
           });
           navigate("/adminPressList");
-          setLoading(false)
+          setLoading(false);
         })
         .catch((error) => {
           Swal.fire({
@@ -84,31 +83,34 @@ setLoading(true)
             timer: 1500,
           });
         });
-       
     }
   };
 
-    return (
-        <div className="text-yellow-500 bg-gray-300 min-h-screen">
-        <div className="fixed z-10 w-full">
-          <SearchPanel />
-        </div>
-  
-        {/* main section  */}
-        <div className="flex justify-center ">
-          <div className="mt-24 w-full">
-            <h1 className="text-3xl flex justify-center text-black uppercase">
-              Add Press
-            </h1>
-            <hr className="mt-1 border border-black " />
-            {/* form section */}
-            {!loading && <form onSubmit={handleSubmit} className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10">
+  return (
+    <div className="text-yellow-500 bg-gray-300 min-h-screen">
+      <div className="fixed z-10 w-full">
+        <SearchPanel />
+      </div>
+
+      {/* main section  */}
+      <div className="flex justify-center ">
+        <div className="mt-24 w-full">
+          <h1 className="text-3xl flex justify-center text-black uppercase">
+            Add Press
+          </h1>
+          <hr className="mt-1 border border-black " />
+          {/* form section */}
+          {!loading && (
+            <form
+              onSubmit={handleSubmit}
+              className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
+            >
               {/* --------- name and eventDate input -------- */}
               <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
                 {/* name input  */}
                 <div className="flex flex-col mb-4">
                   <label htmlFor="eventName" className="mb-2 font-bold text-lg">
-                   Event Name:
+                    Event Name:
                   </label>
                   <input
                     type="text"
@@ -138,8 +140,8 @@ setLoading(true)
               </div>
               {/* --------- phoneNO and description input -------- */}
               <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
-{/* image input  */}
-<div className="flex flex-col mb-4">
+                {/* image input  */}
+                <div className="flex flex-col mb-4">
                   <label htmlFor="image" className="mb-2 font-bold text-lg">
                     Image:
                   </label>
@@ -154,7 +156,10 @@ setLoading(true)
                 </div>
                 {/* description input  */}
                 <div className="flex flex-col mb-4">
-                  <label htmlFor="description" className="mb-2 font-bold text-lg">
+                  <label
+                    htmlFor="description"
+                    className="mb-2 font-bold text-lg"
+                  >
                     description:
                   </label>
                   <input
@@ -169,21 +174,22 @@ setLoading(true)
                 </div>
               </div>
 
-  {/* ---------submit button --------- */}
-  <div className="flex justify-center">
-              <button
-                type="submit"
-                className="px-4 py-2 mt-4 bg-yellow-500 text-white border  border-black rounded-md hover:bg-yellow-600 hover:text-black"
-              >
-                Submit
-              </button>
-  </div>
-            </form>}
-              {loading && <Loading/>}
-          </div>
+              {/* ---------submit button --------- */}
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="px-4 py-2 mt-4 bg-yellow-500 text-white border  border-black rounded-md hover:bg-yellow-600 hover:text-black"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          )}
+          {loading && <Loading />}
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default AdminPressAdd;
