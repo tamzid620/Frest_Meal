@@ -1,0 +1,200 @@
+{
+    "category": [
+      {
+        "id": 2,
+        "categoryName": "Drinks",
+        "categoryCode": "120",
+        "description": "ami dinner kori nai tai lunch korbo",
+        "created_at": "2023-11-22T08:20:03.000000Z",
+        "updated_at": "2023-12-12T08:16:28.000000Z",
+        "fooditems": [
+          {
+            "id": 2,
+            "categoryId": 2,
+            "subCategoryId": 4,
+            "foodName": "chicken Burger",
+            "foodCode": "34325",
+            "description": "fdfg,afjff,fjff",
+            "rating": 3.7,
+            "image": "1701689641.jpg",
+            "price": "300",
+            "created_at": "2023-11-23T09:33:09.000000Z",
+            "updated_at": "2023-12-04T11:34:01.000000Z"
+          },
+          {
+            "id": 4,
+            "categoryId": 2,
+            "subCategoryId": 3,
+            "foodName": "Mojo",
+            "foodCode": "500",
+            "description": "a soft drink from bangladesh",
+            "rating": 5,
+            "image": "1701689819.jpg",
+            "price": "25",
+            "created_at": "2023-12-03T06:22:58.000000Z",
+            "updated_at": "2023-12-04T11:36:59.000000Z"
+          },
+          {
+            "id": 15,
+            "categoryId": 2,
+            "subCategoryId": 3,
+            "foodName": "Milano",
+            "foodCode": "5302",
+            "description": "Meat Pizza",
+            "rating": 4,
+            "image": "1702369284.jpg",
+            "price": "200",
+            "created_at": "2023-12-12T08:21:24.000000Z",
+            "updated_at": "2023-12-12T08:21:24.000000Z"
+          },
+          {
+            "id": 16,
+            "categoryId": 2,
+            "subCategoryId": 1,
+            "foodName": "abc",
+            "foodCode": "2222",
+            "description": "ujoihoaifhoiah",
+            "rating": 5,
+            "image": "1702369529.jpg",
+            "price": "120",
+            "created_at": "2023-12-12T08:25:29.000000Z",
+            "updated_at": "2023-12-12T08:25:29.000000Z"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "categoryName": "Meals",
+        "categoryCode": "125",
+        "description": "asdfaF",
+        "created_at": "2023-11-22T08:20:24.000000Z",
+        "updated_at": "2023-12-12T08:16:47.000000Z",
+        "fooditems": [
+          {
+            "id": 9,
+            "categoryId": 3,
+            "subCategoryId": 6,
+            "foodName": "sena",
+            "foodCode": "1210",
+            "description": "sena kollan moida",
+            "rating": 5,
+            "image": "1701689867.jpeg",
+            "price": "65",
+            "created_at": "2023-12-04T09:25:01.000000Z",
+            "updated_at": "2023-12-04T11:37:47.000000Z"
+          },
+          {
+            "id": 10,
+            "categoryId": 3,
+            "subCategoryId": 6,
+            "foodName": "chocolate icebar",
+            "foodCode": "100",
+            "description": "icecream",
+            "rating": 5,
+            "image": "1701765982.png",
+            "price": "100",
+            "created_at": "2023-12-05T08:45:41.000000Z",
+            "updated_at": "2023-12-05T08:46:22.000000Z"
+          },
+          {
+            "id": 17,
+            "categoryId": 3,
+            "subCategoryId": 5,
+            "foodName": "bcd",
+            "foodCode": "3333",
+            "description": "a soft options for diet",
+            "rating": 5,
+            "image": "1702370083.jpg",
+            "price": "1111",
+            "created_at": "2023-12-12T08:34:43.000000Z",
+            "updated_at": "2023-12-12T08:34:43.000000Z"
+          },
+          {
+            "id": 20,
+            "categoryId": 3,
+            "subCategoryId": 6,
+            "foodName": "shena",
+            "foodCode": "500",
+            "description": "fdfg,afjff,fjff",
+            "rating": 5,
+            "image": "1702370643.jpg",
+            "price": "54",
+            "created_at": "2023-12-12T08:44:03.000000Z",
+            "updated_at": "2023-12-12T08:44:03.000000Z"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "categoryName": "Snacks",
+        "categoryCode": "111120",
+        "description": "Nasta Paani",
+        "created_at": "2023-12-11T11:58:29.000000Z",
+        "updated_at": "2023-12-11T11:58:29.000000Z",
+        "fooditems": [
+          {
+            "id": 13,
+            "categoryId": 4,
+            "subCategoryId": 7,
+            "foodName": "chicken Burger",
+            "foodCode": "34325",
+            "description": "a",
+            "rating": 5,
+            "image": "1702296182.jpg",
+            "price": "1111",
+            "created_at": "2023-12-11T12:03:02.000000Z",
+            "updated_at": "2023-12-11T12:03:02.000000Z"
+          },
+          {
+            "id": 14,
+            "categoryId": 4,
+            "subCategoryId": 4,
+            "foodName": "Mojo",
+            "foodCode": "34325",
+            "description": "a soft drink from bangladesh",
+            "rating": 5,
+            "image": "1702296208.jpg",
+            "price": "125",
+            "created_at": "2023-12-11T12:03:28.000000Z",
+            "updated_at": "2023-12-11T12:03:28.000000Z"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "categoryName": "Dessert",
+        "categoryCode": "221120",
+        "description": "Icecream",
+        "created_at": "2023-12-11T11:58:54.000000Z",
+        "updated_at": "2023-12-11T11:58:54.000000Z",
+        "fooditems": [
+          {
+            "id": 11,
+            "categoryId": 5,
+            "subCategoryId": 9,
+            "foodName": "abc",
+            "foodCode": "500",
+            "description": "dfaasdf",
+            "rating": 4,
+            "image": "1702296089.jpg",
+            "price": "230",
+            "created_at": "2023-12-11T12:01:29.000000Z",
+            "updated_at": "2023-12-11T12:01:29.000000Z"
+          },
+          {
+            "id": 12,
+            "categoryId": 5,
+            "subCategoryId": 8,
+            "foodName": "Sada Pani",
+            "foodCode": "500",
+            "description": "kala",
+            "rating": 5,
+            "image": "1702296136.jpeg",
+            "price": "1111",
+            "created_at": "2023-12-11T12:02:16.000000Z",
+            "updated_at": "2023-12-11T12:02:16.000000Z"
+          }
+        ]
+      }
+    ]
+  }

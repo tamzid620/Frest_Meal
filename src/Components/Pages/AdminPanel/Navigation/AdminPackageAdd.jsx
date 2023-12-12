@@ -7,47 +7,23 @@ import Select from "react-select";
 
 const AdminPackageAdd = () => {
   const navigate = useNavigate();
+  const [packages, setPackages] = useState([]);
   const [formData, setFormData] = useState({
     packageName: "",
-    items: [],
+    menu: "",
+    foodItems: [],
     numberOfPeople: "",
     price: "",
-    menu: "",
-    item: "",
   });
-  const [packages, setPackages] = useState([]);
-  const [selectedMenu, setSelectedMenu] = useState(null);
-  const [selectedItems, setSelectedItems] = useState([]);
 
-  const handleItemChange = (selectedOption) => {
-    setSelectedItems(selectedOption);
-  };
-
-  const handleRemoveItem = (removedItem) => {
-    const updatedItems = selectedItems.filter(
-      (item) => item.value !== removedItem.value
-    );
-    setSelectedItems(updatedItems);
-  };
-
-  const handleChange = (e) => {
+  const handleChange = (selectedOption, name) => {
     setFormData((prevData) => ({
       ...prevData,
-      [e.target.name]: e.target.value,
-      // If the changed field is "item", update the "items" array
-      items:
-        e.target.name === "item"
-          ? [...prevData.items, e.target.value]
-          : prevData.items,
+      [name]: selectedOption,
     }));
   };
-
-  const handleMenuChange = (e) => {
-    const selectedCategoryId = e.target.value;
-    setSelectedMenu(
-      packages.find((category) => category.id == selectedCategoryId)
-    );
-  };
+  
+   
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -69,7 +45,8 @@ const AdminPackageAdd = () => {
 
       //get dropdown list method ---------------
       axios
-        .get(`https://backend.ap.loclx.io/api/get-dropdown-food-item`, {
+        // .get(`https://backend.ap.loclx.io/api/get-dropdown-food-item`, {
+        .get(`get-dropdown-food-item.json`, {
           headers: headers,
         })
         .then((res) => {
@@ -127,10 +104,7 @@ const AdminPackageAdd = () => {
                   </label>
                   <select
                     name="menu"
-                    onChange={(e) => {
-                      handleChange(e);
-                      handleMenuChange(e);
-                    }}
+                    onChange={handleChange}
                     className="w-full p-2 border rounded text-black"
                   >
                     <option value="">Select Menu</option>
@@ -141,42 +115,29 @@ const AdminPackageAdd = () => {
                     ))}
                   </select>
                 </div>
-                {/* Dropdown for Items */}
-                <div className="mb-4">
-                  <label className="block text-sm font-bold mb-2">Items </label>
-                  <Select className="text-black"
-                    isMulti
-                    name="itemList"
-                    value={selectedItems}
-                    onChange={handleItemChange}
-                    options={
-                      selectedMenu &&
-                      selectedMenu.fooditems.map((foodItem) => ({
-                        value: foodItem.foodName,
-                        label: foodItem.foodName,
-                      }))
-                    }
-                  />
-                </div>
-              </div>
 
-              {/* Item List */}
-              <div className="mb-4">
-                <label className="block text-sm font-bold mb-2">
-                  Selected Items
-                </label>
-                {selectedItems.map((item) => (
-                  <div key={item.value} className="flex items-center mb-2">
-                    <span className="mr-2">{item.label}</span>
-                    <button
-                      type="button"
-                      className="text-red-500"
-                      onClick={() => handleRemoveItem(item)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                ))}
+      {/* Dropdown for Items */}
+      <div className="mb-4">
+        <label className="block text-sm font-bold mb-2">Items </label>
+        <Select
+          isMulti
+          name="foodItems"
+          className=" text-black"
+          onChange={(selectedOption) =>
+            handleChange(selectedOption, "foodItems")
+            
+          }
+          options={
+            packages.flatMap((category) =>
+              category.fooditems.map((foodItem) => ({
+                value: foodItem.foodName,
+                label: foodItem.foodName,
+              }))
+            )
+          }
+        />
+      </div>
+
               </div>
 
               <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
@@ -186,7 +147,7 @@ const AdminPackageAdd = () => {
                     Number of People
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     name="numberOfPeople"
                     onChange={handleChange}
                     className="w-full p-2 border rounded text-black"
