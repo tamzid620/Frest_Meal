@@ -153,13 +153,13 @@ const router = createBrowserRouter([
         path: "/adminFoodItemAdd",
         element: <AdminFoodItemAdd />,
       },
-      //Food Item section  -------------------------
+      //Package section  -------------------------
       {
         path: "/adminPackageList",
         element: <AdminPackageList />,
       },
       {
-        path: "/adminPackageEdit",
+        path: "/adminPackageEdit/:packageId",
         element: <AdminPackageEdit />,
       },
       {

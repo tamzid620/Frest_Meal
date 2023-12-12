@@ -12,7 +12,7 @@ const AdminPackageAdd = () => {
     packageName: "",
     menu: "",
     foodItems: [],
-    numberOfPeople: "",
+    numOfPeople: "",
     price: "",
   });
 
@@ -22,8 +22,6 @@ const AdminPackageAdd = () => {
       [name]: selectedOption,
     }));
   };
-  
-   
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -59,9 +57,47 @@ const AdminPackageAdd = () => {
   }, [navigate]);
   console.log(packages);
 
-  const handleSubmit = async (e) => {
+  // handle submit button ----------------
+  const handleSubmit = (e) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+
     e.preventDefault();
-    console.log("Form Data:", formData);
+    const data = new FormData();
+    data.append("packageName", formData.packageName);
+    data.append("menu", formData.menu);
+    data.append("foodItems", JSON.stringify(formData.foodItems));
+    data.append("numOfPeople", formData.numOfPeople);
+    data.append("price", formData.price);
+    console.log(data);
+    // post method --------------
+    axios
+      .post("https://backend.ap.loclx.io/api/add-food-item", data, {
+        headers: headers,
+      })
+      .then((res) => {
+        console.log("Data:", res.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/adminFoodItem");
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: "An error occurred: " + error,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
 
   return (
@@ -116,28 +152,24 @@ const AdminPackageAdd = () => {
                   </select>
                 </div>
 
-      {/* Dropdown for Items */}
-      <div className="mb-4">
-        <label className="block text-sm font-bold mb-2">Items </label>
-        <Select
-          isMulti
-          name="foodItems"
-          className=" text-black"
-          onChange={(selectedOption) =>
-            handleChange(selectedOption, "foodItems")
-            
-          }
-          options={
-            packages.flatMap((category) =>
-              category.fooditems.map((foodItem) => ({
-                value: foodItem.foodName,
-                label: foodItem.foodName,
-              }))
-            )
-          }
-        />
-      </div>
-
+                {/* Dropdown for Items */}
+                <div className="mb-4">
+                  <label className="block text-sm font-bold mb-2">Items </label>
+                  <Select
+                    isMulti
+                    name="foodItems"
+                    className=" text-black"
+                    onChange={(selectedOption) =>
+                      handleChange(selectedOption, "foodItems")
+                    }
+                    options={packages.flatMap((category) =>
+                      category.fooditems.map((foodItem) => ({
+                        value: foodItem.foodName,
+                        label: foodItem.foodName,
+                      }))
+                    )}
+                  />
+                </div>
               </div>
 
               <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
@@ -148,7 +180,7 @@ const AdminPackageAdd = () => {
                   </label>
                   <input
                     type="number"
-                    name="numberOfPeople"
+                    name="numOfPeople"
                     onChange={handleChange}
                     className="w-full p-2 border rounded text-black"
                   />
@@ -177,6 +209,7 @@ const AdminPackageAdd = () => {
               </div>
             </form>
           </div>
+          
         </div>
       </div>
     </div>
