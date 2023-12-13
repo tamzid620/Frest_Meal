@@ -54,8 +54,7 @@ const AdminPackageEdit = () => {
 
       //get dropdown list method ---------------
       axios
-        // .get(`https://backend.ap.loclx.io/api/get-dropdown-food-item`, {
-        .get(`get-dropdown-food-item.json`, {
+        .get(`https://backend.ap.loclx.io/api/get-dropdown-food-item`, {
           headers: headers,
         })
         .then((res) => {
@@ -67,7 +66,7 @@ const AdminPackageEdit = () => {
     }
       // Fetch data using axios
   axios
-  .get(`https://backend.ap.loclx.io/api/press-edit/${packageId}`)
+  .get(`https://backend.ap.loclx.io/api/package-edit/${packageId}`)
   .then((res) => {
     // setPackageData(res.data);
     const packageData = res.data.category;

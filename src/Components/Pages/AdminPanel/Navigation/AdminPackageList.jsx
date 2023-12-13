@@ -11,7 +11,7 @@ const AdminPackageList = () => {
 
 
     const [loading,setLoading] =useState(false);
-    const [press, setPress] = useState([]);
+    const [packages, setPackages] = useState([]);
   
     useEffect(() => {
       const token = localStorage.getItem("token");
@@ -33,22 +33,22 @@ const AdminPackageList = () => {
         // get foodItem data ---------------
         setLoading(true)
         axios
-          .get(`https://backend.ap.loclx.io/api/press-list`, {
+          .get(`https://backend.ap.loclx.io/api/package-list`, {
             headers: headers,
           })
           .then((res) => {
-            setPress(res.data.press);
+            setPackages(res.data.packages);
             setLoading(false)
           })
           .catch((error) => {
             console.log(error);
           });
-          console.log(press);
+          console.log(packages);
       }
-    }, []);
+    }, []); 
 
 // delete section----------------
-  const handleDelete = (pressId) => {
+  const handleDelete = (packageId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
       accept: "application/json",
@@ -56,12 +56,12 @@ const AdminPackageList = () => {
     };
 
     axios
-      .delete(`https://backend.ap.loclx.io/api/press-delete/${pressId}`, {
+      .delete(`https://backend.ap.loclx.io/api/package-delete/${packageId}`, {
         headers: headers,
       })
       .then((res) => {
-        setPress((prevpress) =>
-          prevpress.filter((pres) => pres.id !== pressId)
+        setPackages((prevpackages) =>
+          prevpackages.filter((packageItem) => packageItem.id !== packageId)
         );
         Swal.fire({
           position: "center",
@@ -76,7 +76,7 @@ const AdminPackageList = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "Error deleting pres",
+          title: "Error deleting packages",
           text: error.message,
           showConfirmButton: true,
         });
@@ -119,21 +119,23 @@ const AdminPackageList = () => {
                     <th>Package Name</th>
                     <th>items</th>
                     <th>Number Of People</th>
+                    <th>Price</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {press.map((pres, index) => (
-                    <tr key={pres.id}>
+                  {packages.map((packageItem, index) => (
+                    <tr key={packageItem.id}>
                       <th>{index + 1}</th>
-                      <td>{pres.eventName}</td>
-                      <td>{pres.eventDate}</td>
-                      <td>{pres.description}</td>
+                      <td>{packageItem.packageName}</td>
+                      <td>{packageItem.foodItems}</td>
+                      <td>{packageItem.numOfPeople}</td>
+                      <td>{packageItem.price}</td>
                       <td>
                       <div className="flex items-center gap-2">
                           {/* Edit button  */}
                           <Link to=
-                            {`/adminPackageEdit/${pres.id}`}
+                            {`/adminPackageEdit/${packageItem.id}`}
                           // "/adminTeachersEdit"
                           >
                             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
@@ -142,7 +144,7 @@ const AdminPackageList = () => {
                           </Link>
                           {/* Delete button   */}
                           <button
-                            onClick={() => handleDelete(pres.id)}
+                            onClick={() => handleDelete(packageItem.id)}
                             className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
                           >
                             Delete

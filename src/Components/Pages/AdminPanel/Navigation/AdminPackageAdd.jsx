@@ -8,20 +8,33 @@ import Select from "react-select";
 const AdminPackageAdd = () => {
   const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
-  const [formData, setFormData] = useState({
-    packageName: "",
-    menu: "",
-    foodItems: [],
-    numOfPeople: "",
-    price: "",
-  });
 
-  const handleChange = (selectedOption, name) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: selectedOption,
-    }));
+  const [packageName, setPackageName] = useState("");
+  const [menu, setMenu] = useState("");
+  const [foodItems, setFoodItems] = useState("");
+  const [numOfPeople, setNumOfPeople] = useState("");
+  const [price, setPrice] = useState("");
+
+  const handlePackageNameChange = (e) => {
+    setPackageName(e.target.value);
   };
+  const handleMenuChange = (e) => {
+    setMenu(e.target.value);
+  };
+
+  const handleNumOfPeopleChange = (e) => {
+    setNumOfPeople(e.target.value);
+  };
+  const handlePriceChange = (e) => {
+    setPrice(e.target.value);
+  };
+
+  const handleFoodItemsChange = (selectedOptions) => {
+    const selectedValues = selectedOptions.map(option => option.value);
+    setFoodItems(selectedValues);
+  };
+ 
+  
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -43,8 +56,7 @@ const AdminPackageAdd = () => {
 
       //get dropdown list method ---------------
       axios
-        // .get(`https://backend.ap.loclx.io/api/get-dropdown-food-item`, {
-        .get(`get-dropdown-food-item.json`, {
+        .get(`https://backend.ap.loclx.io/api/get-dropdown-food-item`, {
           headers: headers,
         })
         .then((res) => {
@@ -55,7 +67,6 @@ const AdminPackageAdd = () => {
         });
     }
   }, [navigate]);
-  console.log(packages);
 
   // handle submit button ----------------
   const handleSubmit = (e) => {
@@ -67,15 +78,15 @@ const AdminPackageAdd = () => {
 
     e.preventDefault();
     const data = new FormData();
-    data.append("packageName", formData.packageName);
-    data.append("menu", formData.menu);
-    data.append("foodItems", JSON.stringify(formData.foodItems));
-    data.append("numOfPeople", formData.numOfPeople);
-    data.append("price", formData.price);
+    data.append("packageName", packageName);
+    data.append("menu", menu);
+    data.append("foodItems", JSON.stringify(foodItems));
+    data.append("numOfPeople", numOfPeople);
+    data.append("price",price);
     console.log(data);
     // post method --------------
     axios
-      .post("https://backend.ap.loclx.io/api/add-food-item", data, {
+      .post("https://backend.ap.loclx.io/api/add-package", data, {
         headers: headers,
       })
       .then((res) => {
@@ -87,7 +98,7 @@ const AdminPackageAdd = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/adminFoodItem");
+        navigate("/adminPackageList");
       })
       .catch((error) => {
         Swal.fire({
@@ -121,13 +132,15 @@ const AdminPackageAdd = () => {
             >
               {/* Package Name */}
               <div className="mb-4">
-                <label className="block text-sm font-bold mb-2">
+                <label htmlFor="" className="block text-sm font-bold mb-2">
                   Package Name
                 </label>
                 <input
                   type="text"
                   name="packageName"
-                  onChange={handleChange}
+                  id="packageName"
+                  value={packageName}
+                   onChange={handlePackageNameChange}
                   className="w-full p-2 border rounded text-black"
                 />
               </div>
@@ -135,12 +148,13 @@ const AdminPackageAdd = () => {
               <div className="grid sm: grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-5">
                 {/* Dropdown for Menu */}
                 <div className="mb-4">
-                  <label className="block text-sm font-bold mb-2">
+                  <label htmlFor="menu" className="block text-sm font-bold mb-2">
                     Menu Category
                   </label>
                   <select
-                    name="menu"
-                    onChange={handleChange}
+                    name="menu" id=""
+                    value={menu}
+                     onChange={handleMenuChange}
                     className="w-full p-2 border rounded text-black"
                   >
                     <option value="">Select Menu</option>
@@ -154,14 +168,13 @@ const AdminPackageAdd = () => {
 
                 {/* Dropdown for Items */}
                 <div className="mb-4">
-                  <label className="block text-sm font-bold mb-2">Items </label>
+                  <label htmlFor="foodItems" className="block text-sm font-bold mb-2">Items </label>
                   <Select
                     isMulti
                     name="foodItems"
+                    id="foodItems"
+                    onChange={handleFoodItemsChange}
                     className=" text-black"
-                    onChange={(selectedOption) =>
-                      handleChange(selectedOption, "foodItems")
-                    }
                     options={packages.flatMap((category) =>
                       category.fooditems.map((foodItem) => ({
                         value: foodItem.foodName,
@@ -175,24 +188,27 @@ const AdminPackageAdd = () => {
               <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
                 {/* Number of People */}
                 <div className="mb-4">
-                  <label className="block text-sm font-bold mb-2">
+                  <label htmlFor="numOfPeople" className="block text-sm font-bold mb-2">
                     Number of People
                   </label>
                   <input
                     type="number"
                     name="numOfPeople"
-                    onChange={handleChange}
+                    id="numOfPeople"
+                    value={numOfPeople}
+                    onChange={handleNumOfPeopleChange}
                     className="w-full p-2 border rounded text-black"
                   />
                 </div>
 
                 {/* Price */}
                 <div className="mb-6">
-                  <label className="block text-sm font-bold mb-2">Price</label>
+                  <label htmlFor="price" className="block text-sm font-bold mb-2">Price</label>
                   <input
                     type="text"
-                    name="price"
-                    onChange={handleChange}
+                    name="price" id=""
+                    value={price}
+                     onChange={handlePriceChange}
                     className="w-full p-2 border rounded text-black"
                   />
                 </div>
