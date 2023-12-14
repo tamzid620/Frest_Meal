@@ -4,13 +4,19 @@ import marketien from "../../../../public/icons/Main Logo White-01.png";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import showPasswordIcon from '../../../../public/icons/show-password-icon-19.jpg'
+import hidePasswordIcon from '../../../../public/icons/show-password-icon-18.jpg'
 
-function AdminLogin() {
+function AdminLogin()  {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -54,14 +60,13 @@ function AdminLogin() {
         else if(res.data.role ==="2"){
         navigate("/deliverymanPanel");
         }
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Successfully Logged In",
-            showConfirmButton: false,
-            timer: 1500,
-        });
-
+      //   Swal.fire({
+      //     position: "center",
+      //     icon: "success",
+      //     title: "Successfully Logged In",
+      //     showConfirmButton: false,
+      //     timer: 1500,
+      // });
         
       } else if (res.data.status === "403") {
         Swal.fire({
@@ -102,6 +107,7 @@ function AdminLogin() {
           className="bg-gray-800 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
         >
           <h1 className="font-semibold text-white text-center mb-3">Admin Login Only</h1>
+          {/* email field  */}
           <div className="mb-4">
             <label
               className="block text-white text-sm font-bold mb-2"
@@ -120,6 +126,7 @@ function AdminLogin() {
             />
             <span className="text-red-600">{emailError}</span>
           </div>
+          {/* password field  */}
           <div className="mb-6">
             <label
               className="block text-white text-sm font-bold mb-2"
@@ -127,17 +134,64 @@ function AdminLogin() {
             >
               Password
             </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
+            <div className="relative">
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                id="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <span
+                onClick={handleShowPassword}
+                className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
+              >
+                {showPassword ? (
+                  // <svg
+                  //   xmlns="http://www.w3.org/2000/svg"
+                  //   className="h-6 w-6 text-gray-500"
+                  //   fill="none"
+                  //   viewBox="0 0 24 24"
+                  //   stroke="currentColor"
+                  // >
+                  //   <path
+                  //     strokeLinecap="round"
+                  //     strokeLinejoin="round"
+                  //     strokeWidth="2"
+                  //     d="M6 18L18 6M6 6l12 12"
+                  //   />
+                  // </svg>
+                   <img className="w-[20px] h-[20px]" src={showPasswordIcon} alt="" />
+                ) : (
+                  // <svg
+                  //   xmlns="http://www.w3.org/2000/svg"
+                  //   className="h-6 w-6 text-gray-500"
+                  //   fill="none"
+                  //   viewBox="0 0 24 24"
+                  //   stroke="currentColor"
+                  // >
+                  //   <path
+                  //     strokeLinecap="round"
+                  //     strokeLinejoin="round"
+                  //     strokeWidth="2"
+                  //     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  //   />
+                  //   <path
+                  //     strokeLinecap="round"
+                  //     strokeLinejoin="round"
+                  //     strokeWidth="2"
+                  //     d="M17 21a2 2 0 01-2 2H9a2 2 0 01-2-2v-2a6 6 0 018-5.74"
+                  //   />
+                  // </svg>
+                   <img className="w-[20px] h-[20px]" src={hidePasswordIcon} alt="" />
+                )}
+              </span>
+            </div>
             <span className="text-red-600">{passwordError}</span>
           </div>
+          {/* login button  */}
           <div className="flex items-center justify-between">
             <button
               className="bg-yellow-300 hover:bg-yellow-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
@@ -150,7 +204,7 @@ function AdminLogin() {
 
           <button className="mt-5  bg-yellow-300 hover:bg-yellow-500 font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
             <a className="flex justify-center" href="/">
-              return home
+              Return Home
             </a>
           </button>
           <hr className="my-5 border border-yellow-300" />

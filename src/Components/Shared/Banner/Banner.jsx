@@ -2,13 +2,12 @@ import { Link } from "react-router-dom";
 import banner from "../../../../public/images/banner.png";
 
 const Banner = () => {
-
   return (
     <div
       style={{ backgroundImage: `url(${banner})` }}
       className=" gap-10 text-lg font-semibold pt-[100px]"
     >
-      <div className="max-w-screen-xl mx-auto flex items-center justify-center py-20">
+      <div className="max-w-screen-xl mx-auto flex items-center lg:ms-10 lg:py-[100px] md:py-[100px] sm: pb-[100px]">
         {/* banner heading paragraph-------------- */}
         <div className=" sm: ms-2 sm:me-2 lg:ms-0 lg:me-0">
           <div className="flex items-center mb-4">
@@ -23,14 +22,14 @@ const Banner = () => {
                 alt=""
               />
             </div>
-            {/* // <img src="./icons/logo-svg.png" alt="" /> */}
           </div>
           <div>
             <h1
               style={{ fontFamily: "Mooli, sans-serif" }}
               className="text-white text-4xl mb-5 font-bold font"
             >
-              The World Best <span className="text-[#FFD700]">Restaurent</span> Website
+              The World Best <span className="text-[#FFD700]">Restaurent</span>{" "}
+              Website
             </h1>
             <p className="text-white">
               {" "}
@@ -49,12 +48,7 @@ const Banner = () => {
             </Link>
           </div>
         </div>
-        {/* banner image----- */}
-        <div className="hidden sm:block">
-          <div className="">
-            <img src="./images/straw.png" />
-          </div>
-        </div>
+        
       </div>
     </div>
   );

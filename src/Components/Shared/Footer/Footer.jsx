@@ -128,7 +128,7 @@ const Footer = () => {
        </footer>
        <footer className="copyright">
            <div className=" py-3 mt-16  flex justify-center bg-yellow-500">
-               <h1 >copyright @ 2023. All rights reserved by <a href="#">Marketien</a></h1>
+               <h1 >copyright @ 2023. All rights reserved by <a href="#">MarketienIT</a></h1>
            </div>
        </footer>
             </div>

@@ -202,28 +202,27 @@ const NavigationBar = () => {
             </div>
 
             {/* create order button  */}
-            <div className=" lg:flex md:flex">
-              <button
-                title="create order"
-                className=" hover:bg-[#FFD700] hover:text-black 
- bg-[#FFD700]  text-[#808080] border-black
-  font-bold px-3 py-1 rounded-md "
-                onClick={() =>
-                  document.getElementById("my_modal_4").showModal()
-                }
-              >
-                Create Order
-              </button>
-            </div>
-          </div>
-          <dialog id="my_modal_4" className="modal">
-            {/* Modal section  */}
-            <div className="modal-box w-11/12 max-w-5xl bg-gray-800 bg-opacity-80">
-              {/* modal info  */}
-              <div className="modalForm">
-                {/* title section  */}
-                <div className="flex justify-center mb-5">
-                  {/* tittle tag */}
+<div className=" lg:flex md:flex">
+<button 
+title="create order"
+className=" hover:bg-[#FFD700] hover:text-black 
+bg-[#FFD700]  text-[#808080] border-black
+font-bold px-3 py-1 rounded-md "
+onClick={()=>document.getElementById('my_modal_3').showModal()}>Create Order</button>
+</div>
+
+<dialog id="my_modal_3" className="modal bg-black bg-opacity-40">
+  <div className="modal-box w-11/12 max-w-5xl border border-white bg-black bg-opacity-40">
+    <form method="dialog">
+      {/* if there is a button in form, it will close the modal */}
+      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white">✕</button>
+    </form>
+
+
+    <div className="modalForm my-5">
+                
+                <div className="flex justify-center mb-5 ">
+                  
                   <div>
                     <h1
                       style={{ fontFamily: "Mooli, sans-serif" }}
@@ -234,41 +233,41 @@ const NavigationBar = () => {
                     <img src="../../../../public/icons/hr.svg" alt="" />
                   </div>
                 </div>
-                {/* form section  */}
+                
                 <form
                   method="dialog"
                   className="space-y-4 "
                   onSubmit={createOrder}
                 >
-                  {/* name and phone option  */}
+                  
                   <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-3 ">
-                    {/* name option  */}
+                   
                     <div>
-                      <label htmlFor="name" className="block text-yellow-500">
+                      <label htmlFor="name" className="block text-white">
                         Name
                       </label>
                       <input
                         type="text"
                         id="name"
                         name="name"
-                        className="w-full border border-gray-300 rounded px-3 py-2"
-                        placeholder="Your Name"
+                        className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                        // placeholder="Your Name"
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
                     </div>
-                    {/* phone number option  */}
+                    
                     <div>
-                      <label htmlFor="phone" className="block text-yellow-500">
+                      <label htmlFor="phone" className="block text-white">
                         Phone
                       </label>
                       <input
                         type="tel"
                         id="phone"
                         name="phone"
-                        className="w-full border border-gray-300 rounded px-3 py-2"
-                        placeholder="Phone Number"
+                        className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                        // placeholder="Phone Number"
                         required
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
@@ -276,13 +275,13 @@ const NavigationBar = () => {
                     </div>
                   </div>
 
-                  {/* delivery and choose items option */}
+                 
                   <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-3">
-                    {/* delivery option  */}
+                   
                     <div>
                       <label
                         htmlFor="address"
-                        className="block text-yellow-500"
+                        className="block text-white"
                       >
                         Delivery Address
                       </label>
@@ -290,71 +289,66 @@ const NavigationBar = () => {
                         type="text"
                         id="address"
                         name="address"
-                        className="w-full border border-gray-300 rounded px-3 py-2"
-                        placeholder="Delivery Address"
+                        className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                        // placeholder="Delivery Address"
                         required
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                       />
                     </div>
-                    {/* choose items option  */}
+                   
                     <div>
-                      <label htmlFor="items" className="block text-yellow-500">
+                      <label htmlFor="items" className="block text-white">
                         Choose Items
                       </label>
                       <select
                         id="items"
                         name="items"
-                        className="lg:w-full md:w-64 sm:w-48 border border-gray-300 rounded px-3 py-2 text-gray-500"
-                        required
+                        className="lg:w-full md:w-64 sm:w-48 w-full bg-transparent  px-3 py-1 border-b-2 text-gray-400 border-white "
                         value={selectedItem}
                         onChange={(e) => setSelectedItem(e.target.value)}
                       >
                         <option value="item1">Item 1</option>
                         <option value="item2">Item 2</option>
                         <option value="item3">Item 3</option>
-                        {/* Add more items as needed */}
+                        
                       </select>
                     </div>
                   </div>
 
-                  {/* special request option  */}
+                 
                   <div>
-                    <label htmlFor="request" className="block text-yellow-500">
+                    <label htmlFor="request" className="block text-white">
                       Special Request
                     </label>
                     <textarea
                       id="request"
                       name="request"
-                      className="w-full border border-gray-300 rounded px-3 py-2"
+                      className="w-full bg-transparent  px-3 py-1 border-b-2 text-white border-white"
                       rows="3"
-                      placeholder="Custom Order"
+                      placeholder="create Custom Order"
                       value={specialRequest}
                       onChange={(e) => setSpecialRequest(e.target.value)}
                     ></textarea>
                   </div>
 
-                  {/* submit button  */}
+                  <div className="flex justify-center ">
                   <button
                     type="submit"
                     onClick={(e) => createOrder(e)}
-                    className="hover:bg-[#FFD700] hover:text-black bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 rounded-md"
+                    className="mt-5 hover:bg-[#FFD700] hover:text-black bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 rounded-md"
                   >
                     Create Order
                   </button>
+                  </div>
                 </form>
               </div>
 
-              {/* close button  */}
-              <div className="modal-action">
-                <form method="dialog">
-                  <button className="hover:bg-[#FFD700] hover:text-black bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 rounded-md">
-                    Close
-                  </button>
-                </form>
-              </div>
-            </div>
-          </dialog>
+  </div>
+</dialog>
+
+          </div>
+
         </div>
         
       </ul>
