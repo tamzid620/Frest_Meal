@@ -11,38 +11,37 @@ const AdminPackageEdit = () => {
   const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
 
+  const [id, setId] = useState("");
   const [packageName, setPackageName] = useState("");
   const [menu, setMenu] = useState("");
   const [foodItems, setFoodItems] = useState([]);
   const [numOfPeople, setNumOfPeople] = useState("");
   const [price, setPrice] = useState("");
-  const [packageData, setPackageData] = useState({
-    packageName: "",
-    menu: "",
-    foodItems: [],
-    numOfPeople: "",
-    price: "",
-  });
 
-  const handlePackageNameChange = (e) => {
-    setPackageName({...packageData, packageName: e.target.value });
-  };
-  const handleMenuChange = (e) => {
-    setMenu({...packageData, menu: e.target.value });
+  const handleIdChange = (e) => {
+    setId(e.target.value);
   };
   
-  const handleFoodItemsChange = (selectedOptions) => {
-    const selectedValues = selectedOptions.map((option) => option.value);
-    setFoodItems({...packageData, foodItems: selectedValues });
+  const handlePackageNameChange = (e) => {
+    setPackageName(e.target.value);
   };
-
-
+  
+  const handleMenuChange = (e) => {
+    setMenu(e.target.value);
+  };
+  
   const handleNumOfPeopleChange = (e) => {
-    setNumOfPeople({...packageData, numOfPeople: e.target.value });
+    setNumOfPeople(e.target.value);
   };
+  
   const handlePriceChange = (e) => {
-    setPrice({...packageData, price: e.target.value });
+    setPrice(e.target.value);
   };
+  const handleFoodItemsChange = (selectedOptions) => {
+    const selectedValues = selectedOptions.map(option => option.value);
+    setFoodItems(selectedValues);
+  };
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -81,21 +80,19 @@ const AdminPackageEdit = () => {
           })
           .then((res) => {
             const packageData = res.data.package;
-            setPackageData({
-              packageName: packageData.packageName,
-              menu: packageData.menu,
-              foodItems: packageData.items,
-              numOfPeople: packageData.numOfPeople,
-              price: packageData.price,
-            });
-    
+          console.log("Food Item Data:", packageData);
+          setId(packageData.id);
+          setPackageName(packageData.packageName);
+          setMenu(packageData.menu);
+          setFoodItems(packageData.items);
+          setNumOfPeople(packageData.numOfPeople);
+          setPrice(packageData.price);
           })
           .catch((error) => {
             console.error("Error fetching data:", error);
           });
     }
   }, [navigate, packageId]);
-  console.log('packages', packageData);
   console.log('packageId', packageId);
 
   // handle submit button ----------------
@@ -108,6 +105,7 @@ const AdminPackageEdit = () => {
 
     e.preventDefault();
     const data = new FormData();
+    data.append("id", id);
     data.append("packageName", packageName);
     data.append("menu", menu);
     data.append("foodItems", JSON.stringify(foodItems));
@@ -116,7 +114,7 @@ const AdminPackageEdit = () => {
     console.log(data);
     // post method --------------
     axios
-      .post("https://backend.ap.loclx.io/api/add-food-item", data, {
+      .post("https://backend.ap.loclx.io/api/package-update", data, {
         headers: headers,
       })
       .then((res) => {
@@ -128,7 +126,7 @@ const AdminPackageEdit = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/adminFoodItem");
+        navigate("/adminPackageList");
       })
       .catch((error) => {
         Swal.fire({
@@ -161,6 +159,22 @@ const AdminPackageEdit = () => {
               onSubmit={handleSubmit}
               className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
             >
+              {/* Package id */}
+              <div  className="mb-4">
+                <label htmlFor="id" className="block text-sm font-bold mb-2">
+                 
+                </label>
+                <input
+                // hidden
+                // readOnly
+                  type="text"
+                  name="id"
+                  id="id"
+                  value={id}
+                  onChange={handleIdChange} 
+                  className="w-full p-2 border rounded text-black"
+                />
+              </div>
               {/* Package Name */}
               <div className="mb-4">
                 <label htmlFor="" className="block text-sm font-bold mb-2">
@@ -170,7 +184,7 @@ const AdminPackageEdit = () => {
                   type="text"
                   name="packageName"
                   id="packageName"
-                  value={packageData.packageName}
+                  value={packageName}
                   onChange={handlePackageNameChange} 
                   className="w-full p-2 border rounded text-black"
                 />
@@ -188,7 +202,7 @@ const AdminPackageEdit = () => {
                   <select
                     name="menu"
                     id=""
-                    value={packageData.menu}
+                    value={menu}
                     onChange={handleMenuChange}
                     className="w-full p-2 border rounded text-black"
                   >
@@ -213,7 +227,7 @@ const AdminPackageEdit = () => {
                     isMulti
                     name="foodItems"
                     id="foodItems"
-                    value={packageData.foodItems}
+                    // value={foodItems}
                     onChange={handleFoodItemsChange}
                     className=" text-black"
                     options={packages.flatMap((category) =>
@@ -239,7 +253,7 @@ const AdminPackageEdit = () => {
                     type="number"
                     name="numOfPeople"
                     id="numOfPeople"
-                    value={packageData.numOfPeople}
+                    value={numOfPeople}
                     onChange={handleNumOfPeopleChange}
                     className="w-full p-2 border rounded text-black"
                   />
@@ -257,7 +271,7 @@ const AdminPackageEdit = () => {
                     type="text"
                     name="price"
                     id=""
-                    value={packageData.price}
+                    value={price}
                     onChange={handlePriceChange}
                     className="w-full p-2 border rounded text-black"
                   />
