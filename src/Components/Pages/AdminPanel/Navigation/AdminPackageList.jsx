@@ -43,9 +43,9 @@ const AdminPackageList = () => {
           .catch((error) => {
             console.log(error);
           });
-          console.log(packages);
-      }
-    }, []); 
+        }
+      }, []); 
+      console.log(packages);
 
 // delete section----------------
   const handleDelete = (packageId) => {
@@ -70,7 +70,7 @@ const AdminPackageList = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => {
         Swal.fire({
@@ -128,7 +128,7 @@ const AdminPackageList = () => {
                     <tr key={packageItem.id}>
                       <th>{index + 1}</th>
                       <td>{packageItem.packageName}</td>
-                      <td>{packageItem.foodItems}</td>
+                      <td>{packageItem.foodItems.join(',')}</td>
                       <td>{packageItem.numOfPeople}</td>
                       <td>{packageItem.price}</td>
                       <td>
@@ -136,7 +136,6 @@ const AdminPackageList = () => {
                           {/* Edit button  */}
                           <Link to=
                             {`/adminPackageEdit/${packageItem.id}`}
-                          // "/adminTeachersEdit"
                           >
                             <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
                               Edit

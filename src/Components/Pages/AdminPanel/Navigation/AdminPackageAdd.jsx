@@ -56,7 +56,7 @@ const AdminPackageAdd = () => {
 
       //get dropdown list method ---------------
       axios
-        .get(`get-dropdown-food-item.json`, {
+        .get(`https://backend.ap.loclx.io/api/get-dropdown-food-item`, {
           headers: headers,
         })
         .then((res) => {

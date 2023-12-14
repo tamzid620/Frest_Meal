@@ -10,6 +10,7 @@ import { IoIosSpeedometer } from "react-icons/io";
 import brandlogo from "../../../../../../public/icons/logo-svg.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import "./SearchPanel.css";
 
 const SearchPanel = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -20,7 +21,7 @@ const SearchPanel = () => {
 
   return (
     <div className="bg-gray-800 p-2 flex justify-between items-center">
-      {/* drawer section  */}
+      {/*--------------- drawer section-----------------  */}
       <div>
         <div className="drawer ">
           <input id="my-drawer" type="checkbox" className="drawer-toggle " />
@@ -59,7 +60,7 @@ const SearchPanel = () => {
                 </span>
               </li>
               {/*Menu section  */}
-              <details className="dropdown mb-3" open={openDropdown === 1}>
+              {/* <details className="dropdown mb-3" open={openDropdown === 1}>
                 <summary
                   onClick={() => handleDropdown()}
                   className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost "
@@ -95,10 +96,53 @@ const SearchPanel = () => {
                     </li>
                   </Link>
                 </ul>
-              </details>
+              </details> */}
+              <div className="dropdown inline-block relative z-50">
+                <button className="mb-3 rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
+                  <IoIosSpeedometer
+                    className="text-violet-500 -ms-[160px]"
+                    size={20}
+                  />
+                  Menu
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
+                  </svg>
+                </button>
+                {/* <ul className="dropdown-menu absolute hidden text-gray-700 pt-1"> */}
+                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-yellow-400 border rounded-box w-52 ">
+                  <Link to="/adminCategory">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Category
+                    </li>
+                  </Link>
+                  <hr className="mt-1 border-black" />
+                  <Link to="/adminSubCategory">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Sub Category
+                    </li>
+                  </Link>
+                  <hr className="mt-1 border-black" />
+                  <Link to="/adminFoodItem">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Food Item
+                    </li>
+                  </Link>
+                  <hr className="mt-1 border-black" />
+                  <Link to="/adminPackageList">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Package
+                    </li>
+                  </Link>
+                </ul>
+                {/* </ul> */}
+              </div>
 
               {/*Order section  */}
-              <details className="dropdown mb-3" open={openDropdown === 2}>
+              {/* <details className="dropdown mb-3" open={openDropdown === 2}>
                 <summary
                   onClick={() => handleDropdown()}
                   className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost "
@@ -122,7 +166,38 @@ const SearchPanel = () => {
                     </li>
                   </Link>
                 </ul>
-              </details>
+              </details> */}
+              <div className="dropdown inline-block relative z-10">
+                <button className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
+                  
+                <IoIosSpeedometer
+                    className="text-blue-500 -ms-[160px]"
+                    size={20}
+                  />
+                  Order
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
+                  </svg>
+                </button>
+                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-yellow-400 border rounded-box w-52 ">
+                
+                  <Link to="/adminOrderList">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Order List
+                    </li>
+                  </Link>
+                  <hr className="mt-1 border-black" />
+                  <Link to="/adminOrderDelivery">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Order Delivery
+                    </li>
+                  </Link>
+                </ul>
+              </div>
               {/* Reservation section  */}
               <Link to="/adminReservationList">
                 <li className="font-semibold text-lg mb-3">
@@ -190,7 +265,7 @@ const SearchPanel = () => {
         </div>
       </div>
 
-      {/* search section  */}
+      {/*----------------------- search section ------------------ */}
       <div className=" sm: hidden lg:flex md:flex">
         <input
           type="text"
@@ -209,6 +284,7 @@ const SearchPanel = () => {
       {/* icon and login section  */}
       <div className="flex sm: me-11 lg:me-0">
         <div className="flex items-center">
+          {/* message section  */}
           <button
             title="Wishlist"
             className=" hover:text-white text-yellow-500 font-bold px-3 py-1
@@ -217,6 +293,7 @@ const SearchPanel = () => {
             {" "}
             <BiSolidMessageRounded className="w-[25px] h-[25px]" />
           </button>
+          {/*Notifications section  */}
           <button
             title="Wishlist"
             className=" hover:text-white text-yellow-500 font-bold px-3 py-1
@@ -227,6 +304,7 @@ const SearchPanel = () => {
           </button>
         </div>
 
+        {/* profile section  */}
         <div className="flex items-center">
           <img className="w-[45px] h-[45px]" src={avatar} alt="" />
           <div className="dropdown dropdown-end">

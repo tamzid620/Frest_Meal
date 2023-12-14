@@ -16,24 +16,32 @@ const AdminPackageEdit = () => {
   const [foodItems, setFoodItems] = useState([]);
   const [numOfPeople, setNumOfPeople] = useState("");
   const [price, setPrice] = useState("");
+  const [packageData, setPackageData] = useState({
+    packageName: "",
+    menu: "",
+    foodItems: [],
+    numOfPeople: "",
+    price: "",
+  });
 
   const handlePackageNameChange = (e) => {
-    setPackageName(e.target.value);
+    setPackageName({...packageData, packageName: e.target.value });
   };
   const handleMenuChange = (e) => {
-    setMenu(e.target.value);
+    setMenu({...packageData, menu: e.target.value });
   };
-
-  const handleNumOfPeopleChange = (e) => {
-    setNumOfPeople(e.target.value);
-  };
-  const handlePriceChange = (e) => {
-    setPrice(e.target.value);
-  };
-
+  
   const handleFoodItemsChange = (selectedOptions) => {
     const selectedValues = selectedOptions.map((option) => option.value);
-    setFoodItems(selectedValues);
+    setFoodItems({...packageData, foodItems: selectedValues });
+  };
+
+
+  const handleNumOfPeopleChange = (e) => {
+    setNumOfPeople({...packageData, numOfPeople: e.target.value });
+  };
+  const handlePriceChange = (e) => {
+    setPrice({...packageData, price: e.target.value });
   };
 
   useEffect(() => {
@@ -65,24 +73,30 @@ const AdminPackageEdit = () => {
         .catch((error) => {
           console.log(error);
         });
+        
+        // Fetch data using axios
+        axios
+          .get(`https://backend.ap.loclx.io/api/package-edit/${packageId}`, {
+            headers: headers,
+          })
+          .then((res) => {
+            const packageData = res.data.package;
+            setPackageData({
+              packageName: packageData.packageName,
+              menu: packageData.menu,
+              foodItems: packageData.items,
+              numOfPeople: packageData.numOfPeople,
+              price: packageData.price,
+            });
+    
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
     }
-    // Fetch data using axios
-    axios
-      .get(`https://backend.ap.loclx.io/api/package-edit/${packageId}`)
-      .then((res) => {
-        const packageData = res.data.category;
-        setPackageName(packageData.packageName);
-        setMenu(packageData.menu);
-        setFoodItems(packageData.foodItems);
-        setNumOfPeople(packageData.numOfPeople);
-        setPrice(packageData.price);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        // Handle error if necessary
-      });
   }, [navigate, packageId]);
-  console.log(packages);
+  console.log('packages', packageData);
+  console.log('packageId', packageId);
 
   // handle submit button ----------------
   const handleSubmit = (e) => {
@@ -156,8 +170,8 @@ const AdminPackageEdit = () => {
                   type="text"
                   name="packageName"
                   id="packageName"
-                  value={packageName}
-                  onChange={handlePackageNameChange}
+                  value={packageData.packageName}
+                  onChange={handlePackageNameChange} 
                   className="w-full p-2 border rounded text-black"
                 />
               </div>
@@ -174,7 +188,7 @@ const AdminPackageEdit = () => {
                   <select
                     name="menu"
                     id=""
-                    value={menu}
+                    value={packageData.menu}
                     onChange={handleMenuChange}
                     className="w-full p-2 border rounded text-black"
                   >
@@ -199,6 +213,7 @@ const AdminPackageEdit = () => {
                     isMulti
                     name="foodItems"
                     id="foodItems"
+                    value={packageData.foodItems}
                     onChange={handleFoodItemsChange}
                     className=" text-black"
                     options={packages.flatMap((category) =>
@@ -224,7 +239,7 @@ const AdminPackageEdit = () => {
                     type="number"
                     name="numOfPeople"
                     id="numOfPeople"
-                    value={numOfPeople}
+                    value={packageData.numOfPeople}
                     onChange={handleNumOfPeopleChange}
                     className="w-full p-2 border rounded text-black"
                   />
@@ -242,7 +257,7 @@ const AdminPackageEdit = () => {
                     type="text"
                     name="price"
                     id=""
-                    value={price}
+                    value={packageData.price}
                     onChange={handlePriceChange}
                     className="w-full p-2 border rounded text-black"
                   />
