@@ -11,7 +11,7 @@ const AdminPackageAdd = () => {
 
   const [packageName, setPackageName] = useState("");
   const [menu, setMenu] = useState("");
-  const [foodItems, setFoodItems] = useState("");
+  const [foodItems, setFoodItems] = useState([]);
   const [numOfPeople, setNumOfPeople] = useState("");
   const [price, setPrice] = useState("");
 
@@ -56,7 +56,7 @@ const AdminPackageAdd = () => {
 
       //get dropdown list method ---------------
       axios
-        .get(`https://backend.ap.loclx.io/api/get-dropdown-food-item`, {
+        .get(`get-dropdown-food-item.json`, {
           headers: headers,
         })
         .then((res) => {
@@ -77,6 +77,7 @@ const AdminPackageAdd = () => {
     };
 
     e.preventDefault();
+
     const data = new FormData();
     data.append("packageName", packageName);
     data.append("menu", menu);
@@ -84,6 +85,8 @@ const AdminPackageAdd = () => {
     data.append("numOfPeople", numOfPeople);
     data.append("price",price);
     console.log(data);
+    console.log(packageName,foodItems,);
+    console.log(foodItems);
     // post method --------------
     axios
       .post("https://backend.ap.loclx.io/api/add-package", data, {
