@@ -41,6 +41,18 @@ const AdminCategoryAdd = () => {
         accept: "application/json",
         Authorization: "Bearer " + user.token,
       };
+      setLoading(true)
+      axios
+        .get(`https://backend.ap.loclx.io/api/login`, {
+          headers: headers,
+        })
+        .then((res) => {
+          setAdminCategory(res.data);
+          setLoading(false)
+        })
+        .catch((error) => {
+          console.log(error);
+    });
     }
   }, [navigate]);
   console.log(adminCategory);

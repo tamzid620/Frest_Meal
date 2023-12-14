@@ -19,7 +19,7 @@ const Menu = () => {
     // get method --------------------
     axios
       .get("https://backend.ap.loclx.io/api/food-item-list")
-      // .get("food-item-list.json")
+      
       .then((res) => {
         setMenus(res.data.foodItem);
       })
@@ -45,7 +45,6 @@ const Menu = () => {
       .then((res) => {
         console.log("Data:", res.data);
         // to refresh to form ---------------
-        // setId("")
         Swal.fire({
           position: "center",
           icon: "success",

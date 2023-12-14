@@ -7,6 +7,7 @@ const Loading = () => {
 // <div className='loading'></div>
 //     </div>
 <div className="loader">
+
   <span className="cercle1"></span>
   <span className="cercle2"></span>
   <span className="cercle3"></span>

@@ -44,6 +44,10 @@ import AdminPressAdd from "./Components/Pages/AdminPanel/Navigation/AdminPressAd
 import AdminPackageList from "./Components/Pages/AdminPanel/Navigation/AdminPackageList";
 import AdminPackageEdit from "./Components/Pages/AdminPanel/Navigation/AdminPackageEdit";
 import AdminPackageAdd from "./Components/Pages/AdminPanel/Navigation/AdminPackageAdd";
+import AdminDeliveryManList from "./Components/Pages/AdminPanel/Navigation/AdminDeliveryManList";
+import AdminDeliveryManEdit from "./Components/Pages/AdminPanel/Navigation/AdminDeliveryManEdit";
+import AdminDeliveryManAdd from "./Components/Pages/AdminPanel/Navigation/AdminDeliveryManAdd";
+import CreateDeliveryPanel from "./Components/Pages/AdminPanel/Navigation/CreateDeliveryPanel";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: "/order",
         element: <Order />,
+      },
+      {
+        path: "/adminReservationList",
+        element: <AdminReservation />,
       },
       // Admin Login ------------------------------
       {
@@ -187,11 +195,6 @@ const router = createBrowserRouter([
         path: "/adminOrderDelivery",
         element: <AdminOrderDelivery />,
       },
-      // Reservation section --------------------------
-      {
-        path: "/adminReservationList",
-        element: <AdminReservation />,
-      },
       // Employee section --------------------------
       {
         path: "/adminEmployeeList",
@@ -208,6 +211,23 @@ const router = createBrowserRouter([
       {
         path: "/adminEmployeeAdd",
         element: <AdminEmployeeAdd />,
+      },
+      // DeliveryMan section --------------------------
+      {
+        path: "/adminDeliveryManList",
+        element: <AdminDeliveryManList />,
+      },
+      {
+        path: "/adminDeliveryManEdit/:deliveryManId",
+        element: <AdminDeliveryManEdit />,
+      },
+      {
+        path: "/adminDeliveryManAdd",
+        element: <AdminDeliveryManAdd />,
+      },
+      {
+        path: "/CreateDeliveryPanel",
+        element: <CreateDeliveryPanel />,
       },
       // Press section --------------------------
       {

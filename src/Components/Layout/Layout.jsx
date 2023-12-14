@@ -32,6 +32,9 @@ const noHeaderFooter =
  location.pathname.includes('adminEmployeeEdit') ||
  location.pathname.includes('adminEmployeeDetails') ||
  location.pathname.includes('adminEmployeeAdd') ||
+ location.pathname.includes('adminDeliveryManList') ||
+ location.pathname.includes('adminDeliveryManEdit') ||
+ location.pathname.includes('adminDeliveryManAdd') ||
  location.pathname.includes('adminPressList') ||
  location.pathname.includes('adminPressEdit') ||
  location.pathname.includes('adminPressAdd') 

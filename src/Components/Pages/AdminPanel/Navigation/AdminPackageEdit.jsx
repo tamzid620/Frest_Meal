@@ -5,9 +5,11 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { useParams } from "react-router-dom";
+import Loading from "../../../Layout/Loading";
 
 const AdminPackageEdit = () => {
   const { packageId } = useParams();
+  const [loading,setLoading] =useState(false);
   const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
 
@@ -62,12 +64,14 @@ const AdminPackageEdit = () => {
       };
 
       //get dropdown list method ---------------
+      setLoading(true)
       axios
         .get(`https://backend.ap.loclx.io/api/get-dropdown-food-item`, {
           headers: headers,
         })
         .then((res) => {
           setPackages(res.data.category);
+          setLoading(false)
         })
         .catch((error) => {
           console.log(error);
@@ -153,8 +157,7 @@ const AdminPackageEdit = () => {
           </h1>
           <hr className="mt-1 border border-black mb-10" />
           {/* table section  */}
-          {/* table section  */}
-          <div>
+         {!loading &&  <div>
             <form
               onSubmit={handleSubmit}
               className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
@@ -288,7 +291,8 @@ const AdminPackageEdit = () => {
                 </button>
               </div>
             </form>
-          </div>
+          </div>}
+          {loading && <Loading/>}
         </div>
       </div>
     </div>
