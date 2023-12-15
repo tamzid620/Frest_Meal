@@ -123,6 +123,7 @@ function AdminLogin()  {
               placeholder="Your Email"
               value={email}
               onChange={handleEmailChange}
+              required
             />
             <span className="text-red-600">{emailError}</span>
           </div>
@@ -143,6 +144,7 @@ function AdminLogin()  {
                 placeholder="Password"
                 value={password}
                 onChange={handlePasswordChange}
+                required
               />
               <span
                 onClick={handleShowPassword}

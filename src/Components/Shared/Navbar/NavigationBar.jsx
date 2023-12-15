@@ -93,15 +93,12 @@ const NavigationBar = () => {
 
     hamburger.addEventListener("click", toggleNav);
 
-    // Add event listeners to each navigation link to close the menu when clicked
     links.forEach((link) => {
       link.addEventListener("click", closeNav);
     });
 
     return () => {
       hamburger.removeEventListener("click", toggleNav);
-
-      // Remove event listeners when the component is unmounted
       links.forEach((link) => {
         link.removeEventListener("click", closeNav);
       });
@@ -166,9 +163,6 @@ const NavigationBar = () => {
         <li>
           <Link to="/aboutUs">About Us</Link>
         </li>
-        {/* <li>
-          <button title="Create Order">Create Order</button>
-        </li> */}
 
         {/* cart , wishlist and create order section   */}
         <div>
