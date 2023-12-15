@@ -42,7 +42,10 @@ const Banner = () => {
           </div>
           <div>
             <Link to="/menu">
-              <button className="btn bg-[#FFD700] mt-5 text-[#808080] border-black font-bold">
+              <button className="
+              border border-yellow-500 bg-transparent text-yellow-500
+             hover:border-white hover:text-white 
+font-bold px-3 py-3 mt-5 rounded-md ">
                 Order Now
               </button>
             </Link>

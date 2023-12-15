@@ -65,19 +65,19 @@ const NavigationBar = () => {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
     const links = document.querySelectorAll(".nav-links li");
-  
+
     const toggleNav = () => {
       // Animate Links
       navLinks.classList.toggle("open");
       links.forEach((link) => {
         link.classList.toggle("fade");
       });
-  
+
       // Hamburger Animation
       hamburger.classList.toggle("toggle");
       setIsOpen(!isOpen);
     };
-  
+
     const closeNav = () => {
       // Close the menu
       if (isOpen) {
@@ -85,35 +85,33 @@ const NavigationBar = () => {
         links.forEach((link) => {
           link.classList.remove("fade");
         });
-  
+
         hamburger.classList.remove("toggle");
         setIsOpen(false);
       }
     };
-  
+
     hamburger.addEventListener("click", toggleNav);
-  
+
     // Add event listeners to each navigation link to close the menu when clicked
     links.forEach((link) => {
       link.addEventListener("click", closeNav);
     });
-  
+
     return () => {
       hamburger.removeEventListener("click", toggleNav);
-  
+
       // Remove event listeners when the component is unmounted
       links.forEach((link) => {
         link.removeEventListener("click", closeNav);
       });
     };
   }, [isOpen]);
-  
 
   return (
-    <nav className={`fixed z-10 ${navBarClass}`}
-    >
+    <nav className={`fixed z-10 ${navBarClass}`}>
       <div className="flex items-center justify-between">
-      <div>
+        <div>
           <Link to="/">
             <img
               className="w-[140px]"
@@ -143,7 +141,6 @@ const NavigationBar = () => {
             </button>
           </Link>
         </div>
-
       </div>
       <div className="hamburger">
         <div className={`line1 ${isOpen ? "line1-open" : ""}`}></div>
@@ -152,7 +149,7 @@ const NavigationBar = () => {
       </div>
       <ul className="nav-links text-yellow-500">
         <li title="Home">
-          <Link to="/" >Home</Link>
+          <Link to="/">Home</Link>
         </li>
         <li title="Order Tracking">
           <Link to="/ordertracking">Order Tracking</Link>
@@ -173,7 +170,7 @@ const NavigationBar = () => {
           <button title="Create Order">Create Order</button>
         </li> */}
 
-{/* cart , wishlist and create order section   */}
+        {/* cart , wishlist and create order section   */}
         <div>
           <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
             <div className="ms-10 lg:flex md:flex sm: hidden">
@@ -202,155 +199,150 @@ const NavigationBar = () => {
             </div>
 
             {/* create order button  */}
-<div className=" lg:flex md:flex">
-<button 
-title="create order"
-className=" hover:bg-[#FFD700] hover:text-black 
-bg-[#FFD700]  text-[#808080] border-black
+            <div className=" lg:flex md:flex">
+              <button
+                title="create order"
+                className="
+               border border-yellow-500 bg-transparent text-yellow-500
+                 hover:border-white hover:text-white 
 font-bold px-3 py-1 rounded-md "
-onClick={()=>document.getElementById('my_modal_3').showModal()}>Create Order</button>
-</div>
+                onClick={() =>
+                  document.getElementById("my_modal_4").showModal()
+                }
+              >
+                Create Order
+              </button>
+            </div>
 
-<dialog id="my_modal_3" className="modal bg-black bg-opacity-40">
-  <div className="modal-box w-11/12 max-w-5xl border border-white bg-black bg-opacity-40">
-    <form method="dialog">
-      {/* if there is a button in form, it will close the modal */}
-      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white">✕</button>
-    </form>
-
-
-    <div className="modalForm my-5">
-                
-                <div className="flex justify-center mb-5 ">
-                  
-                  <div>
-                    <h1
-                      style={{ fontFamily: "Mooli, sans-serif" }}
-                      className="flex justify-center text-3xl text-white font-semibold"
-                    >
-                      Order Your Meals
-                    </h1>
-                    <img src="../../../../public/icons/hr.svg" alt="" />
-                  </div>
-                </div>
-                
-                <form
-                  method="dialog"
-                  className="space-y-4 "
-                  onSubmit={createOrder}
-                >
-                  
-                  <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-3 ">
-                   
-                    <div>
-                      <label htmlFor="name" className="block text-white">
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
-                        // placeholder="Your Name"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="phone" className="block text-white">
-                        Phone
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
-                        // placeholder="Phone Number"
-                        required
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                      />
-                    </div>
-                  </div>
-
-                 
-                  <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-3">
-                   
-                    <div>
-                      <label
-                        htmlFor="address"
-                        className="block text-white"
-                      >
-                        Delivery Address
-                      </label>
-                      <input
-                        type="text"
-                        id="address"
-                        name="address"
-                        className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
-                        // placeholder="Delivery Address"
-                        required
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                      />
-                    </div>
-                   
-                    <div>
-                      <label htmlFor="items" className="block text-white">
-                        Choose Items
-                      </label>
-                      <select
-                        id="items"
-                        name="items"
-                        className="lg:w-full md:w-64 sm:w-48 w-full bg-transparent  px-3 py-1 border-b-2 text-gray-400 border-white "
-                        value={selectedItem}
-                        onChange={(e) => setSelectedItem(e.target.value)}
-                      >
-                        <option value="item1">Item 1</option>
-                        <option value="item2">Item 2</option>
-                        <option value="item3">Item 3</option>
-                        
-                      </select>
-                    </div>
-                  </div>
-
-                 
-                  <div>
-                    <label htmlFor="request" className="block text-white">
-                      Special Request
-                    </label>
-                    <textarea
-                      id="request"
-                      name="request"
-                      className="w-full bg-transparent  px-3 py-1 border-b-2 text-white border-white"
-                      rows="3"
-                      placeholder="create Custom Order"
-                      value={specialRequest}
-                      onChange={(e) => setSpecialRequest(e.target.value)}
-                    ></textarea>
-                  </div>
-
-                  <div className="flex justify-center ">
-                  <button
-                    type="submit"
-                    onClick={(e) => createOrder(e)}
-                    className="mt-5 hover:bg-[#FFD700] hover:text-black bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 rounded-md"
-                  >
-                    Create Order
+            <dialog id="my_modal_4" className="modal bg-black bg-opacity-40">
+              <div className="modal-box w-11/12 max-w-5xl border border-white bg-black bg-opacity-40">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white">
+                    ✕
                   </button>
-                  </div>
                 </form>
+
+                <div className="modalForm my-5">
+                  <div className="flex justify-center mb-5 ">
+                    <div>
+                      <h1
+                        style={{ fontFamily: "Mooli, sans-serif" }}
+                        className="flex justify-center text-3xl text-white font-semibold"
+                      >
+                        Order Your Meals
+                      </h1>
+                      <img src="../../../../public/icons/hr.svg" alt="" />
+                    </div>
+                  </div>
+
+                  <form
+                    method="dialog"
+                    className="space-y-4 "
+                    onSubmit={createOrder}
+                  >
+                    <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-3 ">
+                      <div>
+                        <label htmlFor="name" className="block text-white">
+                          Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                          // placeholder="Your Name"
+                          required
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="phone" className="block text-white">
+                          Phone
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                          // placeholder="Phone Number"
+                          required
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-3">
+                      <div>
+                        <label htmlFor="address" className="block text-white">
+                          Delivery Address
+                        </label>
+                        <input
+                          type="text"
+                          id="address"
+                          name="address"
+                          className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                          // placeholder="Delivery Address"
+                          required
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="items" className="block text-white">
+                          Choose Items
+                        </label>
+                        <select
+                          id="items"
+                          name="items"
+                          className="lg:w-full md:w-64 sm:w-48 w-full bg-transparent  px-3 py-1 border-b-2 text-gray-400 border-white "
+                          value={selectedItem}
+                          onChange={(e) => setSelectedItem(e.target.value)}
+                        >
+                          <option value="item1">Item 1</option>
+                          <option value="item2">Item 2</option>
+                          <option value="item3">Item 3</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="request" className="block text-white">
+                        Special Request
+                      </label>
+                      <textarea
+                        id="request"
+                        name="request"
+                        className="w-full bg-transparent  px-3 py-1 border-b-2 text-white border-white"
+                        rows="3"
+                        placeholder="create Custom Order"
+                        value={specialRequest}
+                        onChange={(e) => setSpecialRequest(e.target.value)}
+                      ></textarea>
+                    </div>
+
+                    <div className="flex justify-center ">
+                      <button
+                        type="submit"
+                        onClick={(e) => createOrder(e)}
+                        className="
+                        border border-yellow-500 bg-transparent text-yellow-500
+                        hover:border-white hover:text-white 
+       font-bold px-3 py-1 rounded-md "
+                      >
+                        Create Order
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
-
-  </div>
-</dialog>
-
+            </dialog>
           </div>
-
         </div>
-        
       </ul>
     </nav>
   );

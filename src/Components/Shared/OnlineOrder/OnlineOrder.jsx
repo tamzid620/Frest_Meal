@@ -114,9 +114,9 @@ const OnlineOrder = () => {
                     </div>
                     <button
                       onClick={handleOrderNowClick}
-                      className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
-                             rounded-md mt-3 flex items-center gap-2"
+                      className=" flex items-center gap-2 border border-yellow-500 bg-transparent text-yellow-500
+             hover:border-white hover:text-white 
+font-bold px-3 py-3 mt-3 rounded-md "
                     >
                       <span> Add to Cart </span>
                       <span>
@@ -164,9 +164,9 @@ const OnlineOrder = () => {
                   </div>
                   <button
                     onClick={handleOrderNowClick}
-                    className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
-                             rounded-md mt-3 flex items-center gap-2"
+                    className=" flex items-center gap-2 border border-yellow-500 bg-transparent text-yellow-500
+             hover:border-white hover:text-white 
+font-bold px-3 py-3 mt-3 rounded-md "
                   >
                     <span> Add to Cart </span>
                     <span>
@@ -213,9 +213,9 @@ const OnlineOrder = () => {
                   </div>
                   <button
                     onClick={handleOrderNowClick}
-                    className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
-                             rounded-md mt-3 flex items-center gap-2"
+                    className=" flex items-center gap-2 border border-yellow-500 bg-transparent text-yellow-500
+             hover:border-white hover:text-white 
+font-bold px-3 py-3 mt-3 rounded-md "
                   >
                     <span> Add to Cart </span>
                     <span>
@@ -262,9 +262,9 @@ const OnlineOrder = () => {
                   </div>
                   <button
                     onClick={handleOrderNowClick}
-                    className="hover:bg-[#FFD700] hover:text-black
-                             bg-[#FFD700]  text-[#808080] border-black font-bold px-2  py-1 
-                             rounded-md mt-3 flex items-center gap-2"
+                    className=" flex items-center gap-2 border border-yellow-500 bg-transparent text-yellow-500
+             hover:border-white hover:text-white 
+font-bold px-3 py-3 mt-3 rounded-md "
                   >
                     <span> Add to Cart </span>
                     <span>

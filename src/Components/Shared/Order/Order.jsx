@@ -196,7 +196,7 @@ const handleSubmit = (e) => {
 
 
   return (
-    <div className="">
+    <div className="my-5">
       {/* title section */}
       <div className="flex justify-center">
         {/* title tag */}
@@ -212,12 +212,12 @@ const handleSubmit = (e) => {
       </div>
 
       {/* information form  section  */}
-      <div className="p-4 flex justify-center ">
-        <form className="" onSubmit={handleSubmit}>
+      {/* <div className="p-4 flex justify-center "> */}
+        <form className="my-5 " onSubmit={handleSubmit}>
           {/* client name and email section  */}
-          <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-5 ">
+          <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-10">
             {/* ClientName Input */}
-            <div className="mb-4 max-w-[300px] ">
+            <div className="mb-4 max-w-[500px]">
               <label htmlFor="clientName" className="text-white">
                 Name:
               </label>
@@ -228,12 +228,13 @@ const handleSubmit = (e) => {
                 value={formData.clientName}
                 onChange={handleInputChange}
                 required
-                className=" w-full border rounded shadow bg-gray-100 text-black outline-none "
+                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                          
               />
             </div>
 
             {/* Email Input */}
-            <div className="mb-4 max-w-[300px]">
+            <div className="mb-4 max-w-[500px]">
               <label htmlFor="email" className="text-white">
                 Email:
               </label>
@@ -243,15 +244,14 @@ const handleSubmit = (e) => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                required
-                className="w-full border rounded shadow bg-gray-100 text-black outline-none "
+                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
               />
             </div>
           </div>
           {/* phone no and location section  */}
           <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-5">
             {/* phoneNo Input */}
-            <div className="mb-4 max-w-[300px]">
+            <div className="mb-4 max-w-[500px]">
               <label htmlFor="phoneNo" className="text-white">
                 Phone No:
               </label>
@@ -261,13 +261,12 @@ const handleSubmit = (e) => {
                 name="phoneNo"
                 value={formData.phoneNo}
                 onChange={handleInputChange}
-                required
-                className="w-full border rounded shadow bg-gray-100 text-black outline-none"
-              />
+                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                />
             </div>
 
             {/* Location Input */}
-            <div className="mb-4 max-w-[300px]">
+            <div className="mb-4 max-w-[500px]">
               <label htmlFor="location" className="text-white">
                 Location:
               </label>
@@ -277,9 +276,8 @@ const handleSubmit = (e) => {
                 name="location"
                 value={formData.location}
                 onChange={handleInputChange}
-                required
-                className="w-full border rounded shadow bg-gray-100 text-black outline-none "
-              />
+                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                />
             </div>
           </div>
 
@@ -299,7 +297,7 @@ const handleSubmit = (e) => {
         onChange={(e) => handleFoodItemChange(index, e)}
       />
       {/* Food Name Input */}
-      <div className="max-w-[140px]">
+      <div className="max-w-[200px]">
         <label htmlFor={`foodName-${index}`} className="text-white">
           Food Name:
         </label>
@@ -310,11 +308,12 @@ const handleSubmit = (e) => {
           value={foodItem.foodName}
           onChange={(e) => handleFoodItemChange(index, e)}
           required
-          className="w-full border rounded shadow bg-gray-100 text-black outline-none"
-        />
+          readOnly
+          className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+          />
       </div>
                   {/* Quantity Input */}
-                  <div className="max-w-[140px]">
+                  <div className="max-w-[200px]">
                     <label htmlFor={`quantity-${index}`} className="text-white">
                       Quantity:
                     </label>
@@ -335,8 +334,8 @@ const handleSubmit = (e) => {
                         value={foodItem.quantity}
                         onChange={(e) => handleFoodItemChange(index, e)}
                         required
-                        className="w-14 border rounded shadow bg-gray-100 text-black outline-none  mx-2 text-center"
-                      />
+                        className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                        />
                       {/* Plus Button */}
                       <button
                         type="button"
@@ -348,7 +347,7 @@ const handleSubmit = (e) => {
                     </div>
                   </div>
                   {/* Price Input */}
-                  <div className="max-w-[140px]">
+                  <div className="max-w-[200px]">
                     <label htmlFor={`price-${index}`} className="text-white">
                       Price:
                     </label>
@@ -360,12 +359,12 @@ const handleSubmit = (e) => {
                       value={foodItem.price}
                       onChange={(e) => handleFoodItemChange(index, e)}
                       required
-                      className="w-full border rounded shadow bg-gray-100 text-black outline-none"
-                    />
+                      className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                      />
                   </div>
 
                   {/* Subtotal Input */}
-                  <div className="max-w-[140px]">
+                  <div className="max-w-[200px]">
                     <label htmlFor={`subtotal-${index}`} className="text-white">
                       Subtotal:
                     </label>
@@ -377,14 +376,14 @@ const handleSubmit = (e) => {
                       value={foodItem.subTotal}
                       onChange={(e) => handleFoodItemChange(index, e)}
                       required
-                      className="w-full border rounded shadow bg-gray-100 text-black outline-none"
-                    />
+                      className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                      />
                   </div>
                 </div>
               ))}
 {/* total Input  */}
-<div className="flex justify-center">
-<div className="max-w-[100px]flex">
+<div className="flex justify-center ">
+<div className="max-w-[100px]flex mt-5">
   <label htmlFor="totalAmount" className="text-white">
     Total:
   </label>
@@ -405,15 +404,15 @@ const handleSubmit = (e) => {
           <div className="flex justify-center mt-10">
             <button
               type="submit"
-              className=" hover:bg-[#FFD700] hover:text-black 
- bg-[#FFD700]  text-[#808080] border-black
-  font-bold px-3 py-3 rounded-md "
+              className="border border-yellow-500 bg-transparent text-yellow-500
+              hover:border-white hover:text-white 
+font-bold px-3 py-1 rounded-md"
             >
               Confirm
             </button>
           </div>
         </form>
-      </div>
+      {/* </div> */}
       <ToastContainer />
     </div>
   );

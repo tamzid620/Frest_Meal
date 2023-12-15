@@ -112,14 +112,13 @@ const Cart = () => {
 {/* modal section  */}
 <div className="flex justify-center mt-5">
 <button 
-className=" hover:bg-[#FFD700] hover:text-black 
-bg-[#FFD700]  text-[#808080] border-black
- font-bold px-3 py-1 rounded-md "
+className="border border-yellow-500 bg-transparent text-yellow-500
+hover:border-white hover:text-white 
+font-bold px-3 py-1 rounded-md "
 onClick={()=>document.getElementById('my_modal_3').showModal()}>Order Now</button>
 <dialog id="my_modal_3" className="modal">
   <div className="modal-box w-11/12 max-w-5xl bg-black border border-yellow-500 shadow-lg shadow-yellow-500">
     <form method="dialog">
-      {/* if there is a button in form, it will close the modal */}
       <button className="btn btn-sm btn-circle text-white btn-ghost absolute right-2 top-2">✕</button>
     </form>
             <Order />

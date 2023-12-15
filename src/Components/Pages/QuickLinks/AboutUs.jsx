@@ -66,7 +66,7 @@ console.log(aboutUs);
                     {/* our team title */}
                     <div className="flex justify-center mt-10">
                         <div>
-                            <h1 style={{ fontFamily: 'Mooli, sans-serif' }} className="flex justify-center text-3xl text-white font-semibold">- - - Our Team - - -</h1>
+                            <h1 style={{ fontFamily: 'Mooli, sans-serif' }} className="flex justify-center text-3xl text-white font-semibold"> Our Team </h1>
                             <img src="../../../../public/icons/hr.svg" alt="" />
                         </div>
                     </div>

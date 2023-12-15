@@ -22,7 +22,9 @@ const Packages = () => {
                         <h1 className='text-yellow-500 font-semibold text-2xl mb-3'>Elevate Your Event with Our Culinary Delights and <br /> Impeccable Catering Service.</h1>
                         <p className='text-[#808080] font-semibold mt-5'>Indulge in gastronomic excellence at your next event. Our expert chefs use <br /> the finest ingredients to craft unforgettable culinary experiences, <br /> customized for any occasion. Impeccable service ensures your <br /> guests will savor lasting memories of exquisite flavors.</p>
                         <Link to="/platterService">
-                        <button className="btn hover:bg-[#FFD700] hover:text-black bg-[#FFD700]  text-[#808080] border-black font-bold px-3 py-1 rounded-md mt-16">All Packages</button>
+                        <button className="py-3 border border-yellow-500 bg-transparent text-yellow-500
+                        hover:border-white hover:text-white 
+           font-bold px-1 mt-16 rounded-md">All Packages</button>
                         </Link>
                     </div>
 
