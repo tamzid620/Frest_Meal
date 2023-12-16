@@ -11,7 +11,7 @@ const AdminFoodItem = () => {
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const foodItemPerPage = 10;
+  const foodItemPerPage = 20;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -197,7 +197,7 @@ const AdminFoodItem = () => {
                   ))}
               </tbody>
             </table>
-            {/* pagination section ------------- */}
+            {/* pagination array section ------------- */}
             <div className="pagination my-10 flex justify-center">
               {totalFoodItems &&
                 Array.from(
@@ -217,6 +217,7 @@ const AdminFoodItem = () => {
                   )
                 )}
             </div>
+
           </div>}
           {loading && <Loading/>}
         </div>

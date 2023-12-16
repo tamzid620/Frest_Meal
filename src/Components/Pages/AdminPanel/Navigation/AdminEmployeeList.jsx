@@ -7,43 +7,44 @@ import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
 const AdminEmployeeList = () => {
-  
-    const [loading,setLoading] =useState(false);
-    const [employees, setEmployees] = useState([]);
-  
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        Swal.fire({
-          position: "center",
-          icon: "warning",
-          title: "You have to Login first",
-          showConfirmButton: false,
-          timer: 1500,
+  const [loading, setLoading] = useState(false);
+  const [employees, setEmployees] = useState({ employeeItem: [] });
+  const [currentPage, setCurrentPage] = useState(1);
+  const employeeItemPerPage = 20;
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "You have to Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      Navigate("/adminlogin");
+    } else {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const headers = {
+        accept: "application/json",
+        Authorization: "Bearer " + user.token,
+      };
+      // get foodItem data ---------------
+      setLoading(true);
+      axios
+        .get(`https://backend.ap.loclx.io/api/employee-list`, {
+          headers: headers,
+        })
+        .then((res) => {
+          setEmployees({employeeItem : res.data.employee});
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
         });
-        Navigate("/adminlogin");
-      } else {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const headers = {
-          accept: "application/json",
-          Authorization: "Bearer " + user.token,
-        };
-        // get foodItem data ---------------
-        setLoading(true)
-        axios
-          .get(`https://backend.ap.loclx.io/api/employee-list`, {
-            headers: headers,
-          })
-          .then((res) => {
-            setEmployees(res.data.employee);
-            setLoading(false)
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-    }, []);
-// delete section----------------
+    }
+  }, []);
+  // delete section----------------
   const handleDelete = (employeeId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
@@ -78,35 +79,47 @@ const AdminEmployeeList = () => {
         });
       });
   };
-  
-    return (
-      <div className="text-yellow-500 bg-gray-300 min-h-screen">
-        <div className="fixed z-10 w-full">
-          <SearchPanel />
-        </div>
-  
-        {/* main section  */}
-        <div className="flex justify-center ">
-          <div className="mt-24 w-full ">
-            <h1 className="text-3xl flex justify-center text-black uppercase">
+  // pagination section -----------
+  const indexOfLastEmployeeItem = currentPage * employeeItemPerPage;
+  const indexOfFirstEmployeeItem = indexOfLastEmployeeItem - employeeItemPerPage;
+
+  const currentEmployeeItem =
+    employees.employeeItem &&
+    employees.employeeItem.slice(indexOfFirstEmployeeItem, indexOfLastEmployeeItem);
+
+  const totalEmployeeItems = employees.employeeItem && employees.employeeItem.length;
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  return (
+    <div className="text-yellow-500 bg-gray-300 min-h-screen">
+      <div className="fixed z-10 w-full">
+        <SearchPanel />
+      </div>
+
+      {/* main section  */}
+      <div className="flex justify-center ">
+        <div className="mt-24 w-full ">
+          <h1 className="text-3xl flex justify-center text-black uppercase">
             Employee List
-            </h1>
-            <hr className="mt-1 border border-black mb-10" />
-            {/* table section  */}
-            {!loading && <div className="overflow-x-auto text-black">
-                <div className="flex justify-between ms-2 me-2">
-                <div>
-                {/* "" */}
-                </div>
+          </h1>
+          <hr className="mt-1 border border-black mb-10" />
+          {/* table section  */}
+          {!loading && (
+            <div className="overflow-x-auto text-black">
+              <div className="flex justify-between ms-2 me-2">
+                <div>{/* "" */}</div>
                 {/* add button  */}
-                <div >
+                <div>
                   <Link to="/adminEmployeeAdd">
                     <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                    Add
-                  </button>
+                      Add
+                    </button>
                   </Link>
                 </div>
-                </div>
+              </div>
               <table className="table table-zebra">
                 {/* head */}
                 <thead className="bg-gray-600 text-white">
@@ -122,54 +135,81 @@ const AdminEmployeeList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {employees.map((employee, index) => (
-                    <tr key={employee.id}>
-                      <th>{index + 1}</th>
-                      <td><img className="w-[50px] h-[50px]" src={employee.imgLink} alt="" /></td>
-                      <td>{employee.name}</td>
-                      <td>{employee.phoneNo}</td>
-                      <td>{employee.designation}</td>
-                      <td>{employee.salary}</td>
-                      <td>{employee.jobType}</td>
-                      <td>
-                      <div className="flex items-center gap-2">
-                          {/* Edit button  */}
-                          <Link to=
-                            {`/adminEmployeeEdit/${employee.id}`}
-                          // "/adminTeachersEdit"
-                          >
-                            <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                              Edit
+                  {currentEmployeeItem &&
+                    currentEmployeeItem.map((employee, index) => (
+                      <tr key={employee.id}>
+                        <th>{index + 1}</th>
+                        <td>
+                          <img
+                            className="w-[50px] h-[50px]"
+                            src={employee.imgLink}
+                            alt=""
+                          />
+                        </td>
+                        <td>{employee.name}</td>
+                        <td>{employee.phoneNo}</td>
+                        <td>{employee.designation}</td>
+                        <td>{employee.salary}</td>
+                        <td>{employee.jobType}</td>
+                        <td>
+                          <div className="flex items-center gap-2">
+                            {/* Edit button  */}
+                            <Link
+                              to={`/adminEmployeeEdit/${employee.id}`}
+                              // "/adminTeachersEdit"
+                            >
+                              <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                                Edit
+                              </button>
+                            </Link>
+                            {/* Details button  */}
+                            <td>
+                              <Link to={`/adminEmployeeDetails/${employee.id}`}>
+                                <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
+                                  Details
+                                </button>
+                              </Link>
+                            </td>
+                            {/* Delete button   */}
+                            <button
+                              onClick={() => handleDelete(employee.id)}
+                              className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
+                            >
+                              Delete
                             </button>
-                          </Link>
-                          {/* Details button  */}
-                    <td>
-                      <Link to={`/adminEmployeeDetails/${employee.id}`}>
-                        <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
-                          Details
-                        </button>
-                      </Link>
-                    </td>
-                          {/* Delete button   */}
-                          <button
-                            onClick={() => handleDelete(employee.id)}
-                            className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
-            </div>}
-            {loading && <Loading/>}
-            
-          </div>
+              {/* pagination array section ------------- */}
+              <div className="pagination my-10 flex justify-center">
+                {totalEmployeeItems &&
+                  Array.from(
+                    { length: Math.ceil(totalEmployeeItems / employeeItemPerPage) },
+                    (_, index) => (
+                      <button
+                        key={index}
+                        className={`btn btn-sm ${
+                          currentPage === index + 1
+                            ? "bg-gray-800 text-white"
+                            : "bg-white"
+                        }`}
+                        onClick={() => paginate(index + 1)}
+                      >
+                        {index + 1}
+                      </button>
+                    )
+                  )}
+              </div>
+            </div>
+          )}
+          {loading && <Loading />}
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default AdminEmployeeList;

@@ -7,9 +7,10 @@ import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
 const AdminOrderList = () => {
-  
-  const [loading,setLoading] =useState(false);
-  const [orderList, setOrderList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [orderList, setOrderList] = useState({ orderItem: [] });
+  const [currentPage, setCurrentPage] = useState(1);
+  const orderItemPerPage = 20;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -28,21 +29,34 @@ const AdminOrderList = () => {
         accept: "application/json",
         Authorization: "Bearer " + user.token,
       };
-      // get foodItem data ---------------
-      setLoading(true)
+      // get orderItem data ---------------
+      setLoading(true);
       axios
         .get(`https://backend.ap.loclx.io/api/order-list`, {
           headers: headers,
         })
         .then((res) => {
-          setOrderList(res.data.orderList);
-          setLoading(false)
+          setOrderList({ orderItem: res.data.orderList });
+          setLoading(false);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, []);
+  // pagination section -----------
+  const indexOfLastOrderItem = currentPage * orderItemPerPage;
+  const indexOfFirstOrderItem = indexOfLastOrderItem - orderItemPerPage;
+
+  const currentOrderItem =
+    orderList.orderItem &&
+    orderList.orderItem.slice(indexOfFirstOrderItem, indexOfLastOrderItem);
+
+  const totalOrderItems = orderList.orderItem && orderList.orderItem.length;
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className="text-yellow-500 bg-gray-300 min-h-screen">
@@ -58,44 +72,66 @@ const AdminOrderList = () => {
           </h1>
           <hr className="mt-1 border border-black mb-10" />
           {/* table section  */}
-          {!loading && <div className="overflow-x-auto text-black">
-            <table className="table table-zebra">
-              {/* head */}
-              <thead className="bg-gray-600 text-white">
-                <tr>
-                  <th>index</th>
-                  <th>Name</th>
-                  <th>phoneNo</th>
-                  <th>OrderCode</th>
-                  <th>Total Amount</th>
-                  <th>Order Stage</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orderList.map((order, index) => (
-                  <tr key={order.id}>
-                    <th>{index + 1}</th>
-                    <td>{order.clientName}</td>
-                    <td>{order.phoneNo}</td>
-                    <td>{order.orderCode}</td>
-                    <td>{order.totalAmount}</td>
-                    <td>{order.orderStage}</td>
-                    {/* Details button  */}
-                    <td>
-                      <Link to={`/adminOrderDetails/${order.id}`}>
-                        <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
-                          Details
-                        </button>
-                      </Link>
-                    </td>
+          {!loading && (
+            <div className="overflow-x-auto text-black">
+              <table className="table table-zebra">
+                {/* head */}
+                <thead className="bg-gray-600 text-white">
+                  <tr>
+                    <th>index</th>
+                    <th>Name</th>
+                    <th>phoneNo</th>
+                    <th>OrderCode</th>
+                    <th>Total Amount</th>
+                    <th>Order Stage</th>
+                    <th>Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>}
-          {loading && <Loading/>}
-          
+                </thead>
+                <tbody>
+                  {currentOrderItem &&
+                    currentOrderItem.map((order, index) => (
+                      <tr key={order.id}>
+                        <th>{index + 1}</th>
+                        <td>{order.clientName}</td>
+                        <td>{order.phoneNo}</td>
+                        <td>{order.orderCode}</td>
+                        <td>{order.totalAmount}</td>
+                        <td>{order.orderStage}</td>
+                        {/* Details button  */}
+                        <td>
+                          <Link to={`/adminOrderDetails/${order.id}`}>
+                            <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
+                              Details
+                            </button>
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+              {/* pagination array section ------------- */}
+              <div className="pagination my-10 flex justify-center">
+                {totalOrderItems &&
+                  Array.from(
+                    { length: Math.ceil(totalOrderItems / orderItemPerPage) },
+                    (_, index) => (
+                      <button
+                        key={index}
+                        className={`btn btn-sm ${
+                          currentPage === index + 1
+                            ? "bg-gray-800 text-white"
+                            : "bg-white"
+                        }`}
+                        onClick={() => paginate(index + 1)}
+                      >
+                        {index + 1}
+                      </button>
+                    )
+                  )}
+              </div>
+            </div>
+          )}
+          {loading && <Loading />}
         </div>
       </div>
     </div>

@@ -6,48 +6,47 @@ import { Link, Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
-
 const AdminPackageList = () => {
+  const [loading, setLoading] = useState(false);
+  const [packages, setPackages] = useState({ packageItem: [] });
+  const [currentPage, setCurrentPage] = useState(1);
+  const packageItemPerPage = 20;
 
-
-    const [loading,setLoading] =useState(false);
-    const [packages, setPackages] = useState([]);
-  
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        Swal.fire({
-          position: "center",
-          icon: "warning",
-          title: "You have to Login first",
-          showConfirmButton: false,
-          timer: 1500,
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "You have to Login first",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      Navigate("/adminlogin");
+    } else {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const headers = {
+        accept: "application/json",
+        Authorization: "Bearer " + user.token,
+      };
+      // get packageItem data ---------------
+      setLoading(true);
+      axios
+        .get(`https://backend.ap.loclx.io/api/package-list`, {
+          headers: headers,
+        })
+        .then((res) => {
+          setPackages({packageItem :res.data.packages});
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
         });
-        Navigate("/adminlogin");
-      } else {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const headers = {
-          accept: "application/json",
-          Authorization: "Bearer " + user.token,
-        };
-        // get foodItem data ---------------
-        setLoading(true)
-        axios
-          .get(`https://backend.ap.loclx.io/api/package-list`, {
-            headers: headers,
-          })
-          .then((res) => {
-            setPackages(res.data.packages);
-            setLoading(false)
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        }
-      }, []); 
-      console.log(packages);
+    }
+  }, []);
+  console.log(packages);
 
-// delete section----------------
+  // delete section----------------
   const handleDelete = (packageId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
@@ -82,35 +81,48 @@ const AdminPackageList = () => {
         });
       });
   };
+  // pagination section -----------
+  const indexOfLastPackageItem = currentPage * packageItemPerPage;
+  const indexOfFirstPackageItem = indexOfLastPackageItem - packageItemPerPage;
 
-    return (
-        <div className="text-yellow-500 bg-gray-300 min-h-screen">
-        <div className="fixed z-10 w-full">
-          <SearchPanel />
-        </div>
-  
-        {/* main section  */}
-        <div className="flex justify-center ">
-          <div className="mt-24 w-full ">
-            <h1 className="text-3xl flex justify-center text-black uppercase">
+  const currentPackageItem =
+    packages.packageItem &&
+    packages.packageItem.slice(indexOfFirstPackageItem, indexOfLastPackageItem);
+
+  const totalPackageItems =
+    packages.packageItem && packages.packageItem.length;
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  return (
+    <div className="text-yellow-500 bg-gray-300 min-h-screen">
+      <div className="fixed z-10 w-full">
+        <SearchPanel />
+      </div>
+
+      {/* main section  */}
+      <div className="flex justify-center ">
+        <div className="mt-24 w-full ">
+          <h1 className="text-3xl flex justify-center text-black uppercase">
             Package List
-            </h1>
-            <hr className="mt-1 border border-black mb-10" />
-            {/* table section  */}
-            {!loading && <div className="overflow-x-auto text-black">
-                <div className="flex justify-between ms-2 me-2">
-                <div>
-                {/* "" */}
-                </div>
+          </h1>
+          <hr className="mt-1 border border-black mb-10" />
+          {/* table section  */}
+          {!loading && (
+            <div className="overflow-x-auto text-black">
+              <div className="flex justify-between ms-2 me-2">
+                <div>{/* "" */}</div>
                 {/* add button  */}
-                <div >
+                <div>
                   <Link to="/adminPackageAdd">
                     <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                    Add
-                  </button>
+                      Add
+                    </button>
                   </Link>
                 </div>
-                </div>
+              </div>
               <table className="table table-zebra">
                 {/* head */}
                 <thead className="bg-gray-600 text-white">
@@ -124,42 +136,62 @@ const AdminPackageList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {packages.map((packageItem, index) => (
-                    <tr key={packageItem.id}>
-                      <th>{index + 1}</th>
-                      <td>{packageItem.packageName}</td>
-                      <td>{packageItem.foodItems.join(',')}</td>
-                      <td>{packageItem.numOfPeople}</td>
-                      <td>{packageItem.price}</td>
-                      <td>
-                      <div className="flex items-center gap-2">
-                          {/* Edit button  */}
-                          <Link to=
-                            {`/adminPackageEdit/${packageItem.id}`}
-                          >
-                            <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
-                              Edit
+                  {currentPackageItem &&
+                    currentPackageItem.map((packageItem, index) => (
+                      <tr key={packageItem.id}>
+                        <th>{index + 1}</th>
+                        <td>{packageItem.packageName}</td>
+                        <td>{packageItem.packageItems.join(",")}</td>
+                        <td>{packageItem.numOfPeople}</td>
+                        <td>{packageItem.price}</td>
+                        <td>
+                          <div className="flex items-center gap-2">
+                            {/* Edit button  */}
+                            <Link to={`/adminPackageEdit/${packageItem.id}`}>
+                              <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                                Edit
+                              </button>
+                            </Link>
+                            {/* Delete button   */}
+                            <button
+                              onClick={() => handleDelete(packageItem.id)}
+                              className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
+                            >
+                              Delete
                             </button>
-                          </Link>
-                          {/* Delete button   */}
-                          <button
-                            onClick={() => handleDelete(packageItem.id)}
-                            className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
-            </div>}
-            {loading && <Loading/>}
+              {/* pagination array section ------------- */}
+              <div className="pagination my-10 flex justify-center">
+                {totalPackageItems &&
+                  Array.from(
+                    { length: Math.ceil(totalPackageItems / packageItemPerPage) },
+                    (_, index) => (
+                      <button
+                        key={index}
+                        className={`btn btn-sm ${
+                          currentPage === index + 1
+                            ? "bg-gray-800 text-white"
+                            : "bg-white"
+                        }`}
+                        onClick={() => paginate(index + 1)}
+                      >
+                        {index + 1}
+                      </button>
+                    )
+                  )}
+              </div>
+            </div>
+          )}
+          {loading && <Loading />}
         </div>
-        </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default AdminPackageList;

@@ -191,6 +191,7 @@ const router = createBrowserRouter([
         path: "/invoice/:orderId",
         element: <Invoice />,
       },
+       // Order Delivery section --------------------------
       {
         path: "/adminOrderDelivery",
         element: <AdminOrderDelivery />,
@@ -225,6 +226,7 @@ const router = createBrowserRouter([
         path: "/adminDeliveryManAdd",
         element: <AdminDeliveryManAdd />,
       },
+       // DeliveryPanel section --------------------------
       {
         path: "/CreateDeliveryPanel",
         element: <CreateDeliveryPanel />,

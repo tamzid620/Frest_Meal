@@ -11,7 +11,7 @@ const AdminSubCategory = () => {
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const subCategoryPerPage = 10;
+  const subCategoryPerPage = 20;
 
   useEffect(() => {
     const token = localStorage.getItem("token");

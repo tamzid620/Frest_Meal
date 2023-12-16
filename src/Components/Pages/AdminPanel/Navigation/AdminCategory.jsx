@@ -11,7 +11,7 @@ const AdminCategory = () => {
 
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const categoryPerPage = 10;
+  const categoryPerPage = 20;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
