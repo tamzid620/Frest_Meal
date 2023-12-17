@@ -28,7 +28,12 @@ const SpecialMenu = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="max-w-screen-xl mx-auto mt-20 pt-3 pb-10" data-aos="flip-right">
+      <div
+        className="max-w-screen-xl mx-auto mt-20 pt-3 pb-10"
+        data-aos="flip-right"
+        data-aos-easing="linear"
+        data-aos-duration="1500"
+      >
         {/* title section  */}
         <div className="flex justify-center mt-16">
           {/* tittle tag */}

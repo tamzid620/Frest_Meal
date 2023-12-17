@@ -61,7 +61,7 @@ const OnlineOrder = () => {
   >
       {/* title section  */}
       <div className="flex justify-center mt-16 pt-10 pb-10 ">
-        <div data-aos="flip-down">
+        <div data-aos="flip-down" data-aos-easing="linear"c data-aos-duration="1500">
           <h1
             style={{ fontFamily: "Mooli, sans-serif" }}
             className="flex justify-center text-3xl text-white font-semibold"

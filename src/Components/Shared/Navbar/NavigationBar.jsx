@@ -295,7 +295,7 @@ font-bold px-3 py-1 rounded-md "
                           type="text"
                           id="address"
                           name="address"
-                          className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
+                          className="focus:outline-none w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
                           // placeholder="Delivery Address"
                           required
                           value={address}
@@ -310,7 +310,7 @@ font-bold px-3 py-1 rounded-md "
                         <select
                           id="items"
                           name="items"
-                          className="lg:w-full md:w-64 sm:w-48 w-full bg-transparent  px-3 py-1 border-b-2 text-gray-400 border-white "
+                          className="lg:w-full md:w-64 sm:w-48 w-full bg-transparent  px-3 py-1 border-b-2 text-gray-400 border-white focus:outline-none focus:shadow-outline"
                           value={selectedItem}
                           onChange={(e) => setSelectedItem(e.target.value)}
                         >

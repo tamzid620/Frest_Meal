@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import banner from "../../../../public/images/Banner5.png";
+import Aos from "aos";
 
 const Banner = () => {
+  Aos.init();
+
   return (
     <div className="pt-[80px]">
     <div
@@ -16,7 +19,11 @@ const Banner = () => {
         {/* banner heading paragraph-------------- */}
         <div className=" sm: ms-2 sm:me-2 lg:ms-0 lg:me-0">
           <div className="flex items-center mb-4">
-            <div className="grid sm:grid-cols-2 text-white sm: mt-[50px] md:mt-0 lg:mt-0">
+            <div className="grid sm:grid-cols-2 text-white sm: mt-[50px] md:mt-0 lg:mt-0" 
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1000"
+            >
               <span className=" sm: mb-3 text-white flex items-center">
                 {" "}
                 Welcome to
@@ -32,11 +39,18 @@ const Banner = () => {
             <h1
               style={{ fontFamily: "Mooli, sans-serif" }}
               className="text-white text-4xl mb-5 font-bold font"
+              data-aos="fade-down"
+     data-aos-easing="linear"
+     data-aos-duration="1200"
             >
               The World Best <span className="text-[#FFD700]">Restaurent</span>{" "}
               Website
             </h1>
-            <p className="text-white">
+            <p className="text-white"
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1500"
+            >
               {" "}
               When I got to know about freelancing, I felt excited about it and
               started <br /> to collect information about fiver and upwork

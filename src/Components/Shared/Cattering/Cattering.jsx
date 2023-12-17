@@ -13,7 +13,8 @@ const Cattering = () => {
         }}
       >
             {/* title section  */}
-            <div className="flex justify-center mt-16 pt-10" data-aos="zoom-in-down">
+            <div className="flex justify-center mt-16 pt-10" data-aos="zoom-in-down" data-aos-easing="linear"
+            data-aos-duration="1500">
                 <div>
                     <h1 style={{ fontFamily: 'Mooli, sans-serif' }} className="flex justify-center text-3xl text-white font-semibold">Cattering</h1>
                     <img src="../../../../public/icons/hr.svg" alt="" />
@@ -21,13 +22,13 @@ const Cattering = () => {
             </div>
 
             {/*------------------------- information section ------------------------ */}
-            <div className=' flex justify-center sm: ms-2 sm: me-2 lg:ms-0 lg:me-0 mt-20 pb-10' data-aos="flip-right">
+            <div className=' flex justify-center sm: ms-2 sm: me-2 lg:ms-0 lg:me-0 mt-20 pb-10' data-aos="flip-right" data-aos-easing="linear" data-aos-duration="1500">
                 <div className='bg-black  grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 
                  rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 '>
 
                     {/* image section  */}
                     <div className=' opacity-70'>
-                        <div><img style={{ width: '500px' }} className='rounded-xl transition-transform transform hover:scale-105' src={catteringImage} alt="" /></div>
+                        <div><img style={{ width: '500px'}} className='rounded-xl transition-transform transform hover:scale-105' src={catteringImage} alt="" /></div>
                     </div>
 
                     {/* info section  */}
