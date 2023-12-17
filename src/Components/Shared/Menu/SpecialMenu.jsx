@@ -2,7 +2,7 @@ import { BsHeartFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import bgBanner from "../../../../public/images/bg-banner1.jpg";
+import bgBanner1 from "../../../../public/images/bg-banner1.jpg";
 
 const SpecialMenu = () => {
   Aos.init();
@@ -23,7 +23,7 @@ const SpecialMenu = () => {
   return (
     <div
       style={{
-        backgroundImage: `url(${bgBanner})`,
+        backgroundImage: `url(${bgBanner1})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

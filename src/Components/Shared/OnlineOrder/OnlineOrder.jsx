@@ -7,6 +7,7 @@ import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Rating from "react-rating";
+import bgBanner2 from '../../../../public/images/bg-banner2.jpg'
 
 const OnlineOrder = () => {
   Aos.init();
@@ -51,9 +52,15 @@ const OnlineOrder = () => {
   };
 
   return (
-    <div>
+    <div
+    style={{
+      backgroundImage: `url(${bgBanner2})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
       {/* title section  */}
-      <div className="flex justify-center mt-16">
+      <div className="flex justify-center mt-16 pt-10 pb-10 ">
         <div data-aos="flip-down">
           <h1
             style={{ fontFamily: "Mooli, sans-serif" }}
