@@ -228,7 +228,7 @@ const handleSubmit = (e) => {
                 value={formData.clientName}
                 onChange={handleInputChange}
                 required
-                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
                           
               />
             </div>
@@ -244,7 +244,7 @@ const handleSubmit = (e) => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
               />
             </div>
           </div>
@@ -261,7 +261,7 @@ const handleSubmit = (e) => {
                 name="phoneNo"
                 value={formData.phoneNo}
                 onChange={handleInputChange}
-                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
                 />
             </div>
 
@@ -276,7 +276,7 @@ const handleSubmit = (e) => {
                 name="location"
                 value={formData.location}
                 onChange={handleInputChange}
-                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
                 />
             </div>
           </div>
@@ -309,7 +309,7 @@ const handleSubmit = (e) => {
           onChange={(e) => handleFoodItemChange(index, e)}
           required
           readOnly
-          className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+          className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
           />
       </div>
                   {/* Quantity Input */}
@@ -334,7 +334,7 @@ const handleSubmit = (e) => {
                         value={foodItem.quantity}
                         onChange={(e) => handleFoodItemChange(index, e)}
                         required
-                        className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                        className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
                         />
                       {/* Plus Button */}
                       <button
@@ -359,7 +359,7 @@ const handleSubmit = (e) => {
                       value={foodItem.price}
                       onChange={(e) => handleFoodItemChange(index, e)}
                       required
-                      className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                      className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
                       />
                   </div>
 
@@ -376,7 +376,7 @@ const handleSubmit = (e) => {
                       value={foodItem.subTotal}
                       onChange={(e) => handleFoodItemChange(index, e)}
                       required
-                      className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                      className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
                       />
                   </div>
                 </div>

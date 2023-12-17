@@ -261,7 +261,7 @@ font-bold px-3 py-1 rounded-md "
                           type="text"
                           id="name"
                           name="name"
-                          className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                          className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
                           // placeholder="Your Name"
                           required
                           value={name}
@@ -277,7 +277,7 @@ font-bold px-3 py-1 rounded-md "
                           type="tel"
                           id="phone"
                           name="phone"
-                          className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                          className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
                           // placeholder="Phone Number"
                           required
                           value={phone}
@@ -295,7 +295,7 @@ font-bold px-3 py-1 rounded-md "
                           type="text"
                           id="address"
                           name="address"
-                          className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                          className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
                           // placeholder="Delivery Address"
                           required
                           value={address}

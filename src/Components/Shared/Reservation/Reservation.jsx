@@ -149,7 +149,7 @@ const Reservation = () => {
                 Name
               </label>
               <input
-                className=" shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="clientName"
                 type="text"
                 placeholder="Full Name"
@@ -169,7 +169,7 @@ const Reservation = () => {
                 Email
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="email"
                 type="text"
                 placeholder="Your Email"
@@ -191,7 +191,7 @@ const Reservation = () => {
                 Phone Number
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="phoneNo"
                 type="tel"
                 placeholder="Phone Number"
@@ -211,7 +211,7 @@ const Reservation = () => {
                 Event Date
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="eventDate"
                 type="date"
                 name="eventDate"
@@ -224,7 +224,8 @@ const Reservation = () => {
 
           {/* StartTime and EndTime Inputs */}
           <div className="mb-4 grid grid-cols-2 gap-4">
-            <div className="">
+            {/* start time input  */}
+            <div className="mb-4 ">
               <label
                 className="block  text-white text-sm font-bold mb-2"
                 htmlFor="startTime"
@@ -232,7 +233,7 @@ const Reservation = () => {
                 Start Time
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="startTime"
                 type="time"
                 name="startTime"
@@ -241,7 +242,8 @@ const Reservation = () => {
                 required
               />
             </div>
-            <div className="">
+            {/* end time input  */}
+            <div className="mb-4 ">
               <label
                 className="block  text-white text-sm font-bold mb-2"
                 htmlFor="endTime"
@@ -249,7 +251,7 @@ const Reservation = () => {
                 End Time
               </label>
               <input
-                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                className="focus:shadow-outline focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="endTime"
                 type="time"
                 name="endTime"
@@ -270,7 +272,7 @@ const Reservation = () => {
                 Type of Event
               </label>
               <select
-                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="eventType"
                 name="eventType"
                 value={formData.eventType}
@@ -299,7 +301,7 @@ const Reservation = () => {
                 Number of People
               </label>
               <input
-                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="numbOfPeople"
                 type="number"
                 name="numbOfPeople"
@@ -319,7 +321,7 @@ const Reservation = () => {
               Additional Information
             </label>
             <textarea
-              className="w-full bg-transparent  px-3 pb-10 py-1 border-b-2  border-white text-white"
+              className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 pb-10 py-1 border-b-2  border-white text-white"
               id="eventInfo"
               placeholder="Additional Information"
               name="eventInfo"
