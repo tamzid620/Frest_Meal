@@ -23,7 +23,8 @@ const Packages = () => {
             </div>
 
             {/*------------------------- information section ------------------------ */}
-            <div className=' flex justify-center sm: ms-2 sm: me-2 lg:ms-0 lg:me-0 mt-20 pb-10' data-aos="flip-left"
+            <div className=' flex justify-center sm: ms-2 sm: me-2 lg:ms-0 lg:me-0 mt-20 pb-10' 
+            data-aos="fade-right"
             data-aos-easing="linear"
             data-aos-duration="1500">
                 <div className='bg-black  grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 
