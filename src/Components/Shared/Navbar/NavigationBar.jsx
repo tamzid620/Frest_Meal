@@ -108,7 +108,8 @@ const NavigationBar = () => {
   return (
     <nav className={`fixed z-10 ${navBarClass}`}>
       <div className="flex items-center justify-between">
-        <div>
+        {/* resturant logo section  */}
+        <div >
           <Link to="/">
             <img
               className="w-[140px]"
@@ -119,7 +120,7 @@ const NavigationBar = () => {
           </Link>
         </div>
 
-        <div className="flex items-center lg:ms-0 md:ms-0 sm: ms-[86px] lg:hidden md:hidden">
+        <div className="flex items-center lg:ms-0 md:ms-[360px] sm: ms-[86px] lg:hidden ">
           <Link to="/cart">
             <button
               title="Cart"
@@ -138,6 +139,21 @@ const NavigationBar = () => {
             </button>
           </Link>
         </div>
+                    {/* create order button  */}
+                    <div className=" lg:hidden md:flex sm: hidden">
+              <button
+                title="create order"
+                className="
+               border border-yellow-500 bg-transparent text-yellow-500
+                 hover:border-white hover:text-white 
+font-bold px-3 py-1 rounded-md "
+                onClick={() =>
+                  document.getElementById("my_modal_4").showModal()
+                }
+              >
+                Create Order
+              </button>
+            </div>
       </div>
       <div className="hamburger">
         <div className={`line1 ${isOpen ? "line1-open" : ""}`}></div>
@@ -167,7 +183,7 @@ const NavigationBar = () => {
         {/* cart , wishlist and create order section   */}
         <div>
           <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1">
-            <div className="ms-10 lg:flex md:flex sm: hidden">
+            <div className="ms-10 lg:flex md:hidden sm: hidden">
               {/* view cart button  */}
               <Link to="/cart">
                 <button
@@ -193,7 +209,7 @@ const NavigationBar = () => {
             </div>
 
             {/* create order button  */}
-            <div className=" lg:flex md:flex">
+            <div className=" lg:flex md:flex ">
               <button
                 title="create order"
                 className="
@@ -208,6 +224,7 @@ font-bold px-3 py-1 rounded-md "
               </button>
             </div>
 
+{/* modal section  */}
             <dialog id="my_modal_4" className="modal bg-black bg-opacity-40">
               <div className="modal-box w-11/12 max-w-5xl border border-white bg-black bg-opacity-40">
                 <form method="dialog">

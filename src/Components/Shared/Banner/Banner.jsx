@@ -16,7 +16,7 @@ const Banner = () => {
         {/* banner heading paragraph-------------- */}
         <div className=" sm: ms-2 sm:me-2 lg:ms-0 lg:me-0">
           <div className="flex items-center mb-4">
-            <div className="grid sm:grid-cols-2 text-white">
+            <div className="grid sm:grid-cols-2 text-white sm: mt-[50px] md:mt-0 lg:mt-0">
               <span className=" sm: mb-3 text-white flex items-center">
                 {" "}
                 Welcome to
