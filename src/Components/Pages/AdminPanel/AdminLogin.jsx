@@ -60,13 +60,6 @@ function AdminLogin()  {
         else if(res.data.role ==="2"){
         navigate("/deliverymanPanel");
         }
-      //   Swal.fire({
-      //     position: "center",
-      //     icon: "success",
-      //     title: "Successfully Logged In",
-      //     showConfirmButton: false,
-      //     timer: 1500,
-      // });
         
       } else if (res.data.status === "403") {
         Swal.fire({
@@ -151,42 +144,9 @@ function AdminLogin()  {
                 className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
               >
                 {showPassword ? (
-                  // <svg
-                  //   xmlns="http://www.w3.org/2000/svg"
-                  //   className="h-6 w-6 text-gray-500"
-                  //   fill="none"
-                  //   viewBox="0 0 24 24"
-                  //   stroke="currentColor"
-                  // >
-                  //   <path
-                  //     strokeLinecap="round"
-                  //     strokeLinejoin="round"
-                  //     strokeWidth="2"
-                  //     d="M6 18L18 6M6 6l12 12"
-                  //   />
-                  // </svg>
+                 
                    <img className="w-[20px] h-[20px]" src={showPasswordIcon} alt="" />
                 ) : (
-                  // <svg
-                  //   xmlns="http://www.w3.org/2000/svg"
-                  //   className="h-6 w-6 text-gray-500"
-                  //   fill="none"
-                  //   viewBox="0 0 24 24"
-                  //   stroke="currentColor"
-                  // >
-                  //   <path
-                  //     strokeLinecap="round"
-                  //     strokeLinejoin="round"
-                  //     strokeWidth="2"
-                  //     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  //   />
-                  //   <path
-                  //     strokeLinecap="round"
-                  //     strokeLinejoin="round"
-                  //     strokeWidth="2"
-                  //     d="M17 21a2 2 0 01-2 2H9a2 2 0 01-2-2v-2a6 6 0 018-5.74"
-                  //   />
-                  // </svg>
                    <img className="w-[20px] h-[20px]" src={hidePasswordIcon} alt="" />
                 )}
               </span>

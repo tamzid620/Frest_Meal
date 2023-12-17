@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
-import banner from "../../../../public/images/banner.png";
+import banner from "../../../../public/images/Banner5.png";
 
 const Banner = () => {
   return (
+    <div className="pt-[80px]">
     <div
-      style={{ backgroundImage: `url(${banner})` }}
-      className=" gap-10 text-lg font-semibold pt-[100px]"
+    style={{
+      backgroundImage: `url(${banner})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+      className=" gap-10 text-lg font-semibold bg-black"
     >
-      <div className="max-w-screen-xl mx-auto flex items-center lg:ms-10 lg:py-[100px] md:py-[100px] sm: pb-[100px]">
+      <div className="max-w-screen-xl mx-auto flex items-center lg:ms-10 lg:py-[100px] md:py-[100px] sm: pb-[100px] ">
         {/* banner heading paragraph-------------- */}
         <div className=" sm: ms-2 sm:me-2 lg:ms-0 lg:me-0">
           <div className="flex items-center mb-4">
@@ -53,6 +58,7 @@ font-bold px-3 py-3 mt-5 rounded-md ">
         </div>
         
       </div>
+    </div>
     </div>
   );
 };
