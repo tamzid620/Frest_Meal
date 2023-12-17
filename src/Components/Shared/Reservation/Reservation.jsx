@@ -141,7 +141,7 @@ const Reservation = () => {
         >
           <div className="mb-4 grid grid-cols-2 gap-4">
             {/* Name Input */}
-            <div className="mb-4">
+            <div className="mb-4 ">
               <label
                 className="block text-white text-sm font-bold mb-2"
                 htmlFor="clientName"
@@ -149,7 +149,7 @@ const Reservation = () => {
                 Name
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className=" shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="clientName"
                 type="text"
                 placeholder="Full Name"
@@ -161,7 +161,7 @@ const Reservation = () => {
             </div>
 
             {/*Email Input */}
-            <div className="mb-4">
+            <div className="mb-4 ">
               <label
                 className="block text-white text-sm font-bold mb-2"
                 htmlFor="email"
@@ -183,7 +183,7 @@ const Reservation = () => {
 
           <div className="mb-4 grid grid-cols-2 gap-4">
             {/* Phone Number Input */}
-            <div className="mb-4">
+            <div className="mb-4 ">
               <label
                 className="block  text-white text-sm font-bold mb-2"
                 htmlFor="phoneNo"
@@ -203,7 +203,7 @@ const Reservation = () => {
             </div>
 
             {/* Event Date Input */}
-            <div className="mb-4">
+            <div className="mb-4 ">
               <label
                 className="block  text-white text-sm font-bold mb-2"
                 htmlFor="eventDate"
@@ -224,7 +224,7 @@ const Reservation = () => {
 
           {/* StartTime and EndTime Inputs */}
           <div className="mb-4 grid grid-cols-2 gap-4">
-            <div>
+            <div className="">
               <label
                 className="block  text-white text-sm font-bold mb-2"
                 htmlFor="startTime"
@@ -241,7 +241,7 @@ const Reservation = () => {
                 required
               />
             </div>
-            <div>
+            <div className="">
               <label
                 className="block  text-white text-sm font-bold mb-2"
                 htmlFor="endTime"
@@ -249,7 +249,7 @@ const Reservation = () => {
                 End Time
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="endTime"
                 type="time"
                 name="endTime"
@@ -262,7 +262,7 @@ const Reservation = () => {
 
           <div className="mb-4 grid grid-cols-2 gap-4">
             {/* Type of Event Selector */}
-            <div className="mb-4">
+            <div className="mb-4 ">
               <label
                 className="block  text-white text-sm font-bold mb-2"
                 htmlFor="eventType"
@@ -270,28 +270,28 @@ const Reservation = () => {
                 Type of Event
               </label>
               <select
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="eventType"
                 name="eventType"
                 value={formData.eventType}
                 onChange={handleChange}
                 required
               >
-                <option value="" disabled>
+                <option  value="" disabled>
                   Select Type
                 </option>
-                <option value="birthday">Corporate Lunch</option>
-                <option value="wedding">Family Event</option>
-                <option value="wedding">Meeting / Presentation</option>
-                <option value="wedding">Wedding</option>
-                <option value="wedding">Birthday party</option>
-                <option value="wedding">Other</option>
+                <option value="birthday" className="text-black">Corporate Lunch</option>
+                <option value="wedding" className="text-black">Family Event</option>
+                <option value="wedding" className="text-black">Meeting / Presentation</option>
+                <option value="wedding" className="text-black">Wedding</option>
+                <option value="wedding" className="text-black">Birthday party</option>
+                <option value="wedding" className="text-black">Other</option>
                 {/* Add more options as needed */}
               </select>
             </div>
 
             {/* Number of People Input */}
-            <div className="mb-4">
+            <div className="mb-4 ">
               <label
                 className="block  text-white text-sm font-bold mb-2"
                 htmlFor="numbOfPeople"
@@ -299,7 +299,7 @@ const Reservation = () => {
                 Number of People
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="numbOfPeople"
                 type="number"
                 name="numbOfPeople"
@@ -311,7 +311,7 @@ const Reservation = () => {
           </div>
 
           {/* Additional Information Input */}
-          <div className="mb-6">
+          <div className="mb-6 ">
             <label
               className="block text-white text-sm font-bold mb-2"
               htmlFor="eventInfo"
@@ -319,7 +319,7 @@ const Reservation = () => {
               Additional Information
             </label>
             <textarea
-              className="shadow appearance-none border rounded w-full pt-2 pb-10 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full bg-transparent  px-3 pb-10 py-1 border-b-2  border-white text-white"
               id="eventInfo"
               placeholder="Additional Information"
               name="eventInfo"

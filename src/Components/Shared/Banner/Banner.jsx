@@ -49,7 +49,7 @@ const Banner = () => {
             <Link to="/menu">
               <button className="
               border border-yellow-500 bg-transparent text-yellow-500
-             hover:border-white hover:text-white 
+             hover:border-white hover:text-white hover:shadow-lg hover:shadow-white
 font-bold px-3 py-3 mt-5 rounded-md ">
                 Order Now
               </button>
