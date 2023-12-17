@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Rating from "react-rating";
-import bgBanner2 from '../../../../public/images/bg-banner2.jpg'
+import bgBanner2 from "../../../../public/images/bg-banner2.jpg";
 
 const OnlineOrder = () => {
   Aos.init();
@@ -53,15 +53,19 @@ const OnlineOrder = () => {
 
   return (
     <div
-    style={{
-      backgroundImage: `url(${bgBanner2})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
+      style={{
+        backgroundImage: `url(${bgBanner2})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       {/* title section  */}
       <div className="flex justify-center mt-16 pt-10 pb-10 ">
-        <div data-aos="flip-down" data-aos-easing="linear"c data-aos-duration="1500">
+        <div
+          data-aos="flip-down"
+          data-aos-easing="linear"
+          data-aos-duration="1500"
+        >
           <h1
             style={{ fontFamily: "Mooli, sans-serif" }}
             className="flex justify-center text-3xl text-white font-semibold"
@@ -72,7 +76,12 @@ const OnlineOrder = () => {
         </div>
       </div>
       {/*------------------------- information section ------------------------ */}
-      <div className="flex justify-center" data-aos="zoom-in-up">
+      <div
+        className="flex justify-center"
+        data-aos="zoom-in-up"
+        data-aos-easing="linear"
+        data-aos-duration="1500"
+      >
         <div className="max-w-screen-lg mx-auto ">
           {/*---------------------row -1 ---------------- */}
 
