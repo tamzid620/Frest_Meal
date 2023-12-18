@@ -88,7 +88,46 @@ const AdminDeliveryManList = () => {
         });
       });
   };
+  // disclose section----------------
+  const handleDisclose = (deliveryManId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
 
+    axios
+      .get(
+        `https://backend.ap.loclx.io/api/delivery-man-delete/${deliveryManId}`,
+        {
+          headers: headers,
+        }
+      )
+      .then((res) => {
+        setDeliveryMans((prevdeliveryMans) =>
+          prevdeliveryMans.filter(
+            (deliveryMans) => deliveryMans.id !== deliveryManId
+          )
+        );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        window.location.reload();
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error deleting DeliveryMans",
+          text: error.message,
+          showConfirmButton: true,
+        });
+      });
+  };
 
   // pagination section -----------
   const indexOfLastDeliveryManItem = currentPage * deliveryManItemPerPage;
@@ -152,13 +191,6 @@ const AdminDeliveryManList = () => {
                     currentDeliveryManItem.map((deliveryMans, index) => (
                       <tr key={deliveryMans.id}>
                         <th>{index + 1}</th>
-                        {/* <td>
-                          <img
-                            className="w-[50px] h-[50px]"
-                            src={deliveryMans.imgLink}
-                            alt=""
-                          />
-                        </td> */}
                         <td>{deliveryMans.name}</td>
                         {/* <td>{deliveryMans.password}</td> */}
                         <td>{deliveryMans.email}</td>
@@ -180,14 +212,24 @@ const AdminDeliveryManList = () => {
                               Delete
                             </button>
                             {/* create delivery panel button   */}
-                            {/* create delivery panel button   */}
-                            <Link
-                              to={`/createDeliveryPanel/${deliveryMans.id}`}
-                            >
-                              <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
-                                Create Delivery Panel
-                              </button>
-                            </Link>
+                            {deliveryMans.status === 1 && (
+                              <Link
+                                to={`/createDeliveryPanel/${deliveryMans.id}`}
+                              >
+                                <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
+                                  Create Delivery Panel
+                                </button>
+                              </Link>
+                            )}
+                            {deliveryMans.status === 2 && (
+                                <button
+                                onClick={() => handleDisclose(deliveryMans.id)}
+                                  disabled
+                                  className="btn-xs rounded-lg font-semibold uppercase bg-gray-500 text-white hover:bg-gray-800 hover:text-white"
+                                >
+                                  Disclose Delivery Panel
+                                </button>
+                            )}
                           </div>
                         </td>
                       </tr>

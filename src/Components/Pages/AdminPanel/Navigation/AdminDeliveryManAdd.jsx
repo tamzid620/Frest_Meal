@@ -86,7 +86,7 @@ const AdminDeliveryManAdd = () => {
           Swal.fire({
             position: "center",
             icon: "success",
-            title: "Data Added successfully",
+            title: res.data.message,
             showConfirmButton: false,
             timer: 1500,
           });
