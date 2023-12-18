@@ -98,7 +98,7 @@ const AdminDeliveryManList = () => {
 
     axios
       .get(
-        `https://backend.ap.loclx.io/api/delivery-man-delete/${deliveryManId}`,
+        `https://backend.ap.loclx.io/api/close-delivery-panel/${deliveryManId}`,
         {
           headers: headers,
         }
@@ -122,7 +122,7 @@ const AdminDeliveryManList = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: "Error deleting DeliveryMans",
+          title: error.message,
           text: error.message,
           showConfirmButton: true,
         });
@@ -224,8 +224,7 @@ const AdminDeliveryManList = () => {
                             {deliveryMans.status === 2 && (
                                 <button
                                 onClick={() => handleDisclose(deliveryMans.id)}
-                                  disabled
-                                  className="btn-xs rounded-lg font-semibold uppercase bg-gray-500 text-white hover:bg-gray-800 hover:text-white"
+                                  className="btn-xs rounded-lg font-semibold uppercase bg-gray-500 text-gray-950 hover:bg-gray-800 hover:text-white"
                                 >
                                   Disclose Delivery Panel
                                 </button>

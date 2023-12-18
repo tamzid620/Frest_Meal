@@ -11,10 +11,11 @@ import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
 const AdminOrderProcessing = () => {
-  
-  const [loading,setLoading] =useState(false);
+  const [loading, setLoading] = useState(false);
   const { orderId } = useParams();
   const [orderProcess, setorderProcess] = useState([]);
+  const [selectedDeliveryMan, setSelectedDeliveryMan] = useState("");
+  const [deliveryMen, setDeliveryMen] = useState([]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -24,58 +25,67 @@ const AdminOrderProcessing = () => {
     };
 
     // get method -------------------
-    setLoading(true)
+    setLoading(true);
     axios
       .get(`https://backend.ap.loclx.io/api/order-detail/${orderId}`, {
         headers: headers,
       })
       .then((res) => {
         setorderProcess(res.data.order);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
+
+    axios
+      .get("https://backend.ap.loclx.io/api/delivery-panel-list", {
+        headers: headers,
+      })
+      .then((res) => {
+        setDeliveryMen(res.data.deliveryPanel);
+      })
+      .catch((error) => {
+        console.error("Error fetching delivery men:", error);
+      });
   }, [orderId]);
   console.log(orderProcess);
+  console.log(deliveryMen);
 
-    // handlePendingChange-------------------------
-    const handlePendingChange = (orderId) => {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const headers = {
-          accept: "application/json",
-          Authorization: "Bearer " + user.token,
-        };
-        axios
-          .get(
-            `https://backend.ap.loclx.io/api/order-stage-approve/${orderId}`,
-            {
-              headers: headers,
-            }
-          )
-          .then((res) => {
-            setorderProcess(orderProcess);
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: res.data.message,
-              showConfirmButton: false,
-              timer: 2000,
-            });
-            window.location.reload();
-          })
-          .catch((error) => {
-            Swal.fire({
-              position: "center",
-              icon: "error",
-              title: "Error deleting Teacher",
-              text: error.message,
-              showConfirmButton: true,
-            });
-          });
-      };
+  // handlePendingChange-------------------------
+  const handlePendingChange = (orderId) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+    axios
+      .get(`https://backend.ap.loclx.io/api/order-stage-approve/${orderId}`, {
+        headers: headers,
+      })
+      .then((res) => {
+        setorderProcess(orderProcess);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        window.location.reload();
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error deleting Teacher",
+          text: error.message,
+          showConfirmButton: true,
+        });
+      });
+  };
 
-        // handleCoockingChange-------------------------
+  // handleCoockingChange-------------------------
   const handleCoockingChange = (orderId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
@@ -83,12 +93,9 @@ const AdminOrderProcessing = () => {
       Authorization: "Bearer " + user.token,
     };
     axios
-      .get(
-        `https://backend.ap.loclx.io/api/order-stage-way/${orderId}`,
-        {
-          headers: headers,
-        }
-      )
+      .get(`https://backend.ap.loclx.io/api/order-stage-way/${orderId}`, {
+        headers: headers,
+      })
       .then((res) => {
         setorderProcess(orderProcess);
         Swal.fire({
@@ -125,187 +132,293 @@ const AdminOrderProcessing = () => {
           </h1>
           <hr className="mt-1 border border-white mb-10" />
           {/* information section  */}
-          {!loading &&<div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            {/* review section  */}
-            <div
-              className={`text-white flex justify-center uppercase ${
-                orderProcess.orderStage === "pending" ? "animate-pulse" : ""
-              }`}
-            >
-              <div>
-                <span
-                  className={`mb-1 flex justify-center ${
-                    orderProcess.orderStage === "pending" ? "hidden" : ""
-                  }`}
-                >
-                  <MdCheckCircle size={30} className="text-green-500" />
-                </span>
-                <h1
-                  className={`font-bold text-2xl  ${
-                    orderProcess.orderStage === "pending"
-                      ? "text-green-500"
-                      : "text-gray-800"
-                  } uppercase flex justify-center`}
-                >
-                  Review
-                </h1>
-                <p
-                  className={`btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex justify-center items-center ${
-                    orderProcess.orderStage === "pending" ? "visible" : "text-gray-800"
-                  }`}
-                >
-                  step-1
-                </p>
-                <button
-                onClick={() => handlePendingChange(orderProcess.id)}
-                  className={`ms-[108px] btn-xs text-black bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white mt-5 flex items-center ${
-                    orderProcess.orderStage === "pending" ? "visible" : "invisible"
-                  }`}
-                >
-                  Shift
-                </button>
-                <div
-                  className={`my-[80px] flex justify-center ${
-                    orderProcess.orderStage === "pending" ? "visible" : "invisible"
-                  }`}
-                >
-                  <img className="w-[250px] " src={review} alt="" />
+          {!loading && (
+            <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+              {/* review section  */}
+              <div
+                className={`text-white flex justify-center uppercase ${
+                  orderProcess.orderStage === "pending" ? "animate-pulse" : ""
+                }`}
+              >
+                <div>
+                  <span
+                    className={`mb-1 flex justify-center ${
+                      orderProcess.orderStage === "pending" ? "hidden" : ""
+                    }`}
+                  >
+                    <MdCheckCircle size={30} className="text-green-500" />
+                  </span>
+                  <h1
+                    className={`font-bold text-2xl  ${
+                      orderProcess.orderStage === "pending"
+                        ? "text-green-500"
+                        : "text-gray-800"
+                    } uppercase flex justify-center`}
+                  >
+                    Review
+                  </h1>
+                  <p
+                    className={`btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex justify-center items-center ${
+                      orderProcess.orderStage === "pending"
+                        ? "visible"
+                        : "text-gray-800"
+                    }`}
+                  >
+                    step-1
+                  </p>
+                  <button
+                    onClick={() => handlePendingChange(orderProcess.id)}
+                    className={`ms-[108px] btn-xs text-black bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white mt-5 flex items-center ${
+                      orderProcess.orderStage === "pending"
+                        ? "visible"
+                        : "invisible"
+                    }`}
+                  >
+                    Shift
+                  </button>
+                  <div
+                    className={`my-[80px] flex justify-center ${
+                      orderProcess.orderStage === "pending"
+                        ? "visible"
+                        : "invisible"
+                    }`}
+                  >
+                    <img className="w-[250px] " src={review} alt="" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Cooking section  */}
+              <div
+                className={`text-white flex justify-center uppercase ${
+                  orderProcess.orderStage === "cooking" ? "animate-pulse" : ""
+                }`}
+              >
+                <div>
+                  <span
+                    className={` mb-1 flex justify-center ${
+                      orderProcess.orderStage === "cooking"
+                        ? "hidden"
+                        : orderProcess.orderStage === "pending"
+                        ? "hidden"
+                        : ""
+                    }`}
+                  >
+                    <MdCheckCircle size={30} className="text-green-500" />
+                  </span>
+                  <h1
+                    className={`font-bold text-2xl uppercase flex justify-center ${
+                      orderProcess.orderStage === "cooking"
+                        ? "text-green-500"
+                        : "text-gray-800"
+                    }`}
+                  >
+                    Cooking
+                  </h1>
+                  <p
+                    className={`btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex items-center justify-center ${
+                      orderProcess.orderStage === "cooking"
+                        ? "visible"
+                        : "text-gray-800"
+                    }`}
+                  >
+                    step-2
+                  </p>
+                  <button
+                    onClick={() => handleCoockingChange(orderProcess.id)}
+                    className={`ms-[108px] btn-xs text-black bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white mt-5 flex items-center ${
+                      orderProcess.orderStage === "cooking"
+                        ? "visible"
+                        : "invisible"
+                    }`}
+                  >
+                    Shift
+                  </button>
+                  <div
+                    className={`my-10 flex justify-center ${
+                      orderProcess.orderStage === "cooking"
+                        ? "visible"
+                        : "invisible"
+                    }`}
+                  >
+                    <img className="w-[250px]" src={cooking} alt="" />
+                  </div>
+                </div>
+              </div>
+
+              {/* On the Way section  */}
+              <div
+                className={`text-white flex justify-center uppercase ${
+                  orderProcess.orderStage === "on the way"
+                    ? "animate-pulse"
+                    : ""
+                }`}
+              >
+                <div>
+                  <span
+                    className={`flex justify-center mb-1 ${
+                      orderProcess.orderStage === "on the way"
+                        ? "hidden"
+                        : orderProcess.orderStage === "pending"
+                        ? "hidden"
+                        : orderProcess.orderStage === "cooking"
+                        ? "hidden"
+                        : ""
+                    }`}
+                  >
+                    <MdCheckCircle size={30} className="text-green-500" />
+                  </span>
+                  <h1
+                    className={`font-bold text-2xl uppercase flex justify-center ${
+                      orderProcess.orderStage === "on the way"
+                        ? "text-green-500"
+                        : "text-gray-800"
+                    }`}
+                  >
+                    On the Way
+                  </h1>
+                  <p
+                    className={`btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex items-center justify-center ${
+                      orderProcess.orderStage === "on the way"
+                        ? "visible"
+                        : "text-gray-800"
+                    }`}
+                  >
+                    step-3
+                  </p>
+                  {/* invoice button  */}
+                  <Link to={`/invoice/${orderProcess.id}`}>
+                    <button
+                      className={`ms-[100px] btn-xs text-black bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white mt-5 flex items-center ${
+                        orderProcess.orderStage === "on the way"
+                          ? "visible"
+                          : "invisible"
+                      }`}
+                    >
+                      Invoice
+                    </button>
+                  </Link>
+                  {/* image section  */}
+                  <div
+                    className={`my-10 flex justify-center ${
+                      orderProcess.orderStage === "on the way"
+                        ? "visible"
+                        : "invisible"
+                    }`}
+                  >
+                    <img className="w-[250px]" src={onTheWay} alt="" />
+                  </div>
+                  {/* async to button  */}
+                  <div>
+                    {/* modal section ---------------- */}
+                    <button
+                      className={`ms-[100px] btn-xs text-black bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white mt-5 flex items-center ${
+                        orderProcess.orderStage === "on the way"
+                          ? "visible"
+                          : "invisible"
+                      }`}
+                      onClick={() =>
+                        document.getElementById("my_modal_5").showModal()
+                      }
+                    >
+                      assign to
+                    </button>
+                    <dialog id="my_modal_5" className="modal">
+                      <div className="modal-box text-black">
+                        <form method="dialog">
+                          {/* if there is a button in form, it will close the modal */}
+                          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                            ✕
+                          </button>
+                        </form>
+                        {/*delivety man  selector  */}
+                        <div className="flex justify-center items-center gap-10">
+                        {/* select your delivery man  */}
+                        <div>
+                          <label
+                            htmlFor="deliveryMan"
+                            className=" block mb-2"
+                          >
+                            Select Delivery Man:
+                          </label>
+                          <select
+                            id="deliveryMan"
+                            name="deliveryMan"
+                            className="border border-black rounded p-2 mb-4"
+                            value={selectedDeliveryMan}
+                            onChange={(e) => setSelectedDeliveryMan(e.target.value)}
+                          >
+                            <option value="">Select Delivery Man</option>
+                            {deliveryMen &&
+                              deliveryMen.map((deliveryMan) => (
+                                <option
+                                  key={deliveryMan.id}
+                                  value={deliveryMan.id}
+                                >
+                                  {deliveryMan.name}
+                                </option>
+                              ))}
+                          </select>
+                        </div>
+                        {/* submit button  */}
+                        <div>
+                        <button className="btn-md bg-[#FFD700] rounded-lg font-semibold uppercase hover:bg-amber-500 hover:text-white">
+                        assign
+                            </button>
+                        </div>
+                        </div>
+                      </div>
+                    </dialog>
+                  </div>
+                </div>
+              </div>
+
+              {/* Delivered section  */}
+              <div
+                className={`text-white flex justify-center uppercase ${
+                  orderProcess.orderStage === "delivered" ? "animate-pulse" : ""
+                }`}
+              >
+                <div>
+                  <span
+                    className={`hidden mb-1 ${
+                      orderProcess.orderStage === "delivered" ? "hidden" : ""
+                    }`}
+                  >
+                    <MdCheckCircle size={30} className="text-green-500" />
+                  </span>
+                  <h1
+                    className={`font-bold text-2xl uppercase flex justify-center ${
+                      orderProcess.orderStage === "delivered"
+                        ? "text-green-500"
+                        : "text-gray-800"
+                    }`}
+                  >
+                    Delivered
+                  </h1>
+                  <p
+                    className={`btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex items-center justify-center ${
+                      orderProcess.orderStage === "delivered"
+                        ? "visible"
+                        : "text-gray-800"
+                    }`}
+                  >
+                    step-4
+                  </p>
+                  <div
+                    className={`my-[80px] flex justify-center ${
+                      orderProcess.orderStage === "delivered"
+                        ? "visible"
+                        : "invisible"
+                    }`}
+                  >
+                    <img className="w-[250px]" src={Delivered} alt="" />
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Cooking section  */}
-            <div
-              className={`text-white flex justify-center uppercase ${
-                orderProcess.orderStage === "cooking" ? "animate-pulse" : ""
-              }`}
-            >
-              <div>
-                <span
-                  className={` mb-1 flex justify-center ${
-                    orderProcess.orderStage === "cooking" ? "hidden" : orderProcess.orderStage === "pending"?"hidden":""
-                  }`}
-                >
-                  <MdCheckCircle size={30} className="text-green-500" />
-                </span>
-                <h1
-                  className={`font-bold text-2xl uppercase flex justify-center ${
-                    orderProcess.orderStage === "cooking" ? "text-green-500" : "text-gray-800"
-                  }`}
-                >
-                  Cooking
-                </h1>
-                <p
-                  className={`btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex items-center justify-center ${
-                    orderProcess.orderStage === "cooking" ? "visible" : "text-gray-800"
-                  }`}
-                >
-                  step-2
-                </p>
-                <button
-                onClick={() => handleCoockingChange(orderProcess.id)}
-                  className={`ms-[108px] btn-xs text-black bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white mt-5 flex items-center ${
-                    orderProcess.orderStage === "cooking" ? "visible" : "invisible"
-                  }`}
-                >
-                  Shift
-                </button>
-                <div
-                  className={`my-10 flex justify-center ${
-                    orderProcess.orderStage === "cooking" ? "visible" : "invisible"
-                  }`}
-                >
-                  <img className="w-[250px]" src={cooking} alt="" />
-                </div>
-              </div>
-            </div>
-
-            {/* On the Way section  */}
-            <div
-              className={`text-white flex justify-center uppercase ${
-                orderProcess.orderStage === "on the way" ? "animate-pulse" : ""
-              }`}
-            >
-              <div>
-                <span
-                  className={`flex justify-center mb-1 ${
-                    orderProcess.orderStage === "on the way" ? "hidden" : orderProcess.orderStage === "pending" ? "hidden" :orderProcess.orderStage === "cooking" ? "hidden" :""
-                  }`}
-                >
-                  <MdCheckCircle size={30} className="text-green-500" />
-                </span>
-                <h1
-                  className={`font-bold text-2xl uppercase flex justify-center ${
-                    orderProcess.orderStage === "on the way" ? "text-green-500" : "text-gray-800"
-                  }`}
-                >
-                  On the Way
-                </h1>
-                <p
-                  className={`btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex items-center justify-center ${
-                    orderProcess.orderStage === "on the way" ? "visible" : "text-gray-800"
-                  }`}
-                >
-                  step-3
-                </p>
-                {/* invoice button  */}
-                <Link to={`/invoice/${orderProcess.id}`}><button
-                  className={`ms-[100px] btn-xs text-black bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white mt-5 flex items-center ${
-                    orderProcess.orderStage === "on the way" ? "visible" : "invisible"
-                  }`}
-                >
-                  Invoice
-                </button></Link>
-                <div
-                  className={`my-10 flex justify-center ${
-                    orderProcess.orderStage === "on the way" ? "visible" : "invisible"
-                  }`}
-                >
-                  <img className="w-[250px]" src={onTheWay} alt="" />
-                </div>
-              </div>
-            </div>
-
-            {/* Delivered section  */}
-            <div
-              className={`text-white flex justify-center uppercase ${
-                orderProcess.orderStage === "delivered" ? "animate-pulse" : ""
-              }`}
-            >
-              <div>
-                <span
-                  className={`hidden mb-1 ${
-                    orderProcess.orderStage === "delivered" ? "hidden" : ""
-                  }`}
-                >
-                  <MdCheckCircle size={30} className="text-green-500" />
-                </span>
-                <h1
-                  className={`font-bold text-2xl uppercase flex justify-center ${
-                    orderProcess.orderStage === "delivered" ? "text-green-500" : "text-gray-800"
-                  }`}
-                >
-                  Delivered
-                </h1>
-                <p
-                  className={`btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex items-center justify-center ${
-                    orderProcess.orderStage === "delivered" ? "visible" : "text-gray-800"
-                  }`}
-                >
-                  step-4
-                </p>
-                <div
-                  className={`my-[80px] flex justify-center ${
-                    orderProcess.orderStage === "delivered" ? "visible" : "invisible"
-                  }`}
-                >
-                  <img className="w-[250px]" src={Delivered} alt="" />
-                </div>
-              </div>
-            </div>
-
-          </div>}
-          {loading && <Loading/>}
+          )}
+          {loading && <Loading />}
         </div>
       </div>
     </div>

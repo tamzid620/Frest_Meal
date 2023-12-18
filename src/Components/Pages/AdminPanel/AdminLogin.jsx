@@ -4,10 +4,10 @@ import marketien from "../../../../public/icons/Main Logo White-01.png";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import showPasswordIcon from '../../../../public/icons/show-password-icon-19.jpg'
-import hidePasswordIcon from '../../../../public/icons/show-password-icon-18.jpg'
+import showPasswordIcon from "../../../../public/icons/show-password-icon-19.jpg";
+import hidePasswordIcon from "../../../../public/icons/show-password-icon-18.jpg";
 
-function AdminLogin()  {
+function AdminLogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,8 +15,8 @@ function AdminLogin()  {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -37,7 +37,7 @@ function AdminLogin()  {
 
   const data = { email, password };
 
-// handle submit button -------------
+  // handle submit button -------------
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,6 +45,13 @@ function AdminLogin()  {
 
     axios.post(`http://backend.ap.loclx.io/api/login`, data).then((res) => {
       if (res.data.status === "201") {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        if (res.data.user.role === 1) {
+          navigate("/dp");
+        } else if (res.data.user.role === 2) {
+          navigate("/deliverymanPanel");
+        }
         Swal.fire({
           position: "center",
           icon: "success",
@@ -52,16 +59,7 @@ function AdminLogin()  {
           showConfirmButton: false,
           timer: 1500,
         });
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data));
-        // if(res.data.role ==="1"){
         // navigate("/dp");
-        // }
-        // else if(res.data.role ==="2"){
-        // navigate("/deliverymanPanel");
-        // }
-        navigate("/dp");
-        
       } else if (res.data.status === "403") {
         Swal.fire({
           icon: "error",
@@ -93,14 +91,14 @@ function AdminLogin()  {
     >
       <div className="absolute inset-0 bg-gray-800 opacity-50" />
       <div className="w-full max-w-md relative">
-        
-
         {/* form section  */}
         <form
           onSubmit={handleSubmit}
           className="bg-gray-800 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
         >
-          <h1 className="font-semibold text-white text-center mb-3">Admin Login Only</h1>
+          <h1 className="font-semibold text-white text-center mb-3">
+            Management Login Only
+          </h1>
           {/* email field  */}
           <div className="mb-4">
             <label
@@ -145,10 +143,17 @@ function AdminLogin()  {
                 className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
               >
                 {showPassword ? (
-                 
-                   <img className="w-[20px] h-[20px]" src={showPasswordIcon} alt="" />
+                  <img
+                    className="w-[20px] h-[20px]"
+                    src={showPasswordIcon}
+                    alt=""
+                  />
                 ) : (
-                   <img className="w-[20px] h-[20px]" src={hidePasswordIcon} alt="" />
+                  <img
+                    className="w-[20px] h-[20px]"
+                    src={hidePasswordIcon}
+                    alt=""
+                  />
                 )}
               </span>
             </div>

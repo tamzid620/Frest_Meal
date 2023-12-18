@@ -1,5 +1,6 @@
 
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -87,6 +88,11 @@ const Footer = () => {
                         <li>
                             <a className="hover:text-yellow-500" href="/contactUs">Contact Us</a>
                         </li>
+                        <Link to="/deliverymanPanel">
+                        <li>
+                            <a className="hover:text-yellow-500" href="/contactUs">Delivery Panel</a>
+                        </li>
+                        </Link>
                     </ul>
                     </div>
                    </div>
