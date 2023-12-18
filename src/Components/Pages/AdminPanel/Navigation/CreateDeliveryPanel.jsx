@@ -125,7 +125,7 @@ const CreateDeliveryPanel = () => {
       <div className="flex justify-center ">
         <div className="mt-24 w-full ">
           <h1 className="text-3xl flex justify-center text-black uppercase">
-            Delivery Man List
+            Create Delivery Panel 
           </h1>
           <hr className="mt-1 border border-black mb-10" />
           {/* input  section  */}
@@ -136,7 +136,7 @@ const CreateDeliveryPanel = () => {
           >
             {/* name and email section  */}
             <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-2 mb-3">
-              {/* name section   */}
+              {/* ID section   */}
               <div hidden>
                 <label htmlFor="id">Id:</label>
                 <input

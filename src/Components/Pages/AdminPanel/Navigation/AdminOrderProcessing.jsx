@@ -4,18 +4,29 @@ import review from "../../../../../public/images/review.gif";
 import cooking from "../../../../../public/images/cooking.gif";
 import onTheWay from "../../../../../public/images/onTheWay.gif";
 import Delivered from "../../../../../public/images/delivered.gif";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
 const AdminOrderProcessing = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { orderId } = useParams();
   const [orderProcess, setorderProcess] = useState([]);
-  const [selectedDeliveryMan, setSelectedDeliveryMan] = useState("");
+  // const [selectedDeliveryMan, setSelectedDeliveryMan] = useState("");
   const [deliveryMen, setDeliveryMen] = useState([]);
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  // handle control --------------------
+  const handleIdChange = (e) => {
+    setId(e.target.value);
+  };
+  // handle control --------------------
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -44,6 +55,7 @@ const AdminOrderProcessing = () => {
       })
       .then((res) => {
         setDeliveryMen(res.data.deliveryPanel);
+        setId(orderId);
       })
       .catch((error) => {
         console.error("Error fetching delivery men:", error);
@@ -114,6 +126,49 @@ const AdminOrderProcessing = () => {
           title: "Error deleting Teacher",
           text: error.message,
           showConfirmButton: true,
+        });
+      });
+  };
+
+  // handle submit button ----------------
+  const handleSubmit = (e) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const headers = {
+      accept: "application/json",
+      Authorization: "Bearer " + user.token,
+    };
+
+    e.preventDefault();
+    const data = new FormData();
+    data.append("id", id);
+    data.append("name", name);
+    console.log(data);
+    // post method --------------
+    axios
+      .post("https://backend.ap.loclx.io/api/assign-order", data, {
+        headers: headers,
+      })
+      .then((res) => {
+        console.log("Data:", res.data);
+        // to refresh to form ---------------
+        setId("");
+        setName("");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/adminOrderDelivery");
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: ("An error occurred:", error),
+          showConfirmButton: false,
+          timer: 1500,
         });
       });
   };
@@ -333,39 +388,54 @@ const AdminOrderProcessing = () => {
                         </form>
                         {/*delivety man  selector  */}
                         <div className="flex justify-center items-center gap-10">
-                        {/* select your delivery man  */}
-                        <div>
-                          <label
-                            htmlFor="deliveryMan"
-                            className=" block mb-2"
-                          >
-                            Select Delivery Man:
-                          </label>
-                          <select
-                            id="deliveryMan"
-                            name="deliveryMan"
-                            className="border border-black rounded p-2 mb-4"
-                            value={selectedDeliveryMan}
-                            onChange={(e) => setSelectedDeliveryMan(e.target.value)}
-                          >
-                            <option value="">Select Delivery Man</option>
-                            {deliveryMen &&
-                              deliveryMen.map((deliveryMan) => (
-                                <option
-                                  key={deliveryMan.id}
-                                  value={deliveryMan.id}
-                                >
-                                  {deliveryMan.name}
-                                </option>
-                              ))}
-                          </select>
-                        </div>
-                        {/* submit button  */}
-                        <div>
-                        <button className="btn-md bg-[#FFD700] rounded-lg font-semibold uppercase hover:bg-amber-500 hover:text-white">
-                        assign
+                          {/* ID section   */}
+                          <div >
+                            <label htmlFor="id">Id:</label>
+                            <input
+                              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
+                              type="text"
+                              name="id"
+                              id="id"
+                              value={id}
+                              onChange={handleIdChange}
+                            />
+                          </div>
+                          {/* select your delivery man  */}
+                          <div>
+                            <label
+                              htmlFor="name"
+                              className=" block mb-2"
+                            >
+                              Select Delivery Man:
+                            </label>
+                            <select
+                              id="name"
+                              name="name"
+                              className="border border-black rounded p-2 mb-4"
+                              value={name}
+                              onChange={handleNameChange}
+                            >
+                              <option value="">Select Delivery Man</option>
+                              {deliveryMen &&
+                                deliveryMen.map((deliveryMan) => (
+                                  <option
+                                    key={deliveryMan.id}
+                                    value={deliveryMan.name}
+                                  >
+                                    {deliveryMan.name}
+                                  </option>
+                                ))}
+                            </select>
+                          </div>
+                          {/* submit button  */}
+                          <div>
+                            <button
+                              onClick={handleSubmit}
+                              className="btn-md bg-[#FFD700] rounded-lg font-semibold uppercase hover:bg-amber-500 hover:text-white"
+                            >
+                              assign
                             </button>
-                        </div>
+                          </div>
                         </div>
                       </div>
                     </dialog>
