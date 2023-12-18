@@ -64,7 +64,7 @@ const OnlineOrder = () => {
         <div
           data-aos="flip-down"
           data-aos-easing="linear"
-          data-aos-duration="1500"
+          data-aos-duration="500"
         >
           <h1
             style={{ fontFamily: "Mooli, sans-serif" }}
@@ -80,7 +80,7 @@ const OnlineOrder = () => {
         className="flex justify-center"
         data-aos="zoom-in-up"
         data-aos-easing="linear"
-        data-aos-duration="1500"
+        data-aos-duration="500"
       >
         <div className="max-w-screen-lg mx-auto ">
           {/*---------------------row -1 ---------------- */}

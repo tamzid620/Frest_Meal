@@ -2,11 +2,12 @@ import { useState } from "react";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useEffect } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
 const AdminReservation = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [reservationList, setReservationList] = useState([]);
 
@@ -20,7 +21,7 @@ const AdminReservation = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      Navigate("/adminlogin");
+      navigate("/adminlogin");
     } else {
       const user = JSON.parse(localStorage.getItem("user"));
       const headers = {

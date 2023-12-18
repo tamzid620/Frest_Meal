@@ -2,13 +2,15 @@ import { useState } from "react";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useEffect } from "react";
 import axios from "axios";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
 const AdminDeliveryManList = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const [deliveryMans, setDeliveryMans] = useState({ deliveryManItem: [] });
+
   const [currentPage, setCurrentPage] = useState(1);
   const deliveryManItemPerPage = 20;
 
@@ -22,7 +24,7 @@ const AdminDeliveryManList = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      Navigate("/adminlogin");
+      navigate("/adminlogin");
     } else {
       const user = JSON.parse(localStorage.getItem("user"));
       const headers = {
@@ -36,14 +38,16 @@ const AdminDeliveryManList = () => {
           headers: headers,
         })
         .then((res) => {
-          setDeliveryMans({ deliveryManItem: res.data });
+          // setDeliveryMans({ deliveryManItem: res.data });
+          setDeliveryMans({ deliveryManItem: res.data.deliveryMan });
+
           setLoading(false);
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, []);
+  }, [navigate]);
   // delete section----------------
   const handleDelete = (deliveryManId) => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -54,7 +58,7 @@ const AdminDeliveryManList = () => {
 
     axios
       .delete(
-        `https://backend.ap.loclx.io/api/employee-delete/${deliveryManId}`,
+        `https://backend.ap.loclx.io/api/delivery-man-delete/${deliveryManId}`,
         {
           headers: headers,
         }
@@ -84,6 +88,8 @@ const AdminDeliveryManList = () => {
         });
       });
   };
+
+
   // pagination section -----------
   const indexOfLastDeliveryManItem = currentPage * deliveryManItemPerPage;
   const indexOfFirstDeliveryManItem =
@@ -136,7 +142,7 @@ const AdminDeliveryManList = () => {
                   <tr>
                     <th>index</th>
                     <th>Name</th>
-                    <th>PhoneNo</th>
+                    {/* <th>password</th> */}
                     <th>Email</th>
                     <th>Action</th>
                   </tr>
@@ -146,15 +152,15 @@ const AdminDeliveryManList = () => {
                     currentDeliveryManItem.map((deliveryMans, index) => (
                       <tr key={deliveryMans.id}>
                         <th>{index + 1}</th>
-                        <td>
+                        {/* <td>
                           <img
                             className="w-[50px] h-[50px]"
                             src={deliveryMans.imgLink}
                             alt=""
                           />
-                        </td>
+                        </td> */}
                         <td>{deliveryMans.name}</td>
-                        <td>{deliveryMans.phoneNo}</td>
+                        {/* <td>{deliveryMans.password}</td> */}
                         <td>{deliveryMans.email}</td>
                         <td>
                           <div className="flex items-center gap-2">
@@ -174,10 +180,11 @@ const AdminDeliveryManList = () => {
                               Delete
                             </button>
                             {/* create delivery panel button   */}
+                            {/* create delivery panel button   */}
                             <Link
-                              to={`/CreateDeliveryPanel/${deliveryMans.id}`}
+                              to={`/createDeliveryPanel/${deliveryMans.id}`}
                             >
-                              <button className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white">
+                              <button className="btn-xs bg-blue-500 rounded-lg font-semibold uppercase hover:bg-blue-800 hover:text-white">
                                 Create Delivery Panel
                               </button>
                             </Link>

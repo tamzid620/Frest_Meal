@@ -2,11 +2,12 @@ import { useState } from "react";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useEffect } from "react";
 import axios from "axios";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate,  } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
 const AdminPressList = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [press, setPress] = useState({ pressItem: [] });
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +23,7 @@ const AdminPressList = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      Navigate("/adminlogin");
+      navigate("/adminlogin");
     } else {
       const user = JSON.parse(localStorage.getItem("user"));
       const headers = {

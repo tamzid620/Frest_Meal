@@ -32,7 +32,7 @@ const SpecialMenu = () => {
         className="max-w-screen-xl mx-auto mt-20 pt-3 pb-10"
         data-aos="flip-right"
         data-aos-easing="linear"
-        data-aos-duration="1500"
+        data-aos-duration="500"
       >
         {/* title section  */}
         <div className="flex justify-center mt-16">

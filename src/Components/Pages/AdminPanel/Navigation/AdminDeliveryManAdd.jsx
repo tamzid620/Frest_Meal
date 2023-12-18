@@ -36,24 +36,24 @@ const AdminDeliveryManAdd = () => {
           timer: 1500,
         });
         navigate("/adminlogin");
-      } else {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const headers = {
-          accept: "application/json",
-          Authorization: "Bearer " + user.token,
-        };
-        setLoading(true)
-        axios
-          .get(`https://backend.ap.loclx.io/api/login`, {
-            headers: headers,
-          })
-          .then((res) => {
-            setAdminCategory(res.data);
-            setLoading(false)
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+      // } else {
+      //   const user = JSON.parse(localStorage.getItem("user"));
+      //   const headers = {
+      //     accept: "application/json",
+      //     Authorization: "Bearer " + user.token,
+      //   };
+      //   setLoading(true)
+      //   axios
+      //     .get(`https://backend.ap.loclx.io/api/login`, {
+      //       headers: headers,
+      //     })
+      //     .then((res) => {
+      //       setAdminCategory(res.data);
+      //       setLoading(false)
+      //     })
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
       }
     }, [navigate]);
     console.log(adminCategory);
@@ -74,7 +74,7 @@ const AdminDeliveryManAdd = () => {
       console.log(data);
       // post method --------------
       axios
-        .post("https://backend.ap.loclx.io/api/add-category", data, {
+        .post("https://backend.ap.loclx.io/api/add-delivery-man", data, {
           headers: headers,
         })
         .then((res) => {
@@ -117,7 +117,8 @@ const AdminDeliveryManAdd = () => {
             </h1>
             <hr className="mt-1 border border-black " />
             {/* form section  */}
-            {!loading &&<form
+            {!loading &&<div className="flex justify-center">
+            <form
               onSubmit={handleSubmit}
               className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
             >
@@ -164,12 +165,13 @@ const AdminDeliveryManAdd = () => {
               </div>
   
               <button
-                className="bg-yellow-500 hover:bg-yellow-600 text-black hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
+                className="bg-[#FFD700] hover:bg-yellow-500 text-black hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3"
                 type="submit"
               >
                 Save
               </button>
-            </form>}
+            </form>
+            </div>}
             {loading && <Loading/>}
           </div>
         </div>

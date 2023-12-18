@@ -2,11 +2,12 @@ import aboutPhoto from "../../../../public/images/contactUs.jpg";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const OrderTracking = () => {
     const [orderList, setOrderList] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
       const token = localStorage.getItem("token");
@@ -18,7 +19,7 @@ const OrderTracking = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        Navigate("/adminlogin");
+        navigate("/adminlogin");
       } else {
         const user = JSON.parse(localStorage.getItem("user"));
         const headers = {

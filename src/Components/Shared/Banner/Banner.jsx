@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import banner from "../../../../public/images/Banner5.png";
-import bannerSm from "../../../../public/images/BannerSm5.png";
+import banner from "../../../../public/images/Banner5.jpg";
+import bannerSm from "../../../../public/images/BannerSm5.jpg";
 import Aos from "aos";
 import { useEffect, useState } from "react";
 

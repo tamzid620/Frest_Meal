@@ -2,11 +2,12 @@ import { useState } from "react";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useEffect } from "react";
 import axios from "axios";
-import { Link, Navigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
 const AdminPackageList = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [packages, setPackages] = useState({ packageItem: [] });
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +23,7 @@ const AdminPackageList = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      Navigate("/adminlogin");
+      navigate("/adminlogin");
     } else {
       const user = JSON.parse(localStorage.getItem("user"));
       const headers = {
@@ -36,7 +37,7 @@ const AdminPackageList = () => {
           headers: headers,
         })
         .then((res) => {
-          setPackages({packageItem :res.data.packages});
+          setPackages({ packageItem: res.data.packages });
           setLoading(false);
         })
         .catch((error) => {
@@ -89,8 +90,7 @@ const AdminPackageList = () => {
     packages.packageItem &&
     packages.packageItem.slice(indexOfFirstPackageItem, indexOfLastPackageItem);
 
-  const totalPackageItems =
-    packages.packageItem && packages.packageItem.length;
+  const totalPackageItems = packages.packageItem && packages.packageItem.length;
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -141,7 +141,12 @@ const AdminPackageList = () => {
                       <tr key={packageItem.id}>
                         <th>{index + 1}</th>
                         <td>{packageItem.packageName}</td>
-                        <td>{packageItem.packageItems.join(",")}</td>
+                        {/* <td>{packageItem.packageItems.join(",")}</td> */}
+                        <td>
+                          {Array.isArray(packageItem.packageItems)
+                            ? packageItem.packageItems.join(",")
+                            : ""}
+                        </td>
                         <td>{packageItem.numOfPeople}</td>
                         <td>{packageItem.price}</td>
                         <td>
@@ -169,7 +174,9 @@ const AdminPackageList = () => {
               <div className="pagination my-10 flex justify-center">
                 {totalPackageItems &&
                   Array.from(
-                    { length: Math.ceil(totalPackageItems / packageItemPerPage) },
+                    {
+                      length: Math.ceil(totalPackageItems / packageItemPerPage),
+                    },
                     (_, index) => (
                       <button
                         key={index}

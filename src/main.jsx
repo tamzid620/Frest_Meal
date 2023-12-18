@@ -228,7 +228,7 @@ const router = createBrowserRouter([
       },
        // DeliveryPanel section --------------------------
       {
-        path: "/CreateDeliveryPanel",
+        path: "/createDeliveryPanel/:deliveryManId",
         element: <CreateDeliveryPanel />,
       },
       // Press section --------------------------
