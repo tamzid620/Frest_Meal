@@ -141,7 +141,7 @@ const AdminPressAdd = () => {
               {/* --------- phoneNO and description input -------- */}
               <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
                 {/* image input  */}
-                <div className="flex flex-col mb-4">
+                <div className="flex flex-col mb-4 ">
                   <label htmlFor="image" className="mb-2 font-bold text-lg">
                     Image:
                   </label>

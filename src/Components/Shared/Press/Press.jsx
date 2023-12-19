@@ -1,32 +1,24 @@
 import aboutPhoto from "../../../../public/images/contactUs.jpg";
-import icon1 from "../../../../public/icons/start-filled.svg";
-import icon2 from "../../../../public/icons/star-grey.svg";
-import { BsFillCartPlusFill } from "react-icons/bs";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import Rating from "react-rating";
-import Swal from "sweetalert2";
 
 const Press = () => {
+  const [press, setPress] = useState([]);
 
-    const [menus, setMenus] = useState([]);
-  
-  
-    useEffect(() => {
-      // get method --------------------
-      axios
-        .get("https://backend.ap.loclx.io/api/food-item-list")
-        
-        .then((res) => {
-          setMenus(res.data.foodItem);
-        })
-        .catch((error) => {
-          console.error("Error fetching menu data:", error);
-        });
-    }, []);
-    console.log(menus);
+  useEffect(() => {
+    // get method --------------------
+    axios
+      .get("https://backend.ap.loclx.io/api/press-list")
+      .then((res) => {
+        setPress(res.data.press);
+      })
+      .catch((error) => {
+        console.error("Error fetching menu data:", error);
+      });
+  }, []);
+  console.log("press----------", press);
 
   return (
     <div>
@@ -45,14 +37,29 @@ const Press = () => {
             style={{ fontFamily: "Mooli, sans-serif" }}
             className="text-3xl text-white font-semibold "
           >
-           Press
+            Press : {press.length}
           </h1>
           <img src="../../../../public/icons/hr.svg" alt="" />
         </div>
       </div>
       {/* information section */}
-      <div>
-
+      <div className="flex justify-center text-white mt-10">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {press.map((pres) => (
+          <div key={pres.id}>
+              <div className="border p-1">
+                <div className="border border-white  p-2 flex justify-center">
+                  {" "}
+                  <img className="w-[300px] h-[250px]" src={pres.imgLink} alt="" />
+                </div>
+              </div>
+              <div className="w-[300px] text-center">
+                <h1 className="text-xl font-bold mb-3">{pres.eventName}</h1>
+                <p>{pres.description}</p>
+              </div>
+            </div>
+        ))}
+        </div>
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ const noHeaderFooter =
  location.pathname.includes('createDeliveryPanel') ||
  location.pathname.includes('adminPressList') ||
  location.pathname.includes('adminPressEdit') ||
- location.pathname.includes('adminPressAdd') 
+ location.pathname.includes('adminpressAdd') 
 
     return (
         <div>
