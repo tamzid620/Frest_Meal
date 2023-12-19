@@ -1,6 +1,6 @@
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { BiSolidMessageRounded, BiMenuAltLeft } from "react-icons/bi";
-import { MdArrowDropDown, MdNotifications } from "react-icons/md";
+import { MdNotifications } from "react-icons/md";
 import avatar from "../../../../../../src/assets/user/user-01.png";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { AiFillSetting } from "react-icons/ai";
@@ -9,16 +9,9 @@ import { RiLogoutBoxRFill } from "react-icons/ri";
 import { IoIosSpeedometer } from "react-icons/io";
 import brandlogo from "../../../../../../public/icons/logo-svg.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import "./SearchPanel.css";
 
 const SearchPanel = () => {
-  const [openDropdown, setOpenDropdown] = useState(null);
-
-  const handleDropdown = (index) => {
-    setOpenDropdown(openDropdown === index ? null : index);
-  };
-
   return (
     <div className="bg-gray-800 p-2 flex justify-between items-center">
       {/*--------------- drawer section-----------------  */}
@@ -27,9 +20,9 @@ const SearchPanel = () => {
           <input id="my-drawer" type="checkbox" className="drawer-toggle " />
           <div className="drawer-content ">
             {/* Page content here */}
-            <button className="border border-yellow-500 hover:bg-yellow-500 hover:text-black w[20px] h-[20px] px-3 py-5 rounded-xl flex items-center">
+            <button className=" border border-yellow-500 hover:bg-yellow-500 hover:text-black rounded-xl flex justify-center items-center">
               <label htmlFor="my-drawer">
-                <BiMenuAltLeft size={25} />
+                <BiMenuAltLeft size={35} />
               </label>
             </button>
           </div>
@@ -59,44 +52,7 @@ const SearchPanel = () => {
                   <Link to="/dp">Dashboard</Link>
                 </span>
               </li>
-              {/*Menu section  */}
-              {/* <details className="dropdown mb-3" open={openDropdown === 1}>
-                <summary
-                  onClick={() => handleDropdown()}
-                  className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost "
-                >
-                  <IoIosSpeedometer
-                    className="text-violet-500 -ms-[160px]"
-                    size={20}
-                  />
-                  Menu <MdArrowDropDown size={20} />
-                </summary>
-                <ul className="p-2 shadow menu dropdown-content z-[1] bg-yellow-400 border rounded-box w-52 ">
-                  <Link to="/adminCategory">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
-                      Category
-                    </li>
-                  </Link>
-                  <hr className="mt-1 border-black" />
-                  <Link to="/adminSubCategory">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
-                      Sub Category
-                    </li>
-                  </Link>
-                  <hr className="mt-1 border-black" />
-                  <Link to="/adminFoodItem">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
-                      Food Item
-                    </li>
-                  </Link>
-                  <hr className="mt-1 border-black" />
-                  <Link to="/adminPackageList">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
-                      Package
-                    </li>
-                  </Link>
-                </ul>
-              </details> */}
+              {/*Menu dropdown section  */}
               <div className="dropdown inline-block relative z-50">
                 <button className="mb-3 rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
                   <IoIosSpeedometer
@@ -113,7 +69,7 @@ const SearchPanel = () => {
                   </svg>
                 </button>
                 {/* <ul className="dropdown-menu absolute hidden text-gray-700 pt-1"> */}
-                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-yellow-400 border rounded-box w-52 ">
+                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-[#ffd700] border rounded-box w-52 ">
                   <Link to="/adminCategory">
                     <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
                       Category
@@ -142,35 +98,9 @@ const SearchPanel = () => {
               </div>
 
               {/*Order section  */}
-              {/* <details className="dropdown mb-3" open={openDropdown === 2}>
-                <summary
-                  onClick={() => handleDropdown()}
-                  className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost "
-                >
-                  <IoIosSpeedometer
-                    className="text-blue-500 -ms-[160px]"
-                    size={20}
-                  />
-                  Order <MdArrowDropDown size={20} />
-                </summary>
-                <ul className="p-2 shadow menu dropdown-content z-[1] bg-yellow-400 border rounded-box w-52 ">
-                  <Link to="/adminOrderList">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
-                      Order List
-                    </li>
-                  </Link>
-                  <hr className="mt-1 border-black" />
-                  <Link to="/adminOrderDelivery">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
-                      Order Delivery
-                    </li>
-                  </Link>
-                </ul>
-              </details> */}
-              <div className="dropdown inline-block relative z-10">
+              <div className="dropdown inline-block relative z-40">
                 <button className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
-                  
-                <IoIosSpeedometer
+                  <IoIosSpeedometer
                     className="text-blue-500 -ms-[160px]"
                     size={20}
                   />
@@ -183,8 +113,7 @@ const SearchPanel = () => {
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
                   </svg>
                 </button>
-                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-yellow-400 border rounded-box w-52 ">
-                
+                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-[#ffd700] border rounded-box w-52 ">
                   <Link to="/adminOrderList">
                     <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
                       Order List
@@ -198,41 +127,55 @@ const SearchPanel = () => {
                   </Link>
                 </ul>
               </div>
-              {/* Reservation section  */}
-              <Link to="/adminReservationList">
-                <li className="font-semibold text-lg mb-3">
+              
+              {/* Employees section  */}
+              <div className="dropdown inline-block mt-3 relative z-10">
+                <button className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
+                  <IoIosSpeedometer
+                    className="text-blue-500 -ms-[145px]"
+                    size={20}
+                  />
+                  Employee
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
+                  </svg>
+                </button>
+                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-[#ffd700] border rounded-box w-52 ">
+                  <Link to="/adminEmployeeList">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      Employee List
+                    </li>
+                  </Link>
+                  <hr className="mt-1 border-black" />
+                  <Link to="/adminDeliveryManList">
+                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                      DeliveryMan
+                    </li>
+                  </Link>
+                </ul>
+              </div>
+              {/* ------------------------------------------------------- */}
+{/* Reservation section  */}
+<Link to="/adminReservationList">
+                <li className="font-semibold text-lg mt-3 mb-3">
                   <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-blue-500">
                     <IoIosSpeedometer className="text-blue-500" size={20} />{" "}
                     Reservation
                   </span>
                 </li>
               </Link>
-              {/* Employees section  */}
-              <Link to="/adminEmployeeList">
-                <li className="font-semibold text-lg mb-3">
-                  <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-green-500">
-                    <IoIosSpeedometer className="text-green-500" size={20} />{" "}
-                    Employee
-                  </span>
-                </li>
-              </Link>
-              {/* DeliveryMan section  */}
-              <Link to="/adminDeliveryManList">
-                <li className="font-semibold text-lg mb-3">
-                  <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-green-500">
-                    <IoIosSpeedometer className="text-white" size={20} />{" "}
-                    DeliveryMan
-                  </span>
-                </li>
-              </Link>
-
+{/* Catering Service section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-yellow-500">
                   <IoIosSpeedometer className="text-yellow-500" size={20} />{" "}
                   Catering Service
                 </span>
               </li>
-
+{/* Kitchen Management section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-orange-500">
                   <IoIosSpeedometer className="text-orange-500" size={20} />{" "}
