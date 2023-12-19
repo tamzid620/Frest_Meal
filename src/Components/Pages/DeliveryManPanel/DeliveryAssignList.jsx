@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Loading from "../../Layout/Loading";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { IoMdDoneAll } from "react-icons/io";
+import Swal from "sweetalert2";
 
 const DeliveryAssignList = () => {
   const [loading, setLoading] = useState(false);
@@ -26,26 +27,26 @@ const DeliveryAssignList = () => {
         console.error("Error fetching delivery men:", error);
       });
   }, []);
-  
+
   // delete section
-  const handleDelete = (categoryId) => {
+  const handleswich = (assignId) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const headers = {
       accept: "application/json",
       Authorization: "Bearer " + user.token,
     };
     axios
-      .delete(`https://backend.ap.loclx.io/api/category-delete/${categoryId}`, {
+      .get(`https://backend.ap.loclx.io/api/order-stage-delivered/${assignId}`, {
         headers: headers,
       })
-      .then(() => {
-        setAdminCaterory((prevCategory) =>
-          prevCategory.filter((category) => category.id !== categoryId)
+      .then((res) => {
+        setOrderAssigns((prevAssign) =>
+          prevAssign.filter((assign) => assign.id !== assignId)
         );
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Teacher deleted successfully",
+          title: res.data.message,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -59,7 +60,6 @@ const DeliveryAssignList = () => {
           text: error.message,
           showConfirmButton: true,
         });
-        navigate("/adminCaterory");
       });
   };
 
@@ -99,13 +99,24 @@ const DeliveryAssignList = () => {
                         <td>{assign.totalAmount}</td>
                         {/* Delevered button  */}
                         <td>
-                          
-                        <button
-                          onClick={() => handleDelete(assign.id)}
-                          className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
-                        >
-                          Delivered
-                        </button>
+                          {assign.orderStage === "on the way" ? (
+                            <button
+                              onClick={() => handleswich(assign.id)}
+                              className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white"
+                            >
+                              Delivered
+                            </button>
+                          ) : (
+                            <button
+                              disabled
+                              className="flex items-center gap-2 btn-xs  rounded-lg font-semibold uppercase text-green-500"
+                            >
+                              <span>Delivery Complete</span>{" "}
+                              <span>
+                                <IoMdDoneAll size={10} color="green" />
+                              </span>
+                            </button>
+                          )}
                         </td>
                       </tr>
                     ))}
