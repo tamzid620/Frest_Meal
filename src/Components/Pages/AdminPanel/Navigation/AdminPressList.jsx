@@ -30,7 +30,7 @@ const AdminPressList = () => {
         accept: "application/json",
         Authorization: "Bearer " + user.token,
       };
-      // get foodItem data ---------------
+      // get foodItem data ----------
       setLoading(true);
       axios
         .get(`https://backend.ap.loclx.io/api/press-list`, {
