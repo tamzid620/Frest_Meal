@@ -37,7 +37,6 @@ import AdminEmployeeList from "./Components/Pages/AdminPanel/Navigation/AdminEmp
 import AdminEmployeeEdit from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeEdit";
 import AdminEmployeeAdd from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeAdd";
 import AdminEmployeeDetail from "./Components/Pages/AdminPanel/Navigation/AdminEmployeeDetail";
-import DeliveryManPanel from "./Components/Pages/AdminPanel/Navigation/DeliveryManPanel";
 import AdminPressList from "./Components/Pages/AdminPanel/Navigation/AdminPressList";
 import AdminPressEdit from "./Components/Pages/AdminPanel/Navigation/AdminPressEdit";
 import AdminPressAdd from "./Components/Pages/AdminPanel/Navigation/AdminPressAdd";
@@ -48,6 +47,8 @@ import AdminDeliveryManList from "./Components/Pages/AdminPanel/Navigation/Admin
 import AdminDeliveryManEdit from "./Components/Pages/AdminPanel/Navigation/AdminDeliveryManEdit";
 import AdminDeliveryManAdd from "./Components/Pages/AdminPanel/Navigation/AdminDeliveryManAdd";
 import CreateDeliveryPanel from "./Components/Pages/AdminPanel/Navigation/CreateDeliveryPanel";
+import DeliveryManPanel from "./Components/Pages/DeliveryManPanel/DeliveryManPanel";
+import DeliveryAssignList from "./Components/Pages/DeliveryManPanel/DeliveryAssignList";
 
 const router = createBrowserRouter([
   {
@@ -117,10 +118,14 @@ const router = createBrowserRouter([
         path: "/dp",
         element: <AdminPanel />,
       },
-      // AdminPanel section ------------------------
+      // DeliveryManPanel section ------------------------
       {
         path: "/deliverymanPanel",
         element: <DeliveryManPanel />,
+      },
+      {
+        path: "/deliveryAssignList",
+        element: <DeliveryAssignList />,
       },
       //category section  -------------------------
       {

@@ -1,15 +1,17 @@
-import { IoSearchCircleSharp } from "react-icons/io5";
-import { BiSolidMessageRounded, BiMenuAltLeft } from "react-icons/bi";
-import { MdNotifications } from "react-icons/md";
-import avatar from "../../../../../../src/assets/user/user-01.png";
-import { IoMdArrowDropdown } from "react-icons/io";
-import { AiFillSetting } from "react-icons/ai";
-import { BsFillInfoCircleFill } from "react-icons/bs";
-import { RiLogoutBoxRFill } from "react-icons/ri";
-import { IoIosSpeedometer } from "react-icons/io";
 import brandlogo from "../../../../../../public/icons/logo-svg.png";
+import avatar from "../../../../../../src/assets/user/user-01.png";
 import { Link } from "react-router-dom";
 import "./SearchPanel.css";
+import { IoSearchCircleSharp,IoPersonCircleSharp } from "react-icons/io5";
+import { BiSolidMessageRounded, BiMenuAltLeft } from "react-icons/bi";
+import { MdNotifications,MdDashboard ,MdBorderColor } from "react-icons/md";
+import { IoMdArrowDropdown,IoIosSpeedometer } from "react-icons/io";
+import { AiFillSetting } from "react-icons/ai";
+import { BsFillInfoCircleFill } from "react-icons/bs";
+import { RiLogoutBoxRFill,RiReservedFill,RiMenuUnfoldLine } from "react-icons/ri";
+import { FaPlateWheat } from "react-icons/fa6";
+import { TbToolsKitchen } from "react-icons/tb";
+import { FaCameraRetro } from "react-icons/fa";
 
 const SearchPanel = () => {
   return (
@@ -48,17 +50,14 @@ const SearchPanel = () => {
               {/* Dashboard section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-blue-500">
-                  <IoIosSpeedometer className="text-blue-500" size={20} />{" "}
+                <MdDashboard className="text-red-500" size={20} />{" "}
                   <Link to="/dp">Dashboard</Link>
                 </span>
               </li>
               {/*Menu dropdown section  */}
               <div className="dropdown inline-block relative z-50">
                 <button className="mb-3 rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
-                  <IoIosSpeedometer
-                    className="text-violet-500 -ms-[160px]"
-                    size={20}
-                  />
+                  <RiMenuUnfoldLine  className="text-blue-500 -ms-[160px]" size={20} />
                   Menu
                   <svg
                     className="fill-current h-4 w-4"
@@ -68,7 +67,7 @@ const SearchPanel = () => {
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
                   </svg>
                 </button>
-                {/* <ul className="dropdown-menu absolute hidden text-gray-700 pt-1"> */}
+
                 <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-[#ffd700] border rounded-box w-52 ">
                   <Link to="/adminCategory">
                     <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
@@ -97,11 +96,11 @@ const SearchPanel = () => {
                 {/* </ul> */}
               </div>
 
-              {/*Order section  */}
+              {/*Order dropdown section  */}
               <div className="dropdown inline-block relative z-40">
                 <button className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
-                  <IoIosSpeedometer
-                    className="text-blue-500 -ms-[160px]"
+                  <MdBorderColor
+                    className="text-green-500 -ms-[160px]"
                     size={20}
                   />
                   Order
@@ -127,12 +126,12 @@ const SearchPanel = () => {
                   </Link>
                 </ul>
               </div>
-              
-              {/* Employees section  */}
+
+              {/* Employees dropdown section  */}
               <div className="dropdown inline-block mt-3 relative z-10">
                 <button className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
-                  <IoIosSpeedometer
-                    className="text-blue-500 -ms-[145px]"
+                  <IoPersonCircleSharp
+                    className="text-[#ffd700] -ms-[145px]"
                     size={20}
                   />
                   Employee
@@ -159,26 +158,26 @@ const SearchPanel = () => {
                 </ul>
               </div>
               {/* ------------------------------------------------------- */}
-{/* Reservation section  */}
-<Link to="/adminReservationList">
+              {/* Reservation section  */}
+              <Link to="/adminReservationList">
                 <li className="font-semibold text-lg mt-3 mb-3">
                   <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-blue-500">
-                    <IoIosSpeedometer className="text-blue-500" size={20} />{" "}
+                    <RiReservedFill className="text-orange-500" size={20} />{" "}
                     Reservation
                   </span>
                 </li>
               </Link>
-{/* Catering Service section  */}
+              {/* Catering Service section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-yellow-500">
-                  <IoIosSpeedometer className="text-yellow-500" size={20} />{" "}
+                  <FaPlateWheat className="text-purple-500" size={20} />{" "}
                   Catering Service
                 </span>
               </li>
-{/* Kitchen Management section  */}
+              {/* Kitchen Management section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-orange-500">
-                  <IoIosSpeedometer className="text-orange-500" size={20} />{" "}
+                  <TbToolsKitchen className="text-lime-500" size={20} />{" "}
                   Kitchen Management
                 </span>
               </li>
@@ -186,32 +185,11 @@ const SearchPanel = () => {
               <Link to="/adminPressList">
                 <li className="font-semibold text-lg mb-3">
                   <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-gray-500">
-                    <IoIosSpeedometer className="text-gray-500" size={20} />{" "}
+                    <FaCameraRetro className="text-teal-500" size={20} />{" "}
                     Press
                   </span>
                 </li>
               </Link>
-              {/* 
-              <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-teal-500">
-                  <IoIosSpeedometer className="text-teal-500" size={20} />{" "}
-                  Option-7
-                </span>
-              </li>
-
-              <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-pink-500">
-                  <IoIosSpeedometer className="text-pink-500" size={20} />{" "}
-                  Option-8
-                </span>
-              </li>
-
-              <li className="font-semibold text-lg mb-3">
-                <span className="rounded-r-full bg-[#191c24] p-2 border-l-4 border-indigo-500">
-                  <IoIosSpeedometer className="text-indigo-500" size={20} />{" "}
-                  Option-9
-                </span>
-              </li> */}
             </ul>
           </div>
         </div>
@@ -233,7 +211,7 @@ const SearchPanel = () => {
           <IoSearchCircleSharp className="w-[30px] h-[30px]" />
         </button>
       </div>
-      {/* icon and login section  */}
+      {/*--------------- icon and login section-------------------  */}
       <div className="flex sm: me-11 lg:me-0">
         <div className="flex items-center">
           {/* message section  */}
@@ -245,7 +223,7 @@ const SearchPanel = () => {
             {" "}
             <BiSolidMessageRounded className="w-[25px] h-[25px]" />
           </button>
-          {/*Notifications section  */}
+          {/*------------------Notifications section ----------------- */}
           <button
             title="Wishlist"
             className=" hover:text-white text-yellow-500 font-bold px-3 py-1
@@ -256,7 +234,7 @@ const SearchPanel = () => {
           </button>
         </div>
 
-        {/* profile section  */}
+        {/*--------------------- profile section-------------------  */}
         <div className="flex items-center">
           <img className="w-[45px] h-[45px]" src={avatar} alt="" />
           <div className="dropdown dropdown-end">
@@ -273,7 +251,7 @@ const SearchPanel = () => {
               <hr className="border border-yellow-500 opacity-40" />
               {/* Account Settings  */}
               <li className="font-semibold text-white text-md py-2">
-                <a>
+                <a className="hover:text-yellow-500">
                   <span className="rounded-full bg-[#191c24] p-2">
                     <AiFillSetting className="text-green-500" size={20} />
                   </span>
@@ -283,7 +261,7 @@ const SearchPanel = () => {
               <hr className="border border-yellow-500 opacity-40" />
               {/* Change Password  */}
               <li className="font-semibold text-white text-md py-2">
-                <a>
+                <a className="hover:text-yellow-500">
                   <span className="rounded-full bg-[#191c24] p-2">
                     <BsFillInfoCircleFill className="text-blue-500" size={20} />
                   </span>
@@ -293,7 +271,7 @@ const SearchPanel = () => {
               <hr className="border border-yellow-500 opacity-40" />
               {/* Logout  */}
               <li className="font-semibold text-white text-md py-2">
-                <a>
+                <a  className="hover:text-yellow-500">
                   <span className="rounded-full bg-[#191c24] p-2">
                     <RiLogoutBoxRFill className="text-red-500" size={20} />
                   </span>

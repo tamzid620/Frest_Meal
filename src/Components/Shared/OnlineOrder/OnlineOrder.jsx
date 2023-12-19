@@ -60,7 +60,7 @@ const OnlineOrder = () => {
       }}
     >
       {/* title section  */}
-      <div className="flex justify-center mt-16 pt-10 pb-10 ">
+      <div className="flex justify-center mt-16 pt-10 ">
         <div
           data-aos="flip-down"
           data-aos-easing="linear"
@@ -77,7 +77,7 @@ const OnlineOrder = () => {
       </div>
       {/*------------------------- information section ------------------------ */}
       <div
-        className="flex justify-center"
+        className="flex justify-center pb-10"
         data-aos="zoom-in-up"
         data-aos-easing="linear"
         data-aos-duration="500"
@@ -90,7 +90,7 @@ const OnlineOrder = () => {
               <div
                 key={onlineOrder.id}
                 data-aos="flip-up"
-                className={` rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-[280px] transition-transform transform hover:scale-105`}
+                className={`bg-slate-900 rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-[280px] transition-transform transform hover:scale-105`}
               >
                 <div>
                   <img
@@ -152,7 +152,7 @@ font-bold px-3 py-3 mt-3 rounded-md "
               <div
                 key={item.id}
                 data-aos="flip-up"
-                className=" rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-[280px] ms-5 me-5 transition-transform transform hover:scale-105"
+                className="bg-slate-900 rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-[280px] ms-5 me-5 transition-transform transform hover:scale-105"
               >
                 <img
                   className="w-80 h-48 rounded-lg"
@@ -201,7 +201,7 @@ font-bold px-3 py-3 mt-3 rounded-md "
               <div
                 key={item.id}
                 data-aos="flip-up"
-                className=" rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-[280px] transition-transform transform hover:scale-105"
+                className="bg-slate-900 rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-[280px] transition-transform transform hover:scale-105"
               >
                 <img
                   className="w-80 h-48 rounded-lg"
@@ -250,7 +250,7 @@ font-bold px-3 py-3 mt-3 rounded-md "
               <div
                 key={item.id}
                 data-aos="flip-up"
-                className=" rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-[280px] transition-transform transform hover:scale-105"
+                className="bg-slate-900 rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 w-[280px] transition-transform transform hover:scale-105"
               >
                 <img
                   className="w-80 h-48 rounded-lg"

@@ -55,7 +55,7 @@ function AdminLogin() {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Successfully Logged In",
+          title: res.data.message,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -63,15 +63,14 @@ function AdminLogin() {
       } else if (res.data.status === "403") {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Invalid Password",
+          title:  res.data.message,
+          text:  res.data.message,
         });
       } else {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-          footer: "Access Denied",
+          title:  res.data.message,
+          text:  res.data.message,
         });
       }
     });

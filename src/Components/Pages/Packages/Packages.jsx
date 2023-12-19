@@ -27,7 +27,7 @@ const Packages = () => {
             data-aos="fade-right"
             data-aos-easing="linear"
             data-aos-duration="500">
-                <div className='bg-black  grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 
+                <div className='bg-slate-900  grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 
                  rounded-xl border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 p-3 '>
 
                     {/* info section  */}

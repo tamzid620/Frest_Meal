@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import axios from "axios";
+import Loading from "../../../Layout/Loading";
 
 const AdminOrderDelivery = () => {
+  const [loading, setLoading] = useState(false);
   const [orderDelivery, setOrderDelivery] = useState([]);
 
   useEffect(() => {
@@ -11,19 +13,19 @@ const AdminOrderDelivery = () => {
       accept: "application/json",
       Authorization: "Bearer " + user.token,
     };
-
+    setLoading(true);
     axios
       .get("https://backend.ap.loclx.io/api/order-delivery-list", {
         headers: headers,
       })
       .then((res) => {
         setOrderDelivery(res.data.orderDeliveryList);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching delivery men:", error);
       });
   }, []);
-  console.log("orderDelivery", orderDelivery);
 
   return (
     <div className="text-yellow-500 bg-gray-300 min-h-screen">
@@ -39,6 +41,7 @@ const AdminOrderDelivery = () => {
           </h1>
           <hr className="mt-1 mb-10 border border-black " />
           {/* table section  */}
+          {!loading && (
           <div className="overflow-x-auto">
             <table className="table table-zebra text-black">
               {/* head */}
@@ -67,6 +70,8 @@ const AdminOrderDelivery = () => {
               </tbody>
             </table>
           </div>
+          )}
+          {loading && <Loading />}
         </div>
       </div>
     </div>
