@@ -15,17 +15,9 @@ const UserOrderDetails = () => {
   const [deliveryManInfo, setDeliveryManInfo] = useState([]);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const headers = {
-      accept: "application/json",
-      Authorization: "Bearer " + user.token,
-    };
-
     // get method -------------------
     axios
-      .get(`https://backend.ap.loclx.io/api/user-order-detail/${orderId}`, {
-        headers: headers,
-      })
+      .get(`https://backend.ap.loclx.io/api/user-order-detail/${orderId}`)
       .then((res) => {
         if (res.data.status === "401") {
           Swal.fire({
@@ -47,9 +39,7 @@ const UserOrderDetails = () => {
 
     // delivery man info get api -----------------
     axios
-      .get(`https://backend.ap.loclx.io/api/delivery-man-info/${orderId}`, {
-        headers: headers,
-      })
+      .get(`https://backend.ap.loclx.io/api/delivery-man-info/${orderId}`)
       .then((res) => {
         setDeliveryManInfo(res.data);
       })
@@ -57,7 +47,6 @@ const UserOrderDetails = () => {
         console.error("Error:", error);
       });
   }, [orderId, navigate]);
-  console.log(deliveryManInfo);
 
   return (
     <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pt-[150px]">

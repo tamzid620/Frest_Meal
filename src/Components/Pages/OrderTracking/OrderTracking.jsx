@@ -8,7 +8,6 @@ const OrderTracking = () => {
     const [orderList, setOrderList] = useState([]);
 
     useEffect(() => {
-      
         // get foodItem data ---------------
         axios
           .get(`https://backend.ap.loclx.io/api/user-order-list`)
