@@ -33,7 +33,8 @@ const Order = () => {
             foodName: cartItem.foodName,
             price: cartItem.price,
             quantity: 1,
-            subTotal: 0,
+            // subTotal: 0,
+            subTotal: calculateSubtotal(1, cartItem.price),
           })),
         }));
         
@@ -67,10 +68,7 @@ const Order = () => {
         (accumulator, item) => accumulator + item.subTotal,
         0
       );
-      setTotalAmount(initialTotal);
-
-
-      
+      setTotalAmount(initialTotal);  
   }, []);
 //  console.log(formData);
 

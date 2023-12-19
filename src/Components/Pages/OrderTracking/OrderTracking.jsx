@@ -2,42 +2,22 @@ import aboutPhoto from "../../../../public/images/contactUs.jpg";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { Link} from "react-router-dom";
 
 const OrderTracking = () => {
     const [orderList, setOrderList] = useState([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        Swal.fire({
-          position: "center",
-          icon: "warning",
-          title: "You have to Login first",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/adminlogin");
-      } else {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const headers = {
-          accept: "application/json",
-          Authorization: "Bearer " + user.token,
-        };
+      
         // get foodItem data ---------------
         axios
-          .get(`https://backend.ap.loclx.io/api/user-order-list`, {
-            headers: headers,
-          })
+          .get(`https://backend.ap.loclx.io/api/user-order-list`)
           .then((res) => {
             setOrderList(res.data.orders);
           })
           .catch((error) => {
             console.log(error);
           });
-      }
     }, []);
 
   return (

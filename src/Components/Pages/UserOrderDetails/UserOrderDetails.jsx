@@ -64,19 +64,19 @@ const UserOrderDetails = () => {
       {/* review section  */}
       <div
         className={`text-white flex justify-center uppercase ${
-          orderProcess.orderStage === "pending" ? "" : ""
+          orderProcess.orderStage === "pending" ? "animate-pulse" : ""
         }`}
       >
         <div>
           <span
-            className={`mb-1 flex justify-center animate-pulse ${
+            className={`mb-1 flex justify-center  ${
               orderProcess.orderStage === "pending" ? "hidden" : ""
             }`}
           >
             <MdCheckCircle size={30} className="text-green-500" />
           </span>
           <h1
-            className={`font-bold text-2xl animate-pulse ${
+            className={`font-bold text-2xl  ${
               orderProcess.orderStage === "pending"
                 ? "text-green-500"
                 : "text-gray-800"
@@ -85,7 +85,7 @@ const UserOrderDetails = () => {
             Review
           </h1>
           <p
-            className={`animate-pulse btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex justify-center items-center ${
+            className={` btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex justify-center items-center ${
               orderProcess.orderStage === "pending"
                 ? "visible"
                 : "text-gray-800"
@@ -106,12 +106,12 @@ const UserOrderDetails = () => {
       {/* Cooking section  */}
       <div
         className={`text-white flex justify-center uppercase ${
-          orderProcess.orderStage === "cooking" ? "" : ""
+          orderProcess.orderStage === "cooking" ? "animate-pulse" : ""
         }`}
       >
         <div>
           <span
-            className={` mb-1 flex justify-center animate-pulse ${
+            className={` mb-1 flex justify-center  ${
               orderProcess.orderStage === "cooking"
                 ? "hidden"
                 : orderProcess.orderStage === "pending"
@@ -122,14 +122,14 @@ const UserOrderDetails = () => {
             <MdCheckCircle size={30} className="text-green-500" />
           </span>
           <h1
-            className={`font-bold text-2xl uppercase flex justify-center animate-pulse ${
+            className={`font-bold text-2xl uppercase flex justify-center  ${
               orderProcess.orderStage === "cooking" ? "" : "text-gray-800"
             }`}
           >
             Cooking
           </h1>
           <p
-            className={`animate-pulse btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex items-center justify-center ${
+            className={` btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex items-center justify-center ${
               orderProcess.orderStage === "cooking"
                 ? "visible"
                 : "text-gray-800"
@@ -146,12 +146,12 @@ const UserOrderDetails = () => {
 {/* On the way section  */}
       <div
         className={`text-white flex justify-center uppercase ${
-          orderProcess.orderStage === "on the way" ? "" : ""
+          orderProcess.orderStage === "on the way" ? "animate-pulse" : ""
         }`}
       >
         <div>
           <span
-            className={`flex justify-center mb-1 animate-pulse ${
+            className={`flex justify-center mb-1  ${
               orderProcess.orderStage === "on the way"
                 ? "hidden"
                 : orderProcess.orderStage === "pending"
@@ -164,14 +164,14 @@ const UserOrderDetails = () => {
             <MdCheckCircle size={30} className="text-green-500" />
           </span>
           <h1
-            className={`font-bold text-2xl uppercase flex justify-center animate-pulse ${
+            className={`font-bold text-2xl uppercase flex justify-center  ${
               orderProcess.orderStage === "on the way" ? "" : "text-gray-800"
             }`}
           >
             On the Way
           </h1>
           <p
-            className={`btn-xs w-[60px] ms-[100px] bg-slate-800 animate-pulse text-white rounded-2xl mt-2 flex items-center justify-center ${
+            className={`btn-xs w-[60px] ms-[100px] bg-slate-800  text-white rounded-2xl mt-2 flex items-center justify-center ${
               orderProcess.orderStage === "on the way"
                 ? "visible"
                 : "text-gray-800"
@@ -218,26 +218,26 @@ const UserOrderDetails = () => {
       {/* Delivered section  */}
       <div
         className={`text-white flex justify-center uppercase ${
-          orderProcess.orderStage === "delivered" ? "" : ""
+          orderProcess.orderStage === "delivered" ? "animate-pulse" : ""
         }`}
       >
         <div>
           <span
-            className={`hidden mb-1 animate-pulse ${
+            className={`hidden mb-1  ${
               orderProcess.orderStage === "delivered" ? "hidden" : ""
             }`}
           >
             <MdCheckCircle size={30} className="text-green-500" />
           </span>
           <h1
-            className={`font-bold text-2xl uppercase flex justify-center animate-pulse ${
+            className={`font-bold text-2xl uppercase flex justify-center  ${
               orderProcess.orderStage === "delivered" ? "" : "text-gray-800"
             }`}
           >
             Delivered
           </h1>
           <p
-            className={`btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex items-center justify-center animate-pulse ${
+            className={`btn-xs w-[60px] ms-[100px] bg-slate-800 text-white rounded-2xl mt-2 flex items-center justify-center  ${
               orderProcess.orderStage === "delivered"
                 ? "visible"
                 : "text-gray-800"
