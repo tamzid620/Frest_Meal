@@ -93,25 +93,33 @@ const Menu = () => {
        {/* Tabs section */}
        <div className="flex justify-center gap-3 my-10">
         <button
-          className={`tab-btn bg-yellow-500 hover:text-black text-gray-500 font-bold p-2 rounded-xl ${activeTab === "Drinks" ? "active" : ""}`}
+          className={`tab-btn border border-yellow-500 bg-transparent text-yellow-500
+                        hover:border-white hover:text-white 
+       font-bold px-3 py-1 rounded-md  ${activeTab === "Drinks" ? "active" : ""}`}
           onClick={() => setActiveTab("Drinks")}
         >
           Drinks
         </button>
         <button
-          className={`tab-btn bg-yellow-500 hover:text-black text-gray-500 font-bold p-2 rounded-xl ${activeTab === "Meals" ? "active" : ""}`}
+          className={`tab-btn border border-yellow-500 bg-transparent text-yellow-500
+                        hover:border-white hover:text-white 
+       font-bold px-3 py-1 rounded-md  ${activeTab === "Meals" ? "active" : ""}`}
           onClick={() => setActiveTab("Meals")}
         >
           Meals
         </button>
         <button
-          className={`tab-btn bg-yellow-500 hover:text-black text-gray-500 font-bold p-2 rounded-xl ${activeTab === "Dessert" ? "active" : ""}`}
+          className={`tab-btn border border-yellow-500 bg-transparent text-yellow-500
+                        hover:border-white hover:text-white 
+       font-bold px-3 py-1 rounded-md  ${activeTab === "Dessert" ? "active" : ""}`}
           onClick={() => setActiveTab("Dessert")}
         >
           Dessert
         </button>
         <button
-          className={`tab-btn bg-yellow-500 hover:text-black text-gray-500 font-bold p-2 rounded-xl ${activeTab === "Snacks" ? "active" : ""}`}
+          className={`tab-btn border border-yellow-500 bg-transparent text-yellow-500
+                        hover:border-white hover:text-white 
+       font-bold px-3 py-1 rounded-md  ${activeTab === "Snacks" ? "active" : ""}`}
           onClick={() => setActiveTab("Snacks")}
         >
           Snacks
@@ -123,7 +131,7 @@ const Menu = () => {
               <div key={menuItem.id} className="flex items-center gap-5">
                 <div>
                   <img
-                    className="w-52 h-40 rounded-xl"
+                    className="w-52 h-40 rounded-xl"a
                     src={menuItem.imgLink}
                     alt={menuItem.foodName}
                   />

@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Rating from "react-rating";
-import bgBanner2 from "../../../../public/images/bg-banner2.jpg";
+import bgBanner2 from "../../../../public/images/bg-Banner-5.jpeg";
 
 const OnlineOrder = () => {
   Aos.init();

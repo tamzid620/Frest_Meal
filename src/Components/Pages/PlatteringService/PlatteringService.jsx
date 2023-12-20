@@ -33,7 +33,7 @@ const PlatteringService = () => {
         className="flex justify-center"
       >
         {/* title tag */}
-        <div className="bg-gray-800 opacity-70 w-full h-full flex flex-col justify-center items-center">
+        <div className="bg-black opacity-70 w-full h-full flex flex-col justify-center items-center">
           <h1
             style={{ fontFamily: 'Mooli, sans-serif' }}
             className="text-3xl text-white font-semibold "
@@ -47,11 +47,15 @@ const PlatteringService = () => {
       {/* Tab Buttons */}
       <div className="flex justify-center mt-10 gap-5">
         <button
-          className={`tab-button ${activeTab === 1 ? 'active' : ''} bg-yellow-500 hover:text-black text-gray-500 font-bold p-2 rounded-xl`}
+          className={`tab-button ${activeTab === 1 ? 'active' : ''} border border-yellow-500 bg-transparent text-yellow-500
+                        hover:border-white hover:text-white 
+       font-bold px-3 py-1 rounded-md `}
           onClick={() => handleTabChange(1)}>platter by person
         </button>
         <button
-          className={`tab-button ${activeTab === 2 ? 'active' : ''} bg-yellow-500 hover:text-black text-gray-500 font-bold p-2 rounded-xl`}
+          className={`tab-button ${activeTab === 2 ? 'active' : ''} border border-yellow-500 bg-transparent text-yellow-500
+                        hover:border-white hover:text-white 
+       font-bold px-3 py-1 rounded-md `}
           onClick={() => handleTabChange(2)}>platter by Occasion
         </button>
       </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import adminloginbanner from "../../../../public/images/Admin_Background.jpg";
+import adminloginbanner from "../../../../public/images/Admin_Login.png";
 import marketien from "../../../../public/icons/Main Logo White-01.png";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -93,7 +93,7 @@ function AdminLogin() {
         {/* form section  */}
         <form
           onSubmit={handleSubmit}
-          className="bg-gray-800 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4"
+          className="bg-gray-800 drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mb-4 shadow-lg shadow-yellow-500 border-t-2 border-yellow-500"
         >
           <h1 className="font-semibold text-white text-center mb-3">
             Management Login Only

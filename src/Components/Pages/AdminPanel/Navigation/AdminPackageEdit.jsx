@@ -163,7 +163,7 @@ const AdminPackageEdit = () => {
               className="bg-gray-800 text-white drop-shadow-2xl rounded-xl px-8 pt-6 pb-8 mt-10"
             >
               {/* Package id */}
-              <div  className="mb-4">
+              <div hidden className="mb-4">
                 <label htmlFor="id" className="block text-sm font-bold mb-2">
                  
                 </label>

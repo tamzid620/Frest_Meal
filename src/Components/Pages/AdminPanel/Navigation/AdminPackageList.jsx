@@ -143,8 +143,8 @@ const AdminPackageList = () => {
                         <td>{packageItem.packageName}</td>
                         {/* <td>{packageItem.packageItems.join(",")}</td> */}
                         <td>
-                          {Array.isArray(packageItem.packageItems)
-                            ? packageItem.packageItems.join(",")
+                          {Array.isArray(packageItem.foodItems)
+                            ? packageItem.foodItems.join(",")
                             : ""}
                         </td>
                         <td>{packageItem.numOfPeople}</td>
