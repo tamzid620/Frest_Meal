@@ -44,7 +44,7 @@ const AdminPackageList = () => {
           console.log(error);
         });
     }
-  }, []);
+  }, [navigate]);
   console.log(packages);
 
   // delete section----------------

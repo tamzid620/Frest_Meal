@@ -49,6 +49,7 @@ import AdminDeliveryManAdd from "./Components/Pages/AdminPanel/Navigation/AdminD
 import CreateDeliveryPanel from "./Components/Pages/AdminPanel/Navigation/CreateDeliveryPanel";
 import DeliveryManPanel from "./Components/Pages/DeliveryManPanel/DeliveryManPanel";
 import DeliveryAssignList from "./Components/Pages/DeliveryManPanel/DeliveryAssignList";
+import OrderPackage from "./Components/Shared/Order/OrderPackage";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
       {
         path: "/order",
         element: <Order />,
+      },
+      {
+        path: "/orderPackage",
+        element: <OrderPackage />,
       },
       {
         path: "/adminReservationList",
