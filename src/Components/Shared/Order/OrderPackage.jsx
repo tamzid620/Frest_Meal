@@ -86,7 +86,7 @@ const OrderPackage = ({ packageId }) => {
       location: location,
       foodItems: [
         {
-          foodId: packages.packageName,
+          foodName: packages.packageName,
           quantity: quantity,
           price: packages.price,
           subTotal: subtotal,
@@ -211,15 +211,15 @@ const OrderPackage = ({ packageId }) => {
             {packages && packages.packageName && (
               <div className="max-w-[200px]">
                 <label
-                  htmlFor="foodId"
+                  htmlFor="foodName"
                   className="text-white flex justify-start"
                 >
                   Package Name:
                 </label>
                 <input
                   type="text"
-                  id="foodId"
-                  name="foodId"
+                  id="foodName"
+                  name="foodName"
                   value={packages.packageName}
                   required
                   readOnly
