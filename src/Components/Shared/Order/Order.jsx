@@ -162,7 +162,7 @@ const Order = () => {
           autoClose: 1500,
           hideProgressBar: true,
         });
-        window.location.reload();
+        // window.location.reload();
       })
 
       .catch((error) => {

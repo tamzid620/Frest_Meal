@@ -2,12 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-const OrderPackage = ({packageId}) => {
+const OrderPackage = ({ packageId }) => {
   const [clientName, setClientName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [location, setLocation] = useState("");
-  const [packages, setPackages] = useState({});
+  const [packages, setPackages] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [subtotal, setSubtotal] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -45,21 +45,22 @@ const OrderPackage = ({packageId}) => {
     const newTotalAmount = packages.reduce((acc, pkg) => acc + pkg.subtotal, 0);
     setTotalAmount(newTotalAmount);
   };
- 
-   // handle Decrease Quantity ----------------
-   const handleDecreaseQuantity = () => {
+
+  // handle Decrease Quantity ----------------
+  const handleDecreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
 
       const price = packages.price;
       const subtotal = price * (quantity - 1);
       setSubtotal(subtotal);
-      const newTotalAmount = packages.reduce((acc, pkg) => acc + pkg.subtotal, 0);
+      const newTotalAmount = packages.reduce(
+        (acc, pkg) => acc + pkg.subtotal,
+        0
+      );
       setTotalAmount(newTotalAmount);
     }
   };
-  
-
 
   // get data ----------------------
   useEffect(() => {
@@ -78,11 +79,41 @@ const OrderPackage = ({packageId}) => {
   // submit button -------------------------------------
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Client Name:", clientName);
-    console.log("Email:", email);
-    console.log("Phone No:", phoneNo);
-    console.log("Location:", location);
-    console.log("Total Amount:", totalAmount);
+    const postData = {
+      clientName: clientName,
+      email: email,
+      phoneNo: phoneNo,
+      location: location,
+      foodItems: [
+        {
+          foodId: packages.packageName,
+          quantity: quantity,
+          price: packages.price,
+          subTotal: subtotal,
+        },
+      ],
+      totalAmount: totalAmount + subtotal,
+    };
+
+    // Post Data ----------------------
+    axios
+      .post("https://backend.ap.loclx.io/api/add-order", postData)
+      .then((res) => {
+        console.log("Order submitted successfully:", res.data);
+        toast.success("Order submitted successfully");
+        setClientName("");
+        setEmail("");
+        setPhoneNo("");
+        setLocation("");
+        setQuantity(1);
+        setSubtotal(0);
+        setTotalAmount(0);
+      })
+      .catch((error) => {
+        console.error("Error submitting order:", error);
+        toast.error("Error submitting order. Please try again.");
+      });
+    console.log(postData);
   };
 
   return (
@@ -108,7 +139,10 @@ const OrderPackage = ({packageId}) => {
         <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-10">
           {/* ClientName Input */}
           <div className="mb-4 max-w-[500px]">
-            <label htmlFor="clientName" className="text-white">
+            <label
+              htmlFor="clientName "
+              className="text-white flex justify-start"
+            >
               Name:
             </label>
             <input
@@ -124,7 +158,7 @@ const OrderPackage = ({packageId}) => {
 
           {/* Email Input */}
           <div className="mb-4 max-w-[500px]">
-            <label htmlFor="email" className="text-white">
+            <label htmlFor="email" className="text-white flex justify-start">
               Email:
             </label>
             <input
@@ -141,7 +175,7 @@ const OrderPackage = ({packageId}) => {
         <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-5">
           {/* phoneNo Input */}
           <div className="mb-4 max-w-[500px]">
-            <label htmlFor="phoneNo" className="text-white">
+            <label htmlFor="phoneNo" className="text-white flex justify-start">
               Phone No:
             </label>
             <input
@@ -156,7 +190,7 @@ const OrderPackage = ({packageId}) => {
 
           {/* Location Input */}
           <div className="mb-4 max-w-[500px]">
-            <label htmlFor="location" className="text-white">
+            <label htmlFor="location" className="text-white flex justify-start">
               Location:
             </label>
             <input
@@ -175,24 +209,30 @@ const OrderPackage = ({packageId}) => {
           <div className="grid lg:grid-cols-4 md:grid-cols-4 sm: grid-cols-2 gap-5 mb-4">
             {/* package Name Input */}
             {packages && packages.packageName && (
-            <div className="max-w-[200px]">
-              <label htmlFor="packageName" className="text-white">
-                Package Name:
-              </label>
-              <input
-                type="text"
-                id="packageName"
-                name="packageName"
-                value={packages.packageName}
-                required
-                readOnly
-                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
-              />
-            </div>
+              <div className="max-w-[200px]">
+                <label
+                  htmlFor="foodId"
+                  className="text-white flex justify-start"
+                >
+                  Package Name:
+                </label>
+                <input
+                  type="text"
+                  id="foodId"
+                  name="foodId"
+                  value={packages.packageName}
+                  required
+                  readOnly
+                  className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
+                />
+              </div>
             )}
             {/* Quantity Input */}
             <div className="max-w-[200px]">
-              <label htmlFor="quantity" className="text-white">
+              <label
+                htmlFor="quantity"
+                className="text-white flex justify-start"
+              >
                 Quantity:
               </label>
               <div className="flex items-center ml-2">
@@ -227,25 +267,31 @@ const OrderPackage = ({packageId}) => {
             </div>
             {/* Price Input */}
             {packages && packages.price && (
-            <div className="max-w-[200px]">
-              <label htmlFor="price" className="text-white">
-                Price:
-              </label>
-              <input
-                readOnly
-                type="number"
-                id="price"
-                name="price"
-                value={packages.price}
-                required
-                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
-              />
-            </div>
+              <div className="max-w-[200px]">
+                <label
+                  htmlFor="price"
+                  className="text-white flex justify-start"
+                >
+                  Price:
+                </label>
+                <input
+                  readOnly
+                  type="number"
+                  id="price"
+                  name="price"
+                  value={packages.price}
+                  required
+                  className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
+                />
+              </div>
             )}
 
             {/* Subtotal Input */}
             <div className="max-w-[200px]">
-              <label htmlFor="subtotal" className="text-white">
+              <label
+                htmlFor="subtotal"
+                className="text-white flex justify-start"
+              >
                 Subtotal:
               </label>
               <input
@@ -270,8 +316,8 @@ const OrderPackage = ({packageId}) => {
                 type="number"
                 id="totalAmount"
                 name="totalAmount"
-                value={subtotal}
-                onChange={handleTotalAmountChange}              
+                value={totalAmount + subtotal}
+                onChange={handleTotalAmountChange}
                 className="ms-2 w- border rounded shadow bg-gray-100 text-black outline-none"
               />
             </div>

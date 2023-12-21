@@ -171,7 +171,7 @@ onClick={() => openModal(packageItem.id)}
 >Order Now
 </button>
 <dialog id="my_modal_8" className="modal">
-  <div className="modal-box w-11/12 max-w-5xl bg-black border border-yellow-500 shadow-lg shadow-yellow-500">
+  <div className="modal-box w-11/12 max-w-5xl bg-slate-900 border border-yellow-500 shadow-lg shadow-yellow-500">
     <form method="dialog">
       <button
        onClick={() => {
