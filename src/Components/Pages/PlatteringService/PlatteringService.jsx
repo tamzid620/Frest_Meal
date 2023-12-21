@@ -9,6 +9,12 @@ import OrderPackage from "../../Shared/Order/OrderPackage";
 const PlatteringService = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [packages, setPackages] = useState([]);
+  const [selectedPackageId, setSelectedPackageId] = useState(null);
+
+  const openModal = (packageId) => {
+    setSelectedPackageId(packageId);
+    document.getElementById("my_modal_8").showModal();
+  };
 
 
   const sliderSettings = {
@@ -143,7 +149,7 @@ const PlatteringService = () => {
                                
                                ))}
                             <tr>
-                               <td className="text-white">Total :  {packageItem.price} $</td>
+                               <td className="text-white"><span className="text-yellow-500">Total :</span>  {packageItem.price} $</td>
                               
                             </tr>
                           </tbody>
@@ -158,17 +164,23 @@ const PlatteringService = () => {
 className="border border-yellow-500 bg-transparent text-yellow-500
 hover:border-white hover:text-white 
 font-bold px-3 py-1 rounded-md "
-onClick={() => {
-  document.getElementById('my_modal_8').showModal();
-}}
+// onClick={() => {
+//   document.getElementById("my_modal_8").showModal();
+// }}
+onClick={() => openModal(packageItem.id)}
 >Order Now
 </button>
 <dialog id="my_modal_8" className="modal">
   <div className="modal-box w-11/12 max-w-5xl bg-black border border-yellow-500 shadow-lg shadow-yellow-500">
     <form method="dialog">
-      <button className="btn btn-sm btn-circle text-white btn-ghost absolute right-2 top-2">✕</button>
+      <button
+       onClick={() => {
+        setSelectedPackageId(null);
+        document.getElementById("my_modal_8").close();
+      }}
+      className="btn btn-sm btn-circle text-white btn-ghost absolute right-2 top-2">✕</button>
     </form>
-            <OrderPackage />
+            <OrderPackage  packageId={selectedPackageId}/>
   </div>
 </dialog>
     </div>
