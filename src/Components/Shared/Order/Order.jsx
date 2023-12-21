@@ -19,7 +19,6 @@ const Order = () => {
   });
   const [totalAmount, setTotalAmount] = useState(0);
 
-
   // get data from json -------------------------
   useEffect(() => {
     axios
@@ -37,8 +36,7 @@ const Order = () => {
             subTotal: calculateSubtotal(1, cartItem.price),
           })),
         }));
-        
-  
+
         // Fetch and update food details for each food item
         data.foodCart.forEach((cartItem, index) => {
           axios
@@ -53,7 +51,10 @@ const Order = () => {
                         ...item,
                         foodName: foodDetails.foodName,
                         price: cartItem.price,
-                        subTotal: calculateSubtotal(item.quantity, cartItem.price),
+                        subTotal: calculateSubtotal(
+                          item.quantity,
+                          cartItem.price
+                        ),
                       }
                     : item
                 ),
@@ -64,13 +65,13 @@ const Order = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-      const initialTotal = formData.foodItems.reduce(
-        (accumulator, item) => accumulator + item.subTotal,
-        0
-      );
-      setTotalAmount(initialTotal);  
+    const initialTotal = formData.foodItems.reduce(
+      (accumulator, item) => accumulator + item.subTotal,
+      0
+    );
+    setTotalAmount(initialTotal);
   }, []);
-//  console.log(formData);
+  //  console.log(formData);
 
   // calculateSubtotal section --------------------
   const calculateSubtotal = (quantity, price) => {
@@ -87,111 +88,108 @@ const Order = () => {
   };
 
   // Food Item change -------------------
-// Inside the handleFoodItemChange function
-const handleFoodItemChange = (index, e) => {
-  const { name, value } = e.target;
+  // Inside the handleFoodItemChange function
+  const handleFoodItemChange = (index, e) => {
+    const { name, value } = e.target;
 
-  setFormData((prevFormData) => ({
-    ...prevFormData,
-    foodItems: prevFormData.foodItems.map((item, i) =>
-      i === index
-        ? {
-            ...item,
-            [name === "foodName" ? "foodName" : "foodId"]: value,
-            subTotal: calculateSubtotal(item.quantity, item.price),
-          }
-        : item
-    ),
-  }));
-
-  // Recalculate total
-  const newTotal = formData.foodItems.reduce(
-    (accumulator, item) => accumulator + item.subTotal,
-    0
-  );
-  setTotalAmount(newTotal);
-};
-
-
-
-// Quantity Change -----------------
-const handleQuantityChange = (index, change) => {
-  setFormData((prevFormData) => {
-    const updatedFormData = {
+    setFormData((prevFormData) => ({
       ...prevFormData,
       foodItems: prevFormData.foodItems.map((item, i) =>
         i === index
           ? {
               ...item,
-              quantity: Math.max(0, item.quantity + change),
-              subTotal: calculateSubtotal(item.quantity + change, item.price),
+              [name === "foodName" ? "foodName" : "foodId"]: value,
+              subTotal: calculateSubtotal(item.quantity, item.price),
             }
           : item
       ),
-    };
+    }));
 
     // Recalculate total
-    const newTotal = updatedFormData.foodItems.reduce(
+    const newTotal = formData.foodItems.reduce(
       (accumulator, item) => accumulator + item.subTotal,
       0
     );
-
-    // Set the total
     setTotalAmount(newTotal);
-
-    return updatedFormData;
-  });
-};
-
-// submit button -----------------------
-const handleSubmit = (e) => {
-  e.preventDefault(); 
-
-  const formDataWithTotal = {
-    ...formData,
-    totalAmount: totalAmount,
   };
 
-  console.log("Form submitted:", formDataWithTotal);
+  // Quantity Change -----------------
+  const handleQuantityChange = (index, change) => {
+    setFormData((prevFormData) => {
+      const updatedFormData = {
+        ...prevFormData,
+        foodItems: prevFormData.foodItems.map((item, i) =>
+          i === index
+            ? {
+                ...item,
+                quantity: Math.max(0, item.quantity + change),
+                subTotal: calculateSubtotal(item.quantity + change, item.price),
+              }
+            : item
+        ),
+      };
 
+      // Recalculate total
+      const newTotal = updatedFormData.foodItems.reduce(
+        (accumulator, item) => accumulator + item.subTotal,
+        0
+      );
 
-  axios.post(`https://backend.ap.loclx.io/api/add-order`, formDataWithTotal)
-  .then((res) => {
-    console.log("Order submitted successfully:", res.data);
-    toast.success(res.data.message, {
-      position: 'top-center',
-      autoClose: 1500,
-      hideProgressBar: true,
+      // Set the total
+      setTotalAmount(newTotal);
+
+      return updatedFormData;
     });
-    window.location.reload()
-  })
-  
-  .catch((error) => {
-    console.error("Error submitting order:", error);
-    toast.error('Error submitting order', {
-      position: 'top-center',
-      autoClose: 1500,
-      hideProgressBar: true,
+  };
+
+  // submit button -----------------------
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formDataWithTotal = {
+      ...formData,
+      totalAmount: totalAmount,
+    };
+
+    console.log("Form submitted:", formDataWithTotal);
+
+    axios
+      .post(`https://backend.ap.loclx.io/api/add-order`, formDataWithTotal)
+      .then((res) => {
+        console.log("Order submitted successfully:", res.data);
+        toast.success(res.data.message, {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+        });
+        window.location.reload();
+      })
+
+      .catch((error) => {
+        console.error("Error submitting order:", error);
+        toast.error("Error submitting order", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+        });
+      });
+
+    setFormData({
+      clientName: "",
+      email: "",
+      phoneNo: "",
+      location: "",
+      foodItems: [
+        {
+          foodId: "",
+          quantity: "",
+          price: "",
+          subTotal: "",
+        },
+      ],
     });
-  });
-
-  setFormData({
-    clientName: "",
-    email: "",
-    phoneNo: "",
-    location: "",
-    foodItems: [
-      {
-        foodId: "",
-        quantity: "",
-        price: "",
-        subTotal: "",
-      },
-    ],
-  });
-  setTotalAmount(0);
-};
-
+    setTotalAmount(0);
+  };
 
   return (
     <div className="my-5">
@@ -211,205 +209,205 @@ const handleSubmit = (e) => {
 
       {/* information form  section  */}
       {/* <div className="p-4 flex justify-center "> */}
-        <form className="my-5 " onSubmit={handleSubmit}>
-          {/* client name and email section  */}
-          <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-10">
-            {/* ClientName Input */}
-            <div className="mb-4 max-w-[500px]">
-              <label htmlFor="clientName" className="text-white">
-                Name:
-              </label>
-              <input
-                type="text"
-                id="clientName"
-                name="clientName"
-                value={formData.clientName}
-                onChange={handleInputChange}
-                required
-                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
-                          
-              />
-            </div>
-
-            {/* Email Input */}
-            <div className="mb-4 max-w-[500px]">
-              <label htmlFor="email" className="text-white">
-                Email:
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
-              />
-            </div>
-          </div>
-          {/* phone no and location section  */}
-          <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-5">
-            {/* phoneNo Input */}
-            <div className="mb-4 max-w-[500px]">
-              <label htmlFor="phoneNo" className="text-white">
-                Phone No:
-              </label>
-              <input
-                type="tel"
-                id="phoneNo"
-                name="phoneNo"
-                value={formData.phoneNo}
-                onChange={handleInputChange}
-                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
-                />
-            </div>
-
-            {/* Location Input */}
-            <div className="mb-4 max-w-[500px]">
-              <label htmlFor="location" className="text-white">
-                Location:
-              </label>
-              <input
-                type="text"
-                id="location"
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
-                />
-            </div>
+      <form className="my-5 " onSubmit={handleSubmit}>
+        {/* client name and email section  */}
+        <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-10">
+          {/* ClientName Input */}
+          <div className="mb-4 max-w-[500px]">
+            <label htmlFor="clientName" className="text-white">
+              Name:
+            </label>
+            <input
+              type="text"
+              id="clientName"
+              name="clientName"
+              value={formData.clientName}
+              onChange={handleInputChange}
+              required
+              className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
+            />
           </div>
 
-          {/* Food Items section */}
-          <div className="">
+          {/* Email Input */}
+          <div className="mb-4 max-w-[500px]">
+            <label htmlFor="email" className="text-white">
+              Email:
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
+            />
+          </div>
+        </div>
+        {/* phone no and location section  */}
+        <div className="grid lg:grid-cols-2 md:grid-cols-2 sm: grid-cols-1 gap-5">
+          {/* phoneNo Input */}
+          <div className="mb-4 max-w-[500px]">
+            <label htmlFor="phoneNo" className="text-white">
+              Phone No:
+            </label>
+            <input
+              type="tel"
+              id="phoneNo"
+              name="phoneNo"
+              value={formData.phoneNo}
+              onChange={handleInputChange}
+              className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
+            />
+          </div>
 
+          {/* Location Input */}
+          <div className="mb-4 max-w-[500px]">
+            <label htmlFor="location" className="text-white">
+              Location:
+            </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              value={formData.location}
+              onChange={handleInputChange}
+              className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
+            />
+          </div>
+        </div>
 
-            {Array.isArray(formData.foodItems) &&
-  formData.foodItems.map((foodItem, index) => (
-    <div key={index} className="grid lg:grid-cols-4 md:grid-cols-4 sm: grid-cols-2 gap-5 mb-4">
-      {/* Food Id Input */}
-      <input
-        type="hidden"
-        id={`foodId-${index}`}
-        name="foodItems"
-        value={foodItem.id}
-        onChange={(e) => handleFoodItemChange(index, e)}
-      />
-      {/* Food Name Input */}
-      <div className="max-w-[200px]">
-        <label htmlFor={`foodName-${index}`} className="text-white">
-          Food Name:
-        </label>
-        <input
-          type="text"
-          id={`foodName-${index}`}
-          name="foodName"
-          value={foodItem.foodName}
-          onChange={(e) => handleFoodItemChange(index, e)}
-          required
-          readOnly
-          className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
-          />
-      </div>
-                  {/* Quantity Input */}
-                  <div className="max-w-[200px]">
-                    <label htmlFor={`quantity-${index}`} className="text-white">
-                      Quantity:
-                    </label>
-                    <div className="flex items-center ml-2">
-                      {/* Minus Button */}
-                      <button
-                        type="button"
-                        onClick={() => handleQuantityChange(index, -1)}
-                        className="px-2 border rounded-md bg-gray-300 text-black"
-                      >
-                        -
-                      </button>
-                      {/* Quantity Input */}
-                      <input
-                        type="number"
-                        id={`quantity-${index}`}
-                        name="quantity"
-                        value={foodItem.quantity}
-                        onChange={(e) => handleFoodItemChange(index, e)}
-                        required
-                        className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
-                        />
-                      {/* Plus Button */}
-                      <button
-                        type="button"
-                        onClick={() => handleQuantityChange(index, 1)}
-                        className="px-2 border rounded-md bg-gray-300 text-black"
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
-                  {/* Price Input */}
-                  <div className="max-w-[200px]">
-                    <label htmlFor={`price-${index}`} className="text-white">
-                      Price:
-                    </label>
+        {/* Food Items section */}
+        <div className="">
+          {Array.isArray(formData.foodItems) &&
+            formData.foodItems.map((foodItem, index) => (
+              <div
+                key={index}
+                className="grid lg:grid-cols-4 md:grid-cols-4 sm: grid-cols-2 gap-5 mb-4"
+              >
+                {/* Food Id Input */}
+                <input
+                  type="hidden"
+                  id={`foodId-${index}`}
+                  name="foodItems"
+                  value={foodItem.id}
+                  onChange={(e) => handleFoodItemChange(index, e)}
+                />
+                {/* Food Name Input */}
+                <div className="max-w-[200px]">
+                  <label htmlFor={`foodName-${index}`} className="text-white">
+                    Food Name:
+                  </label>
+                  <input
+                    type="text"
+                    id={`foodName-${index}`}
+                    name="foodName"
+                    value={foodItem.foodName}
+                    onChange={(e) => handleFoodItemChange(index, e)}
+                    required
+                    readOnly
+                    className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
+                  />
+                </div>
+                {/* Quantity Input */}
+                <div className="max-w-[200px]">
+                  <label htmlFor={`quantity-${index}`} className="text-white">
+                    Quantity:
+                  </label>
+                  <div className="flex items-center ml-2">
+                    {/* Minus Button */}
+                    <button
+                      type="button"
+                      onClick={() => handleQuantityChange(index, -1)}
+                      className="px-2 border rounded-md bg-gray-300 text-black"
+                    >
+                      -
+                    </button>
+                    {/* Quantity Input */}
                     <input
-                      readOnly
                       type="number"
-                      id={`price-${index}`}
-                      name="price"
-                      value={foodItem.price}
+                      id={`quantity-${index}`}
+                      name="quantity"
+                      value={foodItem.quantity}
                       onChange={(e) => handleFoodItemChange(index, e)}
                       required
-                      className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
-                      />
-                  </div>
-
-                  {/* Subtotal Input */}
-                  <div className="max-w-[200px]">
-                    <label htmlFor={`subtotal-${index}`} className="text-white">
-                      Subtotal:
-                    </label>
-                    <input
                       readOnly
-                      type="number"
-                      id={`subtotal-${index}`}
-                      name="subTotal"
-                      value={foodItem.subTotal}
-                      onChange={(e) => handleFoodItemChange(index, e)}
-                      required
                       className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
-                      />
+                    />
+                    {/* Plus Button */}
+                    <button
+                      type="button"
+                      onClick={() => handleQuantityChange(index, 1)}
+                      className="px-2 border rounded-md bg-gray-300 text-black"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
-              ))}
-{/* total Input  */}
-<div className="flex justify-center ">
-<div className="max-w-[100px]flex mt-5">
-  <label htmlFor="totalAmount" className="text-white">
-    Total:
-  </label>
-  <input
-    readOnly
-    type="number"
-    id="totalAmount"
-    name="totalAmount"
-    value={totalAmount}
-    className="ms-2 w-16 border rounded shadow bg-gray-100 text-black outline-none"
-  />
-</div>
-</div>
+                {/* Price Input */}
+                <div className="max-w-[200px]">
+                  <label htmlFor={`price-${index}`} className="text-white">
+                    Price:
+                  </label>
+                  <input
+                    readOnly
+                    type="number"
+                    id={`price-${index}`}
+                    name="price"
+                    value={foodItem.price}
+                    onChange={(e) => handleFoodItemChange(index, e)}
+                    required
+                    className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
+                  />
+                </div>
 
+                {/* Subtotal Input */}
+                <div className="max-w-[200px]">
+                  <label htmlFor={`subtotal-${index}`} className="text-white">
+                    Subtotal:
+                  </label>
+                  <input
+                    readOnly
+                    type="number"
+                    id={`subtotal-${index}`}
+                    name="subTotal"
+                    value={foodItem.subTotal}
+                    onChange={(e) => handleFoodItemChange(index, e)}
+                    required
+                    className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white "
+                  />
+                </div>
+              </div>
+            ))}
+          {/* total Input  */}
+          <div className="flex justify-center ">
+            <div className="max-w-[100px]flex mt-5">
+              <label htmlFor="totalAmount" className="text-white">
+                Total:
+              </label>
+              <input
+                readOnly
+                type="number"
+                id="totalAmount"
+                name="totalAmount"
+                value={totalAmount}
+                className="ms-2 w-16 border rounded shadow bg-gray-100 text-black outline-none"
+              />
+            </div>
           </div>
+        </div>
 
-          {/* Confirm button  */}
-          <div className="flex justify-center mt-10">
-            <button
-              type="submit"
-              className="border border-yellow-500 bg-transparent text-yellow-500
+        {/* Confirm button  */}
+        <div className="flex justify-center mt-10">
+          <button
+            type="submit"
+            className="border border-yellow-500 bg-transparent text-yellow-500
               hover:border-white hover:text-white 
 font-bold px-3 py-1 rounded-md"
-            >
-              Confirm
-            </button>
-          </div>
-        </form>
+          >
+            Confirm
+          </button>
+        </div>
+      </form>
       {/* </div> */}
       <ToastContainer />
     </div>

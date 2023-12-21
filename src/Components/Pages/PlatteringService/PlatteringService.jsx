@@ -8,8 +8,8 @@ import OrderPackage from "../../Shared/Order/OrderPackage";
 
 const PlatteringService = () => {
   const [activeTab, setActiveTab] = useState(1);
-
   const [packages, setPackages] = useState([]);
+
 
   const sliderSettings = {
     dots: true,
@@ -111,7 +111,7 @@ const PlatteringService = () => {
                     <h2
                       style={{ fontFamily: "Mooli, sans-serif" }}
                       className="text-2xl font-semibold"
-                    >{`Package # ${packageItem.id}`}</h2>
+                    >{`Package # ${packageItem.packageName}`}</h2>
                     <div
                       style={{
                         display: "flex",
@@ -158,13 +158,17 @@ const PlatteringService = () => {
 className="border border-yellow-500 bg-transparent text-yellow-500
 hover:border-white hover:text-white 
 font-bold px-3 py-1 rounded-md "
-onClick={()=>document.getElementById('my_modal_3').showModal()}>Order Now</button>
-<dialog id="my_modal_3" className="modal">
+onClick={() => {
+  document.getElementById('my_modal_8').showModal();
+}}
+>Order Now
+</button>
+<dialog id="my_modal_8" className="modal">
   <div className="modal-box w-11/12 max-w-5xl bg-black border border-yellow-500 shadow-lg shadow-yellow-500">
     <form method="dialog">
       <button className="btn btn-sm btn-circle text-white btn-ghost absolute right-2 top-2">✕</button>
     </form>
-            <OrderPackage/>
+            <OrderPackage />
   </div>
 </dialog>
     </div>
