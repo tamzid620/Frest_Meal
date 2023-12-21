@@ -389,9 +389,9 @@ const AdminOrderProcessing = () => {
                         {/*delivety man  selector  */}
                         <div className="flex justify-center items-center gap-10">
                           {/* ID section   */}
-                          <div >
+                          <div  hidden>
                             <label htmlFor="id">Id:</label>
-                            <input
+                            <input 
                               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-3"
                               type="text"
                               name="id"

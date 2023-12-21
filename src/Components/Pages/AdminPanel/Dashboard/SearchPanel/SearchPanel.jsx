@@ -1,19 +1,52 @@
 import brandlogo from "../../../../../../public/icons/logo-svg.png";
 import avatar from "../../../../../../src/assets/user/user-01.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./SearchPanel.css";
 import { IoSearchCircleSharp,IoPersonCircleSharp } from "react-icons/io5";
 import { BiSolidMessageRounded, BiMenuAltLeft } from "react-icons/bi";
 import { MdNotifications,MdDashboard ,MdBorderColor } from "react-icons/md";
-import { IoMdArrowDropdown,IoIosSpeedometer } from "react-icons/io";
+import { IoMdArrowDropdown} from "react-icons/io";
 import { AiFillSetting } from "react-icons/ai";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { RiLogoutBoxRFill,RiReservedFill,RiMenuUnfoldLine } from "react-icons/ri";
 import { FaPlateWheat } from "react-icons/fa6";
 import { TbToolsKitchen } from "react-icons/tb";
 import { FaCameraRetro } from "react-icons/fa";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const SearchPanel = () => {
+  const navigate = useNavigate();
+
+// logout system --------------------------
+const logoutSubmit = (e) => {
+  console.log("button clicked");
+  e.preventDefault();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const headers = {
+    accept: "application/json",
+    Authorization: "Bearer " + user.token,
+  };
+  axios
+    .post(`https://backend.ap.loclx.io/api/admin-logout`, null, {
+      headers: headers,
+    })
+    .then((res) => {
+      if (res.data.status === "405") {
+        localStorage.removeItem("token", res.data.token);
+        localStorage.removeItem("user", res.data.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/adminlogin");
+      }
+    });
+};
+
   return (
     <div className="bg-gray-800 p-2 flex justify-between items-center">
       {/*--------------- drawer section-----------------  */}
@@ -247,7 +280,7 @@ const SearchPanel = () => {
               className="dropdown-content z-[1] menu p-2 
           shadow rounded-box w-52 bg-gray-800 border border-yellow-500"
             >
-              <h1 className="font-semibold text-xl py-2">Profile</h1>
+              <h1 className="font-semibld text-xl py-2">Profile</h1>
               <hr className="border border-yellow-500 opacity-40" />
               {/* Account Settings  */}
               <li className="font-semibold text-white text-md py-2">
@@ -270,7 +303,9 @@ const SearchPanel = () => {
               </li>
               <hr className="border border-yellow-500 opacity-40" />
               {/* Logout  */}
-              <li className="font-semibold text-white text-md py-2">
+              <li 
+                 onClick={logoutSubmit} 
+                 className="font-semibold text-white text-md py-2">
                 <a  className="hover:text-yellow-500">
                   <span className="rounded-full bg-[#191c24] p-2">
                     <RiLogoutBoxRFill className="text-red-500" size={20} />
