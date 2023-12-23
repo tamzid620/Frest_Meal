@@ -66,7 +66,7 @@ const SpecialMenu = () => {
                       <h1 className="text-lg text-[#FFD700]">
                         Chicken Parmesan <span> --------------</span>
                       </h1>
-                      <p className="">Maxican</p>
+                      <p className="">Mexican</p>
                     </div>
                     <div>
                       <p className="text-[#FFD700]">$10.00</p>
@@ -88,7 +88,7 @@ const SpecialMenu = () => {
                       <h1 className="text-lg text-[#FFD700]">
                         Dan Dan Noodles <span> --------------</span>
                       </h1>
-                      <p className="">Maxican</p>
+                      <p className="">Mexican</p>
                     </div>
                     <div>
                       <p className="text-[#FFD700]">$06.00</p>
@@ -132,7 +132,7 @@ const SpecialMenu = () => {
                       <h1 className="text-lg text-[#FFD700]">
                         Chicken Parmesan <span> --------------</span>
                       </h1>
-                      <p className="">Maxican</p>
+                      <p className="">Mexican</p>
                     </div>
                     <div>
                       <p className="text-[#FFD700]">$10.00</p>
@@ -154,7 +154,7 @@ const SpecialMenu = () => {
                       <h1 className="text-lg text-[#FFD700]">
                         Chicken Parmesan <span> --------------</span>
                       </h1>
-                      <p className="">Maxican</p>
+                      <p className="">Mexican</p>
                     </div>
                     <div>
                       <p className="text-[#FFD700]">$10.00</p>
@@ -179,7 +179,7 @@ const SpecialMenu = () => {
                       <h1 className="text-lg text-[#FFD700]">
                         Chicken Parmesan <span> --------------</span>
                       </h1>
-                      <p className="">Maxican</p>
+                      <p className="">Mexican</p>
                     </div>
                     <div>
                       <p className="text-[#FFD700]">$10.00</p>
@@ -201,7 +201,7 @@ const SpecialMenu = () => {
                       <h1 className="text-lg text-[#FFD700]">
                         Dan Dan Noodles <span> --------------</span>
                       </h1>
-                      <p className="">Maxican</p>
+                      <p className="">Mexican</p>
                     </div>
                     <div>
                       <p className="text-[#FFD700]">$06.00</p>
@@ -223,7 +223,7 @@ const SpecialMenu = () => {
                       <h1 className="text-lg text-[#FFD700]">
                         Chicken Parmesan <span> --------------</span>
                       </h1>
-                      <p className="">Maxican</p>
+                      <p className="">Mexican</p>
                     </div>
                     <div>
                       <p className="text-[#FFD700]">$10.00</p>
@@ -245,7 +245,7 @@ const SpecialMenu = () => {
                       <h1 className="text-lg text-[#FFD700]">
                         Chicken Parmesan <span> --------------</span>
                       </h1>
-                      <p className="">Maxican</p>
+                      <p className="">Mexican</p>
                     </div>
                     <div>
                       <p className="text-[#FFD700]">$10.00</p>
@@ -267,7 +267,7 @@ const SpecialMenu = () => {
                       <h1 className="text-lg text-[#FFD700]">
                         Chicken Parmesan <span> --------------</span>
                       </h1>
-                      <p className="">Maxican</p>
+                      <p className="">Mexican</p>
                     </div>
                     <div>
                       <p className="text-[#FFD700]">$10.00</p>

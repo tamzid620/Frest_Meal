@@ -42,7 +42,7 @@ useEffect(() => {
         console.log(error);
       });
   }
-}, []);
+}, [navigate]);
 
   return (
     <div>

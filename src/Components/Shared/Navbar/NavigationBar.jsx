@@ -120,6 +120,7 @@ const NavigationBar = () => {
           </Link>
         </div>
 
+{/* cart and wishlist for small device  */}
         <div className="flex items-center lg:ms-0 md:ms-[360px] sm: ms-[86px] lg:hidden ">
           <Link to="/cart">
             <button

@@ -44,7 +44,7 @@ const AdminOrderList = () => {
           console.log(error);
         });
     }
-  }, []);
+  }, [navigate]);
   // pagination section -----------
   const indexOfLastOrderItem = currentPage * orderItemPerPage;
   const indexOfFirstOrderItem = indexOfLastOrderItem - orderItemPerPage;

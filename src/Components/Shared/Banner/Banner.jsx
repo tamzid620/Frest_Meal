@@ -57,7 +57,7 @@ const backgroundStyle = {
                 data-aos-duration="1200"
               >
                 The World Best{" "}
-                <span className="text-[#FFD700]">Restaurent</span> Website
+                <span className="text-[#FFD700]">Restaurant</span> Website
               </h1>
               <p
                 className="text-white"
