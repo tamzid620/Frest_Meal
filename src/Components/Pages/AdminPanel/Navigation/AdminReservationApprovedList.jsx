@@ -2,11 +2,11 @@ import { useState } from "react";
 import SearchPanel from "../Dashboard/SearchPanel/SearchPanel";
 import { useEffect } from "react";
 import axios from "axios";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loading from "../../../Layout/Loading";
 
-const AdminReservation = () => {
+const AdminReservationApprovedList = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [reservationList, setReservationList] = useState([]);
@@ -31,11 +31,11 @@ const AdminReservation = () => {
       // get reserveItem data ---------------
       setLoading(true);
       axios
-        .get(`https://backend.ap.loclx.io/api/reservation-list`, {
+        .get(`https://backend.ap.loclx.io/api/approved-reservation-list`, {
           headers: headers,
         })
         .then((res) => {
-          setReservationList(res.data.reserveList);
+          setReservationList(res.data.approvedReserveList);
           setLoading(false);
         })
         .catch((error) => {
@@ -44,80 +44,40 @@ const AdminReservation = () => {
     }
   }, [navigate]);
 
-  // approve section--------------------------
-  const handleApprove = (reserveId) => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const headers = {
-      accept: "application/json",
-      Authorization: "Bearer " + user.token,
-    };
-    axios
-      .get(`https://backend.ap.loclx.io/api/reservation-approve/${reserveId}`, {
-        headers: headers,
-      })
-      .then((res) => {
-        setReservationList((prevReserveItem) =>
-          prevReserveItem.filter((reserveItem) => reserveItem.id !== reserveId)
-        );
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: res.data.message,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        // window.location.reload();
-      })
-      .catch((error) => {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Error deleting Teacher",
-          text: error.message,
-          showConfirmButton: true,
-        });
-        window.location.reload();
-      });
-  };
-
-  // delete section---------------------
-  const handleDelete = (reserveId) => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const headers = {
-      accept: "application/json",
-      Authorization: "Bearer " + user.token,
-    };
-    axios
-      .delete(
-        `https://backend.ap.loclx.io/api/reservation-delete/${reserveId}`,
-        {
-          headers: headers,
-        }
-      )
-      .then((res) => {
-        setReservationList((prevReserveItem) =>
-          prevReserveItem.filter((reserveItem) => reserveItem.id !== reserveId)
-        );
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: res.data.message,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        window.location.reload();
-      })
-      .catch((error) => {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Error deleting Teacher",
-          text: error.message,
-          showConfirmButton: true,
-        });
-        window.location.reload();
-      });
-  };
+    // decline section--------------------------
+    const handleDecline = (reserveId) => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const headers = {
+          accept: "application/json",
+          Authorization: "Bearer " + user.token,
+        };
+        axios
+          .get(`https://backend.ap.loclx.io/api/reservation-decline/${reserveId}`, {
+            headers: headers,
+          })
+          .then((res) => {
+            setReservationList((prevReserveItem) =>
+              prevReserveItem.filter((reserveItem) => reserveItem.id !== reserveId)
+            );
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: res.data.message,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((error) => {
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "Error deleting Teacher",
+              text: error.message,
+              showConfirmButton: true,
+            });
+            window.location.reload();
+          });
+      };
 
   return (
     <div className="text-yellow-500 bg-gray-300 min-h-screen">
@@ -129,7 +89,7 @@ const AdminReservation = () => {
       <div className="flex justify-center ">
         <div className="mt-24 w-full ">
           <h1 className="text-3xl flex justify-center text-black uppercase">
-            Reservation List
+            Approved Reservation List
           </h1>
           <hr className="mt-1 border border-black mb-10" />
           {/* table section  */}
@@ -140,7 +100,7 @@ const AdminReservation = () => {
                 <thead className="bg-gray-600 text-white">
                   <tr>
                     <th>index</th>
-                    <th>Client Name</th>
+                    <th>Name</th>
                     <th>Event Date</th>
                     <th>Start Time</th>
                     <th>End Time</th>
@@ -162,18 +122,12 @@ const AdminReservation = () => {
                       <td className="flex gap-2">
                         {/* approve button  */}
                         <button
-                          onClick={() => handleApprove(reserve.id)}
-                          className="btn-xs bg-green-500 rounded-lg font-semibold uppercase hover:bg-green-800 hover:text-white"
-                        >
-                          Approve
-                        </button>
-                        {/* Delete button   */}
-                        <button
-                          onClick={() => handleDelete(reserve.id)}
+                          onClick={() => handleDecline(reserve.id)}
                           className="btn-xs bg-red-500 rounded-lg font-semibold uppercase hover:bg-red-800 hover:text-white"
                         >
-                          Delete
+                          Decline
                         </button>
+                        {/* Delete button   */}
                       </td>
                     </tr>
                   ))}
@@ -188,4 +142,4 @@ const AdminReservation = () => {
   );
 };
 
-export default AdminReservation;
+export default AdminReservationApprovedList;

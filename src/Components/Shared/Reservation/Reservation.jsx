@@ -59,7 +59,7 @@ const Reservation = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: console.error("Error submitting form:", error),
+          title: ("Error submitting form:", error),
           showConfirmButton: false,
           timer: 1500,
         });
@@ -211,7 +211,7 @@ const Reservation = () => {
                 Event Date
               </label>
               <input
-                className="focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
+                className=" focus:outline-none focus:shadow-outline w-full bg-transparent  px-3 py-1 border-b-2  border-white text-white"
                 id="eventDate"
                 type="date"
                 name="eventDate"

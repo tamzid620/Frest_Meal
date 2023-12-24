@@ -50,6 +50,8 @@ import CreateDeliveryPanel from "./Components/Pages/AdminPanel/Navigation/Create
 import DeliveryManPanel from "./Components/Pages/DeliveryManPanel/DeliveryManPanel";
 import DeliveryAssignList from "./Components/Pages/DeliveryManPanel/DeliveryAssignList";
 import OrderPackage from "./Components/Shared/Order/OrderPackage";
+import AdminReservationApprovedList from "./Components/Pages/AdminPanel/Navigation/AdminReservationApprovedList";
+// import { ThemeProvider } from "@material-tailwind/react";
 
 const router = createBrowserRouter([
   {
@@ -112,6 +114,10 @@ const router = createBrowserRouter([
       {
         path: "/adminReservationList",
         element: <AdminReservation />,
+      },
+      {
+        path: "/adminReservationApprovedList",
+        element: <AdminReservationApprovedList />,
       },
       // Admin Login ------------------------------
       {
@@ -260,6 +266,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    {/* <ThemeProvider> */}
     <RouterProvider router={router} />
+    {/* </ThemeProvider> */}
   </React.StrictMode>
 );

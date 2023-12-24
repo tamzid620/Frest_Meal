@@ -14,6 +14,7 @@ import { TbToolsKitchen } from "react-icons/tb";
 import { FaCameraRetro } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";
+// import { NotificationsMenu } from "./NotificationsMenu/NotificationsMenu";
 
 const SearchPanel = () => {
   const navigate = useNavigate();
@@ -101,27 +102,27 @@ const logoutSubmit = (e) => {
                   </svg>
                 </button>
 
-                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-[#ffd700] border rounded-box w-52 ">
+                <ul className="dropdown-menu absolute hidden text-white pt-1 p-2 shadow  z-[1] bg-black border rounded-box w-52 ">
                   <Link to="/adminCategory">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                    <li className="py-2 font-bold text-md hover:bg-slate-800  rounded-xl ps-2">
                       Category
                     </li>
                   </Link>
-                  <hr className="mt-1 border-black" />
+                  <hr className="mt-1 border-white" />
                   <Link to="/adminSubCategory">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                    <li className="py-2 font-bold text-md hover:bg-slate-800  rounded-xl ps-2">
                       Sub Category
                     </li>
                   </Link>
-                  <hr className="mt-1 border-black" />
+                  <hr className="mt-1 border-white" />
                   <Link to="/adminFoodItem">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                    <li className="py-2 font-bold text-md hover:bg-slate-800  rounded-xl ps-2">
                       Food Item
                     </li>
                   </Link>
-                  <hr className="mt-1 border-black" />
+                  <hr className="mt-1 border-white" />
                   <Link to="/adminPackageList">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                    <li className="py-2 font-bold text-md hover:bg-slate-800  rounded-xl ps-2">
                       Package
                     </li>
                   </Link>
@@ -145,15 +146,15 @@ const logoutSubmit = (e) => {
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
                   </svg>
                 </button>
-                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-[#ffd700] border rounded-box w-52 ">
+                <ul className="dropdown-menu absolute hidden text-white pt-1 p-2 shadow  z-[1] bg-black border rounded-box w-52 ">
                   <Link to="/adminOrderList">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                    <li className="py-2 font-bold text-md hover:bg-slate-800 rounded-xl ps-2">
                       Order List
                     </li>
                   </Link>
-                  <hr className="mt-1 border-black" />
+                  <hr className="mt-1 border-white" />
                   <Link to="/adminOrderDelivery">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                    <li className="py-2 font-bold text-md hover:bg-slate-800 rounded-xl ps-2">
                       Order Delivery
                     </li>
                   </Link>
@@ -161,7 +162,7 @@ const logoutSubmit = (e) => {
               </div>
 
               {/* Employees dropdown section  */}
-              <div className="dropdown inline-block mt-3 relative z-10">
+              <div className="dropdown inline-block mt-3 relative z-30">
                 <button className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
                   <IoPersonCircleSharp
                     className="text-[#ffd700] -ms-[145px]"
@@ -176,30 +177,47 @@ const logoutSubmit = (e) => {
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
                   </svg>
                 </button>
-                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 p-2 shadow  z-[1] bg-[#ffd700] border rounded-box w-52 ">
+                <ul className="dropdown-menu absolute hidden text-white pt-1 p-2 shadow  z-[1] bg-black border rounded-box w-52 ">
                   <Link to="/adminEmployeeList">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                    <li className="py-2 font-bold text-md hover:bg-slate-800 rounded-xl ps-2">
                       Employee List
                     </li>
                   </Link>
-                  <hr className="mt-1 border-black" />
+                  <hr className="mt-1 border-white" />
                   <Link to="/adminDeliveryManList">
-                    <li className="py-2 font-bold text-md hover:bg-yellow-500 text-black rounded-xl ps-2">
+                    <li className="py-2 font-bold text-md hover:bg-slate-800 rounded-xl ps-2">
                       DeliveryMan
                     </li>
                   </Link>
                 </ul>
               </div>
-              {/* ------------------------------------------------------- */}
-              {/* Reservation section  */}
-              <Link to="/adminReservationList">
-                <li className="font-semibold text-lg mt-3 mb-3">
-                  <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-blue-500">
-                    <RiReservedFill className="text-orange-500" size={20} />{" "}
-                    Reservation
-                  </span>
-                </li>
-              </Link>
+              {/* Reservation dropdown section  */}
+              <div className="dropdown inline-block mt-3 mb-3 relative z-20">
+                <button className=" rounded-r-full bg-[#191c24] p-2 border-l-4 border-blue-500 w-full btn text-white hover:btn-ghost ">
+                <RiReservedFill className="-ms-[128px] text-orange-500" size={20} />{" "}
+                  Reservation
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
+                  </svg>
+                </button>
+                <ul className="dropdown-menu absolute hidden text-white pt-1 p-2 shadow  z-[1] bg-black border rounded-box w-52 ">
+                  <Link to="/adminReservationList">
+                    <li className="py-2 font-bold text-md hover:bg-slate-800 rounded-xl ps-2">
+                      Reservation List
+                    </li>
+                  </Link>
+                  <hr className="mt-1 border-white" />
+                  <Link to="/adminReservationApprovedList">
+                    <li className="py-2 font-bold text-md hover:bg-slate-800 rounded-xl ps-2">
+                      Reservation Approved List
+                    </li>
+                  </Link>
+                </ul>
+              </div>
               {/* Catering Service section  */}
               <li className="font-semibold text-lg mb-3">
                 <span className="rounded-r-full bg-[#191c24] hover:text-white p-2 border-l-4 border-yellow-500">
@@ -265,6 +283,7 @@ const logoutSubmit = (e) => {
             {" "}
             <MdNotifications className="w-[20px] h-[20px]" />
           </button>
+          {/* <NotificationsMenu/> */}
         </div>
 
         {/*--------------------- profile section-------------------  */}

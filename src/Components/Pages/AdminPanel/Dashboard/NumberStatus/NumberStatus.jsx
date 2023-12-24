@@ -125,7 +125,7 @@ useEffect(() => {
         <div className="mt-4 flex items-end justify-between">
           <div>
             <h4 className="text-2xl font-semibold "> {totalSell.totalDelivery}</h4>
-            <span className="text-md font-medium">Total Profit</span>
+            <span className="text-md font-medium">Total Delivery</span>
           </div>
 
           <span className="flex items-center gap-1 text-md font-medium  text-green-500">
@@ -171,7 +171,7 @@ useEffect(() => {
         <div className="mt-4 flex items-end justify-between">
           <div>
             <h4 className="text-2xl font-semibold">৳ {totalSell.totalSale} /=</h4>
-            <span className="text-md font-medium">Total Product</span>
+            <span className="text-md font-medium">Total Sells</span>
           </div>
 
           <span className="flex items-center gap-1 text-md font-medium  text-green-500">
@@ -220,8 +220,8 @@ useEffect(() => {
 
         <div className="mt-4 flex items-end justify-between">
           <div>
-            <h4 className="text-2xl font-semibold ">3.456</h4>
-            <span className="text-md font-medium">Total Users</span>
+            <h4 className="text-2xl font-semibold ">{totalSell.item}</h4>
+            <span className="text-md font-medium">Total Items</span>
           </div>
 
           <span className="flex items-center gap-1 text-md font-medium text-red-500">

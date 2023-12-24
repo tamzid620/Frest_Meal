@@ -3,8 +3,11 @@ import Loading from "../../Layout/Loading";
 import axios from "axios";
 import { IoMdDoneAll } from "react-icons/io";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const DeliveryAssignList = () => {
+  
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [orderAssigns, setOrderAssigns] = useState([]);
 
@@ -62,6 +65,35 @@ const DeliveryAssignList = () => {
         });
       });
   };
+// logout system --------------------------
+const logoutSubmit = (e) => {
+  console.log("button clicked");
+  e.preventDefault();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const headers = {
+    accept: "application/json",
+    Authorization: "Bearer " + user.token,
+  };
+  axios
+    .post(`https://backend.ap.loclx.io/api/admin-logout`, null, {
+      headers: headers,
+    })
+    .then((res) => {
+      if (res.data.status === "405") {
+        localStorage.removeItem("token", res.data.token);
+        localStorage.removeItem("user", res.data.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/adminlogin");
+      }
+    });
+};
+
 
   return (
     <div className="bg-white">
@@ -71,6 +103,14 @@ const DeliveryAssignList = () => {
             Order Assign List
           </h1>
           <hr className="mt-1 mb-10 border border-black " />
+          {/* logout Button  */}
+          <div className="flex justify-end me-5">
+            <button 
+            onClick={logoutSubmit} 
+            className="uppercase bg-red-500 hover:bg-red-700 hover:text-white text-black  font-bold py-2 px-4 rounded">
+                LogOut
+            </button>
+            </div>
           {/* table section  */}
           {!loading && (
             <div className="overflow-x-auto">
