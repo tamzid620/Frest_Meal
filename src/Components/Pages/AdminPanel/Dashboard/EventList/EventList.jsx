@@ -1,6 +1,6 @@
-import { HiDocumentText } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { AiFillClockCircle } from "react-icons/ai";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -64,8 +64,8 @@ const EventList = () => {
               <div key={reserve.id}>
                 <div className="lg:flex md:flex lg:justify-between md:justify-between">
                   <div className="flex items-center">
-                    <div className="bg-blue-600 p-3 rounded-xl me-2">
-                      <HiDocumentText className="w-5 h-5 text-white" />
+                    <div className="bg-yellow-500 p-3 rounded-xl me-2">
+                      <AiFillClockCircle className="w-5 h-5 text-white" />
                     </div>
                     <div>
                       <h6 className=" text-white">{reserve.eventType}</h6>

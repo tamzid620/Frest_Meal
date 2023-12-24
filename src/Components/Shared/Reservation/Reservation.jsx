@@ -59,7 +59,7 @@ const Reservation = () => {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: ("Error submitting form:", error),
+          title: error.res.data.message,
           showConfirmButton: false,
           timer: 1500,
         });

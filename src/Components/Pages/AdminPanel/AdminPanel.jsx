@@ -70,6 +70,7 @@ const AdminPanel = () => {
               <Transaction />
             </div>
             <div className="col-span-8 lg:col-span-8 mb-10">
+              {/* Reservation list  */}
               <EventList />
             </div>
           </div>

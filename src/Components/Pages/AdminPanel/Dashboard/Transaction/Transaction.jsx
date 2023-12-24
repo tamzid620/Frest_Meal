@@ -47,7 +47,7 @@ const Transaction = () => {
 
   return (
     <div className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl bg-gray-800  px-5 pt-7.5 pb-5 sm: w-[300px] md:w-full lg:w-[450px] lg:h-[500px] flex items-center">
-      <div className='bg-gray-800'>
+      <div className='bg-gray-800 '>
       <div className="mb-3 justify-between gap-4 sm:flex lg:flex md:flex">
         <div>
           <h5 className="text-xl font-semibold  text-white">
@@ -90,7 +90,7 @@ const Transaction = () => {
 
       <div className="mb-2 ">
         <div id="chartThree" className=" mx-auto flex justify-center sm: w-full md:w-[600px] lg:w-full">
-          <ReactApexChart
+          <ReactApexChart 
             options={options}
             series={[65, 34, 12, 56]}
             type="donut"
