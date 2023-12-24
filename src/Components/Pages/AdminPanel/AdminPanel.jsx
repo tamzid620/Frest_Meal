@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 const AdminPanel = () => {
 
   const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
    const userRole=  localStorage.getItem("user"); 
@@ -26,10 +27,11 @@ const AdminPanel = () => {
         timer: 1500,
       });
       navigate("/adminlogin");
-    }  else if (userRole.role !==  1) {
+    } 
+    else if (userRole.role ===  1) {
       navigate("/dp");
     } 
-    else if (userRole.role !==  2) {
+    else if (userRole.role ===  2) {
       Swal.fire({
         position: "center",
         icon: "warning",
