@@ -1,5 +1,3 @@
-import "./PaymentStatus.js";
-import "./PaymentStatus.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -43,9 +41,10 @@ const PaymentStatus1 = () => {
   );
 
   return (
-    <div className=" text-white border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl mb-10 sm: w-[350px] md:w-full lg:w-full">
+    <div className=" border border-yellow-500 border-t-2 shadow-lg shadow-yellow-500
+    rounded-xl  sm: w-[350px] md:w-full lg:w-full">
       <div
-        className=" division col-12 bg-gray-800 mb-5 rounded-xl p-3"
+        className=" col-12 bg-gray-800 rounded-xl p-3 b "
         role="region"
         aria-labelledby="Cap1"
         tabIndex="0"
@@ -56,7 +55,7 @@ const PaymentStatus1 = () => {
           </h4>
 
           <div className="overflow-x-auto">
-            <table className="table table-zebra text-black">
+            <table className="table table-zebra text-black mb-5">
               {/* head */}
               <thead className="bg-gray-700 text-white">
                 <tr>
