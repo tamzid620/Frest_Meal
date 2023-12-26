@@ -1,49 +1,50 @@
 import ReactApexChart from 'react-apexcharts';
 
-
-const options= {
-  chart: {
-    type: 'donut',
-  },
-  colors: ['#10B981', '#375E83', '#259AE6', '#FFA70B'],
-  labels: ['Remote', 'Hybrid', 'Onsite', 'Leave'],
-  legend: {
-    show: true,
-    position: 'bottom',
-  },
-
-  plotOptions: {
-    pie: {
-      donut: {
-        size: '65%',
-        background: 'transparent',
-      },
-    },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  responsive: [
-    {
-      breakpoint: 2600,
-      options: {
-        chart: {
-          width: 380,
-        },
-      },
-    },
-    {
-      breakpoint: 640,
-      options: {
-        chart: {
-          width: 200,
-        },
-      },
-    },
-  ],
-};
-
 const Transaction = () => {
+  
+  
+  const options= {
+    chart: {
+      type: 'donut',
+    },
+    colors: ['#10B981', '#375E83', '#259AE6', '#FFA70B','#10B981'],
+    labels: ['Remote', 'Hybrid', 'Onsite', 'Leave' ,'Demote'],
+    legend: {
+      show: true,
+      position: 'bottom',
+    },
+  
+    plotOptions: {
+      pie: {
+        donut: {
+          size: '65%',
+          background: 'transparent',
+        },
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    responsive: [
+      {
+        breakpoint: 2600,
+        options: {
+          chart: {
+            width: 380,
+          },
+        },
+      },
+      {
+        breakpoint: 640,
+        options: {
+          chart: {
+            width: 200,
+          },
+        },
+      },
+    ],
+  };
+ 
 
   return (
     <div className="border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 rounded-xl bg-gray-800  px-5 pt-7.5 pb-5 sm: w-[300px] md:w-full lg:w-[450px] lg:h-[500px] flex items-center">
@@ -92,13 +93,14 @@ const Transaction = () => {
         <div id="chartThree" className=" mx-auto flex justify-center sm: w-full md:w-[600px] lg:w-full">
           <ReactApexChart 
             options={options}
-            series={[65, 34, 12, 56]}
+            series={[65, 34, 12, 56,32]}
             type="donut"
           />
         </div>
       </div>
 
-      <div className="mx-8 flex lg:flex-wrap sm: flex-wrap md:flex-wrap items-center justify-center gap-y-3 mt-10">
+      <div 
+      className="mx-8 flex lg:flex-wrap sm: flex-wrap md:flex-wrap items-center justify-center gap-y-3 mt-10">
 
         <div className="w-full px-8 sm:w-1/2">
           <div className="flex w-full items-center">
@@ -139,6 +141,7 @@ const Transaction = () => {
             </p>
           </div>
         </div>
+
       </div>
       </div>
 

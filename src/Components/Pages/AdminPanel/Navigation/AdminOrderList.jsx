@@ -45,6 +45,7 @@ const AdminOrderList = () => {
         });
     }
   }, [navigate]);
+  
   // pagination section -----------
   const indexOfLastOrderItem = currentPage * orderItemPerPage;
   const indexOfFirstOrderItem = indexOfLastOrderItem - orderItemPerPage;
@@ -80,7 +81,7 @@ const AdminOrderList = () => {
                 <thead className="bg-gray-600 text-white">
                   <tr>
                     <th>index</th>
-                    <th>Name</th>
+                    <th>Client Name</th>
                     <th>phoneNo</th>
                     <th>OrderCode</th>
                     <th>Total Amount</th>
