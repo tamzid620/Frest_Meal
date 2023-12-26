@@ -48,7 +48,7 @@ const EventList = () => {
   return (
     <div>
         <div className="card">
-          <div className="card-body border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-gray-800 rounded-xl sm: w-[300px] md:w-full lg:w-[750px] lg:h-[500px]">
+          <div className="card-body border-t-2 border-yellow-500 shadow-lg shadow-yellow-500 bg-gray-800 rounded-xl sm: w-[350px] md:w-full lg:w-[750px] lg:h-[500px]">
             <div className="flex justify-between items-center mb-5">
               <div>
                 <h4 className="card-title mb-1t text-white">
